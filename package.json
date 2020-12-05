@@ -1,0 +1,36 @@
+{
+  "name": "nuxtjs",
+  "version": "1.0.0",
+  "description": "My astonishing Nuxt.js project",
+  "author": "msweeneydev",
+  "private": true,
+  "scripts": {
+    "dev": "node -r dotenv/config --max-old-space-size=4096 node_modules/nuxt/bin/nuxt.js",
+    "build": "nuxt generate",
+    "start": "nuxt start"
+  },
+  "dependencies": {
+    "@dtinth/encrypted": "^0.2.1",
+    "@nuxtjs/auth": "^4.9.1",
+    "@nuxtjs/axios": "^5.12.2",
+    "@octokit/app": "^4.2.1",
+    "@octokit/rest": "^18.0.6",
+    "@vue/component-compiler-utils": "^3.2.0",
+    "@vuepress/markdown": "^1.6.0",
+    "@vuepress/shared-utils": "^1.6.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-jwt": "^6.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "jwks-rsa": "^1.10.1",
+    "littlefoot": "^3.4.1",
+    "markdown-it-footnote": "^3.0.2",
+    "nuxt": "^2.0.0",
+    "twemoji": "^13.0.1",
+    "vue-template-compiler": "^2.6.12"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.9"
+  }
+}
