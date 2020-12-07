@@ -64,8 +64,9 @@ export default {
     }
   },
   head() {
+    const pageTitle = this.entry.frontmatter.title || this.id
     return {
-      title: this.entry.frontmatter.title || this.id,
+      title: pageTitle,
       meta: [
         ...(this.entry.frontmatter.description
           ? [
