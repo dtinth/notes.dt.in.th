@@ -66,7 +66,7 @@ export default {
   head() {
     const pageTitle = this.entry.frontmatter.title || this.id
     return {
-      title: pageTitle,
+      title: pageTitle + ' | notes.dt.in.th',
       meta: [
         ...(this.entry.frontmatter.description
           ? [
@@ -80,6 +80,10 @@ export default {
         {
           property: 'og:image',
           content: `https://capture.the.spacet.me/${this.entry.screenshotToken}.png`,
+        },
+        {
+          property: 'og:title',
+          content: pageTitle,
         },
         {
           property: 'og:image:width',
