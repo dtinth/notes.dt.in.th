@@ -1,8 +1,11 @@
 <template>
   <div class="container">
     <h1 v-if="error.statusCode === 404">Page not found</h1>
-    <h1 v-else>An error occurred</h1>
-    <NuxtLink to="/">Home page</NuxtLink>
+    <template v-else>
+      <h1>An error occurred</h1>
+      <p>This content may not be available.</p>
+    </template>
+    <NuxtLink to="/">Back to home page</NuxtLink>
   </div>
 </template>
 

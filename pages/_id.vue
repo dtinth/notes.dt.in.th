@@ -45,7 +45,7 @@
 import OutboundLink from '../components/OutboundLink.vue'
 
 export default {
-  async asyncData({ $axios, params, res }) {
+  async asyncData({ $axios, params, res, error }) {
     try {
       const entry = await $axios.$get('/api/entries/' + params.id)
       if (process.server) {
@@ -57,10 +57,12 @@ export default {
         )
       }
       return { entry, id: params.id }
-    } catch (error) {
-      console.log(error.response)
-      console.error(error)
-      throw error
+    } catch (e) {
+      console.error(e)
+      error({
+        statusCode: (e.response && e.response.statusCode) || 500,
+        message: 'Unable to load the content.',
+      })
     }
   },
   head() {
