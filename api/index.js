@@ -17,6 +17,19 @@ markdown.renderer.render = (original =>
     return twemoji.parse(original.apply(this, arguments))
   })(markdown.renderer.render)
 
+markdown.renderer.rules.link_open = (original =>
+  function(tokens, idx, options, env, self) {
+    const token = tokens[idx]
+    const nextToken = tokens[idx + 1]
+    if (nextToken && nextToken.type === 'text') {
+      if (String(nextToken.content).startsWith('🔖')) {
+        // https://github.com/aaronpk/webmention.io/blob/main/test/data/source.example.org/bookmark-of.html
+        token.attrPush(['class', 'u-bookmark-of'])
+      }
+    }
+    return original(tokens, idx, options, env, self)
+  })(markdown.renderer.rules.link_open)
+
 var jwtCheck = jwt({
   secret: jwks.expressJwtSecret({
     cache: true,
