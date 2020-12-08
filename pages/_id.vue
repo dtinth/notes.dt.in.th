@@ -10,7 +10,13 @@
     <article class="h-entry">
       <component :is="page" />
       <p class="meta">
-        —<a class="p-author h-card" href="https://dt.in.th">@dtinth</a>,
+        —<a class="p-author h-card" href="https://dt.in.th"
+          ><img
+            src="/d7fc70-circle-192.png"
+            alt=""
+            style="display: none"
+          />@dtinth</a
+        >,
         <time v-if="pubDate" class="dt-published" :datetime="pubDate.machine">
           {{ pubDate.human }}
         </time>
