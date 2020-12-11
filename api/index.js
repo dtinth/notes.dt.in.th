@@ -201,7 +201,7 @@ app.get('/entries/:id', async (req, res, next) => {
       relativePath: req.params.id + '.md'
     })
 
-    const script = hoistedTags.find(tag => tag.match(/^<script/i))
+    const script = (hoistedTags || []).find(tag => tag.match(/^<script/i))
     let componentModule
     if (script) {
       const src = script
