@@ -56,6 +56,14 @@ export default {
   border-bottom-width: 2px;
   background: #252423;
 }
+[data-dtinth] FIGURE {
+  text-align: center;
+}
+[data-dtinth] FIGCAPTION {
+  font-style: italic;
+  color: #bef;
+  margin-top: -1em;
+}
 
 a.header-anchor {
   font-size: 0.85em;
