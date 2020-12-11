@@ -49,6 +49,7 @@
 
 <script>
 import OutboundLink from '../components/OutboundLink.vue'
+import VueCompositionApi from '../utils/VueCompositionApi'
 
 export default {
   async asyncData({ $axios, params, res, error }) {
@@ -125,8 +126,9 @@ export default {
     },
     hoisted() {
       if (Array.isArray(this.entry.hoistedTags)) {
-        return this.entry.hoistedTags.filter((s) => /^<style/i).join('')
+        return this.entry.hoistedTags.filter((s) => /^<style/i.test(s)).join('')
       }
+      return ''
     },
     page() {
       return compileEntryComponent(this.entry)
@@ -141,20 +143,31 @@ export default {
 }
 
 function compileEntryComponent(entry) {
-  return {
-    components: {
-      OutboundLink,
-    },
+  const component = {
+    components: {},
+  }
+  if (entry.componentModule) {
+    Object.assign(component, compileModule(entry.componentModule))
+  }
+  Object.assign(component.components, { OutboundLink })
+  Object.assign(component, {
     render: new Function(entry.render),
     staticRenderFns: entry.staticRenderFns.map((f) => new Function(f)),
-  }
+  })
+  return component
+}
+
+function compileModule(code) {
+  const fn = new Function('module', 'exports', 'Vue', code)
+  const myModule = { exports: {} }
+  fn(myModule, myModule.exports, VueCompositionApi)
+  return myModule.exports.default
 }
 
 let latestLf
 async function setupFootnotes() {
   const littlefootPromise = import('littlefoot')
   const { default: littlefoot } = await littlefootPromise
-  console.log('a')
   if (latestLf) {
     latestLf.unmount()
   }
