@@ -10,6 +10,7 @@ const jwt = require('express-jwt')
 const jsonwebtoken = require('jsonwebtoken')
 const jwks = require('jwks-rsa')
 const twemoji = require('twemoji')
+const esbuild = require('esbuild')
 
 markdown.use(require('markdown-it-footnote'))
 markdown.renderer.render = (original =>
@@ -200,6 +201,20 @@ app.get('/entries/:id', async (req, res, next) => {
       relativePath: req.params.id + '.md'
     })
 
+    const script = hoistedTags.find(tag => tag.match(/^<script/i))
+    let componentModule
+    if (script) {
+      const src = script
+        .trim()
+        .replace(/^<script[^>]*>/i, '')
+        .replace(/<\/script>/i, '')
+      const compiled = await esbuild.transform(src, {
+        loader: 'ts',
+        format: 'cjs'
+      })
+      componentModule = compiled.code
+    }
+
     const template = `<div class="e-content">${html}</div>`
     const result = compiler.compile(template)
     res.json({
@@ -208,6 +223,7 @@ app.get('/entries/:id', async (req, res, next) => {
       staticRenderFns: result.staticRenderFns,
       dataBlockString,
       hoistedTags,
+      componentModule,
       links,
       preview,
       screenshotToken: jsonwebtoken.sign(

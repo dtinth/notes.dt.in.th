@@ -53,6 +53,7 @@ export default {
    ** Nuxt.js modules
    */
   modules: ['@nuxtjs/axios', '@nuxtjs/auth'],
+  buildModules: ['@nuxtjs/composition-api'],
   /*
    ** Build configuration
    */
