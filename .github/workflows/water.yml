@@ -10,9 +10,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/checkout@v2
-        repository: dtinth/dtinth-water
-        ssh-key: ${{ secrets.WATER_DEPLOY_KEY }}
-        path: water
+        with:
+          repository: dtinth/dtinth-water
+          ssh-key: ${{ secrets.WATER_DEPLOY_KEY }}
+          path: water
       - run: cp assets/dtinth-water.css water
       - name: Some Git wizardry
         run: |
