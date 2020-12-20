@@ -5,6 +5,7 @@
   --selection: #8b8685;
   --text-main: #e9e8e7;
   --text-bright: #fff;
+  --border: #656463;
   --text-muted: #8b8685;
   --links: #ffb;
   --code: #e9d7c5;
@@ -17,6 +18,9 @@
 }
 [data-dtinth] body {
   line-height: 1.64;
+}
+[data-dtinth] h1 {
+  color: #8b8685;
 }
 [data-dtinth] h2 {
   color: #d7fc70;
@@ -44,4 +48,8 @@
   font-style: italic;
   color: #bef;
   margin-top: -1em;
+}
+[data-dtinth] footer,
+[data-dtinth] footer a {
+  color: #8b8685;
 }
