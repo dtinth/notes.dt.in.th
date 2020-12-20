@@ -16,9 +16,10 @@ jobs:
       - run: cp assets/dtinth-water.css water
       - name: Some Git wizardry
         run: |
+          WATER_SHA=$(git log -1 --pretty=format:"%h" assets/dtinth-water.css)
           cd water
           git add --all \
-            && git commit -m "Synchronize with https://github.com/dtinth/notes.dt.in.th/commit/${GITHUB_SHA::8}" \
+            && git commit -m "Synchronize with https://github.com/dtinth/notes.dt.in.th/commit/$WATER_SHA" \
             || echo "Nothing to commit"
           git push
         env:
