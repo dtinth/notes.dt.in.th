@@ -53,3 +53,7 @@
 [data-dtinth] footer a {
   color: #8b8685;
 }
+a > code,
+a > strong {
+  color: inherit;
+}
