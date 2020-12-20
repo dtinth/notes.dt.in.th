@@ -53,6 +53,8 @@
 [data-dtinth] footer a {
   color: #8b8685;
 }
+
+/* https://github.com/kognise/water.css/pull/238 */
 a > code,
 a > strong {
   color: inherit;
