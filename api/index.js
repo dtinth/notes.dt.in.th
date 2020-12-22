@@ -228,7 +228,7 @@ app.get('/entries/:id', async (req, res, next) => {
       preview,
       screenshotToken: jsonwebtoken.sign(
         {
-          url: `https://${process.env.VERCEL_URL}/${id}`,
+          url: `https://${process.env.VERCEL_URL}/${id}#og:image`,
           width: 900,
           height: 840,
           deviceScaleFactor: 2,
