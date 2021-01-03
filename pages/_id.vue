@@ -9,18 +9,40 @@
     </div>
     <article class="h-entry">
       <component :is="page" />
-      <p class="meta">
-        —<a class="p-author h-card" href="https://dt.in.th"
-          ><img
-            src="/d7fc70-circle-192.png"
-            alt=""
-            style="display: none"
-          />@dtinth</a
-        >,
-        <time v-if="pubDate" class="dt-published" :datetime="pubDate.machine">
-          {{ pubDate.human }}
-        </time>
-      </p>
+      <footer class="post-footer">
+        <p class="meta">
+          —<a class="p-author h-card" href="https://dt.in.th"
+            ><img
+              src="/d7fc70-circle-192.png"
+              alt=""
+              style="display: none"
+            />@dtinth</a
+          >,
+          <time v-if="pubDate" class="dt-published" :datetime="pubDate.machine">
+            {{ pubDate.human }}
+          </time>
+        </p>
+        <p class="syndication-links" v-if="syndication.length">
+          Comment on:
+          <a
+            :href="url"
+            rel="syndication"
+            class="syndication u-syndication"
+            v-for="{ title, url, path } of syndication"
+            :title="title"
+            :key="title"
+          >
+            <svg
+              role="img"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+            >
+              <title>{{ title }}</title>
+              <path :d="path"></path>
+            </svg>
+          </a>
+        </p>
+      </footer>
     </article>
   </div>
 </template>
@@ -30,15 +52,30 @@
 </style>
 
 <style scoped>
+.post-footer {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+.syndication-links {
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: auto;
+}
+.syndication {
+  margin-left: 1em;
+}
+.syndication svg {
+  width: 1.41em;
+  height: 1.41em;
+  vertical-align: middle;
+}
+.syndication svg path {
+  fill: currentColor;
+}
 .unpublished {
   color: #fbb;
   font-weight: bold;
-}
-.meta {
-  color: #8b8685;
-}
-.meta a {
-  color: inherit;
 }
 .meta time {
   padding: 0;
@@ -132,6 +169,22 @@ export default {
     },
     page() {
       return compileEntryComponent(this.entry)
+    },
+    syndication() {
+      return [
+        {
+          url: this.entry.frontmatter.facebook,
+          title: 'Facebook',
+          path:
+            'M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z',
+        },
+        {
+          url: this.entry.frontmatter.devto,
+          title: 'DEV Community',
+          path:
+            'M7.42 10.05c-.18-.16-.46-.23-.84-.23H6l.02 2.44.04 2.45.56-.02c.41 0 .63-.07.83-.26.24-.24.26-.36.26-2.2 0-1.91-.02-1.96-.29-2.18zM0 4.94v14.12h24V4.94H0zM8.56 15.3c-.44.58-1.06.77-2.53.77H4.71V8.53h1.4c1.67 0 2.16.18 2.6.9.27.43.29.6.32 2.57.05 2.23-.02 2.73-.47 3.3zm5.09-5.47h-2.47v1.77h1.52v1.28l-.72.04-.75.03v1.77l1.22.03 1.2.04v1.28h-1.6c-1.53 0-1.6-.01-1.87-.3l-.3-.28v-3.16c0-3.02.01-3.18.25-3.48.23-.31.25-.31 1.88-.31h1.64v1.3zm4.68 5.45c-.17.43-.64.79-1 .79-.18 0-.45-.15-.67-.39-.32-.32-.45-.63-.82-2.08l-.9-3.39-.45-1.67h.76c.4 0 .75.02.75.05 0 .06 1.16 4.54 1.26 4.83.04.15.32-.7.73-2.3l.66-2.52.74-.04c.4-.02.73 0 .73.04 0 .14-1.67 6.38-1.8 6.68z',
+        },
+      ].filter((x) => x.url)
     },
   },
   mounted() {
