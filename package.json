@@ -28,7 +28,7 @@
     "jwks-rsa": "^1.10.1",
     "littlefoot": "^3.4.1",
     "markdown-it-footnote": "^3.0.2",
-    "nuxt": "^2.0.0",
+    "nuxt": "^2.15.8",
     "twemoji": "^13.0.1",
     "vue-template-compiler": "^2.6.12"
   },
