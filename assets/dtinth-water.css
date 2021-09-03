@@ -10,6 +10,7 @@
   --links: #ffb;
   --code: #e9d7c5;
   --scrollbar-thumb: #d7fc70;
+  font-size: 17px;
 }
 ::selection {
   color: #000;
@@ -20,7 +21,7 @@
     sans-serif;
 }
 [data-dtinth] body {
-  line-height: 1.64;
+  line-height: 1.6;
 }
 [data-dtinth] h1 {
   color: #8b8685;
