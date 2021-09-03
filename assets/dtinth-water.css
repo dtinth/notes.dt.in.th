@@ -57,6 +57,10 @@
 [data-dtinth] footer a {
   color: #8b8685;
 }
+[data-dtinth] li {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
 
 /* https://github.com/kognise/water.css/pull/238 */
 a > code,
