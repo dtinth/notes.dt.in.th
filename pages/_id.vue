@@ -113,6 +113,7 @@
 
 <script>
 import OutboundLink from '../components/OutboundLink.vue'
+import DSplit from '../components/DSplit.vue'
 import VueCompositionApi from '../utils/VueCompositionApi'
 
 export default {
@@ -167,6 +168,9 @@ export default {
           content: '1680',
         },
       ],
+      bodyAttrs: {
+        class: this.entry.frontmatter.wide ? 'is-wide' : '',
+      },
     }
   },
   computed: {
@@ -232,7 +236,7 @@ function compileEntryComponent(entry) {
   if (entry.componentModule) {
     Object.assign(component, compileModule(entry.componentModule))
   }
-  Object.assign(component.components, { OutboundLink })
+  Object.assign(component.components, { OutboundLink, DSplit })
   Object.assign(component, {
     render: new Function(entry.render),
     staticRenderFns: entry.staticRenderFns.map((f) => new Function(f)),

@@ -18,6 +18,10 @@ export default {
 @import '../vendor/raster.grid.css';
 @import '../assets/dtinth-water.css';
 
+body.is-wide {
+  max-width: 1200px;
+}
+
 a.header-anchor {
   font-size: 0.85em;
   float: left;
