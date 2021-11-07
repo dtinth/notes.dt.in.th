@@ -114,6 +114,7 @@
 <script>
 import OutboundLink from '../components/OutboundLink.vue'
 import DSplit from '../components/DSplit.vue'
+import NotesLink from '../components/NotesLink.vue'
 import VueCompositionApi from '../utils/VueCompositionApi'
 
 export default {
@@ -135,6 +136,11 @@ export default {
         statusCode: (e.response && e.response.statusCode) || 500,
         message: 'Unable to load the content.',
       })
+    }
+  },
+  provide() {
+    return {
+      frontmatter: this.entry.frontmatter,
     }
   },
   head() {
@@ -236,7 +242,7 @@ function compileEntryComponent(entry) {
   if (entry.componentModule) {
     Object.assign(component, compileModule(entry.componentModule))
   }
-  Object.assign(component.components, { OutboundLink, DSplit })
+  Object.assign(component.components, { OutboundLink, DSplit, NotesLink })
   Object.assign(component, {
     render: new Function(entry.render),
     staticRenderFns: entry.staticRenderFns.map((f) => new Function(f)),

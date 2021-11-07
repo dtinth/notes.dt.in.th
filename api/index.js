@@ -28,8 +28,19 @@ markdown.use(markdown => {
           token.attrPush(['class', 'u-bookmark-of'])
         }
       }
+      token.tag = 'notes-link'
+      if (token.markup === 'autolink') {
+        token.attrPush(['data-autolink', 'true'])
+      }
       return original(tokens, idx, options, env, self)
     })(markdown.renderer.rules.link_open)
+
+  markdown.renderer.rules.link_close = (original =>
+    function(tokens, idx, options, env, self) {
+      const token = tokens[idx]
+      token.tag = 'notes-link'
+      return original(tokens, idx, options, env, self)
+    })(markdown.renderer.rules.link_close)
 })
 
 var jwtCheck = jwt({
