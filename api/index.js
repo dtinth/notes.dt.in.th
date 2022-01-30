@@ -11,6 +11,7 @@ const jsonwebtoken = require('jsonwebtoken')
 const jwks = require('jwks-rsa')
 const twemoji = require('twemoji')
 const esbuild = require('esbuild')
+const RSS = require('rss')
 
 markdown.use(require('markdown-it-footnote'))
 markdown.renderer.render = (original =>
@@ -185,7 +186,6 @@ app.use(jwtCheck, function(err, req, res, next) {
   if (err.code === 'invalid_token') return next()
   return next(err)
 })
-
 app.get('/entries/:id', async (req, res, next) => {
   try {
     const { id } = req.params
@@ -256,6 +256,37 @@ app.get('/entries/:id', async (req, res, next) => {
   } catch (error) {
     console.error(error)
     res.status(500).json({ error: true })
+  }
+})
+app.get('/recent.xml', async (req, res, next) => {
+  try {
+    const { source: src } = await fetchData('20220130T173123Z7835')
+    const parseResult = parseFrontmatter(src)
+    // let frontmatter = parseResult.data
+    let content = parseResult.content
+    const feed = new RSS({
+      title: 'dtinth',
+      description: 'Thai Pangsakulyanont’s writings',
+      feed_url: 'https://notes.dt.in.th/api/recent.xml',
+      site_url: 'https://dt.in.th'
+    })
+    for (const m of content.matchAll(
+      /^- (\d\d\d\d-\d\d-\d\d): \[(.*?)\]\(([^)\s]+)\)/gm
+    )) {
+      const url = new URL(m[3], 'https://notes.dt.in.th/').toString()
+      const options = {
+        title: m[2],
+        description: `<a href="${url}">[Read]</a>`,
+        url: url,
+        date: new Date(m[1] + 'T00:00:00Z')
+      }
+      feed.item(options)
+    }
+    res.set('Content-Type', 'text/xml')
+    res.send(feed.xml())
+  } catch (error) {
+    console.error(error)
+    res.status(500).send('Error')
   }
 })
 

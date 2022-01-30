@@ -29,6 +29,7 @@
     "littlefoot": "^3.4.1",
     "markdown-it-footnote": "^3.0.2",
     "nuxt": "^2.15.8",
+    "rss": "^1.2.2",
     "twemoji": "^13.0.1",
     "vue-template-compiler": "^2.6.12"
   },
