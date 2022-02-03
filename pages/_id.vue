@@ -19,7 +19,11 @@
       <component :is="page" />
       <footer class="post-footer">
         <p class="meta">
-          —<a class="p-author h-card" href="https://dt.in.th"
+          <a href="/" title="Back to notes.dt.in.th">—</a
+          ><a
+            class="p-author h-card"
+            href="https://dt.in.th"
+            title="Back to main website"
             ><img
               src="/d7fc70-circle-192.png"
               alt=""
