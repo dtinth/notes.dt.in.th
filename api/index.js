@@ -177,7 +177,9 @@ async function fetchPreviewData(jwt) {
   )
   return {
     source: response.data.data,
-    preview: true
+    preview: {
+      exp: response.data.exp
+    }
   }
 }
 
