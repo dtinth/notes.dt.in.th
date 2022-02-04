@@ -346,6 +346,22 @@ async function setupFootnotes() {
   word-wrap: break-word;
   display: block;
   background: #090807;
+  line-height: 1.5;
+}
+
+[data-dtinth]
+  .littlefoot-footnote.is-scrollable
+  .littlefoot-footnote__wrapper::before {
+  background-image: linear-gradient(
+    to bottom,
+    #090807 50%,
+    rgba(9, 8, 7, 0) 100%
+  );
+}
+[data-dtinth]
+  .littlefoot-footnote.is-scrollable
+  .littlefoot-footnote__wrapper::after {
+  background-image: linear-gradient(to top, #090807 50%, rgba(9, 8, 7, 0) 100%);
 }
 
 [data-dtinth] .littlefoot-footnote {
