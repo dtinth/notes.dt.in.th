@@ -3,7 +3,7 @@ From VuePress
 https://github.com/vuejs/vuepress/blob/81cce3967c018fe005f112cbe950abc7457dbacb/packages/%40vuepress/core/lib/client/components/OutboundLink.vue
 -->
 <template>
-  <span>
+  <span class="outbound-link-indicator">
     <svg
       class="icon outbound"
       xmlns="http://www.w3.org/2000/svg"
@@ -39,6 +39,10 @@ export default {
 </script>
 
 <style>
+figure img + .outbound-link-indicator {
+  display: none;
+}
+
 .icon.outbound {
   color: #aaa;
   display: inline-block;
