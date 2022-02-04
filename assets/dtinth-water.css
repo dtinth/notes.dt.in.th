@@ -37,6 +37,7 @@
 [data-dtinth] h3 {
   color: #febfea;
   text-shadow: 2px 2px RGBA(0, 0, 0, 0.25);
+  margin-top: 2.5em;
 }
 [data-dtinth] code {
   background: #252423;
