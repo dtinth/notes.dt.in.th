@@ -5,7 +5,7 @@
       v-if="!entry.frontmatter.public && !entry.frontmatter.system"
       class="unpublished"
     >
-      <b>This entry has not been published yet.</b>
+      <b>This entry has not been published.</b>
       <span v-if="expiresIn">
         <br />
         This preview link will automatically expire in{{ ' ' }}
