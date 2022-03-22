@@ -21,6 +21,7 @@
     Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
     sans-serif;
   -webkit-font-smoothing: antialiased;
+  letter-spacing: 0.01em;
 }
 [data-dtinth] body {
   line-height: 1.75;
@@ -28,20 +29,24 @@
 [data-dtinth] h1 {
   color: #8b8685;
   line-height: 1.4;
+  letter-spacing: 0.02em;
 }
 [data-dtinth] h2 {
   color: #d7fc70;
   text-shadow: 2px 2px RGBA(215, 252, 112, 0.15);
   margin-top: 2em;
+  letter-spacing: 0.03em;
 }
 [data-dtinth] h3 {
   color: #febfea;
   text-shadow: 2px 2px RGBA(0, 0, 0, 0.25);
   margin-top: 2.5em;
+  letter-spacing: 0.03em;
 }
 [data-dtinth] code {
   background: #252423;
   font-family: Comic Mono, Menlo, Consolas, sans-serif;
+  letter-spacing: 0.01em;
 }
 [data-dtinth] :not(pre) > code {
   border: 1px solid #555453;
