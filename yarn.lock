@@ -980,10 +980,10 @@
   resolved "https://registry.yarnpkg.com/@csstools/convert-colors/-/convert-colors-1.4.0.tgz#ad495dc41b12e75d588c6db8b9834f08fa131eb7"
   integrity sha512-5a6wqoJV/xEdbRNKVo6I4hO3VjyDq//8q2f9I6PBAvMesJHFauXDorcNCsr9RzvsZnaWi5NYCcfyqP1QeFHFbw==
 
-"@dtinth/encrypted@^0.2.1":
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/@dtinth/encrypted/-/encrypted-0.2.1.tgz#37549d4c1778820e705a357bccec7416fc2cf430"
-  integrity sha512-5xWFwD7tozYXaLzuRhCQL0XYqH0+SpmlU+TK3uKG8lHArLWWpPp7cAYdGhbWQ9LK5W0/+FGvRyUTJ7mSNigvRQ==
+"@dtinth/encrypted@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@dtinth/encrypted/-/encrypted-0.3.0.tgz#9a157d53d690912804d2b19c54d8c1da3c0f6dca"
+  integrity sha512-J+zsCFFi31njCyF+jmS2HaYUWKTtjdobVV45WeH8tf91QwNbA6AbMrPuTtLK9YDfOOldZS7uFCFoj0UUOcN0bw==
   dependencies:
     "@types/node" "*"
     dotenv "^8.2.0"

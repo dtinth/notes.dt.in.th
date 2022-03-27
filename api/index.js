@@ -148,10 +148,7 @@ const installationId = encrypted(
 const dataRepo = encrypted(
   `pNFKGNsMBYiEkKcuJmx+v6KZWC3MvGHM.C6beKnnHqZLD1huPAa2Js3H/l2rHKS1L64s0G84=`
 )
-const notesInfrastructureApiBase = encrypted(`
-  cRJ7h+fnGiFaEFOjEuSreTgqEe+em8oM.F2AiEv+SC/IPYyiN3mvh5a7cmxr3A9/8jmiZF+5
-  ipRUhzGGsjibuZ9PAHcKtL2SuBQ==
-`)
+const notesInfrastructureApiBase = encrypted`v0qbKuAXyL7LSvYj27DpKX9d9kMzpjPQ.NWheBZmO+blpIPqhm8ArBFycarDNUHph5eRATyxkP8X5fx7hTngyiDoLS0OLV4A=`
 
 async function fetchProdData(pageId) {
   const installationAccessToken = await githubApp.getInstallationAccessToken({

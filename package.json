@@ -10,7 +10,7 @@
     "start": "nuxt start"
   },
   "dependencies": {
-    "@dtinth/encrypted": "^0.2.1",
+    "@dtinth/encrypted": "^0.3.0",
     "@nuxtjs/auth": "^4.9.1",
     "@nuxtjs/axios": "^5.12.2",
     "@nuxtjs/composition-api": "^0.16.4",
