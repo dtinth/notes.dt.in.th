@@ -63,6 +63,9 @@
   color: #bef;
   margin-top: -1em;
 }
+[data-dtinth] footer {
+  margin-top: 3em;
+}
 [data-dtinth] footer,
 [data-dtinth] footer a {
   color: #8b8685;

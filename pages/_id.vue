@@ -387,4 +387,30 @@ img.emoji {
   background-repeat: no-repeat;
   background-position: top right;
 }
+
+[data-dtinth] post-footer {
+  color: #8b8685;
+  display: block;
+  margin-top: 3em;
+  padding-top: 10px;
+}
+[data-dtinth] post-footer .header-anchor:not(:hover) {
+  opacity: 0;
+}
+[data-dtinth] post-footer h2 {
+  color: #8b8685;
+  text-shadow: none;
+  font-size: 1em;
+  margin: 0.5em 0 0;
+  padding-top: 0.5em;
+  border-top: 1px solid var(--border);
+}
+[data-dtinth] post-footer p {
+  margin: 0;
+}
+[data-dtinth] post-footer a {
+  color: #8b8685;
+  text-decoration: underline;
+  text-decoration-color: #8b868599;
+}
 </style>
