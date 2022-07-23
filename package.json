@@ -9,9 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@fontsource/arimo": "^4.5.8",
+    "comic-mono": "^0.0.1",
     "next": "12.2.3",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "water.css": "^2.1.1"
   },
   "devDependencies": {
     "@types/node": "18.0.6",
