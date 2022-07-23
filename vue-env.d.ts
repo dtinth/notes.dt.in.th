@@ -1,3 +1,3 @@
-declare module "vue/dist/vue.runtime.js" {
-  export * from "vue";
-}
+declare module "vue/dist/vue.runtime.js";
+declare module "vue-template-compiler/index.js";
+declare module "vue-server-renderer/index.js";
