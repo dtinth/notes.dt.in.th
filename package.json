@@ -9,18 +9,26 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@dtinth/encrypted": "^0.3.1",
     "@fontsource/arimo": "^4.5.8",
+    "@vue/component-compiler-utils": "^3.3.0",
+    "@vuepress/markdown": "^1.9.7",
+    "@vuepress/shared-utils": "^1.9.7",
     "comic-mono": "^0.0.1",
     "esbuild-wasm": "^0.14.49",
+    "markdown-it-footnote": "^3.0.3",
     "next": "12.2.3",
+    "octokit": "^2.0.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "twemoji": "^14.0.2",
     "vue": "2.7.8",
     "vue-server-renderer": "2.7.8",
     "vue-template-compiler": "2.7.8",
     "water.css": "^2.1.1"
   },
   "devDependencies": {
+    "@types/markdown-it": "^12.2.3",
     "@types/node": "18.0.6",
     "@types/react": "18.0.15",
     "@types/react-dom": "18.0.6",

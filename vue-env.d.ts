@@ -1,3 +1,5 @@
 declare module "vue/dist/vue.runtime.js";
 declare module "vue-template-compiler/index.js";
 declare module "vue-server-renderer/index.js";
+declare module "@vuepress/shared-utils";
+declare module "@vuepress/markdown";

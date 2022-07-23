@@ -1,5 +1,5 @@
-import { FC, useEffect, useRef } from "react";
-import Vue from "vue/dist/vue.runtime.js";
+import { useEffect, useRef } from "react";
+import { Vue } from "../vue-runtime";
 
 export interface VueComponentBasis {
   render: string;

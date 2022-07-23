@@ -2,7 +2,7 @@ import { createVueComponentOptions, VueComponentBasis } from "../vue-app-react";
 import * as VueTemplateCompiler from "vue-template-compiler/index.js";
 import * as esbuild from "esbuild-wasm";
 import { createRenderer } from "vue-server-renderer/index.js";
-import Vue from "vue/dist/vue.runtime.js";
+import { Vue } from "../vue-runtime";
 
 async function compileVueTemplate(
   html: string,
