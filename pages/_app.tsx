@@ -10,6 +10,7 @@ import "comic-mono/index.css";
 import "water.css/out/dark.css";
 import "../vendor/raster.grid.css";
 import "../assets/dtinth-water.css";
+import "../styles/globals.css";
 
 import type { AppProps } from "next/app";
 import Head from "next/head";

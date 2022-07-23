@@ -11,9 +11,13 @@
   "dependencies": {
     "@fontsource/arimo": "^4.5.8",
     "comic-mono": "^0.0.1",
+    "esbuild-wasm": "^0.14.49",
     "next": "12.2.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "vue": "2.7.8",
+    "vue-server-renderer": "2.7.8",
+    "vue-template-compiler": "2.7.8",
     "water.css": "^2.1.1"
   },
   "devDependencies": {
