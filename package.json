@@ -16,6 +16,7 @@
     "@vuepress/shared-utils": "^1.9.7",
     "comic-mono": "^0.0.1",
     "esbuild-wasm": "^0.14.49",
+    "littlefoot": "^3.4.1",
     "markdown-it-footnote": "^3.0.3",
     "next": "12.2.3",
     "octokit": "^2.0.4",

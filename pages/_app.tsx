@@ -8,6 +8,7 @@ import "@fontsource/arimo/700.css";
 import "@fontsource/arimo/700-italic.css";
 import "comic-mono/index.css";
 import "water.css/out/dark.css";
+import "littlefoot/dist/littlefoot.css";
 import "../vendor/raster.grid.css";
 import "../assets/dtinth-water.css";
 import "../styles/globals.css";
