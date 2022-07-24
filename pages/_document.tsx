@@ -1,7 +1,7 @@
 import { Html, Head, Main, NextScript } from "next/document";
 
 export default function Document(props: any) {
-  console.log(props);
+  // console.log(props);
   return (
     <Html data-dtinth>
       <Head>
