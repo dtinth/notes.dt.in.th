@@ -44,13 +44,15 @@ const NotePage: NextPage<NotePage> = (props) => {
     if (div.current) setupFootnotes();
   }, []);
   return (
-    <div ref={div}>
+    <article className="h-entry">
       <Head>
         <title>{props.title}</title>
       </Head>
       {props.wide && <WidePage />}
-      <VueApp {...props.noteContents} />
-    </div>
+      <div ref={div}>
+        <VueApp {...props.noteContents} />
+      </div>
+    </article>
   );
 };
 
