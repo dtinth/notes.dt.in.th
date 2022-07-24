@@ -24,16 +24,24 @@ export const getServerSideProps: GetServerSideProps<NotePage> = async (
   });
   const frontmatter = parsedNote.frontmatter;
   const allowedToView = fetchedNote.preview || frontmatter.public;
+  const allowedToCache = !fetchedNote.preview && frontmatter.public;
   if (!allowedToView) {
     return {
       notFound: true,
     };
   }
-
   const hoistedTags = parsedNote.hoistedTags || [];
   const script = hoistedTags.find((tag) => tag.match(/^<script/i));
   const styles = hoistedTags.filter((tag) => tag.match(/^<style/i)).join("");
   const template = `<div class="e-content">${styles}${parsedNote.html}</div>`;
+  if (allowedToCache) {
+    context.res.setHeader(
+      "Cache-Control",
+      "s-maxage=1, stale-while-revalidate"
+    );
+  } else {
+    context.res.setHeader("Cache-Control", "no-store");
+  }
   return {
     props: {
       noteContents: await compileVueApp(
