@@ -85,7 +85,7 @@ const NotePage: NextPage<NotePage> = (props) => {
   return (
     <article className="h-entry">
       <Head>
-        <title>{props.title}</title>
+        <title>{props.title} | notes.dt.in.th</title>
       </Head>
       {props.wide && <WidePage />}
       <div ref={div} onClick={onClick}>
