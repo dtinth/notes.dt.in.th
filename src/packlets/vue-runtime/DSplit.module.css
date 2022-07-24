@@ -1,0 +1,14 @@
+@media (min-width: 840px) {
+  .container {
+    display: flex;
+    gap: 2rem;
+  }
+  .left {
+    flex: auto;
+  }
+  .right {
+    flex: none;
+    width: 400px;
+    min-width: 45%;
+  }
+}
