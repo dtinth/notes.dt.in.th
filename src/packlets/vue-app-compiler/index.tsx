@@ -8,7 +8,7 @@ async function compileVueTemplate(
   html: string,
   script?: string
 ): Promise<VueComponentBasis> {
-  const template = `<div class="e-content">${html}</div>`;
+  const template = html;
   const result = VueTemplateCompiler.compile(template);
   let componentModule: string | null = null;
   if (script) {

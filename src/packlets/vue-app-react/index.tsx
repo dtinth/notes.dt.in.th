@@ -40,8 +40,13 @@ export const VueApp = ({ basis, html }: VueApp) => {
     if (!domRef.current) return;
     if (!("Vue" in window)) Object.assign(window, { Vue });
     const app = new (Vue as any)(createVueComponentOptions(basis));
-    console.log(app);
     app.$mount(domRef.current.firstElementChild!);
   }, [basis]);
-  return <div ref={domRef} dangerouslySetInnerHTML={{ __html: html }} />;
+  return (
+    <div
+      data-vue-root
+      ref={domRef}
+      dangerouslySetInnerHTML={{ __html: html }}
+    />
+  );
 };
