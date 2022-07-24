@@ -15,6 +15,7 @@
     "@vuepress/markdown": "^1.9.7",
     "@vuepress/shared-utils": "^1.9.7",
     "comic-mono": "^0.0.1",
+    "esbuild": "^0.14.49",
     "esbuild-wasm": "^0.14.49",
     "jsonwebtoken": "^8.5.1",
     "littlefoot": "^3.4.1",
