@@ -47,7 +47,7 @@ export const getServerSideProps: GetServerSideProps<NotePage> = async (
     ? getScreenshotImageUrl(
         `https://${process.env.VERCEL_URL}/${slug}#og:image`
       )
-    : undefined;
+    : null;
   return {
     props: {
       noteContents: await compileVueApp(
@@ -71,7 +71,7 @@ interface NotePage {
   title: string;
   description?: string;
   wide: boolean;
-  ogImageUrl?: string;
+  ogImageUrl: string | null;
 }
 
 const NEXT_LINK_ENABLED = false;
