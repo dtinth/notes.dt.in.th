@@ -13,11 +13,23 @@ export const getServerSideProps: GetServerSideProps<NotePage> = async (
   context
 ) => {
   const slug = context.params!.slug as string;
-  const noteData = await fetchNote(slug);
-  const parsedNote = await parseNote(noteData.source, {
+  const fetchedNote = await fetchNote(slug);
+  if (!fetchedNote) {
+    return {
+      notFound: true,
+    };
+  }
+  const parsedNote = await parseNote(fetchedNote.source, {
     path: `${slug}.md`,
   });
   const frontmatter = parsedNote.frontmatter;
+  const allowedToView = fetchedNote.preview || frontmatter.public;
+  if (!allowedToView) {
+    return {
+      notFound: true,
+    };
+  }
+
   const hoistedTags = parsedNote.hoistedTags || [];
   const script = hoistedTags.find((tag) => tag.match(/^<script/i));
   const styles = hoistedTags.filter((tag) => tag.match(/^<style/i)).join("");

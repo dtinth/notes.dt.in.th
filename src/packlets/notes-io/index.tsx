@@ -43,6 +43,7 @@ const githubApp = new App({
 
 const installationId = encrypted`EvSKGeZj/mOr8xM0onjmZwE9bKs0I5e9.YyzWnPp3VIRzlk3YGWQwLxjDSciQ7cLf`;
 const dataRepo = encrypted`pNFKGNsMBYiEkKcuJmx+v6KZWC3MvGHM.C6beKnnHqZLD1huPAa2Js3H/l2rHKS1L64s0G84=`;
+const notesInfrastructureApiBase = encrypted`v0qbKuAXyL7LSvYj27DpKX9d9kMzpjPQ.NWheBZmO+blpIPqhm8ArBFycarDNUHph5eRATyxkP8X5fx7hTngyiDoLS0OLV4A=`;
 
 interface NoteFetchResult {
   preview?: {
@@ -51,21 +52,52 @@ interface NoteFetchResult {
   source: string;
 }
 
-async function fetchNoteFromGitHub(slug: string): Promise<NoteFetchResult> {
+async function fetchNoteFromGitHub(
+  slug: string
+): Promise<NoteFetchResult | undefined> {
   const octokit = await githubApp.getInstallationOctokit(installationId);
-  const result = await octokit.rest.repos.getContent({
-    owner: "dtinth",
-    repo: dataRepo,
-    path: String(slug).replace(/\W/g, "") + ".md",
-  });
-  if (!("content" in result.data)) {
-    throw new Error("No content found");
+  try {
+    const result = await octokit.rest.repos.getContent({
+      owner: "dtinth",
+      repo: dataRepo,
+      path: String(slug).replace(/\W/g, "") + ".md",
+    });
+    if (!("content" in result.data)) {
+      throw new Error("No content found");
+    }
+    return {
+      source: Buffer.from(result.data.content, "base64").toString(),
+    };
+  } catch (error) {
+    if ((error as any)?.response?.status === 404) {
+      return undefined;
+    }
+    throw error;
   }
+}
+
+async function fetchNoteFromPreviewServer(
+  jwt: string
+): Promise<NoteFetchResult | undefined> {
+  const url =
+    notesInfrastructureApiBase + "/entry?jwt=" + encodeURIComponent(jwt);
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error(`${response.status} ${response.statusText}`);
+  }
+  const data = await response.json();
   return {
-    source: Buffer.from(result.data.content, "base64").toString(),
+    source: data.data,
+    preview: {
+      exp: data.exp,
+    },
   };
 }
 
 export function fetchNote(slug: string) {
-  return fetchNoteFromGitHub(slug);
+  if (slug.startsWith("preview-")) {
+    return fetchNoteFromPreviewServer(slug.substring(8));
+  } else {
+    return fetchNoteFromGitHub(slug);
+  }
 }
