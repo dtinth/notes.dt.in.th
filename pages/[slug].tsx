@@ -6,6 +6,7 @@ import { setupFootnotes } from "../src/packlets/footnotes";
 import { parseNote } from "../src/packlets/markdown";
 import { NoteFooter, SyndicationItem } from "../src/packlets/notes";
 import { fetchNote } from "../src/packlets/notes-io";
+import { getScreenshotImageUrl } from "../src/packlets/screenshot";
 import { compileVueApp } from "../src/packlets/vue-app-compiler";
 import { VueApp } from "../src/packlets/vue-app-react";
 
@@ -42,12 +43,18 @@ export const getServerSideProps: GetServerSideProps<NotePage> = async (
   } else {
     context.res.setHeader("Cache-Control", "no-store");
   }
+  const ogImageUrl = allowedToCache
+    ? getScreenshotImageUrl(
+        `https://${process.env.VERCEL_URL}/${slug}#og:image`
+      )
+    : undefined;
   return {
     props: {
       noteContents: await compileVueApp(
         template,
         script ? stripScriptTag(script) : undefined
       ),
+      ogImageUrl,
       title: frontmatter.title || slug,
       wide: !!frontmatter.wide,
       noteFooter: {
@@ -62,7 +69,9 @@ interface NotePage {
   noteContents: VueApp;
   noteFooter: NoteFooter;
   title: string;
+  description?: string;
   wide: boolean;
+  ogImageUrl?: string;
 }
 
 const NEXT_LINK_ENABLED = false;
@@ -106,6 +115,19 @@ const NotePage: NextPage<NotePage> = (props) => {
     <article className="h-entry">
       <Head>
         <title>{props.title} | notes.dt.in.th</title>
+        {!!props.description && (
+          <>
+            <meta name="description" content={props.description} />
+          </>
+        )}
+        <meta property="og:title" content={props.title} />
+        {!!props.ogImageUrl && (
+          <>
+            <meta property="og:image" content={props.ogImageUrl} />
+            <meta property="og:image:width" content="1800" />
+            <meta property="og:image:height" content="1680" />
+          </>
+        )}
       </Head>
       {props.wide && <WidePage />}
       <div ref={div} onClick={onClick}>

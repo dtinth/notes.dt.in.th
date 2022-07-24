@@ -16,6 +16,7 @@
     "@vuepress/shared-utils": "^1.9.7",
     "comic-mono": "^0.0.1",
     "esbuild-wasm": "^0.14.49",
+    "jsonwebtoken": "^8.5.1",
     "littlefoot": "^3.4.1",
     "markdown-it-footnote": "^3.0.3",
     "next": "12.2.3",
@@ -30,6 +31,7 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.24.0",
+    "@types/jsonwebtoken": "^8.5.8",
     "@types/markdown-it": "^12.2.3",
     "@types/node": "18.0.6",
     "@types/react": "18.0.15",
