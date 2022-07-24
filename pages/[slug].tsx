@@ -1,6 +1,7 @@
 import type { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
-import { FC, useEffect, useRef } from "react";
+import { useRouter } from "next/router";
+import { FC, MouseEventHandler, useCallback, useEffect, useRef } from "react";
 import { setupFootnotes } from "../src/packlets/footnotes";
 import { parseNote } from "../src/packlets/markdown";
 import { fetchNote } from "../src/packlets/notes-io";
@@ -38,18 +39,50 @@ interface NotePage {
   wide: boolean;
 }
 
+const NEXT_LINK_ENABLED = false;
+
 const NotePage: NextPage<NotePage> = (props) => {
+  const router = useRouter();
   const div = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (div.current) setupFootnotes();
   }, []);
+  const onClick: MouseEventHandler = useCallback(
+    (e) => {
+      if (!NEXT_LINK_ENABLED) {
+        return;
+      }
+      const a = (e.target as Element).closest?.("a");
+      if (!a) {
+        return;
+      }
+      if (a.target && a.target !== "_self") {
+        return;
+      }
+      if (
+        e.metaKey ||
+        e.ctrlKey ||
+        e.shiftKey ||
+        e.altKey ||
+        e.nativeEvent?.which === 2
+      ) {
+        return;
+      }
+      if (a.origin !== window.location.origin) {
+        return;
+      }
+      e.preventDefault();
+      router.push(a.href.slice(a.origin.length));
+    },
+    [router]
+  );
   return (
     <article className="h-entry">
       <Head>
         <title>{props.title}</title>
       </Head>
       {props.wide && <WidePage />}
-      <div ref={div}>
+      <div ref={div} onClick={onClick}>
         <VueApp {...props.noteContents} />
       </div>
     </article>

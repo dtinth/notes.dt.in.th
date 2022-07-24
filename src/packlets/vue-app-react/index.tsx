@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import { Vue } from "../vue-runtime";
 
 export interface VueComponentBasis {
@@ -36,7 +36,7 @@ export function createVueComponentOptions(basis: VueComponentBasis) {
 
 export const VueApp = ({ basis, html }: VueApp) => {
   const domRef = useRef<HTMLDivElement>(null);
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!domRef.current) return;
     if (!("Vue" in window)) Object.assign(window, { Vue });
     const app = new (Vue as any)(createVueComponentOptions(basis));
