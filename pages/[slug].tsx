@@ -16,10 +16,9 @@ export const getServerSideProps: GetServerSideProps<NotePage> = async (
     path: `${slug}.md`,
   });
   const frontmatter = parsedNote.frontmatter;
-  const script = parsedNote.hoistedTags.find((tag) => tag.match(/^<script/i));
-  const styles = parsedNote.hoistedTags
-    .filter((tag) => tag.match(/^<style/i))
-    .join("");
+  const hoistedTags = parsedNote.hoistedTags || [];
+  const script = hoistedTags.find((tag) => tag.match(/^<script/i));
+  const styles = hoistedTags.filter((tag) => tag.match(/^<style/i)).join("");
   const template = `<div class="e-content">${styles}${parsedNote.html}</div>`;
   return {
     props: {
