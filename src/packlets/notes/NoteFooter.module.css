@@ -1,0 +1,29 @@
+.footer {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+
+.meta time {
+  padding: 0;
+  color: inherit;
+  background: transparent;
+}
+
+.syndication {
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: auto;
+}
+
+.syndicationItem {
+  margin-left: 1em;
+}
+.syndicationItem svg {
+  width: 1.41em;
+  height: 1.41em;
+  vertical-align: middle;
+}
+.syndicationItem svg path {
+  fill: currentColor;
+}

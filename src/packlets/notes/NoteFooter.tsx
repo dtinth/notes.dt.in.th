@@ -1,4 +1,5 @@
 import { FC } from "react";
+import styles from "./NoteFooter.module.css";
 
 export interface SyndicationItem {
   title: string;
@@ -17,8 +18,8 @@ export interface NoteFooter {
 export const NoteFooter: FC<NoteFooter> = (props) => {
   const { pubDate, syndication } = props;
   return (
-    <footer className="post-footer">
-      <p className="meta">
+    <footer className={styles.footer}>
+      <p className={styles.meta}>
         <a href="/" title="Back to notes.dt.in.th">
           —
         </a>
@@ -37,7 +38,7 @@ export const NoteFooter: FC<NoteFooter> = (props) => {
         </a>
         {pubDate && (
           <>
-            ,
+            ,{" "}
             <time className="dt-published" dateTime={pubDate.machine}>
               {pubDate.human}
             </time>
@@ -45,14 +46,14 @@ export const NoteFooter: FC<NoteFooter> = (props) => {
         )}
       </p>
       {!!syndication.length && (
-        <p className="syndication-links">
+        <p className={styles.syndication}>
           Respond on:
           {syndication.map((link, i) => (
             <a
               key={link.title}
               href={link.url}
               rel="syndication"
-              className="syndication u-syndication"
+              className={`${styles.syndicationItem} u-syndication`}
               title={link.title}
             >
               <svg
