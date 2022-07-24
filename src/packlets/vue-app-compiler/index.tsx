@@ -5,8 +5,9 @@ import { createRenderer } from "vue-server-renderer/index.js";
 import { Vue } from "../vue-runtime";
 
 // To make Vercel not strip these files from the build output...
+// https://github.com/dtinth/apiref/blob/5d3e4aa833c63bd81a9a9f0d9f2e61531236acf4/api/index.js#L3-L41
 require.resolve("esbuild-wasm/bin/esbuild");
-require.resolve("esbuild-wasm/esbuild.wasm");
+// require.resolve("esbuild-wasm/esbuild.wasm");
 
 async function compileVueTemplate(
   html: string,
