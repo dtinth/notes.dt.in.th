@@ -1,4 +1,5 @@
 import type { GetServerSideProps, NextPage } from "next";
+import Head from "next/head";
 import { FC, useEffect, useRef } from "react";
 import { setupFootnotes } from "../src/packlets/footnotes";
 import { parseNote } from "../src/packlets/markdown";
@@ -26,6 +27,7 @@ export const getServerSideProps: GetServerSideProps<NotePage> = async (
         template,
         script ? stripScriptTag(script) : undefined
       ),
+      title: frontmatter.title || slug,
       wide: !!frontmatter.wide,
     },
   };
@@ -33,6 +35,7 @@ export const getServerSideProps: GetServerSideProps<NotePage> = async (
 
 interface NotePage {
   noteContents: VueApp;
+  title: string;
   wide: boolean;
 }
 
@@ -43,6 +46,9 @@ const NotePage: NextPage<NotePage> = (props) => {
   }, []);
   return (
     <div ref={div}>
+      <Head>
+        <title>{props.title}</title>
+      </Head>
       {props.wide && <WidePage />}
       <VueApp {...props.noteContents} />
     </div>
