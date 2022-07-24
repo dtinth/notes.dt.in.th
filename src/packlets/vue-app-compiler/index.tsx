@@ -4,6 +4,10 @@ import * as esbuild from "esbuild-wasm";
 import { createRenderer } from "vue-server-renderer/index.js";
 import { Vue } from "../vue-runtime";
 
+// To make Vercel not strip these files from the build output...
+require.resolve("esbuild-wasm/bin/esbuild");
+require.resolve("esbuild-wasm/esbuild.wasm");
+
 async function compileVueTemplate(
   html: string,
   script?: string
