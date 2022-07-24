@@ -25,6 +25,25 @@ test("recent page", async ({ page }) => {
   await expect(page).toHaveTitle("Recent writings | notes.dt.in.th");
 });
 
+test("meta tags", async ({ page }) => {
+  await page.goto("/20220606T064142Z5299");
+  await expect(page.locator('meta[property="og:title"]')).toHaveAttribute(
+    "content",
+    /Pointer events tester/
+  );
+  await expect(page.locator('meta[property="og:image"]')).toHaveAttribute(
+    "content",
+    /^https:\/\//
+  );
+  await expect(page.locator('meta[property="og:image:width"]')).toHaveAttribute(
+    "content",
+    /^\d+$/
+  );
+  await expect(
+    page.locator('meta[property="og:image:height"]')
+  ).toHaveAttribute("content", /^\d+$/);
+});
+
 test("footnotes", async ({ page }) => {
   await page.goto("/20201114T051848Z1525");
   await expect(page.locator("[aria-label='Footnote 1']")).toBeVisible();
@@ -41,20 +60,3 @@ test("interactivity", async ({ page }) => {
   await page.locator("button:has-text('1')").click();
   await expect(page.locator("button:has-text('2')")).toBeVisible();
 });
-
-// wide page
-
-// unpublished page heading
-// - display preview link expiry date
-// - https://github.com/dtinth/notes.dt.in.th/blob/8945f65aa431f31505f4bb2c529994033e60d8c1/pages/_id.vue#L4-L17
-
-// post footer
-// - back to homepage
-// - author
-// - published date
-
-// respond links
-// - facebook
-// - devto
-// - twitter
-// - reddit
