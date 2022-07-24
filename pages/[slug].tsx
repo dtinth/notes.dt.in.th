@@ -3,7 +3,7 @@ import Head from "next/head";
 import { FC, useEffect, useRef } from "react";
 import { setupFootnotes } from "../src/packlets/footnotes";
 import { parseNote } from "../src/packlets/markdown";
-import { fetchNote } from "../src/packlets/notes";
+import { fetchNote } from "../src/packlets/notes-io";
 import { compileVueApp } from "../src/packlets/vue-app-compiler";
 import { VueApp } from "../src/packlets/vue-app-react";
 
