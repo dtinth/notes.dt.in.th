@@ -1,4 +1,4 @@
-import Vue from "vue/dist/vue.runtime.js";
+import Vue from "vue/dist/vue.runtime.min.js";
 import NotesLink from "./NotesLink";
 import OutboundLink from "./OutboundLink";
 import DSplit from "./DSplit";
