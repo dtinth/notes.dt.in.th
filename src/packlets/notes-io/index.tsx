@@ -1,82 +1,43 @@
-import { App } from "octokit";
 import Encrypted from "@dtinth/encrypted";
+import {
+  GetServerSidePropsContext,
+  GetServerSidePropsResult,
+  GetStaticPropsContext,
+  GetStaticPropsResult,
+} from "next";
+import { parseNote } from "../markdown";
+import { SyndicationItem } from "../notes";
+import { NotePage } from "../notes-page";
+import { getScreenshotImageUrl } from "../screenshot";
+import { compileVueApp } from "../vue-app-compiler";
 const encrypted = Encrypted();
-
-const githubApp = new App({
-  appId: 83405,
-  privateKey: encrypted`
-    dGDjTHWQEXhGlZIuvL9xu6TRFL5ZuEKY.FBz4BTXj2IpdvN2lwvB8IiL8Yf+DXhXVy2q4Jag
-    qXIlrB+C979ez38f0/cGkfr1g7DmODj++eZPXw6I8I3zcgSiQzVAIduB2XyxjTfCn6zvR3jO
-    TUVWPuc7u8tV1LFWslGqpuRMrwbUplRe7TTgxLeaCjkykjUh1ii7pO9R5FFPUYTjrbZTHMdL
-    uIbMJuLXk5mgCdr901tvCGC6D/2VyHv63YVL7CsCnlvvLOOl85zFqeNJb75k+GkhQA1HWR+b
-    /uFqvaL5D+ZYuTzxSM0/VEgqDeUPSOV2Jy/BrWA9uRHoGL6EzK0cmuDGLknSO3trA95zLsxz
-    BWe/vRsmTPj2KIiqMWX7532MoQkBFIXTUBKs0jCLCW3wdy9KIFyNvxK74swgzhbiidpxcpCh
-    +ZG24E1qhHd380MATgdNu0lPcDGEbpre3CsGlr0yS/9JMQOF84N7Lwp4jSPxZqdyInn1SmR6
-    hR0oNyOsXBRDZ4Uiyxwil0ngYsMwwXOU6+6fAC79Tdx8Ts6swDvuEBlFmxFdOff+Pr+OMp2N
-    xAcsR0/sDUTrDFkkT6TOvHhqiUiTpPHEpW528MO9sJriNvZHezT2ED8PmfGvjzq3lOxoTIZ5
-    1d4LAtFBOpKSCR2xgyIxFlF6FWQw9QkG/rwpbaTyp2vty4wIs9Odg2DvbxUckte2qghwaTHG
-    qD9NERMdez/m+FCy7uQf/uLX6PrsEN3Age1H8Ztf2WxnjySYJ79+FcUrVZEqYhhFaoOAKJkG
-    ZTv6O5+soUveBu+qNeuJdKJ0ajtHQ7dX1HzLKD16yV74Ld8U4rdbgZVIuNlvJotowIRfzfrh
-    /v2fS0SQCfCb7a4e1/bgoEVlJMeA9JDyBs5tjf1dCBTdPB7K2P1Bc/F+68ov1Wt6y2Erl1BF
-    KN01OU3xZH5DxSpOXvSqTjHLMgIdB8vGQJkiWC3wPTtQLXddgX2ko1e5K3e77Bg8NZcNI503
-    6LaES8KjQFfksQ8rRK0jfiLjcJ4y8pmm0TuHz+J+4eOpc0tJhz7V+/mca1znjDujjcyCQtGj
-    snl/nwUHuIK1tEx/HS34m2PL/9WxOgvrYkdJuThm2+pMzWly6k6COiaXlETK/qriXly0artt
-    prEkDfO6kUUP1/t/RO8PysbxJfFqgb7TrseJuYbIQqbSI69Dex9c0dok7jRoAJcnfePtQexE
-    uqOjjxnAg+D90FwgdWwMCOS95FweF+l/aTrvmFlExURN7tM6WcRl75GTQ+BAyoNNdZJnfbXL
-    a2t6lqU+VTlHvVeuIOT/NVWmJ+lylV8EXATNH6hm06xGFvtg8st/HOXrdb39ObY0j9cX/G4z
-    JEeSONHPFF4pYzV2NlakLS9bZGWq3XGNZU7xpCgPdrI0gwm1qaWtBpllBbxuCL3jUxq015Mv
-    aJNJHPcrCByuyMcBTyy8Lw3cYLw106KcSvwEqjf7ClS4Bc1Sna1jqRZvsbuBXi/L4npk4dFQ
-    ZXjVadi8awErq+5tGpxc7fvQiw2p7OdOovvX/Z39IkJqDS3RdhdXLIElSOjX0aw8afdf9dGu
-    lSlTIyyS5NrsmEz8IeMOGhaX3FwzPdKNYTMbptYnTaw6k1TdXC5KfiJm8TIbL3jqM9zt4J/v
-    iqVZcjO+J7NxiDhBQO54nWgE4Jt2DzN3aWw/QgIrdFt99r4g+8fIl+eiKlSGDI2Y4XaNsc9M
-    8R3//NbFWZfgcMOFKcT3NoY9e82eoyp6mpT6d1MFxY+riYY5KtUrczB3LP7pOA9jirNflU38
-    ck7Pi2GVhQ+cFmO1wc+tKhNBh4m+rey+JMe73h6xZlaZ/uywRfj2jjf5R/iwXxcRhNh3lULo
-    /lg63ve8/wHDNa6bgOd81Aera3B/QsHtEIHTVAicLJcx+KH++HdjM8IIJ0eXJ0k2Jba+qX94
-    AjUmIusTGWgLw7gPXgjf31JP9eylIJerY+w8qh/UZk/0vrKS/r6jdramyP8u1pw+6ZCciy8A
-    56+A0OgrWtBMh09VB0KHd7+i1awg31/ghgBNcc3XqNJ4/gYMwSvNYcGJGGUun3CNBt89cDQM
-    vs1Wem67TvH1xGtJ464utQe3MM7M6VK+Mzt+pRy2YgsRCdD1jY5a7w2CqFD0fvvyLOzJ0OeZ
-    nNRDXdog/v/aO68kfrNx/GAjy3/35lZtMaOZcftEYtHDgg7rpjnyZSJ5H9y2RLOh2fWw47RM
-    Gx0is4CpG0WKOe1FkD8JboTE+f2VkGeMXF2iDDIvxUt/Ymnwi57UqNkUC42Q+z7n8YxceH9k
-    xIvH1DMJKmmdHeO72mqZEQ9aJpFA=
-  `,
-});
-
-const installationId = encrypted`EvSKGeZj/mOr8xM0onjmZwE9bKs0I5e9.YyzWnPp3VIRzlk3YGWQwLxjDSciQ7cLf`;
-const dataRepo = encrypted`pNFKGNsMBYiEkKcuJmx+v6KZWC3MvGHM.C6beKnnHqZLD1huPAa2Js3H/l2rHKS1L64s0G84=`;
 const notesInfrastructureApiBase = encrypted`v0qbKuAXyL7LSvYj27DpKX9d9kMzpjPQ.NWheBZmO+blpIPqhm8ArBFycarDNUHph5eRATyxkP8X5fx7hTngyiDoLS0OLV4A=`;
 
 interface NoteFetchResult {
   preview?: {
     exp: number;
   };
+  slug: string;
   source: string;
 }
 
-async function fetchNoteFromGitHub(
+export async function fetchPublicNote(
   slug: string
 ): Promise<NoteFetchResult | undefined> {
-  const octokit = await githubApp.getInstallationOctokit(installationId);
-  try {
-    const result = await octokit.rest.repos.getContent({
-      owner: "dtinth",
-      repo: dataRepo,
-      path: String(slug).replace(/\W/g, "") + ".md",
-    });
-    if (!("content" in result.data)) {
-      throw new Error("No content found");
-    }
-    return {
-      source: Buffer.from(result.data.content, "base64").toString(),
-    };
-  } catch (error) {
-    if ((error as any)?.response?.status === 404) {
-      return undefined;
-    }
-    throw error;
+  const path = encodeURIComponent(`notes/public/${slug}.md`);
+  const url = `https://firebasestorage.googleapis.com/v0/b/dtinth-notes.appspot.com/o/${path}?alt=media`;
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error(`${response.status} ${response.statusText}`);
   }
+  const data = await response.text();
+  return {
+    source: data,
+    slug,
+  };
 }
 
-async function fetchNoteFromPreviewServer(
+export async function fetchPrivateNote(
   jwt: string
 ): Promise<NoteFetchResult | undefined> {
   const url =
@@ -88,16 +49,120 @@ async function fetchNoteFromPreviewServer(
   const data = await response.json();
   return {
     source: data.data,
+    slug: jwt,
     preview: {
       exp: data.exp,
     },
   };
 }
 
-export function fetchNote(slug: string) {
-  if (slug.startsWith("preview-")) {
-    return fetchNoteFromPreviewServer(slug.substring(8));
-  } else {
-    return fetchNoteFromGitHub(slug);
+export async function getServerSidePropsForFetchedNote(
+  context: GetServerSidePropsContext | GetStaticPropsContext,
+  fetchedNote: NoteFetchResult | undefined
+): Promise<
+  GetServerSidePropsResult<NotePage> | GetStaticPropsResult<NotePage>
+> {
+  if (!fetchedNote) {
+    return {
+      notFound: true,
+    };
   }
+  const slug = fetchedNote.slug;
+  const parsedNote = await parseNote(fetchedNote.source, {
+    path: `${slug}.md`,
+  });
+  const frontmatter = parsedNote.frontmatter;
+  const allowedToView = fetchedNote.preview || frontmatter.public;
+  const allowedToCache = !fetchedNote.preview && frontmatter.public;
+  if (!allowedToView) {
+    return {
+      notFound: true,
+    };
+  }
+  const hoistedTags = parsedNote.hoistedTags || [];
+  const script = hoistedTags.find((tag) => tag.match(/^<script/i));
+  const styles = hoistedTags.filter((tag) => tag.match(/^<style/i)).join("");
+  const template = `<div class="e-content">${styles}${parsedNote.html}</div>`;
+  if ("res" in context) {
+    if (allowedToCache) {
+      context.res.setHeader(
+        "Cache-Control",
+        "s-maxage=1, stale-while-revalidate"
+      );
+    } else {
+      context.res.setHeader("Cache-Control", "no-store");
+    }
+  }
+  const ogImageUrl = allowedToCache
+    ? getScreenshotImageUrl(
+        `https://${process.env.VERCEL_URL}/${slug}#og:image`
+      )
+    : null;
+  return {
+    props: {
+      noteContents: await compileVueApp(
+        template,
+        script ? stripScriptTag(script) : undefined
+      ),
+      ogImageUrl,
+      title: frontmatter.title || slug,
+      wide: !!frontmatter.wide,
+      noteFooter: {
+        pubDate: pubDate(slug),
+        syndication: syndication(frontmatter),
+      },
+    },
+    ...(allowedToCache ? { revalidate: 1 } : {}),
+  };
+}
+
+function stripScriptTag(html: string) {
+  return html
+    .trim()
+    .replace(/^<script[^>]*>/i, "")
+    .replace(/<\/script>/i, "");
+}
+
+function pubDate(slug: string) {
+  const regex = /^(\d{4})(\d{2})(\d{2})T(\d{2})(\d{2})(\d{2})Z/;
+  const match = slug.match(regex);
+  if (!match) {
+    return null;
+  }
+  const date = new Date(
+    `${match[1]}-${match[2]}-${match[3]}T${match[4]}:${match[5]}:${match[6]}Z`
+  );
+  return {
+    machine: date.toJSON(),
+    human: new Date(date.getTime() + 7 * 3600e3)
+      .toUTCString()
+      .split(" ")
+      .slice(0, 4)
+      .join(" "),
+  };
+}
+
+function syndication(frontmatter: any): SyndicationItem[] {
+  return [
+    {
+      url: frontmatter.facebook,
+      title: "Facebook",
+      path: "M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z",
+    },
+    {
+      url: frontmatter.devto,
+      title: "DEV Community",
+      path: "M7.42 10.05c-.18-.16-.46-.23-.84-.23H6l.02 2.44.04 2.45.56-.02c.41 0 .63-.07.83-.26.24-.24.26-.36.26-2.2 0-1.91-.02-1.96-.29-2.18zM0 4.94v14.12h24V4.94H0zM8.56 15.3c-.44.58-1.06.77-2.53.77H4.71V8.53h1.4c1.67 0 2.16.18 2.6.9.27.43.29.6.32 2.57.05 2.23-.02 2.73-.47 3.3zm5.09-5.47h-2.47v1.77h1.52v1.28l-.72.04-.75.03v1.77l1.22.03 1.2.04v1.28h-1.6c-1.53 0-1.6-.01-1.87-.3l-.3-.28v-3.16c0-3.02.01-3.18.25-3.48.23-.31.25-.31 1.88-.31h1.64v1.3zm4.68 5.45c-.17.43-.64.79-1 .79-.18 0-.45-.15-.67-.39-.32-.32-.45-.63-.82-2.08l-.9-3.39-.45-1.67h.76c.4 0 .75.02.75.05 0 .06 1.16 4.54 1.26 4.83.04.15.32-.7.73-2.3l.66-2.52.74-.04c.4-.02.73 0 .73.04 0 .14-1.67 6.38-1.8 6.68z",
+    },
+    {
+      url: frontmatter.twitter,
+      title: "Twitter",
+      path: "M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z",
+    },
+    {
+      url: frontmatter.reddit,
+      title: "Reddit",
+      path: "M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z",
+    },
+  ].filter((x) => x.url);
 }
