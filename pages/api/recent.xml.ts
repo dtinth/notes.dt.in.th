@@ -1,7 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
 import { parseFrontmatter } from "@vuepress/shared-utils";
-import { fetchNote } from "../../src/packlets/notes-io";
+import { fetchPublicNote } from "../../src/packlets/notes-io";
 import RSS from "rss";
 
 export default async function handler(
@@ -9,7 +9,7 @@ export default async function handler(
   res: NextApiResponse
 ) {
   try {
-    const fetchedNote = await fetchNote("20220130T173123Z7835");
+    const fetchedNote = await fetchPublicNote("20220130T173123Z7835");
     if (!fetchedNote) {
       throw new Error("Note not found");
     }
