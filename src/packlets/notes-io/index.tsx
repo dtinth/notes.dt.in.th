@@ -65,6 +65,7 @@ export async function getServerSidePropsForFetchedNote(
   if (!fetchedNote) {
     return {
       notFound: true,
+      revalidate: 30,
     };
   }
   const slug = fetchedNote.slug;
@@ -77,6 +78,16 @@ export async function getServerSidePropsForFetchedNote(
   if (!allowedToView) {
     return {
       notFound: true,
+      revalidate: 30,
+    };
+  }
+  if (frontmatter.redirect_to) {
+    return {
+      redirect: {
+        destination: "/" + frontmatter.redirect_to,
+        permanent: false,
+      },
+      revalidate: 30,
     };
   }
   const hoistedTags = parsedNote.hoistedTags || [];
