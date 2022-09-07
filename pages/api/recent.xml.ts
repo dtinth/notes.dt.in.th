@@ -9,7 +9,7 @@ export default async function handler(
   res: NextApiResponse
 ) {
   try {
-    const fetchedNote = await fetchPublicNote("20220130T173123Z7835");
+    const fetchedNote = await fetchPublicNote("Recent");
     if (!fetchedNote) {
       throw new Error("Note not found");
     }

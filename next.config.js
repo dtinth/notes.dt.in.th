@@ -7,7 +7,7 @@ const nextConfig = {
     return [
       {
         source: "/",
-        destination: "/20201003T154758Z3667",
+        destination: "/HomePage",
         permanent: false,
       },
     ];

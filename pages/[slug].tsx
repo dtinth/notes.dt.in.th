@@ -7,7 +7,7 @@ import { NotePage } from "../src/packlets/notes-page";
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
-    paths: [{ params: { slug: "20201003T154758Z3667" } }],
+    paths: [{ params: { slug: "Homepage" } }, { params: { slug: "Recent" } }],
     fallback: "blocking",
   };
 };
