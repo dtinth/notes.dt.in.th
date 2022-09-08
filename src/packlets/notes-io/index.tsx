@@ -24,9 +24,7 @@ interface NoteFetchResult {
 export async function fetchPublicNote(
   slug: string
 ): Promise<NoteFetchResult | undefined> {
-  const path = encodeURIComponent(`notes/public/${slug}.md`);
-  const url = `https://firebasestorage.googleapis.com/v0/b/dtinth-notes.appspot.com/o/${path}?alt=media`;
-  const response = await fetch(url);
+  const response = await fetchPublicFile(`${slug}.md`);
   if (!response.ok) {
     throw new Error(`${response.status} ${response.statusText}`);
   }
@@ -35,6 +33,12 @@ export async function fetchPublicNote(
     source: data,
     slug,
   };
+}
+
+export async function fetchPublicFile(file: string) {
+  const path = encodeURIComponent(`notes/public/${file}`);
+  const url = `https://firebasestorage.googleapis.com/v0/b/dtinth-notes.appspot.com/o/${path}?alt=media`;
+  return await fetch(url);
 }
 
 export async function fetchPrivateNote(
