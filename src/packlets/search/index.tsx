@@ -117,7 +117,7 @@ const SearchResult: FC<SearchResult> = (props) => {
       <ul>
         {searchResult.map((s) => {
           return (
-            <li>
+            <li key={s.id}>
               <a href={"/" + s.id}>{s.title}</a>
             </li>
           );
