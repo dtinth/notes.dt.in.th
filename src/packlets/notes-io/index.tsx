@@ -10,8 +10,11 @@ import { SyndicationItem } from "../notes";
 import { NotePage } from "../notes-page";
 import { getScreenshotImageUrl } from "../screenshot";
 import { compileVueApp } from "../vue-app-compiler";
-const encrypted = Encrypted();
-const notesInfrastructureApiBase = encrypted`v0qbKuAXyL7LSvYj27DpKX9d9kMzpjPQ.NWheBZmO+blpIPqhm8ArBFycarDNUHph5eRATyxkP8X5fx7hTngyiDoLS0OLV4A=`;
+
+function getNotesApiBase() {
+  const encrypted = Encrypted();
+  return encrypted`v0qbKuAXyL7LSvYj27DpKX9d9kMzpjPQ.NWheBZmO+blpIPqhm8ArBFycarDNUHph5eRATyxkP8X5fx7hTngyiDoLS0OLV4A=`;
+}
 
 interface NoteFetchResult {
   preview?: {
@@ -44,8 +47,7 @@ export async function fetchPublicFile(file: string) {
 export async function fetchPrivateNote(
   jwt: string
 ): Promise<NoteFetchResult | undefined> {
-  const url =
-    notesInfrastructureApiBase + "/entry?jwt=" + encodeURIComponent(jwt);
+  const url = getNotesApiBase() + "/entry?jwt=" + encodeURIComponent(jwt);
   const response = await fetch(url);
   if (!response.ok) {
     throw new Error(`${response.status} ${response.statusText}`);
@@ -108,11 +110,12 @@ export async function getServerSidePropsForFetchedNote(
       context.res.setHeader("Cache-Control", "no-store");
     }
   }
-  const ogImageUrl = allowedToCache
-    ? getScreenshotImageUrl(
-        `https://${process.env.VERCEL_URL}/${slug}#og:image`
-      )
-    : null;
+  const ogImageUrl =
+    (allowedToCache
+      ? getScreenshotImageUrl(
+          `https://${process.env.VERCEL_URL}/${slug}#og:image`
+        )
+      : null) || null;
   return {
     props: {
       noteContents: await compileVueApp(
