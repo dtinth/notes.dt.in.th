@@ -10,7 +10,6 @@ test("homepage", async ({ page }) => {
     "Recent writings"
   );
   await expect(page.locator(".h-entry .p-author.h-card")).toBeVisible();
-  await expect(page.locator(".h-entry .dt-published")).toBeVisible();
 });
 
 test("rss feed", async ({ request }) => {
@@ -21,7 +20,7 @@ test("rss feed", async ({ request }) => {
 });
 
 test("recent page", async ({ page }) => {
-  await page.goto("/20220130T173123Z7835");
+  await page.goto("/Recent");
   await expect(page).toHaveTitle("Recent writings | notes.dt.in.th");
 });
 

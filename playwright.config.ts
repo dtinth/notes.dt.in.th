@@ -104,6 +104,6 @@ const config: PlaywrightTestConfig = {
   // },
 };
 
-config.use!.baseURL = "http://localhost:2022";
+// config.use!.baseURL = "http://localhost:2022";
 
 export default config;
