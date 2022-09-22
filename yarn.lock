@@ -1150,15 +1150,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@playwright/test@npm:^1.24.0":
-  version: 1.24.0
-  resolution: "@playwright/test@npm:1.24.0"
+"@playwright/test@npm:^1.26.0":
+  version: 1.26.0
+  resolution: "@playwright/test@npm:1.26.0"
   dependencies:
     "@types/node": "*"
-    playwright-core: 1.24.0
+    playwright-core: 1.26.0
   bin:
     playwright: cli.js
-  checksum: 0e63b47627704f86d84a46059f3b0429b1c03abbdf25271fdd3cadc8cfd07d5202a60e5c66093006d01b63eac34474b3c013c0dba4e6102064a0418ddd28b7cc
+  checksum: ce85c07e91f26f9f9ae9951011030347469ec3aa0fc2b2ab525e202cbcb9ba6dafe12d12ee10c13675c4ae8786f9ecd7b54bbe88034ad5f83b35d940cefc022c
   languageName: node
   linkType: hard
 
@@ -3149,7 +3149,7 @@ __metadata:
   dependencies:
     "@dtinth/encrypted": ^0.3.1
     "@fontsource/arimo": ^4.5.8
-    "@playwright/test": ^1.24.0
+    "@playwright/test": ^1.26.0
     "@tanstack/react-query": ^4.2.3
     "@types/jsonwebtoken": ^8.5.8
     "@types/markdown-it": ^12.2.3
@@ -4949,12 +4949,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"playwright-core@npm:1.24.0":
-  version: 1.24.0
-  resolution: "playwright-core@npm:1.24.0"
+"playwright-core@npm:1.26.0":
+  version: 1.26.0
+  resolution: "playwright-core@npm:1.26.0"
   bin:
     playwright: cli.js
-  checksum: 3744ec66e09b007f066efa9deb75f71627e302561ddb9ab42dbcd7140dad18079690dd97030423df7f6a1c03a8c20f3aac7c2a4bf28810bafd58d51e695d8aa7
+  checksum: bd1da7baad202d48e51eb4810ff75960e5a61d137059031dd71a55856f4387e5b42086ea0d3e37d9a595cb5f65d19e2db19e0e06b873dd30a2f0d7177d5d7b41
   languageName: node
   linkType: hard
 
