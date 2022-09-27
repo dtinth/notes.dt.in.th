@@ -39,8 +39,9 @@ const config: PlaywrightTestConfig = {
     baseURL: "https://notes.dt.in.th",
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: "on-first-retry",
-    video: "on-first-retry",
+    trace: "retain-on-failure",
+    video: "retain-on-failure",
+    screenshot: "on",
   },
 
   /* Configure projects for major browsers */
