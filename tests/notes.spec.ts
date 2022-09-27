@@ -30,6 +30,15 @@ test("meta tags", async ({ page }) => {
     "content",
     /Pointer events tester/
   );
+});
+
+test("open graph images", async ({ page }) => {
+  test.skip(
+    !process.env.ENCRYPTION_SECRET,
+    "No encryption secret for encoding image URLs"
+  );
+
+  await page.goto("/20220606T064142Z5299");
   await expect(page.locator('meta[property="og:image"]')).toHaveAttribute(
     "content",
     /^https:\/\//

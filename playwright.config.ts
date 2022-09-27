@@ -28,7 +28,7 @@ const config: PlaywrightTestConfig = {
   /* Retry on CI only */
   retries: process.env.CI ? 2 : 0,
   /* Opt out of parallel tests on CI. */
-  workers: process.env.CI ? 1 : undefined,
+  workers: process.env.CI ? 2 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: "html",
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
@@ -39,7 +39,9 @@ const config: PlaywrightTestConfig = {
     baseURL: "https://notes.dt.in.th",
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: "on-first-retry",
+    trace: "retain-on-failure",
+    video: "on",
+    screenshot: "on",
   },
 
   /* Configure projects for major browsers */
@@ -67,17 +69,17 @@ const config: PlaywrightTestConfig = {
 
     /* Test against mobile viewports. */
     // {
-    //   name: 'Mobile Chrome',
+    //   name: "Mobile Chrome",
     //   use: {
-    //     ...devices['Pixel 5'],
+    //     ...devices["Pixel 5"],
     //   },
     // },
-    // {
-    //   name: 'Mobile Safari',
-    //   use: {
-    //     ...devices['iPhone 12'],
-    //   },
-    // },
+    {
+      name: "Mobile Safari",
+      use: {
+        ...devices["iPhone XR"],
+      },
+    },
 
     /* Test against branded browsers. */
     // {
@@ -98,12 +100,13 @@ const config: PlaywrightTestConfig = {
   // outputDir: 'test-results/',
 
   /* Run your local dev server before starting the tests */
-  // webServer: {
-  //   command: 'npm run start',
-  //   port: 3000,
-  // },
+  webServer: {
+    command: "yarn start -p 2022",
+    port: 2022,
+    reuseExistingServer: !process.env.CI,
+  },
 };
 
-// config.use!.baseURL = "http://localhost:2022";
+config.use!.baseURL = "http://localhost:2022";
 
 export default config;

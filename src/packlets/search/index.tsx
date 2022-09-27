@@ -47,7 +47,9 @@ const NoteSearcherDialog: FC = (props) => {
   const searchIndex = useQuery(
     ["searchIndex"],
     async () => {
-      return fetch("/api/search-index.json").then((r) => {
+      return fetch(
+        "https://objectstorage.ap-singapore-1.oraclecloud.com/n/axioqr1tqh1r/b/dtinth-notes/o/index.search.json"
+      ).then((r) => {
         if (!r.ok) {
           throw new Error(
             `Failed to fetch search index: ${r.status} ${r.statusText}`
