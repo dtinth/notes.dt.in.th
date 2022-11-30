@@ -99,7 +99,7 @@ export async function getServerSidePropsForFetchedNote(
   const hoistedTags = parsedNote.hoistedTags || [];
   const script = hoistedTags.find((tag) => tag.match(/^<script/i));
   const styles = hoistedTags.filter((tag) => tag.match(/^<style/i)).join("");
-  const template = `<div class="e-content">${styles}${parsedNote.html}</div>`;
+  const template = `<div class="e-content dtinth-notes-contents">${styles}${parsedNote.html}</div>`;
   if ("res" in context) {
     if (allowedToCache) {
       context.res.setHeader(

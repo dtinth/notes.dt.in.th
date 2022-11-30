@@ -8,9 +8,18 @@ a.header-anchor {
   padding-right: 0.23em;
   margin-top: 0.125em;
   color: #8b8685;
+  opacity: 0;
 }
 a.header-anchor:hover {
   text-decoration: none;
+}
+h1:hover a.header-anchor,
+h2:hover a.header-anchor,
+h3:hover a.header-anchor,
+h4:hover a.header-anchor,
+h5:hover a.header-anchor,
+h6:hover a.header-anchor {
+  opacity: 1;
 }
 
 /* Syntax highlighter */
@@ -177,4 +186,10 @@ img.emoji {
   color: #8b8685;
   text-decoration: underline;
   text-decoration-color: #8b868599;
+}
+.lead {
+  font-size: 21px;
+  line-height: 1.6;
+  margin-top: 1.2em;
+  margin-bottom: 1.2em;
 }

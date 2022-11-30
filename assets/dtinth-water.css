@@ -24,21 +24,23 @@
   letter-spacing: 0.01em;
 }
 [data-dtinth] body {
-  line-height: 1.75;
+  line-height: 1.72;
 }
 [data-dtinth] h1 {
   color: #8b8685;
-  line-height: 1.4;
+  line-height: 1.11;
   letter-spacing: 0.02em;
 }
 [data-dtinth] h2 {
   color: #d7fc70;
+  line-height: 1.33;
   text-shadow: 2px 2px RGBA(215, 252, 112, 0.15);
   margin-top: 2em;
   letter-spacing: 0.03em;
 }
 [data-dtinth] h3 {
   color: #febfea;
+  line-height: 1.6;
   text-shadow: 2px 2px RGBA(0, 0, 0, 0.25);
   margin-top: 2.5em;
   letter-spacing: 0.03em;
@@ -54,6 +56,16 @@
   border-radius: 2px;
   border-bottom-width: 2px;
   background: #252423;
+}
+[data-dtinth] h1 code,
+[data-dtinth] h2 code,
+[data-dtinth] h3 code {
+  border: 0;
+  box-shadow: none;
+  border-bottom-width: 0;
+  background: transparent;
+  color: inherit;
+  padding: 0;
 }
 [data-dtinth] figure {
   text-align: center;
@@ -79,6 +91,12 @@
 }
 [data-dtinth] blockquote > :last-child {
   margin-bottom: 0;
+}
+[data-dtinth] p,
+[data-dtinth] ul,
+[data-dtinth] ol {
+  margin-top: 1.25em;
+  margin-bottom: 1.25em;
 }
 
 /* https://github.com/kognise/water.css/pull/238 */
