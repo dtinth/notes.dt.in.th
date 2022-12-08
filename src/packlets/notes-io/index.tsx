@@ -1,15 +1,19 @@
 import Encrypted from "@dtinth/encrypted";
+import { QueryClient } from "@tanstack/react-query";
 import {
   GetServerSidePropsContext,
   GetServerSidePropsResult,
   GetStaticPropsContext,
   GetStaticPropsResult,
 } from "next";
+import { PageLayoutProps } from "../layout-props";
 import { parseNote } from "../markdown";
 import { SyndicationItem } from "../notes";
 import { NotePage } from "../notes-page";
 import { getScreenshotImageUrl } from "../screenshot";
 import { compileVueApp } from "../vue-app-compiler";
+
+const globalCache = new QueryClient();
 
 function getNotesApiBase() {
   const encrypted = Encrypted();
@@ -22,20 +26,70 @@ interface NoteFetchResult {
   };
   slug: string;
   source: string;
+  breadcrumb?: Breadcrumb[];
+}
+
+interface Breadcrumb {
+  slug: string;
+  title: string;
+}
+
+export interface TreeNode {
+  id: string;
+  title: string;
+  children?: TreeNode[];
 }
 
 export async function fetchPublicNote(
   slug: string
 ): Promise<NoteFetchResult | undefined> {
+  const treePromise = fetchTree();
   const response = await fetchPublicFile(`${slug}.md`);
   if (!response.ok) {
     throw new Error(`${response.status} ${response.statusText}`);
   }
   const data = await response.text();
+  const breadcrumb = getBreadcrumb(await treePromise, slug);
   return {
     source: data,
     slug,
+    breadcrumb,
   };
+}
+
+function getBreadcrumb(root: TreeNode, slug: string) {
+  const find = (
+    node: TreeNode,
+    path: Breadcrumb[]
+  ): Breadcrumb[] | undefined => {
+    if (node.id === slug) {
+      return path;
+    }
+    if (node.children) {
+      for (const child of node.children) {
+        const result = find(child, [
+          ...path,
+          {
+            slug: node.id,
+            title: node.title.replace(/ \(topic\)/, ""),
+          },
+        ]);
+        if (result) {
+          return result;
+        }
+      }
+    }
+  };
+  const result = find(root, []);
+  if (result) {
+    if (result[0]?.slug === "HomePage") {
+      result.shift();
+    }
+    if (result.some((x) => x.slug === "Recent")) {
+      return undefined;
+    }
+  }
+  return result;
 }
 
 export async function fetchPublicFile(file: string) {
@@ -62,11 +116,27 @@ export async function fetchPrivateNote(
   };
 }
 
+function fetchTree() {
+  return globalCache.fetchQuery({
+    queryKey: ["tree"],
+    staleTime: 60e3,
+    queryFn: async () => {
+      const response = await fetchPublicFile("index.tree.json");
+      if (!response.ok) {
+        throw new Error(`${response.status} ${response.statusText}`);
+      }
+      const data = await response.json();
+      return data as TreeNode;
+    },
+  });
+}
+
 export async function getServerSidePropsForFetchedNote(
   context: GetServerSidePropsContext | GetStaticPropsContext,
   fetchedNote: NoteFetchResult | undefined
 ): Promise<
-  GetServerSidePropsResult<NotePage> | GetStaticPropsResult<NotePage>
+  | GetServerSidePropsResult<NotePage & PageLayoutProps>
+  | GetStaticPropsResult<NotePage & PageLayoutProps>
 > {
   if (!fetchedNote) {
     return {
@@ -128,6 +198,14 @@ export async function getServerSidePropsForFetchedNote(
       noteFooter: {
         pubDate: pubDate(slug),
         syndication: syndication(frontmatter),
+      },
+      layoutProps: {
+        breadcrumb: fetchedNote.breadcrumb
+          ? fetchedNote.breadcrumb.map((item) => ({
+              href: item.slug,
+              title: item.title,
+            }))
+          : null,
       },
     },
     ...(allowedToCache ? { revalidate: 1 } : {}),

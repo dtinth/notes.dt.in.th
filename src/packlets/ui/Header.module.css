@@ -14,12 +14,32 @@
   display: flex;
 }
 
-.section {
+.left {
   display: flex;
   align-items: center;
-  padding: 0 clamp(10px, 50vw - 405px, 20px);
+  padding-left: clamp(10px, 50vw - 405px, 20px);
 }
 
-.title a:not(:hover) {
+.header,
+.header a:not(:hover) {
   color: #8b8685;
+}
+
+.middle {
+  flex: 1 1 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
+}
+
+.breadcrumbSeparator {
+  margin: 0 0.5em;
+  flex: none;
+}
+
+.breadcrumbItem {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
