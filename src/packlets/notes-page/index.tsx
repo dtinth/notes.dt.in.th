@@ -17,6 +17,7 @@ import { VueApp } from "../vue-app-react";
 const NoteSearcher = lazy(() => import("../search"));
 
 export interface NotePage {
+  slug: string;
   noteContents: VueApp;
   noteFooter: NoteFooter;
   title: string;
@@ -64,7 +65,7 @@ export const NotePage: NextPage<NotePage> = (props) => {
   );
   return (
     <>
-      <article className="h-entry">
+      <article className="h-entry" key={props.slug}>
         <Head>
           <title>{props.title} | notes.dt.in.th</title>
           {!!props.description && (

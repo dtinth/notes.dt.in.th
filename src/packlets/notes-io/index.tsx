@@ -188,6 +188,7 @@ export async function getServerSidePropsForFetchedNote(
       : null) || null;
   return {
     props: {
+      slug,
       noteContents: await compileVueApp(
         template,
         script ? stripScriptTag(script) : undefined
