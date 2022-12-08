@@ -193,3 +193,6 @@ img.emoji {
   margin-top: 1.2em;
   margin-bottom: 1.2em;
 }
+.indented {
+  padding-left: 40px;
+}
