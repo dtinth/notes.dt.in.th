@@ -1,0 +1,32 @@
+.spacer {
+  height: 58px;
+}
+
+.header {
+  height: 58px;
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #090807;
+  border-bottom: 1px solid #454443;
+  display: flex;
+}
+
+.container {
+  display: flex;
+  flex: 1;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+.section {
+  display: flex;
+  align-items: center;
+}
+
+.title a:not(:hover) {
+  color: #8b8685;
+}

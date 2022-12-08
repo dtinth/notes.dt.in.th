@@ -15,10 +15,13 @@ import "../styles/globals.css";
 
 import type { AppProps } from "next/app";
 import { Analytics } from "../src/packlets/analytics";
+import { Header } from "../src/packlets/ui";
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps, router }: AppProps) {
+  const header = String(router.query.flags).split(",").includes("header");
   return (
     <>
+      {!!header && <Header />}
       <Component {...pageProps} />
       <Analytics />
     </>
