@@ -21,10 +21,9 @@ import { QuickLinks } from "../src/packlets/quicklinks";
 
 function MyApp({ Component, pageProps, router }: AppProps) {
   const layoutProps = (pageProps as PageLayoutProps).layoutProps;
-  const header = String(router.query.flags).split(",").includes("header");
   return (
     <>
-      {!!header && <Header breadcrumb={layoutProps?.breadcrumb} />}
+      <Header breadcrumb={layoutProps?.breadcrumb} />
       <Component {...pageProps} />
       <Analytics />
       <QuickLinks />
