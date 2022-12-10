@@ -18,6 +18,7 @@
   display: flex;
   align-items: center;
   padding-left: clamp(10px, 50vw - 405px, 20px);
+  flex: none;
 }
 
 .header,
@@ -42,4 +43,16 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  padding-right: clamp(10px, 50vw - 405px, 20px);
+  flex: none;
+}
+
+.rightItem {
+  display: flex;
+  flex: none;
 }

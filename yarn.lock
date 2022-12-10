@@ -664,6 +664,33 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@iconify-icon/react@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "@iconify-icon/react@npm:1.0.2"
+  dependencies:
+    iconify-icon: ^1.0.2
+  peerDependencies:
+    react: ">=16"
+  checksum: d4e8b9f40223e96c952b466577fe650b8067fc33e068019bac256059d90d34026fe1bde0d1b3959c12131c835b9bf7f71ff6d24e62c400740f6c56d527a16f89
+  languageName: node
+  linkType: hard
+
+"@iconify-icons/codicon@npm:^1.2.20":
+  version: 1.2.20
+  resolution: "@iconify-icons/codicon@npm:1.2.20"
+  dependencies:
+    "@iconify/types": "*"
+  checksum: 966b514e8fd6185dbe4e04d378ec6a62d40fe175bb6e580c85f13d7dbcea387867c2e105d11cb283ea50d05b5ef32bee02bc8aa17b8e07261d8e0dfb2b8a169b
+  languageName: node
+  linkType: hard
+
+"@iconify/types@npm:*, @iconify/types@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "@iconify/types@npm:2.0.0"
+  checksum: 029f58542c160e9d4a746869cf2e475b603424d3adf3994c5cc8d0406c47e6e04a3b898b2707840c1c5b9bd5563a1660a34b110d89fce43923baca5222f4e597
+  languageName: node
+  linkType: hard
+
 "@mrmlnc/readdir-enhanced@npm:^2.2.1":
   version: 2.2.1
   resolution: "@mrmlnc/readdir-enhanced@npm:2.2.1"
@@ -3157,6 +3184,8 @@ __metadata:
     "@dtinth/encrypted": ^0.3.1
     "@eventpop-oss/interaction-highlighter": ^0.1.2
     "@fontsource/arimo": ^4.5.8
+    "@iconify-icon/react": ^1.0.2
+    "@iconify-icons/codicon": ^1.2.20
     "@playwright/test": ^1.27.1
     "@tanstack/react-query": ^4.2.3
     "@types/jsonwebtoken": ^8.5.8
@@ -3549,6 +3578,15 @@ __metadata:
   version: 0.5.8
   resolution: "http-parser-js@npm:0.5.8"
   checksum: 6bbdf2429858e8cf13c62375b0bfb6dc3955ca0f32e58237488bc86cd2378f31d31785fd3ac4ce93f1c74e0189cf8823c91f5cb061696214fd368d2452dc871d
+  languageName: node
+  linkType: hard
+
+"iconify-icon@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "iconify-icon@npm:1.0.2"
+  dependencies:
+    "@iconify/types": ^2.0.0
+  checksum: e8d3bb2f283845ba01cf52d97d0fadef93be1405ed0a2f87166d9c057477ed21001f21c29b3cf701ffbe1dc6bb51961390cbe0f0d778793773d34e5f79e473f2
   languageName: node
   linkType: hard
 
