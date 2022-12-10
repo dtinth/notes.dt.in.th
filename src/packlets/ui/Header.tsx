@@ -1,8 +1,10 @@
 import { Icon, IconifyIcon } from "@iconify-icon/react";
 import Link from "next/link";
 import { FC, Fragment } from "react";
+import { CommandConnector } from "../commands";
 import { LayoutBreadcrumb } from "../layout-props";
 import classes from "./Header.module.css";
+import searchIcon from "@iconify-icons/codicon/search";
 
 export interface Header {
   breadcrumb?: LayoutBreadcrumb[] | null;
@@ -30,6 +32,15 @@ export const Header: FC<Header> = (props) => {
           ))}
         </div>
         <div className={classes.right}>
+          <CommandConnector name="search">
+            {(command) =>
+              command ? (
+                <button className={classes.rightItem} onClick={command.run}>
+                  <Icon icon={searchIcon} height={24} />
+                </button>
+              ) : null
+            }
+          </CommandConnector>
           <a
             className={classes.rightItem}
             href="https://webring.wonderful.software/#dt.in.th"

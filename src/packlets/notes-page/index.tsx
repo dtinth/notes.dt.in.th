@@ -1,20 +1,10 @@
 import { NextPage } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import {
-  FC,
-  lazy,
-  MouseEventHandler,
-  Suspense,
-  useCallback,
-  useEffect,
-  useRef,
-} from "react";
+import { FC, MouseEventHandler, useCallback, useEffect, useRef } from "react";
 import { setupFootnotes } from "../footnotes";
 import { NoteFooter } from "../notes";
 import { VueApp } from "../vue-app-react";
-
-const NoteSearcher = lazy(() => import("../search"));
 
 export interface NotePage {
   slug: string;

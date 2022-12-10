@@ -12,6 +12,9 @@ import {
   useQuery,
 } from "@tanstack/react-query";
 import { createSearchEngineFromJson } from "./engine";
+import { registerCommand } from "../commands";
+import { Icon } from "@iconify-icon/react";
+import closeIcon from "@iconify-icons/codicon/close";
 
 const queryClient = new QueryClient();
 
@@ -26,20 +29,27 @@ const NoteSearcher: FC = (props) => {
 export default NoteSearcher;
 
 const NoteSearcherDialog: FC = (props) => {
-  const dialog = useRef<HTMLDialogElement>(null);
+  const dialogRef = useRef<HTMLDialogElement>(null);
   const searchInput = useRef<HTMLInputElement>(null);
   const [searchText, setSearchText] = useState("");
   const [enabled, setEnabled] = useState(false);
+  function showSearch() {
+    dialogRef.current?.showModal();
+    searchInput.current?.focus();
+    setEnabled(true);
+  }
+  function hideSearch() {
+    dialogRef.current?.close();
+  }
   useEffect(() => {
     const listener = (e: KeyboardEvent): void => {
       if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
         e.preventDefault();
-        dialog.current?.showModal();
-        searchInput.current?.focus();
-        setEnabled(true);
+        showSearch();
       }
     };
     addEventListener("keydown", listener);
+    registerCommand("search", { run: showSearch });
     return () => {
       removeEventListener("keydown", listener);
     };
@@ -62,7 +72,7 @@ const NoteSearcherDialog: FC = (props) => {
   );
   const onKeyDown: KeyboardEventHandler = (e) => {
     if (e.key === "Enter") {
-      const link = dialog.current?.querySelector("a");
+      const link = dialogRef.current?.querySelector("a");
       if (link) {
         link.focus();
         link.click();
@@ -72,22 +82,35 @@ const NoteSearcherDialog: FC = (props) => {
   return (
     <>
       <dialog
-        ref={dialog}
+        ref={dialogRef}
         style={{
           width: "720px",
           maxWidth: "90vw",
           overflow: "hidden",
         }}
       >
-        <input
-          type="search"
-          ref={searchInput}
-          value={searchText}
-          onKeyDown={onKeyDown}
-          onChange={(e) => setSearchText(e.target.value)}
-          style={{ width: "100%", boxSizing: "border-box", marginTop: "16px" }}
-          placeholder="Search for a note…"
-        />
+        <div style={{ display: "flex", gap: "8px", marginTop: "16px" }}>
+          <input
+            type="search"
+            ref={searchInput}
+            value={searchText}
+            onKeyDown={onKeyDown}
+            onChange={(e) => setSearchText(e.target.value)}
+            style={{
+              flex: "1 1 0",
+              width: "100%",
+              boxSizing: "border-box",
+            }}
+            placeholder="Search for a note…"
+          />
+          <button
+            style={{ paddingLeft: 10, paddingRight: 10 }}
+            onClick={hideSearch}
+            title="Close search"
+          >
+            <Icon icon={closeIcon} />
+          </button>
+        </div>
         <div style={{ height: "400px", overflow: "auto" }}>
           {searchIndex.isError ? (
             `Error: ${searchIndex.error}`

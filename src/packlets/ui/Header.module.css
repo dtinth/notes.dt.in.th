@@ -50,9 +50,17 @@
   align-items: center;
   padding-right: clamp(10px, 50vw - 405px, 20px);
   flex: none;
+  gap: 16px;
 }
 
 .rightItem {
   display: flex;
   flex: none;
+}
+
+button.rightItem {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  color: inherit;
 }

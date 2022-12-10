@@ -3216,6 +3216,7 @@ __metadata:
     rss: ^1.2.2
     stemmer: 1.0.5
     stopwords: 0.0.9
+    sync-external-store: ^1.0.0
     twemoji: ^14.0.2
     typescript: 4.7.4
     vue: 2.7.8
@@ -5832,6 +5833,13 @@ __metadata:
   version: 1.0.0
   resolution: "supports-preserve-symlinks-flag@npm:1.0.0"
   checksum: 53b1e247e68e05db7b3808b99b892bd36fb096e6fba213a06da7fab22045e97597db425c724f2bbd6c99a3c295e1e73f3e4de78592289f38431049e1277ca0ae
+  languageName: node
+  linkType: hard
+
+"sync-external-store@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "sync-external-store@npm:1.0.0"
+  checksum: 99f28952bd2cdfad61f6c1a5fc651d8c5b226a8b83995da64df18341006b6e925067eed4daea3563c38244e81e61793a6f286d30a98456e5d9e0b7e2089d89bf
   languageName: node
   linkType: hard
 

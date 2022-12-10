@@ -35,6 +35,7 @@
     "rss": "^1.2.2",
     "stemmer": "1.0.5",
     "stopwords": "0.0.9",
+    "sync-external-store": "^1.0.0",
     "twemoji": "^14.0.2",
     "vue": "2.7.8",
     "vue-server-renderer": "2.7.8",
