@@ -88,9 +88,6 @@ export const NotePage: NextPage<NotePage> = (props) => {
         </div>
         <NoteFooter {...props.noteFooter} />
       </article>
-      <Suspense fallback={<></>}>
-        <NoteSearcher />
-      </Suspense>
     </>
   );
 };

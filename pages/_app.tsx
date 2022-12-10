@@ -18,6 +18,9 @@ import { Analytics } from "../src/packlets/analytics";
 import { Header } from "../src/packlets/ui";
 import { PageLayoutProps } from "../src/packlets/layout-props";
 import { QuickLinks } from "../src/packlets/quicklinks";
+import { lazy, Suspense } from "react";
+
+const NoteSearcher = lazy(() => import("../src/packlets/search"));
 
 function MyApp({ Component, pageProps, router }: AppProps) {
   const layoutProps = (pageProps as PageLayoutProps).layoutProps;
@@ -27,6 +30,9 @@ function MyApp({ Component, pageProps, router }: AppProps) {
       <Component {...pageProps} />
       <Analytics />
       <QuickLinks />
+      <Suspense fallback={<></>}>
+        <NoteSearcher />
+      </Suspense>
     </>
   );
 }
