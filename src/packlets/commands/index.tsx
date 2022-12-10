@@ -19,9 +19,11 @@ export function registerCommand(name: string, command: Command) {
 }
 
 export function useCommand(name: string) {
-  return useSyncExternalStore(commandStore.subscribe, commandStore.getSnapshot)[
-    name
-  ];
+  return useSyncExternalStore(
+    commandStore.subscribe,
+    commandStore.getSnapshot,
+    commandStore.getSnapshot
+  )[name];
 }
 
 export interface CommandConnector {
