@@ -14,7 +14,7 @@ const nextConfig = {
   },
   webpack: (config, { isServer }) => {
     if (isServer) {
-      config.devtool = "source-map";
+      config.devtool = "inline-source-map";
     }
     return config;
   },
