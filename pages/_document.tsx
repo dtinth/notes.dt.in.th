@@ -1,4 +1,4 @@
-import "source-map-support";
+import "source-map-support/register";
 import { Html, Head, Main, NextScript } from "next/document";
 
 export default function Document(props: any) {
