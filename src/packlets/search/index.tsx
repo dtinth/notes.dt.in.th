@@ -5,55 +5,55 @@ import {
   useMemo,
   useRef,
   useState,
-} from "react";
+} from "react"
 import {
   QueryClientProvider,
   QueryClient,
   useQuery,
-} from "@tanstack/react-query";
-import { createSearchEngineFromJson } from "./engine";
-import { registerCommand } from "../commands";
-import { Icon } from "@iconify-icon/react";
-import closeIcon from "@iconify-icons/codicon/close";
+} from "@tanstack/react-query"
+import { createSearchEngineFromJson } from "./engine"
+import { registerCommand } from "../commands"
+import { Icon } from "../icons"
+import closeIcon from "@iconify-icons/codicon/close"
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient()
 
 const NoteSearcher: FC = (props) => {
   return (
     <QueryClientProvider client={queryClient}>
       <NoteSearcherDialog />
     </QueryClientProvider>
-  );
-};
+  )
+}
 
-export default NoteSearcher;
+export default NoteSearcher
 
 const NoteSearcherDialog: FC = (props) => {
-  const dialogRef = useRef<HTMLDialogElement>(null);
-  const searchInput = useRef<HTMLInputElement>(null);
-  const [searchText, setSearchText] = useState("");
-  const [enabled, setEnabled] = useState(false);
+  const dialogRef = useRef<HTMLDialogElement>(null)
+  const searchInput = useRef<HTMLInputElement>(null)
+  const [searchText, setSearchText] = useState("")
+  const [enabled, setEnabled] = useState(false)
   function showSearch() {
-    dialogRef.current?.showModal();
-    searchInput.current?.focus();
-    setEnabled(true);
+    dialogRef.current?.showModal()
+    searchInput.current?.focus()
+    setEnabled(true)
   }
   function hideSearch() {
-    dialogRef.current?.close();
+    dialogRef.current?.close()
   }
   useEffect(() => {
     const listener = (e: KeyboardEvent): void => {
       if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
-        e.preventDefault();
-        showSearch();
+        e.preventDefault()
+        showSearch()
       }
-    };
-    addEventListener("keydown", listener);
-    registerCommand("search", { run: showSearch });
+    }
+    addEventListener("keydown", listener)
+    registerCommand("search", { run: showSearch })
     return () => {
-      removeEventListener("keydown", listener);
-    };
-  }, []);
+      removeEventListener("keydown", listener)
+    }
+  }, [])
   const searchIndex = useQuery(
     ["searchIndex"],
     async () => {
@@ -63,22 +63,22 @@ const NoteSearcherDialog: FC = (props) => {
         if (!r.ok) {
           throw new Error(
             `Failed to fetch search index: ${r.status} ${r.statusText}`
-          );
+          )
         }
-        return r.text();
-      });
+        return r.text()
+      })
     },
     { enabled }
-  );
+  )
   const onKeyDown: KeyboardEventHandler = (e) => {
     if (e.key === "Enter") {
-      const link = dialogRef.current?.querySelector("a");
+      const link = dialogRef.current?.querySelector("a")
       if (link) {
-        link.focus();
-        link.click();
+        link.focus()
+        link.click()
       }
     }
-  };
+  }
   return (
     <>
       <dialog
@@ -122,21 +122,21 @@ const NoteSearcherDialog: FC = (props) => {
         </div>
       </dialog>
     </>
-  );
-};
+  )
+}
 
 interface SearchResult {
-  index: any;
-  text: string;
+  index: any
+  text: string
 }
 
 const SearchResult: FC<SearchResult> = (props) => {
   const searchEngine = useMemo(() => {
-    return createSearchEngineFromJson(props.index);
-  }, [props.index]);
+    return createSearchEngineFromJson(props.index)
+  }, [props.index])
   const searchResult = useMemo(() => {
-    return searchEngine.search(props.text);
-  }, [searchEngine, props.text]);
+    return searchEngine.search(props.text)
+  }, [searchEngine, props.text])
   return (
     <>
       <ul>
@@ -145,9 +145,9 @@ const SearchResult: FC<SearchResult> = (props) => {
             <li key={s.id}>
               <a href={"/" + s.id}>{s.title}</a>
             </li>
-          );
+          )
         })}
       </ul>
     </>
-  );
-};
+  )
+}

@@ -1,5 +1,5 @@
-import "source-map-support/register";
-import { Html, Head, Main, NextScript } from "next/document";
+import "source-map-support/register"
+import { Html, Head, Main, NextScript } from "next/document"
 
 export default function Document(props: any) {
   // console.log(props);
@@ -12,6 +12,12 @@ export default function Document(props: any) {
               '"#og:image"===location.hash&&document.documentElement.setAttribute("data-screenshot-mode","")',
           }}
         />
+        <script
+          async
+          src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.2/dist/iconify-icon.min.js"
+          integrity="sha256-kwd+IKkvIXP95TLOfLvp/rHfnja1G+Ve+u1UR22A02k="
+          crossOrigin="anonymous"
+        />
         <link
           rel="icon"
           type="image/png"
@@ -23,5 +29,5 @@ export default function Document(props: any) {
         <NextScript />
       </body>
     </Html>
-  );
+  )
 }
