@@ -1,12 +1,13 @@
 export interface PageLayoutProps {
-  layoutProps?: LayoutProps;
+  layoutProps?: LayoutProps
 }
 
 export interface LayoutProps {
-  breadcrumb?: LayoutBreadcrumb[] | null;
+  currentSlug?: string | null
+  breadcrumb?: LayoutBreadcrumb[] | null
 }
 
 export interface LayoutBreadcrumb {
-  href: string;
-  title: string;
+  href: string
+  title: string
 }

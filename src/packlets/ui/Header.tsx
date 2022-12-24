@@ -5,9 +5,12 @@ import { CommandConnector } from "../commands"
 import { LayoutBreadcrumb } from "../layout-props"
 import classes from "./Header.module.css"
 import searchIcon from "@iconify-icons/codicon/search"
+import editIcon from "@iconify-icons/codicon/edit"
+import { EditConnector } from "./EditConnector"
 
 export interface Header {
   breadcrumb?: LayoutBreadcrumb[] | null
+  slug?: string | null
 }
 
 export const Header: FC<Header> = (props) => {
@@ -32,10 +35,23 @@ export const Header: FC<Header> = (props) => {
           ))}
         </div>
         <div className={classes.right}>
+          {!!props.slug && (
+            <EditConnector slug={props.slug}>
+              {(url) => (
+                <a className={classes.rightItem} title="Edit" href={url}>
+                  <Icon icon={editIcon} height={24} />
+                </a>
+              )}
+            </EditConnector>
+          )}
           <CommandConnector name="search">
             {(command) =>
               command ? (
-                <button className={classes.rightItem} onClick={command.run}>
+                <button
+                  className={classes.rightItem}
+                  onClick={command.run}
+                  title="Search"
+                >
                   <Icon icon={searchIcon} height={24} />
                 </button>
               ) : null

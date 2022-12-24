@@ -6,24 +6,14 @@ import {
   useRef,
   useState,
 } from "react"
-import {
-  QueryClientProvider,
-  QueryClient,
-  useQuery,
-} from "@tanstack/react-query"
+import { useQuery } from "@tanstack/react-query"
 import { createSearchEngineFromJson } from "./engine"
 import { registerCommand } from "../commands"
 import { Icon } from "../icons"
 import closeIcon from "@iconify-icons/codicon/close"
 
-const queryClient = new QueryClient()
-
 const NoteSearcher: FC = (props) => {
-  return (
-    <QueryClientProvider client={queryClient}>
-      <NoteSearcherDialog />
-    </QueryClientProvider>
-  )
+  return <NoteSearcherDialog />
 }
 
 export default NoteSearcher

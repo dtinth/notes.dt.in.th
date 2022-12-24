@@ -4,27 +4,28 @@ import {
   signInWithPopup,
   signOut as signOutFromFirebase,
   User,
-} from "firebase/auth";
-import memoizeOne from "memoize-one";
-import { app } from "../firebase-app";
+} from "firebase/auth"
+import memoizeOne from "memoize-one"
+import { app } from "../firebase-app"
 
-const auth = getAuth(app);
+const auth = getAuth(app)
 
 export function subscribeToAuthState(f: () => void) {
-  return auth.onAuthStateChanged(f);
+  return auth.onAuthStateChanged(f)
 }
 
 export interface AuthState {
-  user: AuthUser | null;
+  user: AuthUser | null
 }
 
 export interface AuthUser {
-  uid: string;
-  displayName: string;
+  uid: string
+  displayName: string
+  getIdToken: () => Promise<string>
 }
 
 export function getAuthState(): AuthState {
-  return resolveAuthState(auth.currentUser);
+  return resolveAuthState(auth.currentUser)
 }
 
 const resolveAuthState = memoizeOne((currentUser: User | null): AuthState => {
@@ -34,21 +35,22 @@ const resolveAuthState = memoizeOne((currentUser: User | null): AuthState => {
           uid: currentUser.uid,
           displayName:
             currentUser.displayName || currentUser.email || currentUser.uid,
+          getIdToken: () => currentUser.getIdToken(),
         }
       : null,
-  };
-});
+  }
+})
 
 export function signIn() {
   signInWithPopup(auth, new GithubAuthProvider()).catch((e) => {
-    console.error(e);
-    alert("Failed to sign in");
-  });
+    console.error(e)
+    alert("Failed to sign in")
+  })
 }
 
 export function signOut() {
   signOutFromFirebase(auth).catch((e) => {
-    console.error(e);
-    alert("Failed to sign out");
-  });
+    console.error(e)
+    alert("Failed to sign out")
+  })
 }
