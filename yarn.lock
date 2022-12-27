@@ -3221,6 +3221,7 @@ __metadata:
     quicklink: ^2.3.0
     react: 18.2.0
     react-dom: 18.2.0
+    react-iconify-icon-wrapper: ^0.0.3
     redaxios: ^0.5.1
     rss: ^1.2.2
     source-map-support: ^0.5.21
@@ -5212,6 +5213,15 @@ __metadata:
   peerDependencies:
     react: ^18.2.0
   checksum: 7d323310bea3a91be2965f9468d552f201b1c27891e45ddc2d6b8f717680c95a75ae0bc1e3f5cf41472446a2589a75aed4483aee8169287909fcd59ad149e8cc
+  languageName: node
+  linkType: hard
+
+"react-iconify-icon-wrapper@npm:^0.0.3":
+  version: 0.0.3
+  resolution: "react-iconify-icon-wrapper@npm:0.0.3"
+  peerDependencies:
+    react: "*"
+  checksum: 940fba856d07853be70f338eae42f490f3172de94532d3fcb2179367607ed84fd8096cfa8791fa545901b4ae5a4bca9e128f90ad96e67d4b276c8547d874de0f
   languageName: node
   linkType: hard
 

@@ -9,7 +9,7 @@ import {
 import { useQuery } from "@tanstack/react-query"
 import { createSearchEngineFromJson } from "./engine"
 import { registerCommand } from "../commands"
-import { Icon } from "../icons"
+import { Icon } from "react-iconify-icon-wrapper"
 import closeIcon from "@iconify-icons/codicon/close"
 
 const NoteSearcher: FC = (props) => {
