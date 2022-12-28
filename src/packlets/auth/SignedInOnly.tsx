@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic"
 import { FC, ReactNode, Suspense } from "react"
-import { AuthUser } from "./firebase"
+import { AuthUser } from "./Auth"
 
 export const AuthStateConnector = dynamic(
   () => import("./AuthStateConnector"),

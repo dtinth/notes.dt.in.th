@@ -1,13 +1,8 @@
-import { FC, useSyncExternalStore } from "react";
-import {
-  getAuthState,
-  signIn,
-  signOut,
-  subscribeToAuthState,
-} from "./firebase";
+import { FC, useSyncExternalStore } from "react"
+import { getAuthState, signIn, signOut, subscribeToAuthState } from "./Auth"
 
 const AuthInspector: FC = () => {
-  const state = useSyncExternalStore(subscribeToAuthState, getAuthState);
+  const state = useSyncExternalStore(subscribeToAuthState, getAuthState)
   return (
     <>
       <pre>
@@ -21,7 +16,7 @@ const AuthInspector: FC = () => {
         )}
       </p>
     </>
-  );
-};
+  )
+}
 
-export default AuthInspector;
+export default AuthInspector

@@ -1,7 +1,6 @@
 import { useQuery } from "@tanstack/react-query"
 import { FC, ReactNode } from "react"
-import { SignedInOnly } from "../auth"
-import { AuthUser } from "../auth/firebase"
+import { SignedInOnly, AuthUser } from "../auth"
 import redaxios from "redaxios"
 
 export interface EditConnector {
