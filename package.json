@@ -30,6 +30,7 @@
     "minisearch": "5.0.0",
     "next": "12.2.3",
     "octokit": "^2.0.4",
+    "query-flags": "^1.0.0",
     "quicklink": "^2.3.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",

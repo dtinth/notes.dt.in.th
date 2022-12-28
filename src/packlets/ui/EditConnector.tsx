@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query"
 import { FC, ReactNode } from "react"
 import { SignedInOnly, AuthUser } from "../auth"
 import redaxios from "redaxios"
+import { isQueryFlagEnabled } from "query-flags"
 
 export interface EditConnector {
   slug: string
@@ -34,6 +35,11 @@ function useNoteInfoQuery(user: AuthUser, slug: string) {
     queryFn: async () => {
       const idToken = await user.getIdToken()
       const baseUrl = await getBaseUrl(idToken)
+
+      if (isQueryFlagEnabled("mock")) {
+        return { editUrl: "https://example.org" }
+      }
+
       const url = `${baseUrl}/v2/info?${new URLSearchParams({
         slug: slug,
       })}`
@@ -48,6 +54,10 @@ function useNoteInfoQuery(user: AuthUser, slug: string) {
 }
 
 async function getBaseUrl(idToken: string) {
+  if (isQueryFlagEnabled("mock")) {
+    return "https://mock.notes.dt.in.th"
+  }
+
   if (sessionStorage.notesBaseUrl) {
     return sessionStorage.notesBaseUrl
   }

@@ -3218,6 +3218,7 @@ __metadata:
     minisearch: 5.0.0
     next: 12.2.3
     octokit: ^2.0.4
+    query-flags: ^1.0.0
     quicklink: ^2.3.0
     react: 18.2.0
     react-dom: 18.2.0
@@ -5165,6 +5166,13 @@ __metadata:
   version: 2.1.1
   resolution: "punycode@npm:2.1.1"
   checksum: 823bf443c6dd14f669984dea25757b37993f67e8d94698996064035edd43bed8a5a17a9f12e439c2b35df1078c6bec05a6c86e336209eb1061e8025c481168e8
+  languageName: node
+  linkType: hard
+
+"query-flags@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "query-flags@npm:1.0.0"
+  checksum: ac5469937a3735228ab17f79122b0b601a1ded55e586383b104763d80b8479fdc1cb5b0b10765b823891b90688c5cb8fbd94caf88b4690530862491e660f8460
   languageName: node
   linkType: hard
 

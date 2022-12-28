@@ -7,6 +7,7 @@ import {
 } from "firebase/auth"
 import memoizeOne from "memoize-one"
 import { app } from "../firebase-app"
+import { isQueryFlagEnabled } from "query-flags"
 
 interface Auth {
   subscribeToAuthState: (f: () => void) => () => void
@@ -55,8 +56,47 @@ class FirebaseAuth implements Auth {
     })
   }
 }
+class MockAuth implements Auth {
+  authState: AuthState = { user: null }
+  listeners = new Set<() => void>()
 
-const auth: Auth = new FirebaseAuth()
+  constructor() {
+    if (isQueryFlagEnabled("signedIn")) {
+      this.signIn()
+    }
+  }
+
+  subscribeToAuthState(f: () => void) {
+    this.listeners.add(f)
+    return () => {
+      this.listeners.delete(f)
+    }
+  }
+
+  getAuthState() {
+    return this.authState
+  }
+
+  signIn() {
+    this.authState = {
+      user: {
+        uid: "mock",
+        displayName: "Mock User",
+        getIdToken: () => Promise.resolve("mock"),
+      },
+    }
+    this.listeners.forEach((f) => f())
+  }
+
+  signOut() {
+    this.authState = { user: null }
+    this.listeners.forEach((f) => f())
+  }
+}
+
+const auth: Auth = isQueryFlagEnabled("mock")
+  ? new MockAuth()
+  : new FirebaseAuth()
 
 export function subscribeToAuthState(f: () => void) {
   return auth.subscribeToAuthState(f)
