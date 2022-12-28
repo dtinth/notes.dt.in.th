@@ -3210,6 +3210,7 @@ __metadata:
     eslint: 8.20.0
     eslint-config-next: 12.2.3
     firebase: ^9.9.4
+    jose: ^4.11.1
     jsonwebtoken: ^8.5.1
     littlefoot: ^3.4.1
     markdown-it-footnote: ^3.0.3
@@ -3217,9 +3218,12 @@ __metadata:
     minisearch: 5.0.0
     next: 12.2.3
     octokit: ^2.0.4
+    query-flags: ^1.0.0
     quicklink: ^2.3.0
     react: 18.2.0
     react-dom: 18.2.0
+    react-iconify-icon-wrapper: ^0.0.3
+    redaxios: ^0.5.1
     rss: ^1.2.2
     source-map-support: ^0.5.21
     stemmer: 1.0.5
@@ -4024,6 +4028,13 @@ __metadata:
   version: 0.16.0
   resolution: "jmespath@npm:0.16.0"
   checksum: 2d602493a1e4addfd1350ac8c9d54b1b03ed09e305fd863bab84a4ee1f52868cf939dd1a08c5cdea29ce9ba8f86875ebb458b6ed45dab3e1c3f2694503fb2fd9
+  languageName: node
+  linkType: hard
+
+"jose@npm:^4.11.1":
+  version: 4.11.1
+  resolution: "jose@npm:4.11.1"
+  checksum: cd15cba258d0fd20f6168631ce2e94fda8442df80e43c1033c523915cecdf390a1cc8efe0eab0c2d65935ca973d791c668aea80724d2aa9c2879d4e70f3081d7
   languageName: node
   linkType: hard
 
@@ -5158,6 +5169,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"query-flags@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "query-flags@npm:1.0.0"
+  checksum: ac5469937a3735228ab17f79122b0b601a1ded55e586383b104763d80b8479fdc1cb5b0b10765b823891b90688c5cb8fbd94caf88b4690530862491e660f8460
+  languageName: node
+  linkType: hard
+
 "querystring@npm:0.2.0":
   version: 0.2.0
   resolution: "querystring@npm:0.2.0"
@@ -5206,6 +5224,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-iconify-icon-wrapper@npm:^0.0.3":
+  version: 0.0.3
+  resolution: "react-iconify-icon-wrapper@npm:0.0.3"
+  peerDependencies:
+    react: "*"
+  checksum: 940fba856d07853be70f338eae42f490f3172de94532d3fcb2179367607ed84fd8096cfa8791fa545901b4ae5a4bca9e128f90ad96e67d4b276c8547d874de0f
+  languageName: node
+  linkType: hard
+
 "react-is@npm:^16.13.1":
   version: 16.13.1
   resolution: "react-is@npm:16.13.1"
@@ -5234,6 +5261,13 @@ __metadata:
     string_decoder: ~1.1.1
     util-deprecate: ~1.0.1
   checksum: e4920cf7549a60f8aaf694d483a0e61b2a878b969d224f89b3bc788b8d920075132c4b55a7494ee944c7b6a9a0eada28a7f6220d80b0312ece70bbf08eeca755
+  languageName: node
+  linkType: hard
+
+"redaxios@npm:^0.5.1":
+  version: 0.5.1
+  resolution: "redaxios@npm:0.5.1"
+  checksum: 0ccd38610d2d0769fb72205151ee90aa2a929be66c6056b3eba0784e32e76618d5a9314bbb0d35d5d3a6197a032a411532437ade5bf0f350abbc1b631b1d0d17
   languageName: node
   linkType: hard
 
