@@ -22,7 +22,8 @@ export function getNotesApiBase() {
 
 interface NoteFetchResult {
   preview?: {
-    exp: number
+    exp?: number
+    synchronize?: { id: string }
   }
   slug: string
   source: string
@@ -99,21 +100,56 @@ export async function fetchPublicFile(file: string) {
 }
 
 export async function fetchPrivateNote(
-  jwt: string
+  id: string,
+  token?: string
 ): Promise<NoteFetchResult | undefined> {
-  const url = getNotesApiBase() + "/entry?jwt=" + encodeURIComponent(jwt)
-  const response = await fetch(url)
-  if (!response.ok) {
-    throw new Error(`${response.status} ${response.statusText}`)
+  if (id.includes(".")) {
+    const jwt = id
+    const url = getNotesApiBase() + "/entry?jwt=" + encodeURIComponent(jwt)
+    const response = await fetch(url)
+    if (!response.ok) {
+      throw new Error(`${response.status} ${response.statusText}`)
+    }
+    const data = await response.json()
+    return {
+      source: data.data,
+      slug: jwt,
+      preview: {
+        exp: data.exp,
+      },
+    }
   }
-  const data = await response.json()
-  return {
-    source: data.data,
-    slug: jwt,
-    preview: {
-      exp: data.exp,
-    },
+  if (id.match(/^\w+$/)) {
+    const url = getNotesApiBase() + "/v2/synchronize"
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        Authorization: "Bearer " + token,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: id,
+      }),
+    })
+    if (!response.ok) {
+      return {
+        source: `# Private page`,
+        slug: id,
+        preview: {
+          synchronize: { id },
+        },
+      }
+    }
+    const data = await response.json()
+    return {
+      source: data.contents,
+      slug: id,
+      preview: {
+        synchronize: { id },
+      },
+    }
   }
+  throw new Error("Invalid ID")
 }
 
 function fetchTree() {

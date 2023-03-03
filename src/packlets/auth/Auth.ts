@@ -8,6 +8,7 @@ import {
 import memoizeOne from "memoize-one"
 import { app } from "../firebase-app"
 import { isQueryFlagEnabled } from "query-flags"
+import Cookies from "js-cookie"
 
 interface Auth {
   subscribeToAuthState: (f: () => void) => () => void
@@ -18,6 +19,26 @@ interface Auth {
 
 class FirebaseAuth implements Auth {
   auth = getAuth(app)
+
+  constructor() {
+    this.subscribeToAuthState(() => {
+      const authState = this.getAuthState()
+      const cookiesAllowed =
+        location.hostname === "notes.localhost" ||
+        location.hostname.endsWith(".dt.in.th")
+      if (authState.user) {
+        authState.user.getIdToken().then((token) => {
+          if (cookiesAllowed) {
+            Cookies.set("notes_id_token", token)
+          }
+        })
+      } else {
+        if (cookiesAllowed) {
+          Cookies.remove("notes_id_token")
+        }
+      }
+    })
+  }
 
   subscribeToAuthState(f: () => void) {
     return this.auth.onAuthStateChanged(f)

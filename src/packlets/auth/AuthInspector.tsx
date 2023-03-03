@@ -1,15 +1,18 @@
-import { FC, useSyncExternalStore } from "react"
-import { getAuthState, signIn, signOut, subscribeToAuthState } from "./Auth"
+import { FC } from "react"
+import { signIn, signOut } from "./Auth"
+import { useAuthState } from "./useAuthState"
 
 const AuthInspector: FC = () => {
-  const state = useSyncExternalStore(subscribeToAuthState, getAuthState)
+  const state = useAuthState()
   return (
     <>
       <pre>
         <code>{JSON.stringify(state, null, 2)}</code>
       </pre>
       <p>
-        {state.user ? (
+        {!state ? (
+          <>Loading</>
+        ) : state.user ? (
           <button onClick={signOut}>Sign Out</button>
         ) : (
           <button onClick={signIn}>Sign In</button>

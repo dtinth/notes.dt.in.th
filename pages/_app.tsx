@@ -19,10 +19,10 @@ import { Header } from "../src/packlets/ui"
 import { PageLayoutProps } from "../src/packlets/layout-props"
 import { QuickLinks } from "../src/packlets/quicklinks"
 import { lazy, Suspense } from "react"
-import { QueryClientProvider, QueryClient } from "@tanstack/react-query"
+import { QueryClientProvider } from "@tanstack/react-query"
+import { queryClient } from "../src/packlets/react-query"
 
 const NoteSearcher = lazy(() => import("../src/packlets/search"))
-const queryClient = new QueryClient()
 
 function MyApp({ Component, pageProps, router }: AppProps) {
   const layoutProps = (pageProps as PageLayoutProps).layoutProps
