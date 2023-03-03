@@ -1,40 +1,44 @@
-import { NextPage } from "next";
-import Head from "next/head";
-import { useRouter } from "next/router";
-import { FC, MouseEventHandler, useCallback, useEffect, useRef } from "react";
-import { setupFootnotes } from "../footnotes";
-import { NoteFooter } from "../notes";
-import { VueApp } from "../vue-app-react";
+import { NextPage } from "next"
+import Head from "next/head"
+import { useRouter } from "next/router"
+import { FC, MouseEventHandler, useCallback, useEffect, useRef } from "react"
+import { setupFootnotes } from "../footnotes"
+import { NoteFooter } from "../notes"
+import { VueApp } from "../vue-app-react"
 
 export interface NotePage {
-  slug: string;
-  noteContents: VueApp;
-  noteFooter: NoteFooter;
-  title: string;
-  description?: string;
-  wide: boolean;
-  ogImageUrl: string | null;
+  slug: string
+  noteContents: VueApp
+  noteFooter: NoteFooter
+  title: string
+  description?: string
+  wide: boolean
+  ogImageUrl: string | null
 }
 
-const NEXT_LINK_ENABLED = false;
+const NEXT_LINK_ENABLED = false
 
 export const NotePage: NextPage<NotePage> = (props) => {
-  const router = useRouter();
-  const div = useRef<HTMLDivElement>(null);
+  return <NotePageInner {...props} />
+}
+
+const NotePageInner: NextPage<NotePage> = (props) => {
+  const router = useRouter()
+  const div = useRef<HTMLDivElement>(null)
   useEffect(() => {
-    if (div.current) setupFootnotes();
-  }, []);
+    if (div.current) setupFootnotes()
+  }, [])
   const onClick: MouseEventHandler = useCallback(
     (e) => {
       if (!NEXT_LINK_ENABLED) {
-        return;
+        return
       }
-      const a = (e.target as Element).closest?.("a");
+      const a = (e.target as Element).closest?.("a")
       if (!a) {
-        return;
+        return
       }
       if (a.target && a.target !== "_self") {
-        return;
+        return
       }
       if (
         e.metaKey ||
@@ -43,16 +47,16 @@ export const NotePage: NextPage<NotePage> = (props) => {
         e.altKey ||
         e.nativeEvent?.which === 2
       ) {
-        return;
+        return
       }
       if (a.origin !== window.location.origin) {
-        return;
+        return
       }
-      e.preventDefault();
-      router.push(a.href.slice(a.origin.length));
+      e.preventDefault()
+      router.push(a.href.slice(a.origin.length))
     },
     [router]
-  );
+  )
   return (
     <>
       <article className="h-entry" key={props.slug}>
@@ -79,15 +83,15 @@ export const NotePage: NextPage<NotePage> = (props) => {
         <NoteFooter {...props.noteFooter} />
       </article>
     </>
-  );
-};
+  )
+}
 
-const wideClassName = "is-wide";
+const wideClassName = "is-wide"
 const WidePage: FC = () => {
-  const script = `document.body.classList.add("${wideClassName}")`;
+  const script = `document.body.classList.add("${wideClassName}")`
   useEffect(() => {
-    document.body.classList.add(wideClassName);
-    return () => document.body.classList.remove(wideClassName);
-  }, []);
-  return <script dangerouslySetInnerHTML={{ __html: script }}></script>;
-};
+    document.body.classList.add(wideClassName)
+    return () => document.body.classList.remove(wideClassName)
+  }, [])
+  return <script dangerouslySetInnerHTML={{ __html: script }}></script>
+}

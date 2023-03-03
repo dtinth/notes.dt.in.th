@@ -1,22 +1,13 @@
 import dynamic from "next/dynamic"
 import { FC, ReactNode, Suspense } from "react"
 import { AuthUser } from "./Auth"
-
-export const AuthStateConnector = dynamic(
-  () => import("./AuthStateConnector"),
-  { ssr: false }
-)
+import { useAuthState } from "./useAuthState"
 
 export interface SignedInOnly {
   children: (user: AuthUser) => ReactNode
 }
 
 export const SignedInOnly: FC<SignedInOnly> = (props) => {
-  return (
-    <Suspense fallback={<></>}>
-      <AuthStateConnector>
-        {(state) => (state.user ? props.children(state.user) : <></>)}
-      </AuthStateConnector>
-    </Suspense>
-  )
+  const state = useAuthState()
+  return <>{state?.user ? props.children(state.user) : <></>}</>
 }
