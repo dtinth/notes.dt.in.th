@@ -1,12 +1,19 @@
 import { useQuery } from "@tanstack/react-query"
-import { AuthUser } from "../auth"
 import { isQueryFlagEnabled } from "query-flags"
 import redaxios from "redaxios"
+import { useAuthState } from "../auth/useAuthState"
 
-export function useNoteInfoQuery(user: AuthUser, slug: string) {
+export function useNoteInfoQuery(slug: string) {
+  const authState = useAuthState()
   return useQuery({
-    queryKey: ["info", slug],
+    enabled: !!authState?.user,
+    queryKey: ["info", authState?.user?.uid, slug],
     queryFn: async () => {
+      const user = authState?.user
+      if (!user) {
+        return null
+      }
+
       const idToken = await user.getIdToken()
       const baseUrl = await getBaseUrl(idToken)
 

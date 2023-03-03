@@ -5,21 +5,61 @@ import { FC, MouseEventHandler, useCallback, useEffect, useRef } from "react"
 import { setupFootnotes } from "../footnotes"
 import { NoteFooter } from "../notes"
 import { VueApp } from "../vue-app-react"
+import { useAuthState } from "../auth/useAuthState"
+import { useQuery } from "@tanstack/react-query"
+import { isQueryFlagEnabled } from "query-flags"
+import redaxios from "redaxios"
 
 export interface NotePage {
   slug: string
+  hash: string
   noteContents: VueApp
   noteFooter: NoteFooter
   title: string
   description?: string
   wide: boolean
   ogImageUrl: string | null
+  synchronize?: { id: string }
 }
 
 const NEXT_LINK_ENABLED = false
 
 export const NotePage: NextPage<NotePage> = (props) => {
-  return <NotePageInner {...props} />
+  const latest = useLatestNote(props.synchronize?.id)
+  const combinedProps = { ...props, ...(latest.props || {}) }
+  return (
+    <>
+      <NotePageInner {...combinedProps} key={combinedProps.hash} />
+    </>
+  )
+}
+
+function useLatestNote(id?: string) {
+  const authState = useAuthState()
+  const query = useQuery({
+    enabled: !!id && !!authState?.user,
+    queryKey: ["latestNote", authState?.user?.uid, id],
+    queryFn: async () => {
+      const user = authState?.user
+      if (!user) {
+        return null
+      }
+
+      const idToken = await user.getIdToken()
+      if (isQueryFlagEnabled("mock")) {
+        return null
+      }
+
+      const url = `/api/private/` + id
+      const { data } = await redaxios.get(url, {
+        headers: { authorization: `Bearer ${idToken}` },
+      })
+      return data
+    },
+  })
+  return {
+    props: query.data?.props,
+  }
 }
 
 const NotePageInner: NextPage<NotePage> = (props) => {

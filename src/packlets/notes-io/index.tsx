@@ -12,6 +12,7 @@ import { SyndicationItem } from "../notes"
 import { NotePage } from "../notes-page"
 import { getScreenshotImageUrl } from "../screenshot"
 import { compileVueApp } from "../vue-app-compiler"
+import { createHash } from "crypto"
 
 const globalCache = new QueryClient()
 
@@ -168,7 +169,7 @@ function fetchTree() {
 }
 
 export async function getServerSidePropsForFetchedNote(
-  context: GetServerSidePropsContext | GetStaticPropsContext,
+  context: GetServerSidePropsContext | GetStaticPropsContext | {},
   fetchedNote: NoteFetchResult | undefined
 ): Promise<
   | GetServerSidePropsResult<NotePage & PageLayoutProps>
@@ -181,6 +182,7 @@ export async function getServerSidePropsForFetchedNote(
     }
   }
   const slug = fetchedNote.slug
+  const hash = createHash("md5").update(fetchedNote.source).digest("hex")
   const parsedNote = await parseNote(fetchedNote.source, {
     path: `${slug}.md`,
   })
@@ -225,6 +227,8 @@ export async function getServerSidePropsForFetchedNote(
   return {
     props: {
       slug,
+      hash,
+      synchronize: fetchedNote.preview?.synchronize,
       noteContents: await compileVueApp(
         template,
         script ? stripScriptTag(script) : undefined
