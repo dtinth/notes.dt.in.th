@@ -248,6 +248,11 @@ export async function getServerSidePropsForFetchedNote(
             }))
           : null,
         currentSlug: slug,
+        mode: allowedToCache
+          ? "public"
+          : fetchedNote.preview?.exp
+          ? "preview"
+          : "private",
       },
     },
     ...(allowedToCache ? { revalidate: 1 } : {}),

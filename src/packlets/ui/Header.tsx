@@ -7,19 +7,32 @@ import classes from "./Header.module.css"
 import searchIcon from "@iconify-icons/codicon/search"
 import editIcon from "@iconify-icons/codicon/edit"
 import { EditConnector } from "./EditConnector"
+import { SignedInOnly } from "../auth"
 
 export interface Header {
   breadcrumb?: LayoutBreadcrumb[] | null
   slug?: string | null
+  mode?: "public" | "preview" | "private"
 }
 
 export const Header: FC<Header> = (props) => {
+  const mode = props.mode || "public"
   return (
     <>
       <header className={classes.header}>
         <div className={classes.left}>
           <div className={classes.title}>
             <Link href="/">notes.dt.in.th</Link>
+            {mode === "private" && (
+              <span className={classes.titleBadge} data-mode="private">
+                Private
+              </span>
+            )}
+            {mode === "preview" && (
+              <span className={classes.titleBadge} data-mode="preview">
+                Preview
+              </span>
+            )}
           </div>
         </div>
         <div className={classes.middle}>
@@ -35,7 +48,20 @@ export const Header: FC<Header> = (props) => {
           ))}
         </div>
         <div className={classes.right}>
-          {!!props.slug && (
+          {!!props.slug && mode === "public" && (
+            <SignedInOnly>
+              {(user) => (
+                <a
+                  className={classes.rightItem}
+                  title="Edit"
+                  href={`/private/${props.slug}`}
+                >
+                  <Icon icon={editIcon} height={24} />
+                </a>
+              )}
+            </SignedInOnly>
+          )}
+          {!!props.slug && mode === "private" && (
             <EditConnector slug={props.slug}>
               {(url) => (
                 <a className={classes.rightItem} title="Edit" href={url}>

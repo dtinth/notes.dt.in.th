@@ -31,6 +31,7 @@ function MyApp({ Component, pageProps, router }: AppProps) {
       <Header
         breadcrumb={layoutProps?.breadcrumb}
         slug={layoutProps?.currentSlug}
+        mode={layoutProps?.mode}
       />
       <Component {...pageProps} />
       <Analytics />

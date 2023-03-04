@@ -5,6 +5,7 @@ export interface PageLayoutProps {
 export interface LayoutProps {
   currentSlug?: string | null
   breadcrumb?: LayoutBreadcrumb[] | null
+  mode: "public" | "private" | "preview"
 }
 
 export interface LayoutBreadcrumb {

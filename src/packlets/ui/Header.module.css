@@ -64,3 +64,19 @@ button.rightItem {
   background: transparent;
   color: inherit;
 }
+
+.titleBadge {
+  margin-left: 0.5rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 1px 3px;
+  border-radius: 2px;
+  font-size: 0.85em;
+}
+.titleBadge[data-mode="private"] {
+  background: #f87171;
+  color: #090807;
+}
+.titleBadge[data-mode="preview"] {
+  border: 1px solid currentColor;
+}
