@@ -9,6 +9,7 @@ import { useAuthState } from "../auth/useAuthState"
 import { useQuery } from "@tanstack/react-query"
 import { isQueryFlagEnabled } from "query-flags"
 import redaxios from "redaxios"
+import { useNoteFileContentsQueryAndMutation } from "../notes-queries"
 
 export interface NotePage {
   slug: string
@@ -30,6 +31,7 @@ export const NotePage: NextPage<NotePage> = (props) => {
   return (
     <>
       <NotePageInner {...combinedProps} key={combinedProps.hash} />
+      {!!props.synchronize && <NoteEditor id={props.synchronize.id} />}
     </>
   )
 }
@@ -134,4 +136,59 @@ const WidePage: FC = () => {
     return () => document.body.classList.remove(wideClassName)
   }, [])
   return <script dangerouslySetInnerHTML={{ __html: script }}></script>
+}
+
+export interface NoteEditor {
+  id: string
+}
+
+export const NoteEditor: FC<NoteEditor> = (props) => {
+  const { query, mutation } = useNoteFileContentsQueryAndMutation(props.id)
+  const data = query.data
+  if (query.isLoading) {
+    return (
+      <details>
+        <summary>Edit this note</summary>
+        <p>Loading…</p>
+      </details>
+    )
+  }
+  if (!data) {
+    return (
+      <details>
+        <summary>Edit this note</summary>
+        <p>[No data, something is wrong!]</p>
+      </details>
+    )
+  }
+  return (
+    <details>
+      <summary>Edit this note</summary>
+      <form
+        onSubmit={(e) => (
+          e.preventDefault(),
+          mutation.mutate(
+            (e.currentTarget.elements.namedItem("contents") as HTMLInputElement)
+              .value
+          )
+        )}
+      >
+        <textarea
+          name="contents"
+          data-hash={data.hash}
+          key={data.hash}
+          defaultValue={data.contents}
+          style={{
+            fontFamily: "var(--font-mono)",
+            lineHeight: "1.4",
+            height: "32em",
+          }}
+        />
+        <button type="submit" disabled={mutation.isLoading}>
+          Save changes
+        </button>{" "}
+        {mutation.status}
+      </form>
+    </details>
+  )
 }

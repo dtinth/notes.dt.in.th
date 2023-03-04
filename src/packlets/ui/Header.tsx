@@ -6,7 +6,9 @@ import { LayoutBreadcrumb } from "../layout-props"
 import classes from "./Header.module.css"
 import searchIcon from "@iconify-icons/codicon/search"
 import editIcon from "@iconify-icons/codicon/edit"
-import { EditConnector } from "./EditConnector"
+import githubIcon from "@iconify-icons/codicon/github-alt"
+import shareIcon from "@iconify-icons/codicon/open-preview"
+import { NoteInfoConnector } from "./NoteInfoConnector"
 import { SignedInOnly } from "../auth"
 
 export interface Header {
@@ -62,13 +64,26 @@ export const Header: FC<Header> = (props) => {
             </SignedInOnly>
           )}
           {!!props.slug && mode === "private" && (
-            <EditConnector slug={props.slug}>
-              {(url) => (
-                <a className={classes.rightItem} title="Edit" href={url}>
-                  <Icon icon={editIcon} height={24} />
-                </a>
+            <NoteInfoConnector slug={props.slug}>
+              {(info) => (
+                <>
+                  <a
+                    className={classes.rightItem}
+                    title="Share preview"
+                    href={info.privateToken}
+                  >
+                    <Icon icon={shareIcon} height={24} />
+                  </a>
+                  <a
+                    className={classes.rightItem}
+                    title="Edit on GitHub"
+                    href={info.editUrl}
+                  >
+                    <Icon icon={githubIcon} height={24} />
+                  </a>
+                </>
               )}
-            </EditConnector>
+            </NoteInfoConnector>
           )}
           <CommandConnector name="search">
             {(command) =>

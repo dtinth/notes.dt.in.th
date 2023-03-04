@@ -11,6 +11,7 @@
   --code: #e9d7c5;
   --scrollbar-thumb: #d7fc70;
   --focus: #8b8685;
+  --font-mono: Comic Mono, Menlo, Consolas, sans-serif;
   font-size: 17px;
 }
 ::selection {
@@ -47,7 +48,7 @@
 }
 [data-dtinth] code {
   background: #252423;
-  font-family: Comic Mono, Menlo, Consolas, sans-serif;
+  font-family: var(--font-mono);
   letter-spacing: 0.01em;
 }
 [data-dtinth] :not(pre) > code {
