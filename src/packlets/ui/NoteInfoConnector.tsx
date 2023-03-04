@@ -3,7 +3,11 @@ import { useNoteInfoQuery } from "../notes-queries"
 
 export interface NoteInfoConnector {
   slug: string
-  children: (info: { editUrl: string; privateToken: string }) => ReactNode
+  children: (info: {
+    editUrl: string
+    privateToken: string
+    vscodeDevUrl: string
+  }) => ReactNode
 }
 
 export const NoteInfoConnector: FC<NoteInfoConnector> = (props) => {

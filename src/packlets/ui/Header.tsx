@@ -7,6 +7,7 @@ import searchIcon from "@iconify-icons/codicon/search"
 import editIcon from "@iconify-icons/codicon/edit"
 import githubIcon from "@iconify-icons/codicon/github-alt"
 import shareIcon from "@iconify-icons/codicon/open-preview"
+import remoteIcon from "@iconify-icons/codicon/remote-explorer"
 import { NoteInfoConnector } from "./NoteInfoConnector"
 import { SignedInOnly } from "../auth"
 
@@ -84,6 +85,13 @@ export const Header: FC<Header> = (props) => {
                     href={info.editUrl}
                   >
                     <Icon icon={githubIcon} height={24} />
+                  </a>
+                  <a
+                    className={classes.rightItem}
+                    title="vscode.dev"
+                    href={info.vscodeDevUrl}
+                  >
+                    <Icon icon={remoteIcon} height={24} />
                   </a>
                 </>
               )}
