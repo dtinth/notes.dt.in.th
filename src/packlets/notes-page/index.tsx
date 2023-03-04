@@ -13,7 +13,7 @@ import { useNoteFileContentsQueryAndMutation } from "../notes-queries"
 
 export interface NotePage {
   slug: string
-  hash: string
+  hash: string | null
   noteContents: VueApp
   noteFooter: NoteFooter
   title: string

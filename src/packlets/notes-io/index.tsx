@@ -178,14 +178,19 @@ export async function getServerSidePropsForFetchedNote(
   if (!fetchedNote) {
     return {
       notFound: true,
-      revalidate: 30,
     }
   }
   const slug = fetchedNote.slug
-  const hash = createHash("md5").update(fetchedNote.source).digest("hex")
-  const parsedNote = await parseNote(fetchedNote.source, {
-    path: `${slug}.md`,
-  })
+  const hash =
+    (fetchedNote.source &&
+      createHash("md5").update(fetchedNote.source).digest("hex")) ||
+    null
+  const parsedNote = await parseNote(
+    fetchedNote.source ?? "(This note does not exist.)",
+    {
+      path: `${slug}.md`,
+    }
+  )
   const frontmatter = parsedNote.frontmatter
   const allowedToView = fetchedNote.preview || frontmatter.public
   const allowedToCache = !fetchedNote.preview && frontmatter.public

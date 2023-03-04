@@ -68,7 +68,7 @@ export function useNoteFileContentsQueryAndMutation(id?: string) {
         throw new Error("Editing is disabled in mock mode")
       }
       const hash = query.data?.hash
-      if (!hash) {
+      if (hash === undefined) {
         throw new Error("No hash")
       }
       const user = authState?.user
