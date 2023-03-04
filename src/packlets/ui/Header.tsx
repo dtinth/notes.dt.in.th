@@ -1,5 +1,4 @@
 import { Icon } from "react-iconify-icon-wrapper"
-import Link from "next/link"
 import { FC, Fragment } from "react"
 import { CommandConnector } from "../commands"
 import { LayoutBreadcrumb } from "../layout-props"
@@ -24,11 +23,16 @@ export const Header: FC<Header> = (props) => {
       <header className={classes.header}>
         <div className={classes.left}>
           <div className={classes.title}>
-            <Link href="/">notes.dt.in.th</Link>
+            <a href="/">notes.dt.in.th</a>
             {mode === "private" && (
-              <span className={classes.titleBadge} data-mode="private">
-                Private
-              </span>
+              <a
+                href={`/${props.slug}`}
+                title="Click to navigate to public version"
+              >
+                <span className={classes.titleBadge} data-mode="private">
+                  Private
+                </span>
+              </a>
             )}
             {mode === "preview" && (
               <span className={classes.titleBadge} data-mode="preview">
@@ -44,7 +48,7 @@ export const Header: FC<Header> = (props) => {
                 <span>›</span>
               </div>
               <div className={classes.breadcrumbItem}>
-                <Link href={item.href}>{item.title}</Link>
+                <a href={item.href}>{item.title}</a>
               </div>
             </Fragment>
           ))}
