@@ -19,7 +19,7 @@ export interface NotePage {
   description?: string
   wide: boolean
   ogImageUrl: string | null
-  synchronize?: { id: string }
+  synchronize?: { id: string } | null
 }
 
 const NEXT_LINK_ENABLED = false
