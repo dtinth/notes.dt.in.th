@@ -1,5 +1,5 @@
-declare module "vue/dist/vue.runtime.min.js";
-declare module "vue-template-compiler/index.js";
-declare module "vue-server-renderer/index.js";
-declare module "@vuepress/shared-utils";
-declare module "@vuepress/markdown";
+declare module "vue/dist/vue.runtime.min.js"
+declare module "vue-template-compiler/index.js"
+declare module "vue-server-renderer/index.js"
+declare module "@vuepress/shared-utils"
+declare module "@vuepress/markdown"

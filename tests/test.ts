@@ -1,5 +1,5 @@
-import { test as base } from "@playwright/test";
-import { readFileSync } from "fs";
+import { test as base } from "@playwright/test"
+import { readFileSync } from "fs"
 
 export const test = base.extend({
   context: async ({ context }, use) => {
@@ -7,7 +7,7 @@ export const test = base.extend({
       require.resolve(
         "@eventpop-oss/interaction-highlighter/dist/interaction-highlighter.umd.cjs"
       )
-    );
+    )
     await context.addInitScript({
       content: `void (() => {
         const exports = {}
@@ -15,7 +15,7 @@ export const test = base.extend({
         ${highlighter};
         exports.enableInteractionHighlighter();
       })()`,
-    });
-    await use(context);
+    })
+    await use(context)
   },
-});
+})

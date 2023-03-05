@@ -1,3 +1,3 @@
 declare module "quicklink" {
-  export function listen(): void;
+  export function listen(): void
 }

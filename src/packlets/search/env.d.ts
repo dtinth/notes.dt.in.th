@@ -1,4 +1,4 @@
-declare module "stemmer";
+declare module "stemmer"
 declare module "stopwords/english" {
-  export const english: string[];
+  export const english: string[]
 }

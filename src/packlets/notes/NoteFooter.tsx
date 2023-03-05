@@ -1,22 +1,22 @@
-import { FC } from "react";
-import styles from "./NoteFooter.module.css";
+import { FC } from "react"
+import styles from "./NoteFooter.module.css"
 
 export interface SyndicationItem {
-  title: string;
-  url: string;
-  path: string;
+  title: string
+  url: string
+  path: string
 }
 
 export interface NoteFooter {
   pubDate: {
-    human: string;
-    machine: string;
-  } | null;
-  syndication: SyndicationItem[];
+    human: string
+    machine: string
+  } | null
+  syndication: SyndicationItem[]
 }
 
 export const NoteFooter: FC<NoteFooter> = (props) => {
-  const { pubDate, syndication } = props;
+  const { pubDate, syndication } = props
   return (
     <footer className={styles.footer}>
       <p className={styles.meta}>
@@ -69,5 +69,5 @@ export const NoteFooter: FC<NoteFooter> = (props) => {
         </p>
       )}
     </footer>
-  );
-};
+  )
+}

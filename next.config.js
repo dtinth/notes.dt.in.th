@@ -10,14 +10,14 @@ const nextConfig = {
         destination: "/HomePage",
         permanent: false,
       },
-    ];
+    ]
   },
   webpack: (config, { isServer }) => {
     if (isServer) {
-      config.devtool = "inline-source-map";
+      config.devtool = "inline-source-map"
     }
-    return config;
+    return config
   },
-};
+}
 
-module.exports = nextConfig;
+module.exports = nextConfig

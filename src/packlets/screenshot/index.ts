@@ -1,11 +1,11 @@
-import Encrypted from "@dtinth/encrypted";
-import jsonwebtoken from "jsonwebtoken";
+import Encrypted from "@dtinth/encrypted"
+import jsonwebtoken from "jsonwebtoken"
 
 function getSigningKey(): string | undefined {
   if (!process.env.ENCRYPTION_SECRET) {
-    return;
+    return
   }
-  const encrypted = Encrypted();
+  const encrypted = Encrypted()
   return encrypted`
     gvU23oOlDmr78OMyxOoxrfx+u4uXsb7K.3diL6SLwYXkNcwARhGvsEc2NhhUYEmfAf1frYtI
     ry35+LF2O5MAeYFB/JhMQwjeeoAqU3H9YRoAESO8rJbx6J92kUhMCnky9MvEkrYzoGhq9+V8
@@ -40,13 +40,13 @@ function getSigningKey(): string | undefined {
     ArYywaTWanoiE7vwOkmJbBalH8YjmTuwEuYvj5utuCPd/tmGjydiETXAlBauUlK7bTmbSa9K
     tXS1bDxNyhoHEh896ujnuO02jjdiOlcBUcsF7CMFhMiDID5h+2OJYv1O1MyalkC+QyKy5J/D
     QQ3C6AnOvVe8A3yr2Ok86FlHY
-  `;
+  `
 }
 
 export function getScreenshotImageUrl(pageUrl: string) {
-  const signingKey = getSigningKey();
+  const signingKey = getSigningKey()
   if (!signingKey) {
-    return;
+    return
   }
   const token = jsonwebtoken.sign(
     {
@@ -62,6 +62,6 @@ export function getScreenshotImageUrl(pageUrl: string) {
       issuer: "journal-web",
       noTimestamp: true,
     }
-  );
-  return `https://capture.the.spacet.me/${token}.png`;
+  )
+  return `https://capture.the.spacet.me/${token}.png`
 }

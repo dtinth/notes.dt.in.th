@@ -1,1 +1,1 @@
-export * from "./NoteFooter";
+export * from "./NoteFooter"

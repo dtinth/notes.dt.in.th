@@ -1,5 +1,5 @@
-import type { PlaywrightTestConfig } from "@playwright/test";
-import { devices } from "@playwright/test";
+import type { PlaywrightTestConfig } from "@playwright/test"
+import { devices } from "@playwright/test"
 
 /**
  * Read environment variables from file.
@@ -105,8 +105,8 @@ const config: PlaywrightTestConfig = {
     port: 2022,
     reuseExistingServer: !process.env.CI,
   },
-};
+}
 
-config.use!.baseURL = "http://localhost:2022";
+config.use!.baseURL = "http://localhost:2022"
 
-export default config;
+export default config

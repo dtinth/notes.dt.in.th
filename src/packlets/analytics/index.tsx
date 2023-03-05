@@ -1,12 +1,12 @@
-import { useEffect } from "react";
+import { useEffect } from "react"
 
 export function setupAnalytics() {
-  import("./firebase");
+  import("./firebase")
 }
 
 export function Analytics() {
   useEffect(() => {
-    setupAnalytics();
-  }, []);
-  return <></>;
+    setupAnalytics()
+  }, [])
+  return <></>
 }

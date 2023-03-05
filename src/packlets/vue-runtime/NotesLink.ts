@@ -11,8 +11,8 @@ const NotesLink: any = {
         },
       },
       this.$slots.default
-    );
+    )
   },
-};
+}
 
-export default NotesLink;
+export default NotesLink

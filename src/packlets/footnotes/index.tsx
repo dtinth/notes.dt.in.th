@@ -1,9 +1,9 @@
-let latestLf: { unmount: () => void } | undefined;
+let latestLf: { unmount: () => void } | undefined
 export async function setupFootnotes() {
-  const littlefootPromise = import("littlefoot");
-  const { default: littlefoot } = await littlefootPromise;
+  const littlefootPromise = import("littlefoot")
+  const { default: littlefoot } = await littlefootPromise
   if (latestLf) {
-    latestLf.unmount();
+    latestLf.unmount()
   }
   latestLf = littlefoot({
     buttonTemplate: `<button
@@ -15,5 +15,5 @@ export async function setupFootnotes() {
 />
   <% number %>
 </button>`,
-  });
+  })
 }
