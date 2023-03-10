@@ -42,6 +42,7 @@
     "source-map-support": "^0.5.21",
     "stemmer": "1.0.5",
     "stopwords": "0.0.9",
+    "svelte": "^3.55.1",
     "sync-external-store": "^1.0.0",
     "twemoji": "^14.0.2",
     "vue": "2.7.8",

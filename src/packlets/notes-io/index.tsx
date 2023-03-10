@@ -13,6 +13,7 @@ import { NotePage } from "../notes-page"
 import { getScreenshotImageUrl } from "../screenshot"
 import { compileVueApp } from "../vue-app-compiler"
 import { createHash } from "crypto"
+import { compileSvelteApp } from "../svelte-app-compiler"
 
 const globalCache = new QueryClient()
 
@@ -229,15 +230,22 @@ export async function getServerSidePropsForFetchedNote(
           `https://${process.env.VERCEL_URL}/${slug}#og:image`
         )
       : null) || null
+  const noteContents = await (async () => {
+    if (frontmatter.renderer === "svelte") {
+      return await compileSvelteApp(template, script)
+    } else {
+      return await compileVueApp(
+        template,
+        script ? stripScriptTag(script) : undefined
+      )
+    }
+  })()
   return {
     props: {
       slug,
       hash,
       synchronize: fetchedNote.preview?.synchronize || null,
-      noteContents: await compileVueApp(
-        template,
-        script ? stripScriptTag(script) : undefined
-      ),
+      noteContents,
       ogImageUrl,
       title: frontmatter.title || slug,
       wide: !!frontmatter.wide,

@@ -10,11 +10,12 @@ import { useQuery } from "@tanstack/react-query"
 import { isQueryFlagEnabled } from "query-flags"
 import redaxios from "redaxios"
 import { useNoteFileContentsQueryAndMutation } from "../notes-queries"
+import { SvelteApp } from "../svelte-app-react"
 
 export interface NotePage {
   slug: string
   hash: string | null
-  noteContents: VueApp
+  noteContents: VueApp | SvelteApp
   noteFooter: NoteFooter
   title: string
   description?: string

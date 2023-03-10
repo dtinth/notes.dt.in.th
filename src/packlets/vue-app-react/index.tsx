@@ -8,6 +8,7 @@ export interface VueComponentBasis {
 }
 
 export interface VueApp {
+  renderer: "vue"
   basis: VueComponentBasis
   html: string
 }
