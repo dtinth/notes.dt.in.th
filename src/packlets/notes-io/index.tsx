@@ -134,6 +134,7 @@ export async function fetchPrivateNote(
       }),
     })
     if (!response.ok) {
+      console.log("Unable to fetch private note", id, response.status)
       return {
         source: `# Private page`,
         slug: id,

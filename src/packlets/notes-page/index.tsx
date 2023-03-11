@@ -121,7 +121,11 @@ const NotePageInner: NextPage<NotePage> = (props) => {
         </Head>
         {props.wide && <WidePage />}
         <div ref={div} onClick={onClick}>
-          <VueApp {...props.noteContents} />
+          {props.noteContents.renderer === "svelte" ? (
+            <SvelteApp {...props.noteContents} />
+          ) : (
+            <VueApp {...props.noteContents} />
+          )}
         </div>
         <NoteFooter {...props.noteFooter} />
       </article>
