@@ -2390,6 +2390,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"entities@npm:~2.0.0":
+  version: 2.0.3
+  resolution: "entities@npm:2.0.3"
+  checksum: 5a7899fcc622e0d76afdeafe4c58a6b40ae3a8ee4772e5825a648c11a2ca324a9a02515386f512e466baac4aeb551f3d3b79eaece5cd98369b9f8601be336b1a
+  languageName: node
+  linkType: hard
+
 "es-abstract@npm:^1.19.0, es-abstract@npm:^1.19.1, es-abstract@npm:^1.19.2, es-abstract@npm:^1.19.5, es-abstract@npm:^1.20.0":
   version: 1.20.1
   resolution: "es-abstract@npm:1.20.1"
@@ -3230,6 +3237,7 @@ __metadata:
     js-cookie: ^3.0.1
     jsonwebtoken: ^8.5.1
     littlefoot: ^3.4.1
+    markdown-it-directive: ^1.0.1
     markdown-it-footnote: ^3.0.3
     memoize-one: ^6.0.0
     minisearch: 5.0.0
@@ -4477,6 +4485,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"markdown-it-directive@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "markdown-it-directive@npm:1.0.1"
+  dependencies:
+    markdown-it: ^10.0.0
+  checksum: 67031487e37b19fbbda656017f0bcdb726f444cf546e4400b23a9f897059da2c6401e692b5fca578590d8eb45af2cc402f3b749464c413e05ecc4b08bf2c934e
+  languageName: node
+  linkType: hard
+
 "markdown-it-emoji@npm:^1.4.0":
   version: 1.4.0
   resolution: "markdown-it-emoji@npm:1.4.0"
@@ -4495,6 +4512,21 @@ __metadata:
   version: 0.4.4
   resolution: "markdown-it-table-of-contents@npm:0.4.4"
   checksum: 26b3071836aa7ecda07d7d0832a30a3abb0da70afd9836202618929ab1e3d3c5668db8cdd21edd85c0404ba0288a7c9b8086c49924141f95da58239ab7b08cd3
+  languageName: node
+  linkType: hard
+
+"markdown-it@npm:^10.0.0":
+  version: 10.0.0
+  resolution: "markdown-it@npm:10.0.0"
+  dependencies:
+    argparse: ^1.0.7
+    entities: ~2.0.0
+    linkify-it: ^2.0.0
+    mdurl: ^1.0.1
+    uc.micro: ^1.0.5
+  bin:
+    markdown-it: bin/markdown-it.js
+  checksum: 69f5ee640cbebb451b80d3cce308fff7230767e05c0f8c206a1e413775b7a6e5a08e91e9f3ec59f9b5c5a45493f9ce7ac089379cffb60c9d3e6677ed9d535086
   languageName: node
   linkType: hard
 

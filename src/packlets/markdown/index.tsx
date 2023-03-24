@@ -6,6 +6,8 @@ const markdown = md()
 
 function installPlugins(markdown: import("markdown-it")) {
   markdown.use(require("markdown-it-footnote"))
+  markdown.use(require("markdown-it-directive"))
+
   markdown.renderer.render = ((original) =>
     function (this: typeof markdown) {
       return twemoji.parse(original.apply(this, arguments as any))
@@ -35,6 +37,46 @@ function installPlugins(markdown: import("markdown-it")) {
         token.tag = "notes-link"
         return original!(tokens, idx, options, env, self)
       })(markdown.renderer.rules.link_close)
+  })
+
+  markdown.use((markdown) => {
+    const directive =
+      (openHtml: string, closeHtml: string) =>
+      (
+        state: any,
+        content: any,
+        contentTitle: any,
+        inlineContent: any,
+        dests: any,
+        attrs: any,
+        contentStartLine: number,
+        contentEndLine: number,
+        contentTitleStart: number,
+        contentTitleEnd: number,
+        inlineContentStart: number,
+        inlineContentEnd: number,
+        directiveStartLine: number,
+        directiveEndLine: number
+      ) => {
+        const open = state.push("html_block", "", 0)
+        open.map = [directiveStartLine, directiveStartLine]
+        open.content = openHtml
+
+        const oldMax = state.lineMax
+        state.line = contentStartLine
+        state.lineMax = contentEndLine
+        state.md.block.tokenize(state, contentStartLine, contentEndLine)
+        state.lineMax = oldMax
+
+        const close = state.push("html_block", "", 0)
+        close.map = [directiveEndLine, directiveEndLine]
+        close.content = closeHtml
+      }
+
+    const { blockDirectives } = markdown as any
+    blockDirectives["lead"] = directive('<div class="lead">', "</div>")
+    blockDirectives["split"] = directive("<d-split>", "</d-split>")
+    blockDirectives["aside"] = directive('<div slot="right">', "</div>")
   })
 }
 
