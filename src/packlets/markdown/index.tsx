@@ -77,6 +77,9 @@ function installPlugins(markdown: import("markdown-it")) {
     blockDirectives["lead"] = directive('<div class="lead">', "</div>")
     blockDirectives["split"] = directive("<d-split>", "</d-split>")
     blockDirectives["aside"] = directive('<div slot="right">', "</div>")
+
+    blockDirectives["me"] = directive('<div class="chat-dialog"><div class="chat-dialog-avatar --me"><strong>Me:</strong></div>', "</div>")
+    blockDirectives["gpt"] = directive('<div class="chat-dialog"><div class="chat-dialog-avatar --gpt"><strong>GPT:</strong></div>', "</div>")
   })
 }
 
