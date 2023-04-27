@@ -1,4 +1,8 @@
-import { createVueComponentOptions, VueComponentBasis } from "../vue-app-react"
+import {
+  createVueComponentOptions,
+  VueApp,
+  VueComponentBasis,
+} from "../vue-app-react"
 import * as VueTemplateCompiler from "vue-template-compiler/index.js"
 import * as esbuild from "esbuild"
 import { createRenderer } from "vue-server-renderer/index.js"
@@ -25,10 +29,13 @@ async function compileVueTemplate(
   }
 }
 
-export async function compileVueApp(template: string, script?: string) {
+export async function compileVueApp(
+  template: string,
+  script?: string
+): Promise<VueApp> {
   const basis = await compileVueTemplate(template, script)
   const app = new (Vue as any)(createVueComponentOptions(basis))
   const renderer = createRenderer()
   const html = await renderer.renderToString(app)
-  return { basis, html }
+  return { renderer: "vue", basis, html }
 }
