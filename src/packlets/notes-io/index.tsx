@@ -179,7 +179,7 @@ export async function fetchPrivateNote(
 function fetchTree() {
   return globalCache.fetchQuery({
     queryKey: ["tree"],
-    staleTime: 60e3,
+    staleTime: 300e3,
     queryFn: async () => {
       const response = await fetchPublicFile("index.tree.json")
       if (!response.ok) {
@@ -220,7 +220,7 @@ export async function getServerSidePropsForFetchedNote(
   if (!allowedToView) {
     return {
       notFound: true,
-      revalidate: 30,
+      revalidate: 300,
     }
   }
   if (frontmatter.redirect_to) {
@@ -283,7 +283,7 @@ export async function getServerSidePropsForFetchedNote(
           : "private",
       },
     },
-    ...(allowedToCache ? { revalidate: 1 } : {}),
+    ...(allowedToCache ? { revalidate: 300 } : {}),
   }
 }
 
