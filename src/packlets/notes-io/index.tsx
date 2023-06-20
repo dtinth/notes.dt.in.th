@@ -42,15 +42,37 @@ export interface TreeNode {
   children?: TreeNode[]
 }
 
+async function fetchNoteContents(slug: string) {
+  const response = await fetch(
+    "https://htrqhjrmmqrqaccchyne.supabase.co/rest/v1/rpc/get_note_contents?apikey=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh0cnFoanJtbXFycWFjY2NoeW5lIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NTkxOTk3NDIsImV4cCI6MTk3NDc3NTc0Mn0.VEdURpInV9dowpoMkHopAzpiBtNnRXDgO6hRfy1ZSHY",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ note_id: slug }),
+    }
+  )
+  if (!response.ok) {
+    throw new Error(`${response.status} ${response.statusText}`)
+  }
+  const data = await response.json()
+  if (!data) {
+    throw new Error("Note not found")
+  }
+  return data.contents as string
+}
+
 export async function fetchPublicNote(
   slug: string
 ): Promise<NoteFetchResult | undefined> {
   const treePromise = fetchTree()
-  const response = await fetchPublicFile(`${slug}.md`)
-  if (!response.ok) {
-    throw new Error(`${response.status} ${response.statusText}`)
-  }
-  const data = await response.text()
+  // const response = await fetchPublicFile(`${slug}.md`)
+  // if (!response.ok) {
+  //   throw new Error(`${response.status} ${response.statusText}`)
+  // }
+  // const data = await response.text()
+  const data = await fetchNoteContents(slug)
   const breadcrumb = getBreadcrumb(await treePromise, slug)
   return {
     source: data,
@@ -95,8 +117,9 @@ function getBreadcrumb(root: TreeNode, slug: string) {
 }
 
 export async function fetchPublicFile(file: string) {
-  const path = encodeURIComponent(`notes/public/${file}`)
-  const url = `https://firebasestorage.googleapis.com/v0/b/dtinth-notes.appspot.com/o/${path}?alt=media`
+  // const path = encodeURIComponent(`notes/public/${file}`)
+  // const url = `https://firebasestorage.googleapis.com/v0/b/dtinth-notes.appspot.com/o/${path}?alt=media`
+  const url = `https://htrqhjrmmqrqaccchyne.supabase.co/storage/v1/object/public/notes-public/${file}`
   return await fetch(url)
 }
 

@@ -48,7 +48,7 @@ const NoteSearcherDialog: FC = (props) => {
     ["searchIndex"],
     async () => {
       return fetch(
-        "https://objectstorage.ap-singapore-1.oraclecloud.com/n/axioqr1tqh1r/b/dtinth-notes/o/index.search.json"
+        "https://htrqhjrmmqrqaccchyne.supabase.co/storage/v1/object/public/notes-public/index.search.json"
       ).then((r) => {
         if (!r.ok) {
           throw new Error(
