@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html data-precompiled=true lang="en" data-dtinth="true">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Increasing Node.js heap size (memory limit) | notes.dt.in.th</title><meta property="og:title" content="Increasing Node.js heap size (memory limit)" data-source="note">
+<meta property="og:image" content="https://screenshot.source.in.th/image/_/notes/NodeMemoryLimit" data-source="note">
+<meta property="og:image:width" content="1800" data-source="note">
+<meta property="og:image:height" content="1680" data-source="note">
+<link rel="canonical" href="https://notes.dt.in.th/NodeMemoryLimit" data-source="note"><style id="note-styles">/* layer: default */
+.ms[data-v-8c9498c0]{margin-inline-start:1rem;}</style>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/iconify-icon@2.1.0/dist/iconify-icon.min.js"
+      integrity="sha256-dY2Ug42wyv3rl+sLVKEg3jbPs8f+hi7tmJ836AxVDwI="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/blurhash-image@1.0.1/blurhash-image.min.js"
+      integrity="sha256-qrUUgTGk7xA7iVCwraHNQjwy2JryA0K4L3DL4qidagQ="
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" crossorigin src="/runtime/index.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/supabase-CjkNZD6A.js">
+    <link rel="stylesheet" crossorigin href="/runtime/index.css">
+  </head>
+  <body class="bg-#252423 text-#e9e8e7 antialiased">
+    <header class="h-[58px] bg-#090807 border-b border-#454443 z-20 flex">
+      <div class="flex items-center pl-[18px] flex-none">
+        <a
+          class="flex items-center text-#8b8685 hover:text-#ffffbb text-lg"
+          href="/"
+          >notes.dt.in.th</a
+        >
+      </div>
+      <div
+        class="flex-1 flex items-center text-#8b8685 [&_a:hover]:text-#ffffbb overflow-hidden"
+        id="headerMiddle"
+      >
+        <div class="px-2 flex-none">›</div><div class="truncate"><a title="JavaScript (topic)" href="JavaScript">JavaScript</a></div><div class="px-2 flex-none">›</div><div class="truncate"><a title="Node.js (topic)" href="Nodejs">Node.js</a></div>
+      </div>
+      <div
+        class="flex items-center px-[18px] flex-none gap-4"
+        id="headerToolbar"
+      ></div>
+    </header>
+    <div class="h-entry">
+      <main class="bg-#353433" id="main">
+        <div class="notes-layout-container mx-auto p-6 py-12" id="mainContents">
+          <div class="prose e-content" id="noteContents"><!--[--><p data-v-8c9498c0>When working on <a href="Nodejs" data-v-8c9498c0>Node.js</a> projects, you may encounter the error that start with <code data-v-8c9498c0>&lt;--- Last few GCs ---&gt;</code> and then followed by <em data-v-8c9498c0>“FATAL ERROR: CALL_AND_RETRY_LAST Allocation failed - JavaScript heap out of memory.”</em> This is a sign that the Node.js process is running out of memory. The default memory limit is 1.5GB, which is not enough for some projects.</p><p data-v-8c9498c0>To increase the memory limit, you can use the <code data-v-8c9498c0>--max-old-space-size</code> flag. One way to set this flag is to add it to the <code data-v-8c9498c0>NODE_OPTIONS</code> environment variable:</p><pre class="shiki github-dark" style="background-color:#252423;color:#e1e4e8;" tabindex="0" data-v-8c9498c0><code data-v-8c9498c0><span class="line" data-v-8c9498c0><span style="color:#F97583;" data-v-8c9498c0>export</span><span style="color:#E1E4E8;" data-v-8c9498c0> NODE_OPTIONS</span><span style="color:#F97583;" data-v-8c9498c0>=</span><span style="color:#9ECBFF;" data-v-8c9498c0>&quot;--max-old-space-size=4096&quot;</span></span></code></pre><pre data-v-8c9498c0><code data-v-8c9498c0>&lt;--- Last few GCs ---&gt;
+
+[2740:0x650ced0]    90003 ms: Mark-sweep (reduce) 997.1 (1009.8) -&gt; 996.9 (1009.8) MB, 2093.6 / 0.0 ms  (average mu = 0.146, current mu = 0.003) last resort GC in old space requested
+[2740:0x650ced0]    92058 ms: Mark-sweep (reduce) 996.9 (1008.8) -&gt; 996.9 (1009.8) MB, 2054.6 / 0.0 ms  (average mu = 0.084, current mu = 0.000) last resort GC in old space requested
+
+
+&lt;--- JS stacktrace ---&gt;
+
+FATAL ERROR: CALL_AND_RETRY_LAST Allocation failed - JavaScript heap out of memory
+ 1: 0xa3ac10 node::Abort() [node]
+ 2: 0x970199 node::FatalError(char const*, char const*) [node]
+ 3: 0xbba58e v8::Utils::ReportOOMFailure(v8::internal::Isolate*, char const*, bool) [node]
+ 4: 0xbba907 v8::internal::V8::FatalProcessOutOfMemory(v8::internal::Isolate*, char const*, bool) [node]
+ 5: 0xd76b25  [node]
+ 6: 0xd89141 v8::internal::Heap::AllocateRawWithRetryOrFailSlowPath(int, v8::internal::AllocationType, v8::internal::AllocationOrigin, v8::internal::AllocationAlignment) [node]
+ 7: 0xd4e87d v8::internal::Factory::AllocateRaw(int, v8::internal::AllocationType, v8::internal::AllocationAlignment) [node]
+ 8: 0xd48704 v8::internal::FactoryBase&lt;v8::internal::Factory&gt;::AllocateRawWithImmortalMap(int, v8::internal::AllocationType, v8::internal::Map, v8::internal::AllocationAlignment) [node]
+ 9: 0xd4a710 v8::internal::FactoryBase&lt;v8::internal::Factory&gt;::NewRawOneByteString(int, v8::internal::AllocationType) [node]
+10: 0xe6b2fd v8::internal::JsonParser&lt;unsigned char&gt;::MakeString(v8::internal::JsonString const&amp;, v8::internal::Handle&lt;v8::internal::String&gt;) [node]
+11: 0xe6d87d v8::internal::JsonParser&lt;unsigned char&gt;::ParseJsonValue() [node]
+12: 0xe6e06f v8::internal::JsonParser&lt;unsigned char&gt;::ParseJson() [node]
+13: 0xc66478  [node]
+14: 0xc66a26 v8::internal::Builtin_JsonParse(int, unsigned long*, v8::internal::Isolate*) [node]
+15: 0x1449039  [node]
+Aborted (core dumped)
+error Command failed with exit code 134.
+</code></pre><!--]--></div>
+        </div>
+      </main>
+      <footer>
+        <div
+          class="notes-layout-container mx-auto py-4 px-6 text-#8b8685 text-right text-sm"
+          id="footerContents"
+        >
+          <notes-page-footer></notes-page-footer>
+        </div>
+      </footer>
+    </div>
+    <script>
+window.precompiledNoteBehavior = function(require, exports, module, Vue) {"use strict";Object.defineProperty(exports, "__esModule", {value: true});const __sfc__ = {};
+var _vue = require('vue');
+
+const _withScopeId = n => (_vue.pushScopeId.call(void 0, "data-v-8c9498c0"),n=n(),_vue.popScopeId.call(void 0, ),n)
+const _hoisted_1 = /*#__PURE__*/_vue.createStaticVNode.call(void 0, "<p data-v-8c9498c0>When working on <a href=\"Nodejs\" data-v-8c9498c0>Node.js</a> projects, you may encounter the error that start with <code data-v-8c9498c0>&lt;--- Last few GCs ---&gt;</code> and then followed by <em data-v-8c9498c0>“FATAL ERROR: CALL_AND_RETRY_LAST Allocation failed - JavaScript heap out of memory.”</em> This is a sign that the Node.js process is running out of memory. The default memory limit is 1.5GB, which is not enough for some projects.</p><p data-v-8c9498c0>To increase the memory limit, you can use the <code data-v-8c9498c0>--max-old-space-size</code> flag. One way to set this flag is to add it to the <code data-v-8c9498c0>NODE_OPTIONS</code> environment variable:</p><pre class=\"shiki github-dark\" style=\"background-color:#252423;color:#e1e4e8;\" tabindex=\"0\" data-v-8c9498c0><code data-v-8c9498c0><span class=\"line\" data-v-8c9498c0><span style=\"color:#F97583;\" data-v-8c9498c0>export</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> NODE_OPTIONS</span><span style=\"color:#F97583;\" data-v-8c9498c0>=</span><span style=\"color:#9ECBFF;\" data-v-8c9498c0>&quot;--max-old-space-size=4096&quot;</span></span></code></pre><pre data-v-8c9498c0><code data-v-8c9498c0>&lt;--- Last few GCs ---&gt;\n\n[2740:0x650ced0]    90003 ms: Mark-sweep (reduce) 997.1 (1009.8) -&gt; 996.9 (1009.8) MB, 2093.6 / 0.0 ms  (average mu = 0.146, current mu = 0.003) last resort GC in old space requested\n[2740:0x650ced0]    92058 ms: Mark-sweep (reduce) 996.9 (1008.8) -&gt; 996.9 (1009.8) MB, 2054.6 / 0.0 ms  (average mu = 0.084, current mu = 0.000) last resort GC in old space requested\n\n\n&lt;--- JS stacktrace ---&gt;\n\nFATAL ERROR: CALL_AND_RETRY_LAST Allocation failed - JavaScript heap out of memory\n 1: 0xa3ac10 node::Abort() [node]\n 2: 0x970199 node::FatalError(char const*, char const*) [node]\n 3: 0xbba58e v8::Utils::ReportOOMFailure(v8::internal::Isolate*, char const*, bool) [node]\n 4: 0xbba907 v8::internal::V8::FatalProcessOutOfMemory(v8::internal::Isolate*, char const*, bool) [node]\n 5: 0xd76b25  [node]\n 6: 0xd89141 v8::internal::Heap::AllocateRawWithRetryOrFailSlowPath(int, v8::internal::AllocationType, v8::internal::AllocationOrigin, v8::internal::AllocationAlignment) [node]\n 7: 0xd4e87d v8::internal::Factory::AllocateRaw(int, v8::internal::AllocationType, v8::internal::AllocationAlignment) [node]\n 8: 0xd48704 v8::internal::FactoryBase&lt;v8::internal::Factory&gt;::AllocateRawWithImmortalMap(int, v8::internal::AllocationType, v8::internal::Map, v8::internal::AllocationAlignment) [node]\n 9: 0xd4a710 v8::internal::FactoryBase&lt;v8::internal::Factory&gt;::NewRawOneByteString(int, v8::internal::AllocationType) [node]\n10: 0xe6b2fd v8::internal::JsonParser&lt;unsigned char&gt;::MakeString(v8::internal::JsonString const&amp;, v8::internal::Handle&lt;v8::internal::String&gt;) [node]\n11: 0xe6d87d v8::internal::JsonParser&lt;unsigned char&gt;::ParseJsonValue() [node]\n12: 0xe6e06f v8::internal::JsonParser&lt;unsigned char&gt;::ParseJson() [node]\n13: 0xc66478  [node]\n14: 0xc66a26 v8::internal::Builtin_JsonParse(int, unsigned long*, v8::internal::Isolate*) [node]\n15: 0x1449039  [node]\nAborted (core dumped)\nerror Command failed with exit code 134.\n</code></pre>", 4)
+function render(_ctx, _cache) {
+  return _hoisted_1
+}
+__sfc__.render = render
+__sfc__.__scopeId = "data-v-8c9498c0"
+__sfc__.__file = "Note.vue"
+exports. default = __sfc__};
+window.precompiledFrontMatter = {"public":true,"title":"Increasing Node.js heap size (memory limit)"};
+</script>
+  </body>
+</html>

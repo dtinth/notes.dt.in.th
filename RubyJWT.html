@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html data-precompiled=true lang="en" data-dtinth="true">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Working with JWTs in Ruby | notes.dt.in.th</title><meta property="og:title" content="Working with JWTs in Ruby" data-source="note">
+<meta property="og:image" content="https://screenshot.source.in.th/image/_/notes/RubyJWT" data-source="note">
+<meta property="og:image:width" content="1800" data-source="note">
+<meta property="og:image:height" content="1680" data-source="note">
+<link rel="canonical" href="https://notes.dt.in.th/RubyJWT" data-source="note">
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/iconify-icon@2.1.0/dist/iconify-icon.min.js"
+      integrity="sha256-dY2Ug42wyv3rl+sLVKEg3jbPs8f+hi7tmJ836AxVDwI="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/blurhash-image@1.0.1/blurhash-image.min.js"
+      integrity="sha256-qrUUgTGk7xA7iVCwraHNQjwy2JryA0K4L3DL4qidagQ="
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" crossorigin src="/runtime/index.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/supabase-CjkNZD6A.js">
+    <link rel="stylesheet" crossorigin href="/runtime/index.css">
+  </head>
+  <body class="bg-#252423 text-#e9e8e7 antialiased">
+    <header class="h-[58px] bg-#090807 border-b border-#454443 z-20 flex">
+      <div class="flex items-center pl-[18px] flex-none">
+        <a
+          class="flex items-center text-#8b8685 hover:text-#ffffbb text-lg"
+          href="/"
+          >notes.dt.in.th</a
+        >
+      </div>
+      <div
+        class="flex-1 flex items-center text-#8b8685 [&_a:hover]:text-#ffffbb overflow-hidden"
+        id="headerMiddle"
+      >
+        <div class="px-2 flex-none">›</div><div class="truncate"><a title="JWT (topic)" href="JWT">JWT</a></div>
+      </div>
+      <div
+        class="flex items-center px-[18px] flex-none gap-4"
+        id="headerToolbar"
+      ></div>
+    </header>
+    <div class="h-entry">
+      <main class="bg-#353433" id="main">
+        <div class="notes-layout-container mx-auto p-6 py-12" id="mainContents">
+          <div class="prose e-content" id="noteContents"><!--[--><h1 id="working-with-jwts-in-ruby"><a aria-hidden="true" tabindex="-1" href="#working-with-jwts-in-ruby"><span class="icon icon-link"></span></a>Working with <a href="JWT">JWTs</a> in <a href="Ruby">Ruby</a></h1><p>There is a <a href="https://github.com/jwt/ruby-jwt"><code>jwt</code></a> gem for working with JSON Web Tokens.</p><pre class="shiki github-dark" style="background-color:#252423;color:#e1e4e8;" tabindex="0"><code><span class="line"><span style="color:#B392F0;">gem</span><span style="color:#9ECBFF;"> install</span><span style="color:#9ECBFF;"> jwt</span></span></code></pre><h2 id="hmac-hs256"><a aria-hidden="true" tabindex="-1" href="#hmac-hs256"><span class="icon icon-link"></span></a>HMAC (HS256)</h2><pre class="shiki github-dark" style="background-color:#252423;color:#e1e4e8;" tabindex="0"><code><span class="line"><span style="color:#F97583;">require</span><span style="color:#9ECBFF;"> &#39;jwt&#39;</span></span>
+<span class="line"><span style="color:#E1E4E8;">secret </span><span style="color:#F97583;">=</span><span style="color:#9ECBFF;"> &#39;hunter2&#39;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D;"># Encode</span></span>
+<span class="line"><span style="color:#E1E4E8;">payload </span><span style="color:#F97583;">=</span><span style="color:#E1E4E8;"> { </span><span style="color:#79B8FF;">hello:</span><span style="color:#9ECBFF;"> &#39;world&#39;</span><span style="color:#E1E4E8;"> }</span></span>
+<span class="line"><span style="color:#79B8FF;">JWT</span><span style="color:#E1E4E8;">.encode(payload, secret, </span><span style="color:#9ECBFF;">&#39;HS256&#39;</span><span style="color:#E1E4E8;">)</span></span>
+<span class="line"><span style="color:#6A737D;"># =&gt; &quot;eyJhbGciOiJIUzI1NiJ9.eyJoZWxsbyI6IndvcmxkIn0.KMuuVGRsXYSp8sevYCSDJsYbOke_xs0YDoMu1HIRv1E&quot;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D;"># Decode</span></span>
+<span class="line"><span style="color:#E1E4E8;">token </span><span style="color:#F97583;">=</span><span style="color:#9ECBFF;"> &quot;eyJhbGciOiJIUzI1NiJ9.eyJoZWxsbyI6IndvcmxkIn0.KMuuVGRsXYSp8sevYCSDJsYbOke_xs0YDoMu1HIRv1E&quot;</span></span>
+<span class="line"><span style="color:#79B8FF;">JWT</span><span style="color:#E1E4E8;">.decode(token, secret, </span><span style="color:#79B8FF;">true</span><span style="color:#E1E4E8;">, { </span><span style="color:#79B8FF;">algorithm:</span><span style="color:#9ECBFF;"> &#39;HS256&#39;</span><span style="color:#E1E4E8;"> })</span></span>
+<span class="line"><span style="color:#6A737D;">#                         ^ verify</span></span>
+<span class="line"><span style="color:#6A737D;"># =&gt; [{&quot;hello&quot;=&gt;&quot;world&quot;}, {&quot;alg&quot;=&gt;&quot;HS256&quot;}]</span></span></code></pre><h2 id="keypair-generation-importexport-pem-and-jwk"><a aria-hidden="true" tabindex="-1" href="#keypair-generation-importexport-pem-and-jwk"><span class="icon icon-link"></span></a>Keypair generation, import/export (PEM and JWK)</h2><pre class="shiki github-dark" style="background-color:#252423;color:#e1e4e8;" tabindex="0"><code><span class="line"><span style="color:#F97583;">require</span><span style="color:#9ECBFF;"> &#39;openssl&#39;</span></span>
+<span class="line"><span style="color:#F97583;">require</span><span style="color:#9ECBFF;"> &#39;jwt&#39;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D;"># Generate a keypair</span></span>
+<span class="line"><span style="color:#E1E4E8;">private_key </span><span style="color:#F97583;">=</span><span style="color:#79B8FF;"> OpenSSL</span><span style="color:#E1E4E8;">::</span><span style="color:#79B8FF;">PKey</span><span style="color:#E1E4E8;">::</span><span style="color:#79B8FF;">RSA</span><span style="color:#E1E4E8;">.generate(</span><span style="color:#79B8FF;">2048</span><span style="color:#E1E4E8;">)</span></span>
+<span class="line"><span style="color:#E1E4E8;">public_key </span><span style="color:#F97583;">=</span><span style="color:#E1E4E8;"> private_key.public_key</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D;"># Exporting keys as PEM</span></span>
+<span class="line"><span style="color:#E1E4E8;">private_key.to_pem</span></span>
+<span class="line"><span style="color:#E1E4E8;">public_key.to_pem</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D;"># Exporting keys as JWK</span></span>
+<span class="line"><span style="color:#79B8FF;">JWT</span><span style="color:#E1E4E8;">::</span><span style="color:#79B8FF;">JWK</span><span style="color:#E1E4E8;">.</span><span style="color:#F97583;">new</span><span style="color:#E1E4E8;">(private_key).export(</span><span style="color:#79B8FF;">include_private:</span><span style="color:#79B8FF;"> true</span><span style="color:#E1E4E8;">)</span></span>
+<span class="line"><span style="color:#79B8FF;">JWT</span><span style="color:#E1E4E8;">::</span><span style="color:#79B8FF;">JWK</span><span style="color:#E1E4E8;">.</span><span style="color:#F97583;">new</span><span style="color:#E1E4E8;">(public_key).export</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D;"># Import public key from PEM</span></span>
+<span class="line"><span style="color:#79B8FF;">OpenSSL</span><span style="color:#E1E4E8;">::</span><span style="color:#79B8FF;">PKey</span><span style="color:#E1E4E8;">::</span><span style="color:#79B8FF;">RSA</span><span style="color:#E1E4E8;">.</span><span style="color:#F97583;">new</span><span style="color:#E1E4E8;">(public_key.to_pem)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D;"># Import public key from JWK</span></span>
+<span class="line"><span style="color:#79B8FF;">JWT</span><span style="color:#E1E4E8;">::</span><span style="color:#79B8FF;">JWK</span><span style="color:#E1E4E8;">.import(</span><span style="color:#79B8FF;">JWT</span><span style="color:#E1E4E8;">::</span><span style="color:#79B8FF;">JWK</span><span style="color:#E1E4E8;">.</span><span style="color:#F97583;">new</span><span style="color:#E1E4E8;">(public_key).export)</span></span></code></pre><h2 id="rails"><a aria-hidden="true" tabindex="-1" href="#rails"><span class="icon icon-link"></span></a>Rails</h2><p>You can use <code>Rails.application.secrets.secret_key_base</code></p><h2 id="more-useful-resources"><a aria-hidden="true" tabindex="-1" href="#more-useful-resources"><span class="icon icon-link"></span></a>More useful resources</h2><ul><li><a href="https://blog.unathichonco.com/verifying-jwts-with-jwks-in-ruby">Unathi Chonco (2021). “Verifying JWTs with JWKS in Ruby”</a></li></ul><!--]--></div>
+        </div>
+      </main>
+      <footer>
+        <div
+          class="notes-layout-container mx-auto py-4 px-6 text-#8b8685 text-right text-sm"
+          id="footerContents"
+        >
+          <notes-page-footer></notes-page-footer>
+        </div>
+      </footer>
+    </div>
+    <script>
+window.precompiledNoteBehavior = function(require, exports, module, Vue) {"use strict";Object.defineProperty(exports, "__esModule", {value: true});const __sfc__ = {};
+var _vue = require('vue');
+
+const _hoisted_1 = /*#__PURE__*/_vue.createStaticVNode.call(void 0, "<h1 id=\"working-with-jwts-in-ruby\"><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#working-with-jwts-in-ruby\"><span class=\"icon icon-link\"></span></a>Working with <a href=\"JWT\">JWTs</a> in <a href=\"Ruby\">Ruby</a></h1><p>There is a <a href=\"https://github.com/jwt/ruby-jwt\"><code>jwt</code></a> gem for working with JSON Web Tokens.</p><pre class=\"shiki github-dark\" style=\"background-color:#252423;color:#e1e4e8;\" tabindex=\"0\"><code><span class=\"line\"><span style=\"color:#B392F0;\">gem</span><span style=\"color:#9ECBFF;\"> install</span><span style=\"color:#9ECBFF;\"> jwt</span></span></code></pre><h2 id=\"hmac-hs256\"><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#hmac-hs256\"><span class=\"icon icon-link\"></span></a>HMAC (HS256)</h2><pre class=\"shiki github-dark\" style=\"background-color:#252423;color:#e1e4e8;\" tabindex=\"0\"><code><span class=\"line\"><span style=\"color:#F97583;\">require</span><span style=\"color:#9ECBFF;\"> &#39;jwt&#39;</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">secret </span><span style=\"color:#F97583;\">=</span><span style=\"color:#9ECBFF;\"> &#39;hunter2&#39;</span></span>\n<span class=\"line\"></span>\n<span class=\"line\"><span style=\"color:#6A737D;\"># Encode</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">payload </span><span style=\"color:#F97583;\">=</span><span style=\"color:#E1E4E8;\"> { </span><span style=\"color:#79B8FF;\">hello:</span><span style=\"color:#9ECBFF;\"> &#39;world&#39;</span><span style=\"color:#E1E4E8;\"> }</span></span>\n<span class=\"line\"><span style=\"color:#79B8FF;\">JWT</span><span style=\"color:#E1E4E8;\">.encode(payload, secret, </span><span style=\"color:#9ECBFF;\">&#39;HS256&#39;</span><span style=\"color:#E1E4E8;\">)</span></span>\n<span class=\"line\"><span style=\"color:#6A737D;\"># =&gt; &quot;eyJhbGciOiJIUzI1NiJ9.eyJoZWxsbyI6IndvcmxkIn0.KMuuVGRsXYSp8sevYCSDJsYbOke_xs0YDoMu1HIRv1E&quot;</span></span>\n<span class=\"line\"></span>\n<span class=\"line\"><span style=\"color:#6A737D;\"># Decode</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">token </span><span style=\"color:#F97583;\">=</span><span style=\"color:#9ECBFF;\"> &quot;eyJhbGciOiJIUzI1NiJ9.eyJoZWxsbyI6IndvcmxkIn0.KMuuVGRsXYSp8sevYCSDJsYbOke_xs0YDoMu1HIRv1E&quot;</span></span>\n<span class=\"line\"><span style=\"color:#79B8FF;\">JWT</span><span style=\"color:#E1E4E8;\">.decode(token, secret, </span><span style=\"color:#79B8FF;\">true</span><span style=\"color:#E1E4E8;\">, { </span><span style=\"color:#79B8FF;\">algorithm:</span><span style=\"color:#9ECBFF;\"> &#39;HS256&#39;</span><span style=\"color:#E1E4E8;\"> })</span></span>\n<span class=\"line\"><span style=\"color:#6A737D;\">#                         ^ verify</span></span>\n<span class=\"line\"><span style=\"color:#6A737D;\"># =&gt; [{&quot;hello&quot;=&gt;&quot;world&quot;}, {&quot;alg&quot;=&gt;&quot;HS256&quot;}]</span></span></code></pre><h2 id=\"keypair-generation-importexport-pem-and-jwk\"><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#keypair-generation-importexport-pem-and-jwk\"><span class=\"icon icon-link\"></span></a>Keypair generation, import/export (PEM and JWK)</h2><pre class=\"shiki github-dark\" style=\"background-color:#252423;color:#e1e4e8;\" tabindex=\"0\"><code><span class=\"line\"><span style=\"color:#F97583;\">require</span><span style=\"color:#9ECBFF;\"> &#39;openssl&#39;</span></span>\n<span class=\"line\"><span style=\"color:#F97583;\">require</span><span style=\"color:#9ECBFF;\"> &#39;jwt&#39;</span></span>\n<span class=\"line\"></span>\n<span class=\"line\"><span style=\"color:#6A737D;\"># Generate a keypair</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">private_key </span><span style=\"color:#F97583;\">=</span><span style=\"color:#79B8FF;\"> OpenSSL</span><span style=\"color:#E1E4E8;\">::</span><span style=\"color:#79B8FF;\">PKey</span><span style=\"color:#E1E4E8;\">::</span><span style=\"color:#79B8FF;\">RSA</span><span style=\"color:#E1E4E8;\">.generate(</span><span style=\"color:#79B8FF;\">2048</span><span style=\"color:#E1E4E8;\">)</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">public_key </span><span style=\"color:#F97583;\">=</span><span style=\"color:#E1E4E8;\"> private_key.public_key</span></span>\n<span class=\"line\"></span>\n<span class=\"line\"><span style=\"color:#6A737D;\"># Exporting keys as PEM</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">private_key.to_pem</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">public_key.to_pem</span></span>\n<span class=\"line\"></span>\n<span class=\"line\"><span style=\"color:#6A737D;\"># Exporting keys as JWK</span></span>\n<span class=\"line\"><span style=\"color:#79B8FF;\">JWT</span><span style=\"color:#E1E4E8;\">::</span><span style=\"color:#79B8FF;\">JWK</span><span style=\"color:#E1E4E8;\">.</span><span style=\"color:#F97583;\">new</span><span style=\"color:#E1E4E8;\">(private_key).export(</span><span style=\"color:#79B8FF;\">include_private:</span><span style=\"color:#79B8FF;\"> true</span><span style=\"color:#E1E4E8;\">)</span></span>\n<span class=\"line\"><span style=\"color:#79B8FF;\">JWT</span><span style=\"color:#E1E4E8;\">::</span><span style=\"color:#79B8FF;\">JWK</span><span style=\"color:#E1E4E8;\">.</span><span style=\"color:#F97583;\">new</span><span style=\"color:#E1E4E8;\">(public_key).export</span></span>\n<span class=\"line\"></span>\n<span class=\"line\"><span style=\"color:#6A737D;\"># Import public key from PEM</span></span>\n<span class=\"line\"><span style=\"color:#79B8FF;\">OpenSSL</span><span style=\"color:#E1E4E8;\">::</span><span style=\"color:#79B8FF;\">PKey</span><span style=\"color:#E1E4E8;\">::</span><span style=\"color:#79B8FF;\">RSA</span><span style=\"color:#E1E4E8;\">.</span><span style=\"color:#F97583;\">new</span><span style=\"color:#E1E4E8;\">(public_key.to_pem)</span></span>\n<span class=\"line\"></span>\n<span class=\"line\"><span style=\"color:#6A737D;\"># Import public key from JWK</span></span>\n<span class=\"line\"><span style=\"color:#79B8FF;\">JWT</span><span style=\"color:#E1E4E8;\">::</span><span style=\"color:#79B8FF;\">JWK</span><span style=\"color:#E1E4E8;\">.import(</span><span style=\"color:#79B8FF;\">JWT</span><span style=\"color:#E1E4E8;\">::</span><span style=\"color:#79B8FF;\">JWK</span><span style=\"color:#E1E4E8;\">.</span><span style=\"color:#F97583;\">new</span><span style=\"color:#E1E4E8;\">(public_key).export)</span></span></code></pre><h2 id=\"rails\"><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#rails\"><span class=\"icon icon-link\"></span></a>Rails</h2><p>You can use <code>Rails.application.secrets.secret_key_base</code></p><h2 id=\"more-useful-resources\"><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#more-useful-resources\"><span class=\"icon icon-link\"></span></a>More useful resources</h2><ul><li><a href=\"https://blog.unathichonco.com/verifying-jwts-with-jwks-in-ruby\">Unathi Chonco (2021). “Verifying JWTs with JWKS in Ruby”</a></li></ul>", 11)
+function render(_ctx, _cache) {
+  return _hoisted_1
+}
+__sfc__.render = render
+__sfc__.__file = "Note.vue"
+exports. default = __sfc__};
+window.precompiledFrontMatter = {"public":true,"title":"Working with JWTs in Ruby"};
+</script>
+  </body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html data-precompiled=true lang="en" data-dtinth="true">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The power of signed distance functions (talk) | notes.dt.in.th</title><meta property="og:title" content="The power of signed distance functions (talk)" data-source="note">
+<meta property="og:image" content="https://screenshot.source.in.th/image/_/notes/SDFTalk" data-source="note">
+<meta property="og:image:width" content="1800" data-source="note">
+<meta property="og:image:height" content="1680" data-source="note">
+<link rel="canonical" href="https://notes.dt.in.th/SDFTalk" data-source="note"><style id="note-styles">/* layer: default */
+.my[data-v-8c9498c0]{margin-top:1rem;margin-bottom:1rem;}</style>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/iconify-icon@2.1.0/dist/iconify-icon.min.js"
+      integrity="sha256-dY2Ug42wyv3rl+sLVKEg3jbPs8f+hi7tmJ836AxVDwI="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/blurhash-image@1.0.1/blurhash-image.min.js"
+      integrity="sha256-qrUUgTGk7xA7iVCwraHNQjwy2JryA0K4L3DL4qidagQ="
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" crossorigin src="/runtime/index.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/supabase-CjkNZD6A.js">
+    <link rel="stylesheet" crossorigin href="/runtime/index.css">
+  </head>
+  <body class="bg-#252423 text-#e9e8e7 antialiased">
+    <header class="h-[58px] bg-#090807 border-b border-#454443 z-20 flex">
+      <div class="flex items-center pl-[18px] flex-none">
+        <a
+          class="flex items-center text-#8b8685 hover:text-#ffffbb text-lg"
+          href="/"
+          >notes.dt.in.th</a
+        >
+      </div>
+      <div
+        class="flex-1 flex items-center text-#8b8685 [&_a:hover]:text-#ffffbb overflow-hidden"
+        id="headerMiddle"
+      >
+        <div class="px-2 flex-none">›</div><div class="truncate"><a title="Creative Coding (topic)" href="CreativeCoding">Creative Coding</a></div>
+      </div>
+      <div
+        class="flex items-center px-[18px] flex-none gap-4"
+        id="headerToolbar"
+      ></div>
+    </header>
+    <div class="h-entry">
+      <main class="bg-#353433" id="main">
+        <div class="notes-layout-container mx-auto p-6 py-12" id="mainContents">
+          <div class="prose e-content" id="noteContents"><!--[--><h1 id="the-power-of-signed-distance-functions" data-v-8c9498c0><a aria-hidden="true" tabindex="-1" href="#the-power-of-signed-distance-functions" data-v-8c9498c0><span class="icon icon-link" data-v-8c9498c0></span></a>The power of signed distance functions</h1><ul data-v-8c9498c0><li data-v-8c9498c0>Presented at <a href="https://grtn.org/e/creativecodingmeetup" data-v-8c9498c0>Creative coding meetup</a> on May 3, 2023</li><li data-v-8c9498c0>Speaker: <a href="https://dt.in.th/" data-v-8c9498c0>@dtinth</a> (<a href="https://www.youtube.com/playlist?list=PLNGgSn_2kjo3XOPbKE-mP6KgIPrUmd6ZU" data-v-8c9498c0>Check out my sorting songs on YouTube</a>)</li><li data-v-8c9498c0>Short link to this page: <a href="https://d4h.cc/sdf" data-v-8c9498c0>d4h.cc/sdf</a></li></ul><h2 id="video" data-v-8c9498c0><a aria-hidden="true" tabindex="-1" href="#video" data-v-8c9498c0><span class="icon icon-link" data-v-8c9498c0></span></a>Video</h2><p data-v-8c9498c0><a href="https://www.youtube.com/watch?v=qzbyQAnqWYk" data-v-8c9498c0>Watch the talk on YouTube</a></p><h2 id="code" data-v-8c9498c0><a aria-hidden="true" tabindex="-1" href="#code" data-v-8c9498c0><span class="icon icon-link" data-v-8c9498c0></span></a>Code</h2><p data-v-8c9498c0><a href="https://github.com/dtinth/sdf-talk" data-v-8c9498c0>https://github.com/dtinth/sdf-talk</a></p><h2 id="references" data-v-8c9498c0><a aria-hidden="true" tabindex="-1" href="#references" data-v-8c9498c0><span class="icon icon-link" data-v-8c9498c0></span></a>References</h2><ul data-v-8c9498c0><li data-v-8c9498c0><a href="https://iquilezles.org/articles/distfunctions2d/" data-v-8c9498c0>Inigo Quilez, “2D distance functions”</a></li><li data-v-8c9498c0><a href="https://iquilezles.org/articles/distfunctions/" data-v-8c9498c0>Inigo Quilez, “distance functions”</a></li><li data-v-8c9498c0><a href="https://github.com/glslify/glsl-smooth-min" data-v-8c9498c0>smoothMin() function</a></li><li data-v-8c9498c0><a href="https://twitter.com/hashtag/%E3%81%A4%E3%81%B6%E3%82%84%E3%81%8DGLSL?src=hashtag_click" data-v-8c9498c0>#つぶやき GLSL</a></li></ul><h2 id="recommended-youtube-channelsvideos" data-v-8c9498c0><a aria-hidden="true" tabindex="-1" href="#recommended-youtube-channelsvideos" data-v-8c9498c0><span class="icon icon-link" data-v-8c9498c0></span></a>Recommended YouTube Channels/Videos</h2><ul data-v-8c9498c0><li data-v-8c9498c0><a href="https://www.youtube.com/@CodeParade" data-v-8c9498c0>CodeParade</a><ul data-v-8c9498c0><li data-v-8c9498c0><a href="https://youtu.be/svLzmFuSBhk" data-v-8c9498c0>How to Make 3D Fractals</a></li></ul></li><li data-v-8c9498c0><a href="https://www.youtube.com/@simondev758" data-v-8c9498c0>SimonDev</a><ul data-v-8c9498c0><li data-v-8c9498c0><a href="https://youtu.be/BNZtUB7yhX4" data-v-8c9498c0>Ray Marching, and making 3D Worlds with Math</a></li></ul></li><li data-v-8c9498c0><a href="https://www.youtube.com/@InigoQuilez" data-v-8c9498c0>Inigo Quilez</a><ul data-v-8c9498c0><li data-v-8c9498c0><a href="https://youtu.be/0ifChJ0nJfM" data-v-8c9498c0>The basics of Painting with Maths</a></li><li data-v-8c9498c0><a href="https://youtu.be/8--5LwHRhjk" data-v-8c9498c0>Painting a Character with Maths</a></li><li data-v-8c9498c0><a href="https://youtu.be/BFld4EBO2RE" data-v-8c9498c0>Painting a Landscape with Maths</a></li></ul></li><li data-v-8c9498c0><a href="https://www.youtube.com/@TheArtofCodeIsCool" data-v-8c9498c0>The Art of Code</a><ul data-v-8c9498c0><li data-v-8c9498c0><a href="https://youtu.be/PGtv-dBi2wE" data-v-8c9498c0>Ray Marching for Dummies!</a></li></ul></li></ul><!--]--></div>
+        </div>
+      </main>
+      <footer>
+        <div
+          class="notes-layout-container mx-auto py-4 px-6 text-#8b8685 text-right text-sm"
+          id="footerContents"
+        >
+          <notes-page-footer></notes-page-footer>
+        </div>
+      </footer>
+    </div>
+    <script>
+window.precompiledNoteBehavior = function(require, exports, module, Vue) {"use strict";Object.defineProperty(exports, "__esModule", {value: true});const __sfc__ = {};
+var _vue = require('vue');
+
+const _withScopeId = n => (_vue.pushScopeId.call(void 0, "data-v-8c9498c0"),n=n(),_vue.popScopeId.call(void 0, ),n)
+const _hoisted_1 = /*#__PURE__*/_vue.createStaticVNode.call(void 0, "<h1 id=\"the-power-of-signed-distance-functions\" data-v-8c9498c0><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#the-power-of-signed-distance-functions\" data-v-8c9498c0><span class=\"icon icon-link\" data-v-8c9498c0></span></a>The power of signed distance functions</h1><ul data-v-8c9498c0><li data-v-8c9498c0>Presented at <a href=\"https://grtn.org/e/creativecodingmeetup\" data-v-8c9498c0>Creative coding meetup</a> on May 3, 2023</li><li data-v-8c9498c0>Speaker: <a href=\"https://dt.in.th/\" data-v-8c9498c0>@dtinth</a> (<a href=\"https://www.youtube.com/playlist?list=PLNGgSn_2kjo3XOPbKE-mP6KgIPrUmd6ZU\" data-v-8c9498c0>Check out my sorting songs on YouTube</a>)</li><li data-v-8c9498c0>Short link to this page: <a href=\"https://d4h.cc/sdf\" data-v-8c9498c0>d4h.cc/sdf</a></li></ul><h2 id=\"video\" data-v-8c9498c0><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#video\" data-v-8c9498c0><span class=\"icon icon-link\" data-v-8c9498c0></span></a>Video</h2><p data-v-8c9498c0><a href=\"https://www.youtube.com/watch?v=qzbyQAnqWYk\" data-v-8c9498c0>Watch the talk on YouTube</a></p><h2 id=\"code\" data-v-8c9498c0><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#code\" data-v-8c9498c0><span class=\"icon icon-link\" data-v-8c9498c0></span></a>Code</h2><p data-v-8c9498c0><a href=\"https://github.com/dtinth/sdf-talk\" data-v-8c9498c0>https://github.com/dtinth/sdf-talk</a></p><h2 id=\"references\" data-v-8c9498c0><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#references\" data-v-8c9498c0><span class=\"icon icon-link\" data-v-8c9498c0></span></a>References</h2><ul data-v-8c9498c0><li data-v-8c9498c0><a href=\"https://iquilezles.org/articles/distfunctions2d/\" data-v-8c9498c0>Inigo Quilez, “2D distance functions”</a></li><li data-v-8c9498c0><a href=\"https://iquilezles.org/articles/distfunctions/\" data-v-8c9498c0>Inigo Quilez, “distance functions”</a></li><li data-v-8c9498c0><a href=\"https://github.com/glslify/glsl-smooth-min\" data-v-8c9498c0>smoothMin() function</a></li><li data-v-8c9498c0><a href=\"https://twitter.com/hashtag/%E3%81%A4%E3%81%B6%E3%82%84%E3%81%8DGLSL?src=hashtag_click\" data-v-8c9498c0>#つぶやき GLSL</a></li></ul><h2 id=\"recommended-youtube-channelsvideos\" data-v-8c9498c0><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#recommended-youtube-channelsvideos\" data-v-8c9498c0><span class=\"icon icon-link\" data-v-8c9498c0></span></a>Recommended YouTube Channels/Videos</h2><ul data-v-8c9498c0><li data-v-8c9498c0><a href=\"https://www.youtube.com/@CodeParade\" data-v-8c9498c0>CodeParade</a><ul data-v-8c9498c0><li data-v-8c9498c0><a href=\"https://youtu.be/svLzmFuSBhk\" data-v-8c9498c0>How to Make 3D Fractals</a></li></ul></li><li data-v-8c9498c0><a href=\"https://www.youtube.com/@simondev758\" data-v-8c9498c0>SimonDev</a><ul data-v-8c9498c0><li data-v-8c9498c0><a href=\"https://youtu.be/BNZtUB7yhX4\" data-v-8c9498c0>Ray Marching, and making 3D Worlds with Math</a></li></ul></li><li data-v-8c9498c0><a href=\"https://www.youtube.com/@InigoQuilez\" data-v-8c9498c0>Inigo Quilez</a><ul data-v-8c9498c0><li data-v-8c9498c0><a href=\"https://youtu.be/0ifChJ0nJfM\" data-v-8c9498c0>The basics of Painting with Maths</a></li><li data-v-8c9498c0><a href=\"https://youtu.be/8--5LwHRhjk\" data-v-8c9498c0>Painting a Character with Maths</a></li><li data-v-8c9498c0><a href=\"https://youtu.be/BFld4EBO2RE\" data-v-8c9498c0>Painting a Landscape with Maths</a></li></ul></li><li data-v-8c9498c0><a href=\"https://www.youtube.com/@TheArtofCodeIsCool\" data-v-8c9498c0>The Art of Code</a><ul data-v-8c9498c0><li data-v-8c9498c0><a href=\"https://youtu.be/PGtv-dBi2wE\" data-v-8c9498c0>Ray Marching for Dummies!</a></li></ul></li></ul>", 10)
+function render(_ctx, _cache) {
+  return _hoisted_1
+}
+__sfc__.render = render
+__sfc__.__scopeId = "data-v-8c9498c0"
+__sfc__.__file = "Note.vue"
+exports. default = __sfc__};
+window.precompiledFrontMatter = {"public":true,"title":"The power of signed distance functions (talk)"};
+</script>
+  </body>
+</html>

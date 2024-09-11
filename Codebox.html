@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html data-precompiled=true lang="en" data-dtinth="true">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Codespaces-like development container setup | notes.dt.in.th</title><meta property="og:title" content="Codespaces-like development container setup" data-source="note">
+<meta property="og:image" content="https://screenshot.source.in.th/image/_/notes/Codebox" data-source="note">
+<meta property="og:image:width" content="1800" data-source="note">
+<meta property="og:image:height" content="1680" data-source="note">
+<link rel="canonical" href="https://notes.dt.in.th/Codebox" data-source="note"><style id="note-styles">/* layer: shortcuts */
+.container[data-v-8c9498c0]{width:100%;}
+@media (min-width: 640px){
+.container[data-v-8c9498c0]{max-width:640px;}
+}
+@media (min-width: 768px){
+.container[data-v-8c9498c0]{max-width:768px;}
+}
+@media (min-width: 1024px){
+.container[data-v-8c9498c0]{max-width:1024px;}
+}
+@media (min-width: 1280px){
+.container[data-v-8c9498c0]{max-width:1280px;}
+}
+@media (min-width: 1536px){
+.container[data-v-8c9498c0]{max-width:1536px;}
+}
+/* layer: default */
+.my[data-v-8c9498c0]{margin-top:1rem;margin-bottom:1rem;}
+.me[data-v-8c9498c0]{margin-inline-end:1rem;}</style>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/iconify-icon@2.1.0/dist/iconify-icon.min.js"
+      integrity="sha256-dY2Ug42wyv3rl+sLVKEg3jbPs8f+hi7tmJ836AxVDwI="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/blurhash-image@1.0.1/blurhash-image.min.js"
+      integrity="sha256-qrUUgTGk7xA7iVCwraHNQjwy2JryA0K4L3DL4qidagQ="
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" crossorigin src="/runtime/index.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/supabase-CjkNZD6A.js">
+    <link rel="stylesheet" crossorigin href="/runtime/index.css">
+  </head>
+  <body class="bg-#252423 text-#e9e8e7 antialiased">
+    <header class="h-[58px] bg-#090807 border-b border-#454443 z-20 flex">
+      <div class="flex items-center pl-[18px] flex-none">
+        <a
+          class="flex items-center text-#8b8685 hover:text-#ffffbb text-lg"
+          href="/"
+          >notes.dt.in.th</a
+        >
+      </div>
+      <div
+        class="flex-1 flex items-center text-#8b8685 [&_a:hover]:text-#ffffbb overflow-hidden"
+        id="headerMiddle"
+      >
+        <div class="px-2 flex-none">›</div><div class="truncate"><a title="Docker (topic)" href="Docker">Docker</a></div>
+      </div>
+      <div
+        class="flex items-center px-[18px] flex-none gap-4"
+        id="headerToolbar"
+      ></div>
+    </header>
+    <div class="h-entry">
+      <main class="bg-#353433" id="main">
+        <div class="notes-layout-container mx-auto p-6 py-12" id="mainContents">
+          <div class="prose e-content" id="noteContents"><!--[--><p data-v-8c9498c0>Sometimes I am working with some organizations that doesn’t pay for <a href="Codespaces" data-v-8c9498c0>GitHub Codespaces</a> yet. However, I’m already spoiled; I <em data-v-8c9498c0>want</em> to have a cloud-based development environment.</p><p data-v-8c9498c0>I want to use a cloud-based <a href="Linux" data-v-8c9498c0>Linux</a> virtual machine and I want its environment to closely match the one I use on GitHub Codespaces. Fortunately, Microsoft provides <a href="https://github.com/microsoft/vscode-dev-containers/tree/main/containers/codespaces-linux" data-v-8c9498c0>the exact image used by GitHub Codespace</a>. Time to set it up.</p><h2 id="install-docker" data-v-8c9498c0><a aria-hidden="true" tabindex="-1" href="#install-docker" data-v-8c9498c0><span class="icon icon-link" data-v-8c9498c0></span></a>Install Docker</h2><pre class="shiki github-dark" style="background-color:#252423;color:#e1e4e8;" tabindex="0" data-v-8c9498c0><code data-v-8c9498c0><span class="line" data-v-8c9498c0><span style="color:#B392F0;" data-v-8c9498c0>curl</span><span style="color:#79B8FF;" data-v-8c9498c0> -fsSL</span><span style="color:#9ECBFF;" data-v-8c9498c0> https://get.docker.com</span><span style="color:#79B8FF;" data-v-8c9498c0> -o</span><span style="color:#9ECBFF;" data-v-8c9498c0> get-docker.sh</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#B392F0;" data-v-8c9498c0>sh</span><span style="color:#9ECBFF;" data-v-8c9498c0> get-docker.sh</span></span></code></pre><h2 id="add-swap-space-for-some-extra-ram" data-v-8c9498c0><a aria-hidden="true" tabindex="-1" href="#add-swap-space-for-some-extra-ram" data-v-8c9498c0><span class="icon icon-link" data-v-8c9498c0></span></a>Add swap space for some extra RAM</h2><pre class="shiki github-dark" style="background-color:#252423;color:#e1e4e8;" tabindex="0" data-v-8c9498c0><code data-v-8c9498c0><span class="line" data-v-8c9498c0><span style="color:#B392F0;" data-v-8c9498c0>sudo</span><span style="color:#9ECBFF;" data-v-8c9498c0> fallocate</span><span style="color:#79B8FF;" data-v-8c9498c0> -l</span><span style="color:#9ECBFF;" data-v-8c9498c0> 12G</span><span style="color:#9ECBFF;" data-v-8c9498c0> /swapfile</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#B392F0;" data-v-8c9498c0>sudo</span><span style="color:#9ECBFF;" data-v-8c9498c0> chmod</span><span style="color:#79B8FF;" data-v-8c9498c0> 600</span><span style="color:#9ECBFF;" data-v-8c9498c0> /swapfile</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#B392F0;" data-v-8c9498c0>sudo</span><span style="color:#9ECBFF;" data-v-8c9498c0> mkswap</span><span style="color:#9ECBFF;" data-v-8c9498c0> /swapfile</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#B392F0;" data-v-8c9498c0>sudo</span><span style="color:#9ECBFF;" data-v-8c9498c0> swapon</span><span style="color:#9ECBFF;" data-v-8c9498c0> /swapfile</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#79B8FF;" data-v-8c9498c0>echo</span><span style="color:#9ECBFF;" data-v-8c9498c0> &#39;/swapfile none swap sw 0 0&#39;</span><span style="color:#F97583;" data-v-8c9498c0> |</span><span style="color:#B392F0;" data-v-8c9498c0> sudo</span><span style="color:#9ECBFF;" data-v-8c9498c0> tee</span><span style="color:#79B8FF;" data-v-8c9498c0> -a</span><span style="color:#9ECBFF;" data-v-8c9498c0> /etc/fstab</span></span></code></pre><h2 id="launch-a-docker-container" data-v-8c9498c0><a aria-hidden="true" tabindex="-1" href="#launch-a-docker-container" data-v-8c9498c0><span class="icon icon-link" data-v-8c9498c0></span></a>Launch a Docker container</h2><pre class="shiki github-dark" style="background-color:#252423;color:#e1e4e8;" tabindex="0" data-v-8c9498c0><code data-v-8c9498c0><span class="line" data-v-8c9498c0><span style="color:#6A737D;" data-v-8c9498c0># docker-compose.yml</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#85E89D;" data-v-8c9498c0>services</span><span style="color:#E1E4E8;" data-v-8c9498c0>:</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#85E89D;" data-v-8c9498c0>  dev</span><span style="color:#E1E4E8;" data-v-8c9498c0>:</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#85E89D;" data-v-8c9498c0>    image</span><span style="color:#E1E4E8;" data-v-8c9498c0>: </span><span style="color:#9ECBFF;" data-v-8c9498c0>mcr.microsoft.com/vscode/devcontainers/universal:1-linux</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#85E89D;" data-v-8c9498c0>    ports</span><span style="color:#E1E4E8;" data-v-8c9498c0>:</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>      - </span><span style="color:#9ECBFF;" data-v-8c9498c0>127.0.0.1:10022:2222</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#85E89D;" data-v-8c9498c0>    volumes</span><span style="color:#E1E4E8;" data-v-8c9498c0>:</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>      - </span><span style="color:#9ECBFF;" data-v-8c9498c0>./docker:/var/lib/docker</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>      - </span><span style="color:#9ECBFF;" data-v-8c9498c0>./workspace:/workspace</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#85E89D;" data-v-8c9498c0>    cap_add</span><span style="color:#E1E4E8;" data-v-8c9498c0>:</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>      - </span><span style="color:#9ECBFF;" data-v-8c9498c0>SYS_PTRACE</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#85E89D;" data-v-8c9498c0>    security_opt</span><span style="color:#E1E4E8;" data-v-8c9498c0>:</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>      - </span><span style="color:#9ECBFF;" data-v-8c9498c0>seccomp=unconfined</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#85E89D;" data-v-8c9498c0>    privileged</span><span style="color:#E1E4E8;" data-v-8c9498c0>: </span><span style="color:#79B8FF;" data-v-8c9498c0>true</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#85E89D;" data-v-8c9498c0>    init</span><span style="color:#E1E4E8;" data-v-8c9498c0>: </span><span style="color:#79B8FF;" data-v-8c9498c0>true</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#85E89D;" data-v-8c9498c0>    tmpfs</span><span style="color:#E1E4E8;" data-v-8c9498c0>: </span><span style="color:#9ECBFF;" data-v-8c9498c0>/tmp</span></span></code></pre><pre class="shiki github-dark" style="background-color:#252423;color:#e1e4e8;" tabindex="0" data-v-8c9498c0><code data-v-8c9498c0><span class="line" data-v-8c9498c0><span style="color:#B392F0;" data-v-8c9498c0>docker</span><span style="color:#9ECBFF;" data-v-8c9498c0> compose</span><span style="color:#9ECBFF;" data-v-8c9498c0> up</span><span style="color:#79B8FF;" data-v-8c9498c0> -d</span></span></code></pre><p data-v-8c9498c0>This will launch a <a href="Docker" data-v-8c9498c0>Docker</a> container that <a href="https://github.com/microsoft/vscode-dev-containers/tree/main/containers/codespaces-linux" data-v-8c9498c0>runs the same image as GitHub Codespace</a>.</p><p data-v-8c9498c0>This container has already been configured with an SSH server, however, to access it I had to inject my SSH key into <code data-v-8c9498c0>/home/codespace/.ssh/authorized_keys</code> inside the container.</p><h2 id="connect-to-it-from-vs-code" data-v-8c9498c0><a aria-hidden="true" tabindex="-1" href="#connect-to-it-from-vs-code" data-v-8c9498c0><span class="icon icon-link" data-v-8c9498c0></span></a>Connect to it from VS Code</h2><p data-v-8c9498c0>My VM is configured as <code data-v-8c9498c0>mybox</code> in <code data-v-8c9498c0>~/.ssh/config</code> file, so I added another entry to connect to the container:</p><pre data-v-8c9498c0><code data-v-8c9498c0>Host mybox-codebox
+  Hostname 127.0.0.1
+  Port 10022
+  HostKeyAlias mybox-codebox
+  User codespace
+  ProxyJump mybox
+</code></pre><p data-v-8c9498c0>Now I can use VS Code to connect to the container via SSH. VS Code will also forward the authentication credentials into the container. This lets me <code data-v-8c9498c0>git clone</code> repositories over HTTPS right away.</p><!--]--></div>
+        </div>
+      </main>
+      <footer>
+        <div
+          class="notes-layout-container mx-auto py-4 px-6 text-#8b8685 text-right text-sm"
+          id="footerContents"
+        >
+          <notes-page-footer></notes-page-footer>
+        </div>
+      </footer>
+    </div>
+    <script>
+window.precompiledNoteBehavior = function(require, exports, module, Vue) {"use strict";Object.defineProperty(exports, "__esModule", {value: true});const __sfc__ = {};
+var _vue = require('vue');
+
+const _withScopeId = n => (_vue.pushScopeId.call(void 0, "data-v-8c9498c0"),n=n(),_vue.popScopeId.call(void 0, ),n)
+const _hoisted_1 = /*#__PURE__*/_vue.createStaticVNode.call(void 0, "<p data-v-8c9498c0>Sometimes I am working with some organizations that doesn’t pay for <a href=\"Codespaces\" data-v-8c9498c0>GitHub Codespaces</a> yet. However, I’m already spoiled; I <em data-v-8c9498c0>want</em> to have a cloud-based development environment.</p><p data-v-8c9498c0>I want to use a cloud-based <a href=\"Linux\" data-v-8c9498c0>Linux</a> virtual machine and I want its environment to closely match the one I use on GitHub Codespaces. Fortunately, Microsoft provides <a href=\"https://github.com/microsoft/vscode-dev-containers/tree/main/containers/codespaces-linux\" data-v-8c9498c0>the exact image used by GitHub Codespace</a>. Time to set it up.</p><h2 id=\"install-docker\" data-v-8c9498c0><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#install-docker\" data-v-8c9498c0><span class=\"icon icon-link\" data-v-8c9498c0></span></a>Install Docker</h2><pre class=\"shiki github-dark\" style=\"background-color:#252423;color:#e1e4e8;\" tabindex=\"0\" data-v-8c9498c0><code data-v-8c9498c0><span class=\"line\" data-v-8c9498c0><span style=\"color:#B392F0;\" data-v-8c9498c0>curl</span><span style=\"color:#79B8FF;\" data-v-8c9498c0> -fsSL</span><span style=\"color:#9ECBFF;\" data-v-8c9498c0> https://get.docker.com</span><span style=\"color:#79B8FF;\" data-v-8c9498c0> -o</span><span style=\"color:#9ECBFF;\" data-v-8c9498c0> get-docker.sh</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#B392F0;\" data-v-8c9498c0>sh</span><span style=\"color:#9ECBFF;\" data-v-8c9498c0> get-docker.sh</span></span></code></pre><h2 id=\"add-swap-space-for-some-extra-ram\" data-v-8c9498c0><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#add-swap-space-for-some-extra-ram\" data-v-8c9498c0><span class=\"icon icon-link\" data-v-8c9498c0></span></a>Add swap space for some extra RAM</h2><pre class=\"shiki github-dark\" style=\"background-color:#252423;color:#e1e4e8;\" tabindex=\"0\" data-v-8c9498c0><code data-v-8c9498c0><span class=\"line\" data-v-8c9498c0><span style=\"color:#B392F0;\" data-v-8c9498c0>sudo</span><span style=\"color:#9ECBFF;\" data-v-8c9498c0> fallocate</span><span style=\"color:#79B8FF;\" data-v-8c9498c0> -l</span><span style=\"color:#9ECBFF;\" data-v-8c9498c0> 12G</span><span style=\"color:#9ECBFF;\" data-v-8c9498c0> /swapfile</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#B392F0;\" data-v-8c9498c0>sudo</span><span style=\"color:#9ECBFF;\" data-v-8c9498c0> chmod</span><span style=\"color:#79B8FF;\" data-v-8c9498c0> 600</span><span style=\"color:#9ECBFF;\" data-v-8c9498c0> /swapfile</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#B392F0;\" data-v-8c9498c0>sudo</span><span style=\"color:#9ECBFF;\" data-v-8c9498c0> mkswap</span><span style=\"color:#9ECBFF;\" data-v-8c9498c0> /swapfile</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#B392F0;\" data-v-8c9498c0>sudo</span><span style=\"color:#9ECBFF;\" data-v-8c9498c0> swapon</span><span style=\"color:#9ECBFF;\" data-v-8c9498c0> /swapfile</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#79B8FF;\" data-v-8c9498c0>echo</span><span style=\"color:#9ECBFF;\" data-v-8c9498c0> &#39;/swapfile none swap sw 0 0&#39;</span><span style=\"color:#F97583;\" data-v-8c9498c0> |</span><span style=\"color:#B392F0;\" data-v-8c9498c0> sudo</span><span style=\"color:#9ECBFF;\" data-v-8c9498c0> tee</span><span style=\"color:#79B8FF;\" data-v-8c9498c0> -a</span><span style=\"color:#9ECBFF;\" data-v-8c9498c0> /etc/fstab</span></span></code></pre><h2 id=\"launch-a-docker-container\" data-v-8c9498c0><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#launch-a-docker-container\" data-v-8c9498c0><span class=\"icon icon-link\" data-v-8c9498c0></span></a>Launch a Docker container</h2><pre class=\"shiki github-dark\" style=\"background-color:#252423;color:#e1e4e8;\" tabindex=\"0\" data-v-8c9498c0><code data-v-8c9498c0><span class=\"line\" data-v-8c9498c0><span style=\"color:#6A737D;\" data-v-8c9498c0># docker-compose.yml</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#85E89D;\" data-v-8c9498c0>services</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>:</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#85E89D;\" data-v-8c9498c0>  dev</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>:</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#85E89D;\" data-v-8c9498c0>    image</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>: </span><span style=\"color:#9ECBFF;\" data-v-8c9498c0>mcr.microsoft.com/vscode/devcontainers/universal:1-linux</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#85E89D;\" data-v-8c9498c0>    ports</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>:</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>      - </span><span style=\"color:#9ECBFF;\" data-v-8c9498c0>127.0.0.1:10022:2222</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#85E89D;\" data-v-8c9498c0>    volumes</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>:</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>      - </span><span style=\"color:#9ECBFF;\" data-v-8c9498c0>./docker:/var/lib/docker</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>      - </span><span style=\"color:#9ECBFF;\" data-v-8c9498c0>./workspace:/workspace</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#85E89D;\" data-v-8c9498c0>    cap_add</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>:</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>      - </span><span style=\"color:#9ECBFF;\" data-v-8c9498c0>SYS_PTRACE</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#85E89D;\" data-v-8c9498c0>    security_opt</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>:</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>      - </span><span style=\"color:#9ECBFF;\" data-v-8c9498c0>seccomp=unconfined</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#85E89D;\" data-v-8c9498c0>    privileged</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>: </span><span style=\"color:#79B8FF;\" data-v-8c9498c0>true</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#85E89D;\" data-v-8c9498c0>    init</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>: </span><span style=\"color:#79B8FF;\" data-v-8c9498c0>true</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#85E89D;\" data-v-8c9498c0>    tmpfs</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>: </span><span style=\"color:#9ECBFF;\" data-v-8c9498c0>/tmp</span></span></code></pre><pre class=\"shiki github-dark\" style=\"background-color:#252423;color:#e1e4e8;\" tabindex=\"0\" data-v-8c9498c0><code data-v-8c9498c0><span class=\"line\" data-v-8c9498c0><span style=\"color:#B392F0;\" data-v-8c9498c0>docker</span><span style=\"color:#9ECBFF;\" data-v-8c9498c0> compose</span><span style=\"color:#9ECBFF;\" data-v-8c9498c0> up</span><span style=\"color:#79B8FF;\" data-v-8c9498c0> -d</span></span></code></pre><p data-v-8c9498c0>This will launch a <a href=\"Docker\" data-v-8c9498c0>Docker</a> container that <a href=\"https://github.com/microsoft/vscode-dev-containers/tree/main/containers/codespaces-linux\" data-v-8c9498c0>runs the same image as GitHub Codespace</a>.</p><p data-v-8c9498c0>This container has already been configured with an SSH server, however, to access it I had to inject my SSH key into <code data-v-8c9498c0>/home/codespace/.ssh/authorized_keys</code> inside the container.</p><h2 id=\"connect-to-it-from-vs-code\" data-v-8c9498c0><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#connect-to-it-from-vs-code\" data-v-8c9498c0><span class=\"icon icon-link\" data-v-8c9498c0></span></a>Connect to it from VS Code</h2><p data-v-8c9498c0>My VM is configured as <code data-v-8c9498c0>mybox</code> in <code data-v-8c9498c0>~/.ssh/config</code> file, so I added another entry to connect to the container:</p><pre data-v-8c9498c0><code data-v-8c9498c0>Host mybox-codebox\n  Hostname 127.0.0.1\n  Port 10022\n  HostKeyAlias mybox-codebox\n  User codespace\n  ProxyJump mybox\n</code></pre><p data-v-8c9498c0>Now I can use VS Code to connect to the container via SSH. VS Code will also forward the authentication credentials into the container. This lets me <code data-v-8c9498c0>git clone</code> repositories over HTTPS right away.</p>", 15)
+function render(_ctx, _cache) {
+  return _hoisted_1
+}
+__sfc__.render = render
+__sfc__.__scopeId = "data-v-8c9498c0"
+__sfc__.__file = "Note.vue"
+exports. default = __sfc__};
+window.precompiledFrontMatter = {"public":true,"title":"Codespaces-like development container setup","aliases":["20220714T084525Z3523"]};
+</script>
+  </body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html data-precompiled=true lang="en" data-dtinth="true">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vanity Ed25519 SSH public keys | notes.dt.in.th</title><meta property="og:title" content="Vanity Ed25519 SSH public keys" data-source="note">
+<meta property="og:image" content="https://screenshot.source.in.th/image/_/notes/VanityEd25519SSHKey" data-source="note">
+<meta property="og:image:width" content="1800" data-source="note">
+<meta property="og:image:height" content="1680" data-source="note">
+<link rel="canonical" href="https://notes.dt.in.th/VanityEd25519SSHKey" data-source="note"><style id="note-styles">/* layer: default */
+.sr-only[data-v-8c9498c0]{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0;}
+.underline[data-v-8c9498c0]{text-decoration-line:underline;}</style>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/iconify-icon@2.1.0/dist/iconify-icon.min.js"
+      integrity="sha256-dY2Ug42wyv3rl+sLVKEg3jbPs8f+hi7tmJ836AxVDwI="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/blurhash-image@1.0.1/blurhash-image.min.js"
+      integrity="sha256-qrUUgTGk7xA7iVCwraHNQjwy2JryA0K4L3DL4qidagQ="
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" crossorigin src="/runtime/index.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/supabase-CjkNZD6A.js">
+    <link rel="stylesheet" crossorigin href="/runtime/index.css">
+  </head>
+  <body class="bg-#252423 text-#e9e8e7 antialiased">
+    <header class="h-[58px] bg-#090807 border-b border-#454443 z-20 flex">
+      <div class="flex items-center pl-[18px] flex-none">
+        <a
+          class="flex items-center text-#8b8685 hover:text-#ffffbb text-lg"
+          href="/"
+          >notes.dt.in.th</a
+        >
+      </div>
+      <div
+        class="flex-1 flex items-center text-#8b8685 [&_a:hover]:text-#ffffbb overflow-hidden"
+        id="headerMiddle"
+      >
+        <div class="px-2 flex-none">›</div><div class="truncate"><a title="JWT (topic)" href="JWT">JWT</a></div><div class="px-2 flex-none">›</div><div class="truncate"><a title="Generating keypairs for JWT" href="20220225T065443Z1811">Generating keypairs for JWT</a></div><div class="px-2 flex-none">›</div><div class="truncate"><a title="Ed25519 (topic)" href="20201118T224459Z5304">Ed25519</a></div>
+      </div>
+      <div
+        class="flex items-center px-[18px] flex-none gap-4"
+        id="headerToolbar"
+      ></div>
+    </header>
+    <div class="h-entry">
+      <main class="bg-#353433" id="main">
+        <div class="notes-layout-container mx-auto p-6 py-12" id="mainContents">
+          <div class="prose e-content" id="noteContents"><!--[--><p data-v-8c9498c0><strong data-v-8c9498c0>With an <a href="https://medium.com/risan/upgrade-your-ssh-key-to-ed25519-c6e8d60d3c54" data-v-8c9498c0>Ed25519 SSH key</a> your public key becomes very short.</strong> This makes it practical to generate a vanity SSH public key where the public key contains your name (or a word of your own choosing), rather than a totally random string.</p><pre data-v-8c9498c0><code data-v-8c9498c0># ~/.ssh/authorized_keys
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAX8mQYvnVW1J+F9zQwPTqCuUzaQZ+<strong style="color:#d7fc70;text-decoration:underline;" data-v-8c9498c0>ThAi</strong>/88L+Vf1be</code></pre><p data-v-8c9498c0>Install vanityssh:</p><pre class="shiki github-dark" style="background-color:#252423;color:#e1e4e8;" tabindex="0" data-v-8c9498c0><code data-v-8c9498c0><span class="line" data-v-8c9498c0><span style="color:#B392F0;" data-v-8c9498c0>$</span><span style="color:#9ECBFF;" data-v-8c9498c0> go</span><span style="color:#9ECBFF;" data-v-8c9498c0> get</span><span style="color:#9ECBFF;" data-v-8c9498c0> github.com/danielewood/vanityssh-go</span></span></code></pre><p data-v-8c9498c0>Inspect the source code:</p><pre class="shiki github-dark" style="background-color:#252423;color:#e1e4e8;" tabindex="0" data-v-8c9498c0><code data-v-8c9498c0><span class="line" data-v-8c9498c0><span style="color:#B392F0;" data-v-8c9498c0>$</span><span style="color:#9ECBFF;" data-v-8c9498c0> vim</span><span style="color:#9ECBFF;" data-v-8c9498c0> ~/go/src/github.com/danielewood/vanityssh-go/vanityssh.go</span></span></code></pre><p data-v-8c9498c0>Run the command:</p><pre class="shiki github-dark" style="background-color:#252423;color:#e1e4e8;" tabindex="0" data-v-8c9498c0><code data-v-8c9498c0><span class="line" data-v-8c9498c0><span style="color:#B392F0;" data-v-8c9498c0>$</span><span style="color:#9ECBFF;" data-v-8c9498c0> go</span><span style="color:#9ECBFF;" data-v-8c9498c0> run</span><span style="color:#9ECBFF;" data-v-8c9498c0> ~/go/src/github.com/danielewood/vanityssh-go/vanityssh.go</span><span style="color:#79B8FF;" data-v-8c9498c0> \</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#79B8FF;" data-v-8c9498c0>    --regex</span><span style="color:#9ECBFF;" data-v-8c9498c0> &#39;(?i)[+/](dtinth|thai)([+/]|$)&#39;</span><span style="color:#79B8FF;" data-v-8c9498c0> --streaming</span></span></code></pre><p data-v-8c9498c0>Regex explanation:</p><ul data-v-8c9498c0><li data-v-8c9498c0><code data-v-8c9498c0>(?i)</code> makes matching case insensitive.</li><li data-v-8c9498c0><code data-v-8c9498c0>[+/]</code> matches either <code data-v-8c9498c0>+</code> or <code data-v-8c9498c0>/</code>.</li><li data-v-8c9498c0><code data-v-8c9498c0>(dtinth|thai)</code> matches either <code data-v-8c9498c0>dtinth</code> or <code data-v-8c9498c0>thai</code>.</li><li data-v-8c9498c0><code data-v-8c9498c0>([+/]|$)</code> matches either <code data-v-8c9498c0>+</code>, <code data-v-8c9498c0>/</code>, or <em data-v-8c9498c0>end of string</em>.</li></ul><p data-v-8c9498c0>After waiting patiently for a few hours, it will prints out a few results.</p><p data-v-8c9498c0><strong data-v-8c9498c0>Note:</strong> The following keypairs are for example purposes only; I do not use them.</p><pre data-v-8c9498c0><code data-v-8c9498c0>global_user_input = (?i)[+/](dtinth|thai)([+/]|$)
+Press Ctrl+C to end
+SSH Keys Processed = 8274717
+Total execution time 9m37.098973369s
+-----BEGIN OPENSSH PRIVATE KEY-----
+b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtz
+c2gtZWQyNTUxOQAAACAF/JkGL51VtSfhfc0MD06grlM2kGfk4QIv/PC/lX9W3gAA
+AIi/DSu/vw0rvwAAAAtzc2gtZWQyNTUxOQAAACAF/JkGL51VtSfhfc0MD06grlM2
+kGfk4QIv/PC/lX9W3gAAAEDNqQpX1ImFSuKdCr2hkd0YEQ26dA3UhJXfAiP7Q8uJ
+uAX8mQYvnVW1J+F9zQwPTqCuUzaQZ+ThAi/88L+Vf1beAAAAAAECAwQF
+-----END OPENSSH PRIVATE KEY-----
+
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAX8mQYvnVW1J+F9zQwPTqCuUzaQZ+ThAi/88L+Vf1be
+SSH Keys Processed = 14706162
+Total execution time 22m12.56509032s
+-----BEGIN OPENSSH PRIVATE KEY-----
+b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtz
+c2gtZWQyNTUxOQAAACD0LItzsVTf8uSYVWSr/j52sjE4WfnIDxtvbQncPkxwIgAA
+AIjp2SHv6dkh7wAAAAtzc2gtZWQyNTUxOQAAACD0LItzsVTf8uSYVWSr/j52sjE4
+WfnIDxtvbQncPkxwIgAAAEC5glNxlm1+Ch8M1UTYCrYb+M5YTmVV0PhGXMLuEKDf
+2fQsi3OxVN/y5JhVZKv+PnayMThZ+cgPG29tCdw+THAiAAAAAAECAwQF
+-----END OPENSSH PRIVATE KEY-----
+
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPQsi3OxVN/y5JhVZKv+PnayMThZ+cgPG29tCdw+THAi
+SSH Keys Processed = 46959480
+Total execution time 1h27m47.229219289s
+-----BEGIN OPENSSH PRIVATE KEY-----
+b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtz
+c2gtZWQyNTUxOQAAACDP6fMQfAV9ilqOZd9rPEXDXGNjob0iHPkxwCPu5PdIHgAA
+AIhBQfRpQUH0aQAAAAtzc2gtZWQyNTUxOQAAACDP6fMQfAV9ilqOZd9rPEXDXGNj
+ob0iHPkxwCPu5PdIHgAAAEAytZn0UiPJIpeR66TVyWJqRP3ZAInoXIVKwubtSmWd
+2M/p8xB8BX2KWo5l32s8RcNcY2OhvSIc+THAI+7k90geAAAAAAECAwQF
+-----END OPENSSH PRIVATE KEY-----
+
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM/p8xB8BX2KWo5l32s8RcNcY2OhvSIc+THAI+7k90ge
+SSH Keys Processed = 61459358
+Total execution time 1h45m14.310121697s
+-----BEGIN OPENSSH PRIVATE KEY-----
+b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtz
+c2gtZWQyNTUxOQAAACAH7fSx3W/LIKxIpD+sWkma18KEX4lwVD8kgxHZfrYQIgAA
+AIjMfibszH4m7AAAAAtzc2gtZWQyNTUxOQAAACAH7fSx3W/LIKxIpD+sWkma18KE
+X4lwVD8kgxHZfrYQIgAAAED2OgSfkAToMn1oBMl9cD25vniLgUmdvIPn2e9j/Cl5
+Sgft9LHdb8sgrEikP6xaSZrXwoRfiXBUPySDEdl+thAiAAAAAAECAwQF
+-----END OPENSSH PRIVATE KEY-----
+
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAft9LHdb8sgrEikP6xaSZrXwoRfiXBUPySDEdl+thAi
+</code></pre><p data-v-8c9498c0>Put the private key part (<code data-v-8c9498c0>-----BEGIN OPENSSH PRIVATE KEY-----</code> ... <code data-v-8c9498c0>-----END OPENSSH PRIVATE KEY-----</code>) into <code data-v-8c9498c0>~/.ssh/id_ed25519</code>.</p><p data-v-8c9498c0>Put the public part (<code data-v-8c9498c0>ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAI...</code>) into <code data-v-8c9498c0>~/.ssh/id_ed25519.pub</code> and use it in your <code data-v-8c9498c0>~/.ssh/authorized_keys</code> file.</p><hr data-v-8c9498c0><p data-v-8c9498c0><a href="https://web.facebook.com/dtinth/posts/10215760725445295" data-v-8c9498c0><strong data-v-8c9498c0>How about ssh-rsa keys?</strong></a> It’s also possible to generate a vanity RSA public key. At first I thought it was too long to look nice, but I later found a <a href="https://ondergetekende.nl/vanity-rsa-public-key.html" title="Vanity RSA public key" data-v-8c9498c0>blog post <em data-v-8c9498c0>“Vanity RSA public key”</em></a> that shows how to generate a public key with a really long chosen string<sup data-v-8c9498c0><a href="#user-content-fn-rsaprime" id="user-content-fnref-rsaprime" data-footnote-ref="" aria-describedby="footnote-label" data-v-8c9498c0>1</a></sup>.</p><section data-footnotes="" class="footnotes" data-v-8c9498c0><h2 id="footnote-label" class="sr-only" data-v-8c9498c0><a aria-hidden="true" tabindex="-1" href="#footnote-label" data-v-8c9498c0><span class="icon icon-link" data-v-8c9498c0></span></a>Footnotes</h2><ol data-v-8c9498c0><li id="user-content-fn-rsaprime" data-v-8c9498c0><p data-v-8c9498c0>From what I understand, it works because a large part of public keys are generated by multiplying two prime numbers. Since there are so many prime numbers, it is therefore possible to control the first digits of their product. For more information <a href="https://ondergetekende.nl/vanity-rsa-public-key.html" title="Vanity RSA public key" data-v-8c9498c0>just read the linked blog post</a>. <a href="#user-content-fnref-rsaprime" data-footnote-backref="" aria-label="Back to reference 1" class="data-footnote-backref" data-v-8c9498c0>↩</a></p></li></ol></section><!--]--></div>
+        </div>
+      </main>
+      <footer>
+        <div
+          class="notes-layout-container mx-auto py-4 px-6 text-#8b8685 text-right text-sm"
+          id="footerContents"
+        >
+          <notes-page-footer></notes-page-footer>
+        </div>
+      </footer>
+    </div>
+    <script>
+window.precompiledNoteBehavior = function(require, exports, module, Vue) {"use strict";Object.defineProperty(exports, "__esModule", {value: true});const __sfc__ = {};
+var _vue = require('vue');
+
+const _withScopeId = n => (_vue.pushScopeId.call(void 0, "data-v-8c9498c0"),n=n(),_vue.popScopeId.call(void 0, ),n)
+const _hoisted_1 = /*#__PURE__*/_vue.createStaticVNode.call(void 0, "<p data-v-8c9498c0><strong data-v-8c9498c0>With an <a href=\"https://medium.com/risan/upgrade-your-ssh-key-to-ed25519-c6e8d60d3c54\" data-v-8c9498c0>Ed25519 SSH key</a> your public key becomes very short.</strong> This makes it practical to generate a vanity SSH public key where the public key contains your name (or a word of your own choosing), rather than a totally random string.</p><pre data-v-8c9498c0><code data-v-8c9498c0># ~/.ssh/authorized_keys\nssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAX8mQYvnVW1J+F9zQwPTqCuUzaQZ+<strong style=\"color:#d7fc70;text-decoration:underline;\" data-v-8c9498c0>ThAi</strong>/88L+Vf1be</code></pre><p data-v-8c9498c0>Install vanityssh:</p><pre class=\"shiki github-dark\" style=\"background-color:#252423;color:#e1e4e8;\" tabindex=\"0\" data-v-8c9498c0><code data-v-8c9498c0><span class=\"line\" data-v-8c9498c0><span style=\"color:#B392F0;\" data-v-8c9498c0>$</span><span style=\"color:#9ECBFF;\" data-v-8c9498c0> go</span><span style=\"color:#9ECBFF;\" data-v-8c9498c0> get</span><span style=\"color:#9ECBFF;\" data-v-8c9498c0> github.com/danielewood/vanityssh-go</span></span></code></pre><p data-v-8c9498c0>Inspect the source code:</p><pre class=\"shiki github-dark\" style=\"background-color:#252423;color:#e1e4e8;\" tabindex=\"0\" data-v-8c9498c0><code data-v-8c9498c0><span class=\"line\" data-v-8c9498c0><span style=\"color:#B392F0;\" data-v-8c9498c0>$</span><span style=\"color:#9ECBFF;\" data-v-8c9498c0> vim</span><span style=\"color:#9ECBFF;\" data-v-8c9498c0> ~/go/src/github.com/danielewood/vanityssh-go/vanityssh.go</span></span></code></pre><p data-v-8c9498c0>Run the command:</p><pre class=\"shiki github-dark\" style=\"background-color:#252423;color:#e1e4e8;\" tabindex=\"0\" data-v-8c9498c0><code data-v-8c9498c0><span class=\"line\" data-v-8c9498c0><span style=\"color:#B392F0;\" data-v-8c9498c0>$</span><span style=\"color:#9ECBFF;\" data-v-8c9498c0> go</span><span style=\"color:#9ECBFF;\" data-v-8c9498c0> run</span><span style=\"color:#9ECBFF;\" data-v-8c9498c0> ~/go/src/github.com/danielewood/vanityssh-go/vanityssh.go</span><span style=\"color:#79B8FF;\" data-v-8c9498c0> \\</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#79B8FF;\" data-v-8c9498c0>    --regex</span><span style=\"color:#9ECBFF;\" data-v-8c9498c0> &#39;(?i)[+/](dtinth|thai)([+/]|$)&#39;</span><span style=\"color:#79B8FF;\" data-v-8c9498c0> --streaming</span></span></code></pre><p data-v-8c9498c0>Regex explanation:</p><ul data-v-8c9498c0><li data-v-8c9498c0><code data-v-8c9498c0>(?i)</code> makes matching case insensitive.</li><li data-v-8c9498c0><code data-v-8c9498c0>[+/]</code> matches either <code data-v-8c9498c0>+</code> or <code data-v-8c9498c0>/</code>.</li><li data-v-8c9498c0><code data-v-8c9498c0>(dtinth|thai)</code> matches either <code data-v-8c9498c0>dtinth</code> or <code data-v-8c9498c0>thai</code>.</li><li data-v-8c9498c0><code data-v-8c9498c0>([+/]|$)</code> matches either <code data-v-8c9498c0>+</code>, <code data-v-8c9498c0>/</code>, or <em data-v-8c9498c0>end of string</em>.</li></ul><p data-v-8c9498c0>After waiting patiently for a few hours, it will prints out a few results.</p><p data-v-8c9498c0><strong data-v-8c9498c0>Note:</strong> The following keypairs are for example purposes only; I do not use them.</p><pre data-v-8c9498c0><code data-v-8c9498c0>global_user_input = (?i)[+/](dtinth|thai)([+/]|$)\nPress Ctrl+C to end\nSSH Keys Processed = 8274717\nTotal execution time 9m37.098973369s\n-----BEGIN OPENSSH PRIVATE KEY-----\nb3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtz\nc2gtZWQyNTUxOQAAACAF/JkGL51VtSfhfc0MD06grlM2kGfk4QIv/PC/lX9W3gAA\nAIi/DSu/vw0rvwAAAAtzc2gtZWQyNTUxOQAAACAF/JkGL51VtSfhfc0MD06grlM2\nkGfk4QIv/PC/lX9W3gAAAEDNqQpX1ImFSuKdCr2hkd0YEQ26dA3UhJXfAiP7Q8uJ\nuAX8mQYvnVW1J+F9zQwPTqCuUzaQZ+ThAi/88L+Vf1beAAAAAAECAwQF\n-----END OPENSSH PRIVATE KEY-----\n\nssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAX8mQYvnVW1J+F9zQwPTqCuUzaQZ+ThAi/88L+Vf1be\nSSH Keys Processed = 14706162\nTotal execution time 22m12.56509032s\n-----BEGIN OPENSSH PRIVATE KEY-----\nb3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtz\nc2gtZWQyNTUxOQAAACD0LItzsVTf8uSYVWSr/j52sjE4WfnIDxtvbQncPkxwIgAA\nAIjp2SHv6dkh7wAAAAtzc2gtZWQyNTUxOQAAACD0LItzsVTf8uSYVWSr/j52sjE4\nWfnIDxtvbQncPkxwIgAAAEC5glNxlm1+Ch8M1UTYCrYb+M5YTmVV0PhGXMLuEKDf\n2fQsi3OxVN/y5JhVZKv+PnayMThZ+cgPG29tCdw+THAiAAAAAAECAwQF\n-----END OPENSSH PRIVATE KEY-----\n\nssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPQsi3OxVN/y5JhVZKv+PnayMThZ+cgPG29tCdw+THAi\nSSH Keys Processed = 46959480\nTotal execution time 1h27m47.229219289s\n-----BEGIN OPENSSH PRIVATE KEY-----\nb3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtz\nc2gtZWQyNTUxOQAAACDP6fMQfAV9ilqOZd9rPEXDXGNjob0iHPkxwCPu5PdIHgAA\nAIhBQfRpQUH0aQAAAAtzc2gtZWQyNTUxOQAAACDP6fMQfAV9ilqOZd9rPEXDXGNj\nob0iHPkxwCPu5PdIHgAAAEAytZn0UiPJIpeR66TVyWJqRP3ZAInoXIVKwubtSmWd\n2M/p8xB8BX2KWo5l32s8RcNcY2OhvSIc+THAI+7k90geAAAAAAECAwQF\n-----END OPENSSH PRIVATE KEY-----\n\nssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM/p8xB8BX2KWo5l32s8RcNcY2OhvSIc+THAI+7k90ge\nSSH Keys Processed = 61459358\nTotal execution time 1h45m14.310121697s\n-----BEGIN OPENSSH PRIVATE KEY-----\nb3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtz\nc2gtZWQyNTUxOQAAACAH7fSx3W/LIKxIpD+sWkma18KEX4lwVD8kgxHZfrYQIgAA\nAIjMfibszH4m7AAAAAtzc2gtZWQyNTUxOQAAACAH7fSx3W/LIKxIpD+sWkma18KE\nX4lwVD8kgxHZfrYQIgAAAED2OgSfkAToMn1oBMl9cD25vniLgUmdvIPn2e9j/Cl5\nSgft9LHdb8sgrEikP6xaSZrXwoRfiXBUPySDEdl+thAiAAAAAAECAwQF\n-----END OPENSSH PRIVATE KEY-----\n\nssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAft9LHdb8sgrEikP6xaSZrXwoRfiXBUPySDEdl+thAi\n</code></pre><p data-v-8c9498c0>Put the private key part (<code data-v-8c9498c0>-----BEGIN OPENSSH PRIVATE KEY-----</code> ... <code data-v-8c9498c0>-----END OPENSSH PRIVATE KEY-----</code>) into <code data-v-8c9498c0>~/.ssh/id_ed25519</code>.</p><p data-v-8c9498c0>Put the public part (<code data-v-8c9498c0>ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAI...</code>) into <code data-v-8c9498c0>~/.ssh/id_ed25519.pub</code> and use it in your <code data-v-8c9498c0>~/.ssh/authorized_keys</code> file.</p><hr data-v-8c9498c0><p data-v-8c9498c0><a href=\"https://web.facebook.com/dtinth/posts/10215760725445295\" data-v-8c9498c0><strong data-v-8c9498c0>How about ssh-rsa keys?</strong></a> It’s also possible to generate a vanity RSA public key. At first I thought it was too long to look nice, but I later found a <a href=\"https://ondergetekende.nl/vanity-rsa-public-key.html\" title=\"Vanity RSA public key\" data-v-8c9498c0>blog post <em data-v-8c9498c0>“Vanity RSA public key”</em></a> that shows how to generate a public key with a really long chosen string<sup data-v-8c9498c0><a href=\"#user-content-fn-rsaprime\" id=\"user-content-fnref-rsaprime\" data-footnote-ref=\"\" aria-describedby=\"footnote-label\" data-v-8c9498c0>1</a></sup>.</p><section data-footnotes=\"\" class=\"footnotes\" data-v-8c9498c0><h2 id=\"footnote-label\" class=\"sr-only\" data-v-8c9498c0><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#footnote-label\" data-v-8c9498c0><span class=\"icon icon-link\" data-v-8c9498c0></span></a>Footnotes</h2><ol data-v-8c9498c0><li id=\"user-content-fn-rsaprime\" data-v-8c9498c0><p data-v-8c9498c0>From what I understand, it works because a large part of public keys are generated by multiplying two prime numbers. Since there are so many prime numbers, it is therefore possible to control the first digits of their product. For more information <a href=\"https://ondergetekende.nl/vanity-rsa-public-key.html\" title=\"Vanity RSA public key\" data-v-8c9498c0>just read the linked blog post</a>. <a href=\"#user-content-fnref-rsaprime\" data-footnote-backref=\"\" aria-label=\"Back to reference 1\" class=\"data-footnote-backref\" data-v-8c9498c0>↩</a></p></li></ol></section>", 18)
+function render(_ctx, _cache) {
+  return _hoisted_1
+}
+__sfc__.render = render
+__sfc__.__scopeId = "data-v-8c9498c0"
+__sfc__.__file = "Note.vue"
+exports. default = __sfc__};
+window.precompiledFrontMatter = {"title":"Vanity Ed25519 SSH public keys","public":true,"facebook":"https://web.facebook.com/dtinth/posts/10215760725445295","aliases":["20201112T181131Z7526"]};
+</script>
+  </body>
+</html>

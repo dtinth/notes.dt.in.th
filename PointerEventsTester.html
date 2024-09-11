@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html data-precompiled=true lang="en" data-dtinth="true">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pointer events tester | notes.dt.in.th</title><meta property="og:title" content="Pointer events tester" data-source="note">
+<meta property="og:image" content="https://screenshot.source.in.th/image/_/notes/PointerEventsTester" data-source="note">
+<meta property="og:image:width" content="1800" data-source="note">
+<meta property="og:image:height" content="1680" data-source="note">
+<link rel="canonical" href="https://notes.dt.in.th/PointerEventsTester" data-source="note"><style id="note-styles">/* layer: default */
+.hidden[data-v-8c9498c0]{display:none;}
+.border[data-v-8c9498c0]{border-width:1px;}</style>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/iconify-icon@2.1.0/dist/iconify-icon.min.js"
+      integrity="sha256-dY2Ug42wyv3rl+sLVKEg3jbPs8f+hi7tmJ836AxVDwI="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/blurhash-image@1.0.1/blurhash-image.min.js"
+      integrity="sha256-qrUUgTGk7xA7iVCwraHNQjwy2JryA0K4L3DL4qidagQ="
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" crossorigin src="/runtime/index.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/supabase-CjkNZD6A.js">
+    <link rel="stylesheet" crossorigin href="/runtime/index.css">
+  </head>
+  <body class="bg-#252423 text-#e9e8e7 antialiased">
+    <header class="h-[58px] bg-#090807 border-b border-#454443 z-20 flex">
+      <div class="flex items-center pl-[18px] flex-none">
+        <a
+          class="flex items-center text-#8b8685 hover:text-#ffffbb text-lg"
+          href="/"
+          >notes.dt.in.th</a
+        >
+      </div>
+      <div
+        class="flex-1 flex items-center text-#8b8685 [&_a:hover]:text-#ffffbb overflow-hidden"
+        id="headerMiddle"
+      >
+        <div class="px-2 flex-none">›</div><div class="truncate"><a title="Tools (topic)" href="Tools">Tools</a></div>
+      </div>
+      <div
+        class="flex items-center px-[18px] flex-none gap-4"
+        id="headerToolbar"
+      ></div>
+    </header>
+    <div class="h-entry">
+      <main class="bg-#353433" id="main">
+        <div class="notes-layout-container mx-auto p-6 py-12" id="mainContents">
+          <div class="prose e-content" id="noteContents"><!--[--><h1 id="pointer-events-tester" data-v-8c9498c0><a aria-hidden="true" tabindex="-1" href="#pointer-events-tester" data-v-8c9498c0><span class="icon icon-link" data-v-8c9498c0></span></a>Pointer events tester</h1><p data-v-8c9498c0>You can use this little tool to test <a href="https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent" data-v-8c9498c0>pointer events</a> on your browser. To inspect the latest pointer event, type <code data-v-8c9498c0>lastPointerEvent</code> into the <a href="JavaScript" data-v-8c9498c0>JavaScript</a> console.</p><p data-v-8c9498c0><label data-v-8c9498c0><input type="checkbox" checked data-v-8c9498c0> Down</label> <br data-v-8c9498c0><label data-v-8c9498c0><input type="checkbox" checked data-v-8c9498c0> Move</label> <br data-v-8c9498c0><label data-v-8c9498c0><input type="checkbox" checked data-v-8c9498c0> Up</label></p><div style="background:#000;border:1px solid #656463;height:720px;padding:1em;overflow:hidden;" data-v-8c9498c0><strong data-v-8c9498c0>Test area</strong><pre data-v-8c9498c0><code data-v-8c9498c0>Results will display here.</code></pre></div><!--]--></div>
+        </div>
+      </main>
+      <footer>
+        <div
+          class="notes-layout-container mx-auto py-4 px-6 text-#8b8685 text-right text-sm"
+          id="footerContents"
+        >
+          <notes-page-footer></notes-page-footer>
+        </div>
+      </footer>
+    </div>
+    <script>
+window.precompiledNoteBehavior = function(require, exports, module, Vue) {"use strict";Object.defineProperty(exports, "__esModule", {value: true});/* Analyzed bindings: {
+  "downEnabled": "setup-maybe-ref",
+  "moveEnabled": "setup-maybe-ref",
+  "upEnabled": "setup-maybe-ref",
+  "info": "setup-maybe-ref",
+  "onpointer": "setup-maybe-ref"
+} */
+
+const __sfc__ = {
+  setup() {
+    const info = Vue.ref('Results will display here.')
+    const downEnabled = Vue.ref(true)
+    const moveEnabled = Vue.ref(true)
+    const upEnabled = Vue.ref(true)
+    return {
+      downEnabled,
+      moveEnabled,
+      upEnabled,
+      info,
+      onpointer: (e) => {
+        if (e.type === 'pointerdown' && !downEnabled.value) {
+          return
+        }
+        if (e.type === 'pointermove' && !moveEnabled.value) {
+          return
+        }
+        if (e.type === 'pointerup' && !upEnabled.value) {
+          return
+        }
+        window.lastPointerEvent = e
+        const fields = [
+          'type',
+
+          // https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent#properties
+          'pointerId',
+          'width',
+          'height',
+          'pressure',
+          'tangentialPressure',
+          'tiltX',
+          'tiltY',
+          'twist',
+          'pointerType',
+          'isPrimary',
+
+          // https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent#browser_compatibility
+          'altitudeAngle',
+          'azimuthAngle',
+
+          // https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent
+          'altKey',
+          'button',
+          'buttons',
+          'clientX',
+          'clientY',
+          'ctrlKey',
+          'metaKey',
+          'movementX',
+          'movementY',
+        ]
+        info.value = fields.map(f => `${f}: ${e[f]}`).join('\n')
+      }
+    }
+  }
+}
+;
+var _vue = require('vue');
+
+const _withScopeId = n => (_vue.pushScopeId.call(void 0, "data-v-8c9498c0"),n=n(),_vue.popScopeId.call(void 0, ),n)
+const _hoisted_1 = /*#__PURE__*/_vue.createStaticVNode.call(void 0, "<h1 id=\"pointer-events-tester\" data-v-8c9498c0><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#pointer-events-tester\" data-v-8c9498c0><span class=\"icon icon-link\" data-v-8c9498c0></span></a>Pointer events tester</h1><p data-v-8c9498c0>You can use this little tool to test <a href=\"https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent\" data-v-8c9498c0>pointer events</a> on your browser. To inspect the latest pointer event, type <code data-v-8c9498c0>lastPointerEvent</code> into the <a href=\"JavaScript\" data-v-8c9498c0>JavaScript</a> console.</p>", 2)
+const _hoisted_3 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_vue.createElementVNode.call(void 0, "br", null, null, -1 /* HOISTED */))
+const _hoisted_4 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_vue.createElementVNode.call(void 0, "br", null, null, -1 /* HOISTED */))
+const _hoisted_5 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_vue.createElementVNode.call(void 0, "strong", null, "Test area", -1 /* HOISTED */))
+function render(_ctx, _cache, $props, $setup, $data, $options) {
+  return (_vue.openBlock.call(void 0, ), _vue.createElementBlock.call(void 0, _vue.Fragment, null, [
+    _hoisted_1,
+    _vue.createElementVNode.call(void 0, "p", null, [
+      _vue.createElementVNode.call(void 0, "label", null, [
+        _vue.withDirectives.call(void 0, _vue.createElementVNode.call(void 0, "input", {
+          type: "checkbox",
+          "onUpdate:modelValue": _cache[0] || (_cache[0] = $event => (($setup.downEnabled) = $event))
+        }, null, 512 /* NEED_PATCH */), [
+          [_vue.vModelCheckbox, $setup.downEnabled]
+        ]),
+        _vue.createTextVNode.call(void 0, " Down")
+      ]),
+      _vue.createTextVNode.call(void 0, ),
+      _hoisted_3,
+      _vue.createElementVNode.call(void 0, "label", null, [
+        _vue.withDirectives.call(void 0, _vue.createElementVNode.call(void 0, "input", {
+          type: "checkbox",
+          "onUpdate:modelValue": _cache[1] || (_cache[1] = $event => (($setup.moveEnabled) = $event))
+        }, null, 512 /* NEED_PATCH */), [
+          [_vue.vModelCheckbox, $setup.moveEnabled]
+        ]),
+        _vue.createTextVNode.call(void 0, " Move")
+      ]),
+      _vue.createTextVNode.call(void 0, ),
+      _hoisted_4,
+      _vue.createElementVNode.call(void 0, "label", null, [
+        _vue.withDirectives.call(void 0, _vue.createElementVNode.call(void 0, "input", {
+          type: "checkbox",
+          "onUpdate:modelValue": _cache[2] || (_cache[2] = $event => (($setup.upEnabled) = $event))
+        }, null, 512 /* NEED_PATCH */), [
+          [_vue.vModelCheckbox, $setup.upEnabled]
+        ]),
+        _vue.createTextVNode.call(void 0, " Up")
+      ])
+    ]),
+    _vue.createElementVNode.call(void 0, "div", {
+      style: {"background":"#000","border":"1px solid #656463","height":"720px","padding":"1em","overflow":"hidden"},
+      onPointermove: _cache[3] || (_cache[3] = $event => ($setup.onpointer($event))),
+      onPointerdown: _cache[4] || (_cache[4] = $event => ($setup.onpointer($event))),
+      onPointerup: _cache[5] || (_cache[5] = $event => ($setup.onpointer($event)))
+    }, [
+      _hoisted_5,
+      _vue.createElementVNode.call(void 0, "pre", null, [
+        _vue.createElementVNode.call(void 0, "code", null, _vue.toDisplayString.call(void 0, $setup.info), 1 /* TEXT */)
+      ])
+    ], 32 /* NEED_HYDRATION */)
+  ], 64 /* STABLE_FRAGMENT */))
+}
+__sfc__.render = render
+__sfc__.__scopeId = "data-v-8c9498c0"
+__sfc__.__file = "Note.vue"
+exports. default = __sfc__};
+window.precompiledFrontMatter = {"public":true,"title":"Pointer events tester","aliases":["20220606T064142Z5299"]};
+</script>
+  </body>
+</html>

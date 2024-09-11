@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html data-precompiled=true lang="en" data-dtinth="true">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EdDSA JWT Ed25519 Node.js | notes.dt.in.th</title><meta property="og:title" content="EdDSA JWT Ed25519 Node.js" data-source="note">
+<meta property="og:image" content="https://screenshot.source.in.th/image/_/notes/20201015T185602Z2963" data-source="note">
+<meta property="og:image:width" content="1800" data-source="note">
+<meta property="og:image:height" content="1680" data-source="note">
+<link rel="canonical" href="https://notes.dt.in.th/20201015T185602Z2963" data-source="note">
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/iconify-icon@2.1.0/dist/iconify-icon.min.js"
+      integrity="sha256-dY2Ug42wyv3rl+sLVKEg3jbPs8f+hi7tmJ836AxVDwI="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/blurhash-image@1.0.1/blurhash-image.min.js"
+      integrity="sha256-qrUUgTGk7xA7iVCwraHNQjwy2JryA0K4L3DL4qidagQ="
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" crossorigin src="/runtime/index.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/supabase-CjkNZD6A.js">
+    <link rel="stylesheet" crossorigin href="/runtime/index.css">
+  </head>
+  <body class="bg-#252423 text-#e9e8e7 antialiased">
+    <header class="h-[58px] bg-#090807 border-b border-#454443 z-20 flex">
+      <div class="flex items-center pl-[18px] flex-none">
+        <a
+          class="flex items-center text-#8b8685 hover:text-#ffffbb text-lg"
+          href="/"
+          >notes.dt.in.th</a
+        >
+      </div>
+      <div
+        class="flex-1 flex items-center text-#8b8685 [&_a:hover]:text-#ffffbb overflow-hidden"
+        id="headerMiddle"
+      >
+        <div class="px-2 flex-none">›</div><div class="truncate"><a title="JWT (topic)" href="JWT">JWT</a></div>
+      </div>
+      <div
+        class="flex items-center px-[18px] flex-none gap-4"
+        id="headerToolbar"
+      ></div>
+    </header>
+    <div class="h-entry">
+      <main class="bg-#353433" id="main">
+        <div class="notes-layout-container mx-auto p-6 py-12" id="mainContents">
+          <div class="prose e-content" id="noteContents"><!--[--><p><a href="20201118T224459Z5304">Ed25519</a> keypairs <a href="https://medium.com/risan/upgrade-your-ssh-key-to-ed25519-c6e8d60d3c54">are much more compact than RSA keypair.</a> This note is about how to use them in <a href="Nodejs">Node.js</a>.</p><p>When used for <a href="JWT">JWT</a>:</p><ul><li>The public key is much shorter.</li><li>The signature is much shorter.</li><li>The private key is MUCH shorter. See comparison below.</li></ul><h2 id="size-comparison"><a aria-hidden="true" tabindex="-1" href="#size-comparison"><span class="icon icon-link"></span></a>Size comparison</h2><h3 id="token-size"><a aria-hidden="true" tabindex="-1" href="#token-size"><span class="icon icon-link"></span></a>Token size</h3><ul><li><p>An empty EdDSA-signed JWT with Ed25519 key:</p><pre><code>eyJhbGciOiJFZERTQSIsImtpZCI6IkM5bXBjRHdkUlRtdXRsUkp0UERzNGRQZzI1
+NnRUTUNrSmhlc0IwcDB0Q28ifQ.e30.BppT7qDN4D-NZLpCH255tdwcfQ2rl7PK6
+dTOUUM_NwBjBiu_kVPXZx2jNiXLoLPDS0zDUBYnEkPDMM40WE46DA
+</code></pre></li><li><p>An empty RS256-signed JWT:</p><pre><code>eyJhbGciOiJSUzI1NiIsImtpZCI6IkY3MExCNkM5SnVfUnh2b0ZFMW5lMjZYaGpT
+WEJTdXhmbXpMZ0pzRmRIQnMifQ.e30.XCMc93YPIywzmYzngQPeJ-ROBW8ZNoCJD
+ATV9NuIWE3fn7958PS9glpa-7g2_7bPMKloYneA9joE30f6wE7JbWJ7cs1IzZ7Su
+BY5wFG8rmEaM4Kj9t4MFlnJLwCCk73aj0fuOBiDtLFTAYak37LHpRyI3NOAYWlM7
+DKJ0hfE_QEYhtjtYNE7qqKKpgnOci9tBTz6k0bFHHyAdHUEFScrapaPYqRJIxfnR
+vWg2BMcLIdzfJ2W01QlAdjrs35qjlQHsySoxmI25u5zplTQE_pgjrxUVon9_y_4S
+ahPr2lyT9_Z7M77yHUTqrI1RHi7iqc3SKZOwUygliJB-z9QzyiQAFAQNxejGuKe8
+ts5ZGmFriW2BBFkOVbX1kwowuTYZf2pWrPx_GFBmSW6zYs23_e6nvJyU4MDYLX6L
+5fVZR1jepzYao6VsHKrLbaURbjhGdwhIS0R8SQ1zE5wEgB_T0W9W2iMz_8r2nLbv
+NM2qpi2vikR30thGprZc_JZlwbahbTD42PtKSmD77aW-TuU6dAHR6_UlP3kzdN0h
+ki06QAx8lSpbQ2eJUuPSXH0W1pcI9vW51SuK7gkPA-wS_J6GNzoAZDBzt52Vh7Qy
+Uw78Q_D3mHlGCni9N73ip7W1IXfcHLXtdJazNplUXgS2O5ZkXxR301Yz7ZSSywZg
+bKGVVkbGM0
+</code></pre></li></ul><h3 id="private-key"><a aria-hidden="true" tabindex="-1" href="#private-key"><span class="icon icon-link"></span></a>Private key</h3><ul><li><p>An Ed25519 private key looks like this:</p><pre><code>-----BEGIN PRIVATE KEY-----
+MC4CAQAwBQYDK2VwBCIEIMpf3WUVbXkycxsaLW0NAT8BhVr5nrq7KNlP7LFE9yY4
+-----END PRIVATE KEY-----
+</code></pre></li><li><p>A 4096-bit RSA private key looks like this:</p><pre><code>-----BEGIN RSA PRIVATE KEY-----
+MIIJKQIBAAKCAgEAwVBibvV65w44jkq3ZQMk/smMhUu5KQ7oh4HLk6aViFKwv0Hb
+5ZKAbwKZTKrME5S1PjAS/06dVb2KNhdrgX+K+0Wid3fd4lNkLqyu3hAsC9UdW1Wz
+g9bEUb0skjYlTHTKvF78M/osZAvrqxha1tpixoTSFCTiPAWI5/Vsn4KmhuKHiHpm
+pP8zh9tTILijrYVsZLcVyJ/a4eyH2wM4jupJ98FdGIRoKEgSQtpCfg1Pbm5OtFM6
+CsA8eUdf3EKKR6wqt3deOqid6etD0fKRRDqPIa1jjJwQiEa04x0eM9m4aymflSRq
+L81xc5uHNeKDZlLA0UNAh8xQGKUE5t5GC86VPB9x1XXbU9mU4Jfr479J9WThxbGy
+vSTAL+579SCZUWAM4ynw7jtCwPeJnMjyVFSaFHGVPvH45Bx62n+T/ZOzFsg6nUaP
+uGTqI50gpSnmBPM1WLkwomIqgB0ZCocoIJ259a+VIBUWDnyBiN6QGKmwQE1vParh
+8TfTJG1afcUDNDbReRY9JU/t9/QVRY9Ms5y9Y0+hOH5vUzB/F1mVf9W4l6fDVrCX
+VTOI7yy5ggRd5U5Hji7hsaYbJ+xUAEkSvsSkZBoknPVEAI8vTWCtGlYtenL2FYK3
+yed6w5kOb5bGYL7+jVUNJsYKSBH1tIp/cneFabs5Y7WMxkI+xbRpoXdEA+kCAwEA
+AQKCAgBGPPLG5iKVuTELYlJoPVA/0vNfqzfHl0cdlSdmqmxCb+kQVNmU/Dn2G7ef
+h59Grg18XvNIGERKVufU54WEM9dHnPF+/up7xVjtLIkM3ktisThNa0IicPI70MRV
+C59ZvEW9U7XHHOrsHvit3deDoS2qe6/o6c3ZiRlJTn79JfdjowMjr3WEFcWfYy09
+AllWPtg3b95WWt6on8xs4yq1oqLlhjhRJCrEGAuqhqsKKcPml+W411SLe3V9i1Vl
+LjgX+pI6vwBZx9I4n+awbbYiWDSRQ/KbsEjBew9WRconhL/hD+qPwf9jBv5lxujF
+x1t+3ip43jqgHLgtfCffynsg5xqJcAvVNInmN2OQujjhdbDiHmhQTsyLrdcCoOl1
+ZdcacPxmNGqiQC1L7ZskkxWwizdNkZfVJ9yeJRyY8NVQh3UPcjVCsNa4/UfoCkJD
+r4fE0TcbAxxUs+sD8QxsY/6i3OtuU0mD5/w46ebhpp20FHvecSgbUbAd1VNf6Xzb
+khKTC+2GpU1pQ/U8m32zFu1kJbKRDeCE5OTeWUjyp3nqSXCBYbt6b19YOdWZdnlO
+a43VNIRnUmvva9/MjWZWHEkghBXyvOYXH+8cbwAgunTFr5SpyZB7321AJW8zRVEc
+xOT56t1EzB4HkYn3wsejuNOv4RM1Ide+JcuqoHZHGNrKwT1GAQKCAQEA50BuhVwM
+rMwvm3OnekPQvcI3ZImzEwIIZ7+ZeG0HGonutJvVTaOuOJow7st6srqmpd/M+KxK
+5GhDMXpnUT9muMSMsLg3lnGdTB0nXhIv5NoAFZ/AmJt9aRfMpmwQiwVbzPmSHUJO
+mAhesUrV1pOcN0inyZ7n8o7tpV1+/7yk3ARcANu9LnumhNwMGtPaB5cr1WapMcZj
+YBqFrpBTn/tBjfQejJxXoU++8KyTPRfi9tvblfAkSCRRjPz/xdtIys/h4Z8SfRHh
+VKcOof8cZvDNwxIiy/IzmuzmF/z4JsfX11nWui0EnSAFBJGS8KKMxLtK0Z7iykCW
+N+1RCQfHUNRtkQKCAQEA1gCUY+KhKt9lXeX73Z5KrPISavPcPrIQvDsxkGL80jtG
+2CU/r+qLFN3EM1EVZcFna+zC3eML2QxgX8sMQMH3SDffPNoxVgIfK7RuFKNoExaJ
+xKSJXpGiofB/dClC0m78jI8tn8EpkoLCZKqBXwvAizjQWG5CiSfyhnxROEl44URg
+spnMvoL0UvIGnjkr8bTqdA/028y5Ti+L26aszCLLWO3sCWKXH8V5NfUOYHMGktWS
+9Z/IXrQiY8f6P7WU4eTG0uU5Ns5vlFxMZGYsrPF9W/dTxhysgMR43s/SHD9lmcXU
+ZDsL2Htihdm4ELshxCE44BcgvygPZjT9/TKYcL7k2QKCAQEAj8D582T5bCGyJoyK
+u/KUPKITFSiUbWiCGRx+JuJ/2/uKrDODMbRihUU0zf0n1Rs6pTqujJduJva5bnSM
+7XDgRlPIscKSq68M/VfSNSRRKY5rJwYcD8H4/++PhJUA46r9Gjq6nf2uJcxuMQA4
+Vh+EqMk9pJRn090N1hJ89DUstqjvGImA3Ph413aC/9paWwWadhpPa2XMON3D5HRL
+x9PFOJ1csEQwJVMRe0OMdBn5OUQLCPYzV7VcDKzpwvFCGvGHlV3xfFY1IQ6IhiO0
+YDmpb25Cu01gzxodHyRejp0EjBaI6Us65wIUnHZyRayGnXVgWVbP3LKxryqTiW2Q
+darYQQKCAQA3wzznbiVa2405U3U2wUlqGUXNUq/gMlwEAFSg7/o6+bEzHzmiKDaH
+gGXgjU9LDYNabv4z/TaYHw55x5nwwdoimlR0MdLLO5BNvh01CYNT/fp2H/2fg8lh
+8x3y8dF0rfDm22QjDZ08jRAEVR2S26gXXv2DHW/+90bN3lT3msWBxWSBBWyBc/Qg
+LOqmjfUybVbuWT4PjB/5DJCf8qVyJ9re2Fg59dO1Nqqn8awGW9Kprjc2A6Wdb8jK
+QVCnCzS5S/i2+X3YFyCiAw7w1mLryZ1FuoO8yrn0b72jKXnxXF+oGxGF8JDcnwIE
+KMA6s9hPl+yPD9e7l7+zfTl1oZpxPny5AoIBAQCoZ0tlZvmmuknUGNKn8qI0v7x/
+PCXxAZ4macl5h0ziOhwKQMyn7x2qcDtdRMGur1jUj8rUtWXDQrGqQ65VqqUaDZxz
+8jqnunEcis0qR+AZ5z4KObOv5gw3zG9/y2hg0dm/AKxurAhnd7c/PzuY1gUu6TuN
+2gs+/sJsiDO4NIJhOnJud3F5KU/kJF4BQAt7koHDXqlmO+h4KZK8NvK1JAWICO62
+WGiHGFPxzqOoK5PNdKTV8JamNFOZWbcNo7WaFn2JJ/c0QEzH1jLjlMJJW333EZXM
+RHjZu8AXQeTR3G01OtRSZAGItGp/g6jQJwBXpEaSFQRP4rcHgVH+X6zep0h+
+-----END RSA PRIVATE KEY-----
+</code></pre></li></ul><h2 id="keypair-generation"><a aria-hidden="true" tabindex="-1" href="#keypair-generation"><span class="icon icon-link"></span></a>Keypair generation</h2><ul><li><a href="20220225T065443Z1811">Using Node.js and <code>jose</code> module</a></li><li><a href="https://gist.github.com/ygotthilf/baa58da5c3dd1f69fae9">How to generate a RS256 keypair</a></li><li><a href="https://gist.github.com/kousu/f3174af57e1fc42a0a88586b5a5ffdc9#key-generation-1">How to generate a Ed25519 keypair</a></li></ul><h2 id="library-support"><a aria-hidden="true" tabindex="-1" href="#library-support"><span class="icon icon-link"></span></a>Library support</h2><p>As of October 2020, despite Ed25519 is supported in OpenSSH for over 5 years, the <code>jsonwebtoken</code> npm package still does not support EdDSA. But <a href="https://github.com/panva/jose"><code>jose</code> does</a>.</p><h2 id="sign"><a aria-hidden="true" tabindex="-1" href="#sign"><span class="icon icon-link"></span></a>Sign</h2><pre class="shiki github-dark" style="background-color:#252423;color:#e1e4e8;" tabindex="0"><code><span class="line"><span style="color:#E1E4E8;">jose.</span><span style="color:#79B8FF;">JWT</span><span style="color:#E1E4E8;">.</span><span style="color:#B392F0;">sign</span><span style="color:#E1E4E8;">(</span></span>
+<span class="line"><span style="color:#E1E4E8;">  {},</span></span>
+<span class="line"><span style="color:#9ECBFF;">  `-----BEGIN PRIVATE KEY-----</span></span>
+<span class="line"><span style="color:#9ECBFF;">MC4CAQAwBQYDK2VwBCIEIMpf3WUVbXkycxsaLW0NAT8BhVr5nrq7KNlP7LFE9yY4</span></span>
+<span class="line"><span style="color:#9ECBFF;">-----END PRIVATE KEY-----`</span><span style="color:#E1E4E8;">,</span></span>
+<span class="line"><span style="color:#E1E4E8;">  { algorithm: </span><span style="color:#9ECBFF;">&#39;EdDSA&#39;</span><span style="color:#E1E4E8;">, iat: </span><span style="color:#79B8FF;">false</span><span style="color:#E1E4E8;"> }</span></span>
+<span class="line"><span style="color:#E1E4E8;">)</span></span></code></pre><p><strong>Note:</strong> I left out the <code>iat</code> to show that the signature is deterministic.</p><h2 id="verify"><a aria-hidden="true" tabindex="-1" href="#verify"><span class="icon icon-link"></span></a>Verify</h2><pre class="shiki github-dark" style="background-color:#252423;color:#e1e4e8;" tabindex="0"><code><span class="line"><span style="color:#E1E4E8;">jose.</span><span style="color:#79B8FF;">JWT</span><span style="color:#E1E4E8;">.</span><span style="color:#B392F0;">verify</span><span style="color:#E1E4E8;">(</span></span>
+<span class="line"><span style="color:#9ECBFF;">  &#39;eyJhbGciOiJFZERTQSIsImtpZCI6IkM5bXBjRHdkUlRtdXRsUkp0UERzNGRQZzI1NnRUTUNrSmhlc0IwcDB0Q28ifQ.e30.BppT7qDN4D-NZLpCH255tdwcfQ2rl7PK6dTOUUM_NwBjBiu_kVPXZx2jNiXLoLPDS0zDUBYnEkPDMM40WE46DA&#39;</span><span style="color:#E1E4E8;">,</span></span>
+<span class="line"><span style="color:#9ECBFF;">  `-----BEGIN PUBLIC KEY-----</span></span>
+<span class="line"><span style="color:#9ECBFF;">MCowBQYDK2VwAyEAdFWUonh9OY2IGXUAJoYpuNiIKvEsh93XfvkkXFL6AkA=</span></span>
+<span class="line"><span style="color:#9ECBFF;">-----END PUBLIC KEY-----`</span><span style="color:#E1E4E8;">,</span></span>
+<span class="line"><span style="color:#E1E4E8;">  { algorithms: [</span><span style="color:#9ECBFF;">&#39;EdDSA&#39;</span><span style="color:#E1E4E8;">] }</span></span>
+<span class="line"><span style="color:#E1E4E8;">)</span></span></code></pre><!--]--></div>
+        </div>
+      </main>
+      <footer>
+        <div
+          class="notes-layout-container mx-auto py-4 px-6 text-#8b8685 text-right text-sm"
+          id="footerContents"
+        >
+          <notes-page-footer></notes-page-footer>
+        </div>
+      </footer>
+    </div>
+    <script>
+window.precompiledNoteBehavior = function(require, exports, module, Vue) {"use strict";Object.defineProperty(exports, "__esModule", {value: true});const __sfc__ = {};
+var _vue = require('vue');
+
+const _hoisted_1 = /*#__PURE__*/_vue.createStaticVNode.call(void 0, "<p><a href=\"20201118T224459Z5304\">Ed25519</a> keypairs <a href=\"https://medium.com/risan/upgrade-your-ssh-key-to-ed25519-c6e8d60d3c54\">are much more compact than RSA keypair.</a> This note is about how to use them in <a href=\"Nodejs\">Node.js</a>.</p><p>When used for <a href=\"JWT\">JWT</a>:</p><ul><li>The public key is much shorter.</li><li>The signature is much shorter.</li><li>The private key is MUCH shorter. See comparison below.</li></ul><h2 id=\"size-comparison\"><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#size-comparison\"><span class=\"icon icon-link\"></span></a>Size comparison</h2><h3 id=\"token-size\"><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#token-size\"><span class=\"icon icon-link\"></span></a>Token size</h3><ul><li><p>An empty EdDSA-signed JWT with Ed25519 key:</p><pre><code>eyJhbGciOiJFZERTQSIsImtpZCI6IkM5bXBjRHdkUlRtdXRsUkp0UERzNGRQZzI1\nNnRUTUNrSmhlc0IwcDB0Q28ifQ.e30.BppT7qDN4D-NZLpCH255tdwcfQ2rl7PK6\ndTOUUM_NwBjBiu_kVPXZx2jNiXLoLPDS0zDUBYnEkPDMM40WE46DA\n</code></pre></li><li><p>An empty RS256-signed JWT:</p><pre><code>eyJhbGciOiJSUzI1NiIsImtpZCI6IkY3MExCNkM5SnVfUnh2b0ZFMW5lMjZYaGpT\nWEJTdXhmbXpMZ0pzRmRIQnMifQ.e30.XCMc93YPIywzmYzngQPeJ-ROBW8ZNoCJD\nATV9NuIWE3fn7958PS9glpa-7g2_7bPMKloYneA9joE30f6wE7JbWJ7cs1IzZ7Su\nBY5wFG8rmEaM4Kj9t4MFlnJLwCCk73aj0fuOBiDtLFTAYak37LHpRyI3NOAYWlM7\nDKJ0hfE_QEYhtjtYNE7qqKKpgnOci9tBTz6k0bFHHyAdHUEFScrapaPYqRJIxfnR\nvWg2BMcLIdzfJ2W01QlAdjrs35qjlQHsySoxmI25u5zplTQE_pgjrxUVon9_y_4S\nahPr2lyT9_Z7M77yHUTqrI1RHi7iqc3SKZOwUygliJB-z9QzyiQAFAQNxejGuKe8\nts5ZGmFriW2BBFkOVbX1kwowuTYZf2pWrPx_GFBmSW6zYs23_e6nvJyU4MDYLX6L\n5fVZR1jepzYao6VsHKrLbaURbjhGdwhIS0R8SQ1zE5wEgB_T0W9W2iMz_8r2nLbv\nNM2qpi2vikR30thGprZc_JZlwbahbTD42PtKSmD77aW-TuU6dAHR6_UlP3kzdN0h\nki06QAx8lSpbQ2eJUuPSXH0W1pcI9vW51SuK7gkPA-wS_J6GNzoAZDBzt52Vh7Qy\nUw78Q_D3mHlGCni9N73ip7W1IXfcHLXtdJazNplUXgS2O5ZkXxR301Yz7ZSSywZg\nbKGVVkbGM0\n</code></pre></li></ul><h3 id=\"private-key\"><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#private-key\"><span class=\"icon icon-link\"></span></a>Private key</h3><ul><li><p>An Ed25519 private key looks like this:</p><pre><code>-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIMpf3WUVbXkycxsaLW0NAT8BhVr5nrq7KNlP7LFE9yY4\n-----END PRIVATE KEY-----\n</code></pre></li><li><p>A 4096-bit RSA private key looks like this:</p><pre><code>-----BEGIN RSA PRIVATE KEY-----\nMIIJKQIBAAKCAgEAwVBibvV65w44jkq3ZQMk/smMhUu5KQ7oh4HLk6aViFKwv0Hb\n5ZKAbwKZTKrME5S1PjAS/06dVb2KNhdrgX+K+0Wid3fd4lNkLqyu3hAsC9UdW1Wz\ng9bEUb0skjYlTHTKvF78M/osZAvrqxha1tpixoTSFCTiPAWI5/Vsn4KmhuKHiHpm\npP8zh9tTILijrYVsZLcVyJ/a4eyH2wM4jupJ98FdGIRoKEgSQtpCfg1Pbm5OtFM6\nCsA8eUdf3EKKR6wqt3deOqid6etD0fKRRDqPIa1jjJwQiEa04x0eM9m4aymflSRq\nL81xc5uHNeKDZlLA0UNAh8xQGKUE5t5GC86VPB9x1XXbU9mU4Jfr479J9WThxbGy\nvSTAL+579SCZUWAM4ynw7jtCwPeJnMjyVFSaFHGVPvH45Bx62n+T/ZOzFsg6nUaP\nuGTqI50gpSnmBPM1WLkwomIqgB0ZCocoIJ259a+VIBUWDnyBiN6QGKmwQE1vParh\n8TfTJG1afcUDNDbReRY9JU/t9/QVRY9Ms5y9Y0+hOH5vUzB/F1mVf9W4l6fDVrCX\nVTOI7yy5ggRd5U5Hji7hsaYbJ+xUAEkSvsSkZBoknPVEAI8vTWCtGlYtenL2FYK3\nyed6w5kOb5bGYL7+jVUNJsYKSBH1tIp/cneFabs5Y7WMxkI+xbRpoXdEA+kCAwEA\nAQKCAgBGPPLG5iKVuTELYlJoPVA/0vNfqzfHl0cdlSdmqmxCb+kQVNmU/Dn2G7ef\nh59Grg18XvNIGERKVufU54WEM9dHnPF+/up7xVjtLIkM3ktisThNa0IicPI70MRV\nC59ZvEW9U7XHHOrsHvit3deDoS2qe6/o6c3ZiRlJTn79JfdjowMjr3WEFcWfYy09\nAllWPtg3b95WWt6on8xs4yq1oqLlhjhRJCrEGAuqhqsKKcPml+W411SLe3V9i1Vl\nLjgX+pI6vwBZx9I4n+awbbYiWDSRQ/KbsEjBew9WRconhL/hD+qPwf9jBv5lxujF\nx1t+3ip43jqgHLgtfCffynsg5xqJcAvVNInmN2OQujjhdbDiHmhQTsyLrdcCoOl1\nZdcacPxmNGqiQC1L7ZskkxWwizdNkZfVJ9yeJRyY8NVQh3UPcjVCsNa4/UfoCkJD\nr4fE0TcbAxxUs+sD8QxsY/6i3OtuU0mD5/w46ebhpp20FHvecSgbUbAd1VNf6Xzb\nkhKTC+2GpU1pQ/U8m32zFu1kJbKRDeCE5OTeWUjyp3nqSXCBYbt6b19YOdWZdnlO\na43VNIRnUmvva9/MjWZWHEkghBXyvOYXH+8cbwAgunTFr5SpyZB7321AJW8zRVEc\nxOT56t1EzB4HkYn3wsejuNOv4RM1Ide+JcuqoHZHGNrKwT1GAQKCAQEA50BuhVwM\nrMwvm3OnekPQvcI3ZImzEwIIZ7+ZeG0HGonutJvVTaOuOJow7st6srqmpd/M+KxK\n5GhDMXpnUT9muMSMsLg3lnGdTB0nXhIv5NoAFZ/AmJt9aRfMpmwQiwVbzPmSHUJO\nmAhesUrV1pOcN0inyZ7n8o7tpV1+/7yk3ARcANu9LnumhNwMGtPaB5cr1WapMcZj\nYBqFrpBTn/tBjfQejJxXoU++8KyTPRfi9tvblfAkSCRRjPz/xdtIys/h4Z8SfRHh\nVKcOof8cZvDNwxIiy/IzmuzmF/z4JsfX11nWui0EnSAFBJGS8KKMxLtK0Z7iykCW\nN+1RCQfHUNRtkQKCAQEA1gCUY+KhKt9lXeX73Z5KrPISavPcPrIQvDsxkGL80jtG\n2CU/r+qLFN3EM1EVZcFna+zC3eML2QxgX8sMQMH3SDffPNoxVgIfK7RuFKNoExaJ\nxKSJXpGiofB/dClC0m78jI8tn8EpkoLCZKqBXwvAizjQWG5CiSfyhnxROEl44URg\nspnMvoL0UvIGnjkr8bTqdA/028y5Ti+L26aszCLLWO3sCWKXH8V5NfUOYHMGktWS\n9Z/IXrQiY8f6P7WU4eTG0uU5Ns5vlFxMZGYsrPF9W/dTxhysgMR43s/SHD9lmcXU\nZDsL2Htihdm4ELshxCE44BcgvygPZjT9/TKYcL7k2QKCAQEAj8D582T5bCGyJoyK\nu/KUPKITFSiUbWiCGRx+JuJ/2/uKrDODMbRihUU0zf0n1Rs6pTqujJduJva5bnSM\n7XDgRlPIscKSq68M/VfSNSRRKY5rJwYcD8H4/++PhJUA46r9Gjq6nf2uJcxuMQA4\nVh+EqMk9pJRn090N1hJ89DUstqjvGImA3Ph413aC/9paWwWadhpPa2XMON3D5HRL\nx9PFOJ1csEQwJVMRe0OMdBn5OUQLCPYzV7VcDKzpwvFCGvGHlV3xfFY1IQ6IhiO0\nYDmpb25Cu01gzxodHyRejp0EjBaI6Us65wIUnHZyRayGnXVgWVbP3LKxryqTiW2Q\ndarYQQKCAQA3wzznbiVa2405U3U2wUlqGUXNUq/gMlwEAFSg7/o6+bEzHzmiKDaH\ngGXgjU9LDYNabv4z/TaYHw55x5nwwdoimlR0MdLLO5BNvh01CYNT/fp2H/2fg8lh\n8x3y8dF0rfDm22QjDZ08jRAEVR2S26gXXv2DHW/+90bN3lT3msWBxWSBBWyBc/Qg\nLOqmjfUybVbuWT4PjB/5DJCf8qVyJ9re2Fg59dO1Nqqn8awGW9Kprjc2A6Wdb8jK\nQVCnCzS5S/i2+X3YFyCiAw7w1mLryZ1FuoO8yrn0b72jKXnxXF+oGxGF8JDcnwIE\nKMA6s9hPl+yPD9e7l7+zfTl1oZpxPny5AoIBAQCoZ0tlZvmmuknUGNKn8qI0v7x/\nPCXxAZ4macl5h0ziOhwKQMyn7x2qcDtdRMGur1jUj8rUtWXDQrGqQ65VqqUaDZxz\n8jqnunEcis0qR+AZ5z4KObOv5gw3zG9/y2hg0dm/AKxurAhnd7c/PzuY1gUu6TuN\n2gs+/sJsiDO4NIJhOnJud3F5KU/kJF4BQAt7koHDXqlmO+h4KZK8NvK1JAWICO62\nWGiHGFPxzqOoK5PNdKTV8JamNFOZWbcNo7WaFn2JJ/c0QEzH1jLjlMJJW333EZXM\nRHjZu8AXQeTR3G01OtRSZAGItGp/g6jQJwBXpEaSFQRP4rcHgVH+X6zep0h+\n-----END RSA PRIVATE KEY-----\n</code></pre></li></ul><h2 id=\"keypair-generation\"><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#keypair-generation\"><span class=\"icon icon-link\"></span></a>Keypair generation</h2><ul><li><a href=\"20220225T065443Z1811\">Using Node.js and <code>jose</code> module</a></li><li><a href=\"https://gist.github.com/ygotthilf/baa58da5c3dd1f69fae9\">How to generate a RS256 keypair</a></li><li><a href=\"https://gist.github.com/kousu/f3174af57e1fc42a0a88586b5a5ffdc9#key-generation-1\">How to generate a Ed25519 keypair</a></li></ul><h2 id=\"library-support\"><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#library-support\"><span class=\"icon icon-link\"></span></a>Library support</h2><p>As of October 2020, despite Ed25519 is supported in OpenSSH for over 5 years, the <code>jsonwebtoken</code> npm package still does not support EdDSA. But <a href=\"https://github.com/panva/jose\"><code>jose</code> does</a>.</p><h2 id=\"sign\"><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#sign\"><span class=\"icon icon-link\"></span></a>Sign</h2><pre class=\"shiki github-dark\" style=\"background-color:#252423;color:#e1e4e8;\" tabindex=\"0\"><code><span class=\"line\"><span style=\"color:#E1E4E8;\">jose.</span><span style=\"color:#79B8FF;\">JWT</span><span style=\"color:#E1E4E8;\">.</span><span style=\"color:#B392F0;\">sign</span><span style=\"color:#E1E4E8;\">(</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">  {},</span></span>\n<span class=\"line\"><span style=\"color:#9ECBFF;\">  `-----BEGIN PRIVATE KEY-----</span></span>\n<span class=\"line\"><span style=\"color:#9ECBFF;\">MC4CAQAwBQYDK2VwBCIEIMpf3WUVbXkycxsaLW0NAT8BhVr5nrq7KNlP7LFE9yY4</span></span>\n<span class=\"line\"><span style=\"color:#9ECBFF;\">-----END PRIVATE KEY-----`</span><span style=\"color:#E1E4E8;\">,</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">  { algorithm: </span><span style=\"color:#9ECBFF;\">&#39;EdDSA&#39;</span><span style=\"color:#E1E4E8;\">, iat: </span><span style=\"color:#79B8FF;\">false</span><span style=\"color:#E1E4E8;\"> }</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">)</span></span></code></pre><p><strong>Note:</strong> I left out the <code>iat</code> to show that the signature is deterministic.</p><h2 id=\"verify\"><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#verify\"><span class=\"icon icon-link\"></span></a>Verify</h2><pre class=\"shiki github-dark\" style=\"background-color:#252423;color:#e1e4e8;\" tabindex=\"0\"><code><span class=\"line\"><span style=\"color:#E1E4E8;\">jose.</span><span style=\"color:#79B8FF;\">JWT</span><span style=\"color:#E1E4E8;\">.</span><span style=\"color:#B392F0;\">verify</span><span style=\"color:#E1E4E8;\">(</span></span>\n<span class=\"line\"><span style=\"color:#9ECBFF;\">  &#39;eyJhbGciOiJFZERTQSIsImtpZCI6IkM5bXBjRHdkUlRtdXRsUkp0UERzNGRQZzI1NnRUTUNrSmhlc0IwcDB0Q28ifQ.e30.BppT7qDN4D-NZLpCH255tdwcfQ2rl7PK6dTOUUM_NwBjBiu_kVPXZx2jNiXLoLPDS0zDUBYnEkPDMM40WE46DA&#39;</span><span style=\"color:#E1E4E8;\">,</span></span>\n<span class=\"line\"><span style=\"color:#9ECBFF;\">  `-----BEGIN PUBLIC KEY-----</span></span>\n<span class=\"line\"><span style=\"color:#9ECBFF;\">MCowBQYDK2VwAyEAdFWUonh9OY2IGXUAJoYpuNiIKvEsh93XfvkkXFL6AkA=</span></span>\n<span class=\"line\"><span style=\"color:#9ECBFF;\">-----END PUBLIC KEY-----`</span><span style=\"color:#E1E4E8;\">,</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">  { algorithms: [</span><span style=\"color:#9ECBFF;\">&#39;EdDSA&#39;</span><span style=\"color:#E1E4E8;\">] }</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">)</span></span></code></pre>", 17)
+function render(_ctx, _cache) {
+  return _hoisted_1
+}
+__sfc__.render = render
+__sfc__.__file = "Note.vue"
+exports. default = __sfc__};
+window.precompiledFrontMatter = {"title":"EdDSA JWT Ed25519 Node.js","public":true};
+</script>
+  </body>
+</html>

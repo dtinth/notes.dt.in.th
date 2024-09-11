@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html data-precompiled=true lang="en" data-dtinth="true">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JamulusProtocolStudyNotes | notes.dt.in.th</title><meta property="og:title" content="JamulusProtocolStudyNotes" data-source="note">
+<meta property="og:image" content="https://screenshot.source.in.th/image/_/notes/JamulusProtocolStudyNotes" data-source="note">
+<meta property="og:image:width" content="1800" data-source="note">
+<meta property="og:image:height" content="1680" data-source="note">
+<link rel="canonical" href="https://notes.dt.in.th/JamulusProtocolStudyNotes" data-source="note"><style id="note-styles">/* layer: default */
+.block[data-v-8c9498c0]{display:block;}</style>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/iconify-icon@2.1.0/dist/iconify-icon.min.js"
+      integrity="sha256-dY2Ug42wyv3rl+sLVKEg3jbPs8f+hi7tmJ836AxVDwI="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/blurhash-image@1.0.1/blurhash-image.min.js"
+      integrity="sha256-qrUUgTGk7xA7iVCwraHNQjwy2JryA0K4L3DL4qidagQ="
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" crossorigin src="/runtime/index.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/supabase-CjkNZD6A.js">
+    <link rel="stylesheet" crossorigin href="/runtime/index.css">
+  </head>
+  <body class="bg-#252423 text-#e9e8e7 antialiased">
+    <header class="h-[58px] bg-#090807 border-b border-#454443 z-20 flex">
+      <div class="flex items-center pl-[18px] flex-none">
+        <a
+          class="flex items-center text-#8b8685 hover:text-#ffffbb text-lg"
+          href="/"
+          >notes.dt.in.th</a
+        >
+      </div>
+      <div
+        class="flex-1 flex items-center text-#8b8685 [&_a:hover]:text-#ffffbb overflow-hidden"
+        id="headerMiddle"
+      >
+        <div class="px-2 flex-none">›</div><div class="truncate"><a title="Jamulus (topic)" href="Jamulus">Jamulus</a></div>
+      </div>
+      <div
+        class="flex items-center px-[18px] flex-none gap-4"
+        id="headerToolbar"
+      ></div>
+    </header>
+    <div class="h-entry">
+      <main class="bg-#353433" id="main">
+        <div class="notes-layout-container mx-auto p-6 py-12" id="mainContents">
+          <div class="prose e-content" id="noteContents"><!--[--><h1 id="jamulus-protocol-study-notes" data-v-8c9498c0><a aria-hidden="true" tabindex="-1" href="#jamulus-protocol-study-notes" data-v-8c9498c0><span class="icon icon-link" data-v-8c9498c0></span></a>Jamulus protocol study notes</h1><p data-v-8c9498c0>Examine the first 2 bytes of each packet to determine the packet type.</p><ul data-v-8c9498c0><li data-v-8c9498c0>Begins with <code data-v-8c9498c0>00 00</code> — control packet</li><li data-v-8c9498c0>Otherwise, it is an Opus packet.</li></ul><h2 id="flow" data-v-8c9498c0><a aria-hidden="true" tabindex="-1" href="#flow" data-v-8c9498c0><span class="icon icon-link" data-v-8c9498c0></span></a>Flow</h2><ol data-v-8c9498c0><li data-v-8c9498c0>Client streams Opus frames to server.</li><li data-v-8c9498c0>Server sends 0x1f (31: MUTE_STATE_CHANGED). <ul data-v-8c9498c0><li data-v-8c9498c0>Client acknowledges.</li></ul></li><li data-v-8c9498c0>Server sends 0x20 (32: CLIENT_ID). <ul data-v-8c9498c0><li data-v-8c9498c0>Client acknowledges.</li></ul></li><li data-v-8c9498c0>Server sends 0x18 (24: CONN_CLIENTS_LIST). <ul data-v-8c9498c0><li data-v-8c9498c0>Client acknowledges.</li></ul></li><li data-v-8c9498c0>Server sends 0x22 (34: REQ_SPLIT_MESS_SUPPORT). <ul data-v-8c9498c0><li data-v-8c9498c0>Client sends 0x23 (35: SPLIT_MESS_SUPPORTED). <ul data-v-8c9498c0><li data-v-8c9498c0>Server acknowledges.</li></ul></li><li data-v-8c9498c0>Client acknowledges.</li></ul></li><li data-v-8c9498c0>Server sends 0x03f7 (1015: CLM_CHANNEL_LEVEL_LIST).</li><li data-v-8c9498c0>Server sends 0x15 (21: REQ_NETW_TRANSPORT_PROPS). <ul data-v-8c9498c0><li data-v-8c9498c0>Client sends 0x14 (20: NETW_TRANSPORT_PROPS). <ul data-v-8c9498c0><li data-v-8c9498c0><code data-v-8c9498c0>a5 00 00 00</code> — packet size 165</li><li data-v-8c9498c0><code data-v-8c9498c0>02 00</code> — block size factor 2</li><li data-v-8c9498c0><code data-v-8c9498c0>02</code> — stereo</li><li data-v-8c9498c0><code data-v-8c9498c0>80 bb 00 00</code> — 48000 Hz</li><li data-v-8c9498c0><code data-v-8c9498c0>02 00</code> — opus</li><li data-v-8c9498c0><code data-v-8c9498c0>00 00</code> — no flags</li><li data-v-8c9498c0><code data-v-8c9498c0>00 00 00 00</code> — no extra parameters</li></ul></li><li data-v-8c9498c0>Client acknowledges.</li></ul></li><li data-v-8c9498c0>Server sends 0x0b (11: REQ_JITT_BUF_SIZE). <ul data-v-8c9498c0><li data-v-8c9498c0>Client sends 0x0a (10: JITT_BUF_SIZE). <ul data-v-8c9498c0><li data-v-8c9498c0><code data-v-8c9498c0>04 00</code> — jitter buffer size of 4</li></ul></li></ul></li><li data-v-8c9498c0>Server sends 0x17 (23: REQ_CHANNEL_INFOS). <ul data-v-8c9498c0><li data-v-8c9498c0>Client sends 0x16 (22: CHANNEL_INFOS). <ul data-v-8c9498c0><li data-v-8c9498c0><code data-v-8c9498c0>d3 00</code> — thailand</li><li data-v-8c9498c0><code data-v-8c9498c0>07 00 00 00</code> — instrument id 7</li><li data-v-8c9498c0><code data-v-8c9498c0>01</code> — skill level 1</li><li data-v-8c9498c0><code data-v-8c9498c0>0f 00</code> — name length 15</li><li data-v-8c9498c0>(name)</li><li data-v-8c9498c0><code data-v-8c9498c0>00 00</code> — city length 0</li><li data-v-8c9498c0>(city)</li></ul></li><li data-v-8c9498c0>Client acknowledges.</li></ul></li><li data-v-8c9498c0>Server sends 0x1d (29: VERSION_AND_OS). <ul data-v-8c9498c0><li data-v-8c9498c0><code data-v-8c9498c0>00</code> OS</li><li data-v-8c9498c0><code data-v-8c9498c0>05 00</code> version length</li><li data-v-8c9498c0>(version)</li><li data-v-8c9498c0>Client sends 0x14 (20: NETW_TRANSPORT_PROPS). <ul data-v-8c9498c0><li data-v-8c9498c0>With flags <code data-v-8c9498c0>01 00</code> to indicate support for sequence number.</li></ul></li><li data-v-8c9498c0>Client acknowledges.</li></ul></li><li data-v-8c9498c0>At this point server is now streaming audio.</li></ol><h2 id="opus-packet" data-v-8c9498c0><a aria-hidden="true" tabindex="-1" href="#opus-packet" data-v-8c9498c0><span class="icon icon-link" data-v-8c9498c0></span></a>Opus packet</h2><p data-v-8c9498c0><a href="https://datatracker.ietf.org/doc/html/rfc6716#section-3.2" data-v-8c9498c0>https://datatracker.ietf.org/doc/html/rfc6716#section-3.2</a></p><p data-v-8c9498c0>First byte:</p><ul data-v-8c9498c0><li data-v-8c9498c0><code data-v-8c9498c0>&amp; 0x04</code> If set, it is stereo, otherwise it is mono.</li></ul><!--]--></div>
+        </div>
+      </main>
+      <footer>
+        <div
+          class="notes-layout-container mx-auto py-4 px-6 text-#8b8685 text-right text-sm"
+          id="footerContents"
+        >
+          <notes-page-footer></notes-page-footer>
+        </div>
+      </footer>
+    </div>
+    <script>
+window.precompiledNoteBehavior = function(require, exports, module, Vue) {"use strict";Object.defineProperty(exports, "__esModule", {value: true});const __sfc__ = {};
+var _vue = require('vue');
+
+const _withScopeId = n => (_vue.pushScopeId.call(void 0, "data-v-8c9498c0"),n=n(),_vue.popScopeId.call(void 0, ),n)
+const _hoisted_1 = /*#__PURE__*/_vue.createStaticVNode.call(void 0, "<h1 id=\"jamulus-protocol-study-notes\" data-v-8c9498c0><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#jamulus-protocol-study-notes\" data-v-8c9498c0><span class=\"icon icon-link\" data-v-8c9498c0></span></a>Jamulus protocol study notes</h1><p data-v-8c9498c0>Examine the first 2 bytes of each packet to determine the packet type.</p><ul data-v-8c9498c0><li data-v-8c9498c0>Begins with <code data-v-8c9498c0>00 00</code> — control packet</li><li data-v-8c9498c0>Otherwise, it is an Opus packet.</li></ul><h2 id=\"flow\" data-v-8c9498c0><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#flow\" data-v-8c9498c0><span class=\"icon icon-link\" data-v-8c9498c0></span></a>Flow</h2><ol data-v-8c9498c0><li data-v-8c9498c0>Client streams Opus frames to server.</li><li data-v-8c9498c0>Server sends 0x1f (31: MUTE_STATE_CHANGED). <ul data-v-8c9498c0><li data-v-8c9498c0>Client acknowledges.</li></ul></li><li data-v-8c9498c0>Server sends 0x20 (32: CLIENT_ID). <ul data-v-8c9498c0><li data-v-8c9498c0>Client acknowledges.</li></ul></li><li data-v-8c9498c0>Server sends 0x18 (24: CONN_CLIENTS_LIST). <ul data-v-8c9498c0><li data-v-8c9498c0>Client acknowledges.</li></ul></li><li data-v-8c9498c0>Server sends 0x22 (34: REQ_SPLIT_MESS_SUPPORT). <ul data-v-8c9498c0><li data-v-8c9498c0>Client sends 0x23 (35: SPLIT_MESS_SUPPORTED). <ul data-v-8c9498c0><li data-v-8c9498c0>Server acknowledges.</li></ul></li><li data-v-8c9498c0>Client acknowledges.</li></ul></li><li data-v-8c9498c0>Server sends 0x03f7 (1015: CLM_CHANNEL_LEVEL_LIST).</li><li data-v-8c9498c0>Server sends 0x15 (21: REQ_NETW_TRANSPORT_PROPS). <ul data-v-8c9498c0><li data-v-8c9498c0>Client sends 0x14 (20: NETW_TRANSPORT_PROPS). <ul data-v-8c9498c0><li data-v-8c9498c0><code data-v-8c9498c0>a5 00 00 00</code> — packet size 165</li><li data-v-8c9498c0><code data-v-8c9498c0>02 00</code> — block size factor 2</li><li data-v-8c9498c0><code data-v-8c9498c0>02</code> — stereo</li><li data-v-8c9498c0><code data-v-8c9498c0>80 bb 00 00</code> — 48000 Hz</li><li data-v-8c9498c0><code data-v-8c9498c0>02 00</code> — opus</li><li data-v-8c9498c0><code data-v-8c9498c0>00 00</code> — no flags</li><li data-v-8c9498c0><code data-v-8c9498c0>00 00 00 00</code> — no extra parameters</li></ul></li><li data-v-8c9498c0>Client acknowledges.</li></ul></li><li data-v-8c9498c0>Server sends 0x0b (11: REQ_JITT_BUF_SIZE). <ul data-v-8c9498c0><li data-v-8c9498c0>Client sends 0x0a (10: JITT_BUF_SIZE). <ul data-v-8c9498c0><li data-v-8c9498c0><code data-v-8c9498c0>04 00</code> — jitter buffer size of 4</li></ul></li></ul></li><li data-v-8c9498c0>Server sends 0x17 (23: REQ_CHANNEL_INFOS). <ul data-v-8c9498c0><li data-v-8c9498c0>Client sends 0x16 (22: CHANNEL_INFOS). <ul data-v-8c9498c0><li data-v-8c9498c0><code data-v-8c9498c0>d3 00</code> — thailand</li><li data-v-8c9498c0><code data-v-8c9498c0>07 00 00 00</code> — instrument id 7</li><li data-v-8c9498c0><code data-v-8c9498c0>01</code> — skill level 1</li><li data-v-8c9498c0><code data-v-8c9498c0>0f 00</code> — name length 15</li><li data-v-8c9498c0>(name)</li><li data-v-8c9498c0><code data-v-8c9498c0>00 00</code> — city length 0</li><li data-v-8c9498c0>(city)</li></ul></li><li data-v-8c9498c0>Client acknowledges.</li></ul></li><li data-v-8c9498c0>Server sends 0x1d (29: VERSION_AND_OS). <ul data-v-8c9498c0><li data-v-8c9498c0><code data-v-8c9498c0>00</code> OS</li><li data-v-8c9498c0><code data-v-8c9498c0>05 00</code> version length</li><li data-v-8c9498c0>(version)</li><li data-v-8c9498c0>Client sends 0x14 (20: NETW_TRANSPORT_PROPS). <ul data-v-8c9498c0><li data-v-8c9498c0>With flags <code data-v-8c9498c0>01 00</code> to indicate support for sequence number.</li></ul></li><li data-v-8c9498c0>Client acknowledges.</li></ul></li><li data-v-8c9498c0>At this point server is now streaming audio.</li></ol><h2 id=\"opus-packet\" data-v-8c9498c0><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#opus-packet\" data-v-8c9498c0><span class=\"icon icon-link\" data-v-8c9498c0></span></a>Opus packet</h2><p data-v-8c9498c0><a href=\"https://datatracker.ietf.org/doc/html/rfc6716#section-3.2\" data-v-8c9498c0>https://datatracker.ietf.org/doc/html/rfc6716#section-3.2</a></p><p data-v-8c9498c0>First byte:</p><ul data-v-8c9498c0><li data-v-8c9498c0><code data-v-8c9498c0>&amp; 0x04</code> If set, it is stereo, otherwise it is mono.</li></ul>", 9)
+function render(_ctx, _cache) {
+  return _hoisted_1
+}
+__sfc__.render = render
+__sfc__.__scopeId = "data-v-8c9498c0"
+__sfc__.__file = "Note.vue"
+exports. default = __sfc__};
+window.precompiledFrontMatter = {"public":true,"aliases":["20210919T162420Z9778"]};
+</script>
+  </body>
+</html>

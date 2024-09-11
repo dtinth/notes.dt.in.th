@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html data-precompiled=true lang="en" data-dtinth="true">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Drawing low resolution monochrome text with freetype-wasm | notes.dt.in.th</title><meta property="og:title" content="Drawing low resolution monochrome text with freetype-wasm" data-source="note">
+<meta property="og:image" content="https://screenshot.source.in.th/image/_/notes/FreeTypeJSBlackWhiteText" data-source="note">
+<meta property="og:image:width" content="1800" data-source="note">
+<meta property="og:image:height" content="1680" data-source="note">
+<link rel="canonical" href="https://notes.dt.in.th/FreeTypeJSBlackWhiteText" data-source="note"><style id="note-styles">.n-exs img[data-v-8c9498c0] {
+    display: block;
+    margin: 0 auto;
+    image-rendering: pixelated;
+}
+.n-exs figure[data-v-8c9498c0] {
+    margin: 0;
+}
+
+/* layer: default */
+.my[data-v-8c9498c0]{margin-top:1rem;margin-bottom:1rem;}
+.block[data-v-8c9498c0]{display:block;}
+.border[data-v-8c9498c0]{border-width:1px;}</style>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/iconify-icon@2.1.0/dist/iconify-icon.min.js"
+      integrity="sha256-dY2Ug42wyv3rl+sLVKEg3jbPs8f+hi7tmJ836AxVDwI="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/blurhash-image@1.0.1/blurhash-image.min.js"
+      integrity="sha256-qrUUgTGk7xA7iVCwraHNQjwy2JryA0K4L3DL4qidagQ="
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" crossorigin src="/runtime/index.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/supabase-CjkNZD6A.js">
+    <link rel="stylesheet" crossorigin href="/runtime/index.css">
+  </head>
+  <body class="bg-#252423 text-#e9e8e7 antialiased">
+    <header class="h-[58px] bg-#090807 border-b border-#454443 z-20 flex">
+      <div class="flex items-center pl-[18px] flex-none">
+        <a
+          class="flex items-center text-#8b8685 hover:text-#ffffbb text-lg"
+          href="/"
+          >notes.dt.in.th</a
+        >
+      </div>
+      <div
+        class="flex-1 flex items-center text-#8b8685 [&_a:hover]:text-#ffffbb overflow-hidden"
+        id="headerMiddle"
+      >
+        <div class="px-2 flex-none">›</div><div class="truncate"><a title="Web Platform (topic)" href="WebPlatform">Web Platform</a></div>
+      </div>
+      <div
+        class="flex items-center px-[18px] flex-none gap-4"
+        id="headerToolbar"
+      ></div>
+    </header>
+    <div class="h-entry">
+      <main class="bg-#353433" id="main">
+        <div class="notes-layout-container mx-auto p-6 py-12" id="mainContents">
+          <div class="prose e-content" id="noteContents"><!--[--><h1 id="drawing-low-resolution-monochrome-text-with-freetype-wasm" data-v-8c9498c0><a aria-hidden="true" tabindex="-1" href="#drawing-low-resolution-monochrome-text-with-freetype-wasm" data-v-8c9498c0><span class="icon icon-link" data-v-8c9498c0></span></a>Drawing low resolution monochrome text with freetype-wasm</h1><p data-v-8c9498c0>I recently got myself a <a href="https://www.brother-usa.com/ptouch/cube-plus/home" data-v-8c9498c0>label printer</a>, which can only print pixels in monochrome (black or white, no grayscale). Separately, earlier this year I bought this gorgeous monospace font <a href="https://berkeleygraphics.com/typefaces/berkeley-mono/" data-v-8c9498c0>Berkeley Mono</a>. It looks great on my terminal… Now I want to print labels using this same font… but the result looks like the first image below:</p><!----><p data-v-8c9498c0>To get a better printout (second image), I need to find an alternative way to render text — one that can render small text as monochrome pixels well. That’s when I found <a href="https://freetype.org/autohinting/hinter.html" data-v-8c9498c0><strong data-v-8c9498c0>The FreeType Auto-Hinter</strong></a>.</p><p data-v-8c9498c0>Now I need a way to use it to generate a monochrome bitmap image. As I’m a <a href="WebPlatform" data-v-8c9498c0>web</a> developer, I want something that I can use in a web browser. That’s when I found <a href="https://github.com/Ciantic/freetype-wasm" data-v-8c9498c0><strong data-v-8c9498c0>freetype-wasm</strong></a>.</p><p data-v-8c9498c0>Lastly, the <a href="https://developer.chrome.com/docs/capabilities/web-apis/local-fonts" data-v-8c9498c0><strong data-v-8c9498c0>Local Font Access API</strong></a> lets web applications directly access locally-installed fonts like a desktop font rather than a web font.</p><h2 id="try-it-out" data-v-8c9498c0><a aria-hidden="true" tabindex="-1" href="#try-it-out" data-v-8c9498c0><span class="icon icon-link" data-v-8c9498c0></span></a>Try it out!</h2><p data-v-8c9498c0>First, we need access to your fonts:</p><p data-v-8c9498c0><button data-v-8c9498c0>Query fonts</button></p><p data-v-8c9498c0>Pick a font and size below:</p><p data-v-8c9498c0><select disabled data-v-8c9498c0><option disabled data-v-8c9498c0>Please click the above button first.</option><!--[--><!--]--></select><input disabled type="number" min="1" value="12" style="width:64px;" data-v-8c9498c0></p><p data-v-8c9498c0>Enter some text to render it:</p><p data-v-8c9498c0><input disabled type="text" value="A quick brown fox jumps over the lazy dog" placeholder="Enter text to render" style="box-sizing:border-box;width:100%;" data-v-8c9498c0></p><p style="min-height:96px;" data-v-8c9498c0><canvas width="320" height="48" style="border:1px solid black;background:white;" data-v-8c9498c0></canvas></p><h2 id="the-freetype-renderer" data-v-8c9498c0><a aria-hidden="true" tabindex="-1" href="#the-freetype-renderer" data-v-8c9498c0><span class="icon icon-link" data-v-8c9498c0></span></a>The FreeType renderer</h2><p data-v-8c9498c0>This function initializes the FreeType library and provides a way to load fonts and render text.</p><pre class="shiki github-dark" style="background-color:#252423;color:#e1e4e8;" tabindex="0" data-v-8c9498c0><code data-v-8c9498c0><span class="line" data-v-8c9498c0><span style="color:#F97583;" data-v-8c9498c0>import</span><span style="color:#E1E4E8;" data-v-8c9498c0> FreeTypeInit </span><span style="color:#F97583;" data-v-8c9498c0>from</span><span style="color:#9ECBFF;" data-v-8c9498c0> &#39;https://cdn.jsdelivr.net/npm/freetype-wasm@0/dist/freetype.js&#39;</span></span>
+<span class="line" data-v-8c9498c0></span>
+<span class="line" data-v-8c9498c0><span style="color:#6A737D;" data-v-8c9498c0>// Based on https://github.com/Ciantic/freetype-wasm/blob/master/example/example.js</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#F97583;" data-v-8c9498c0>async</span><span style="color:#F97583;" data-v-8c9498c0> function</span><span style="color:#B392F0;" data-v-8c9498c0> createFreeTypeRenderer</span><span style="color:#E1E4E8;" data-v-8c9498c0>() {</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#F97583;" data-v-8c9498c0>  const</span><span style="color:#79B8FF;" data-v-8c9498c0> FreeType</span><span style="color:#F97583;" data-v-8c9498c0> =</span><span style="color:#F97583;" data-v-8c9498c0> await</span><span style="color:#B392F0;" data-v-8c9498c0> FreeTypeInit</span><span style="color:#E1E4E8;" data-v-8c9498c0>()</span></span>
+<span class="line" data-v-8c9498c0></span>
+<span class="line" data-v-8c9498c0><span style="color:#6A737D;" data-v-8c9498c0>  /**</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#6A737D;" data-v-8c9498c0>   * Loads a font from a URL or ArrayBuffer.</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#6A737D;" data-v-8c9498c0>   */</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#F97583;" data-v-8c9498c0>  const</span><span style="color:#B392F0;" data-v-8c9498c0> loadFont</span><span style="color:#F97583;" data-v-8c9498c0> =</span><span style="color:#F97583;" data-v-8c9498c0> async</span><span style="color:#E1E4E8;" data-v-8c9498c0> (</span><span style="color:#FFAB70;" data-v-8c9498c0>url</span><span style="color:#E1E4E8;" data-v-8c9498c0>, { </span><span style="color:#FFAB70;" data-v-8c9498c0>forceAutoHint</span><span style="color:#F97583;" data-v-8c9498c0> =</span><span style="color:#79B8FF;" data-v-8c9498c0> true</span><span style="color:#E1E4E8;" data-v-8c9498c0> } </span><span style="color:#F97583;" data-v-8c9498c0>=</span><span style="color:#E1E4E8;" data-v-8c9498c0> {}) </span><span style="color:#F97583;" data-v-8c9498c0>=&gt;</span><span style="color:#E1E4E8;" data-v-8c9498c0> {</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#F97583;" data-v-8c9498c0>    let</span><span style="color:#E1E4E8;" data-v-8c9498c0> font</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#F97583;" data-v-8c9498c0>    if</span><span style="color:#E1E4E8;" data-v-8c9498c0> (</span><span style="color:#F97583;" data-v-8c9498c0>typeof</span><span style="color:#E1E4E8;" data-v-8c9498c0> url </span><span style="color:#F97583;" data-v-8c9498c0>===</span><span style="color:#9ECBFF;" data-v-8c9498c0> &#39;string&#39;</span><span style="color:#E1E4E8;" data-v-8c9498c0>) {</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#F97583;" data-v-8c9498c0>      const</span><span style="color:#79B8FF;" data-v-8c9498c0> response</span><span style="color:#F97583;" data-v-8c9498c0> =</span><span style="color:#F97583;" data-v-8c9498c0> await</span><span style="color:#B392F0;" data-v-8c9498c0> fetch</span><span style="color:#E1E4E8;" data-v-8c9498c0>(url)</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#F97583;" data-v-8c9498c0>      if</span><span style="color:#E1E4E8;" data-v-8c9498c0> (</span><span style="color:#F97583;" data-v-8c9498c0>!</span><span style="color:#E1E4E8;" data-v-8c9498c0>response.ok) {</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#F97583;" data-v-8c9498c0>        throw</span><span style="color:#F97583;" data-v-8c9498c0> new</span><span style="color:#B392F0;" data-v-8c9498c0> Error</span><span style="color:#E1E4E8;" data-v-8c9498c0>(</span><span style="color:#9ECBFF;" data-v-8c9498c0>&#39;Failed to load font&#39;</span><span style="color:#E1E4E8;" data-v-8c9498c0>)</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>      }</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>      font </span><span style="color:#F97583;" data-v-8c9498c0>=</span><span style="color:#F97583;" data-v-8c9498c0> await</span><span style="color:#E1E4E8;" data-v-8c9498c0> response.</span><span style="color:#B392F0;" data-v-8c9498c0>arrayBuffer</span><span style="color:#E1E4E8;" data-v-8c9498c0>()</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>    } </span><span style="color:#F97583;" data-v-8c9498c0>else</span><span style="color:#F97583;" data-v-8c9498c0> if</span><span style="color:#E1E4E8;" data-v-8c9498c0> (url </span><span style="color:#F97583;" data-v-8c9498c0>instanceof</span><span style="color:#B392F0;" data-v-8c9498c0> ArrayBuffer</span><span style="color:#E1E4E8;" data-v-8c9498c0>) {</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>      font </span><span style="color:#F97583;" data-v-8c9498c0>=</span><span style="color:#E1E4E8;" data-v-8c9498c0> url</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>    } </span><span style="color:#F97583;" data-v-8c9498c0>else</span><span style="color:#E1E4E8;" data-v-8c9498c0> {</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#F97583;" data-v-8c9498c0>      throw</span><span style="color:#F97583;" data-v-8c9498c0> new</span><span style="color:#B392F0;" data-v-8c9498c0> Error</span><span style="color:#E1E4E8;" data-v-8c9498c0>(</span><span style="color:#9ECBFF;" data-v-8c9498c0>&#39;Invalid font source&#39;</span><span style="color:#E1E4E8;" data-v-8c9498c0>)</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>    }</span></span>
+<span class="line" data-v-8c9498c0></span>
+<span class="line" data-v-8c9498c0><span style="color:#F97583;" data-v-8c9498c0>    const</span><span style="color:#E1E4E8;" data-v-8c9498c0> [</span><span style="color:#79B8FF;" data-v-8c9498c0>face</span><span style="color:#E1E4E8;" data-v-8c9498c0>] </span><span style="color:#F97583;" data-v-8c9498c0>=</span><span style="color:#E1E4E8;" data-v-8c9498c0> FreeType.</span><span style="color:#B392F0;" data-v-8c9498c0>LoadFontFromBytes</span><span style="color:#E1E4E8;" data-v-8c9498c0>(</span><span style="color:#F97583;" data-v-8c9498c0>new</span><span style="color:#B392F0;" data-v-8c9498c0> Uint8Array</span><span style="color:#E1E4E8;" data-v-8c9498c0>(font))</span></span>
+<span class="line" data-v-8c9498c0></span>
+<span class="line" data-v-8c9498c0><span style="color:#6A737D;" data-v-8c9498c0>    /**</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#6A737D;" data-v-8c9498c0>     * Creates a renderer for a specific font size.</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#6A737D;" data-v-8c9498c0>     */</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#F97583;" data-v-8c9498c0>    const</span><span style="color:#B392F0;" data-v-8c9498c0> withSize</span><span style="color:#F97583;" data-v-8c9498c0> =</span><span style="color:#E1E4E8;" data-v-8c9498c0> (</span><span style="color:#FFAB70;" data-v-8c9498c0>size</span><span style="color:#E1E4E8;" data-v-8c9498c0>, </span><span style="color:#B392F0;" data-v-8c9498c0>handleNewGlyph</span><span style="color:#F97583;" data-v-8c9498c0> =</span><span style="color:#E1E4E8;" data-v-8c9498c0> (</span><span style="color:#FFAB70;" data-v-8c9498c0>code</span><span style="color:#E1E4E8;" data-v-8c9498c0>, </span><span style="color:#FFAB70;" data-v-8c9498c0>char</span><span style="color:#E1E4E8;" data-v-8c9498c0>, </span><span style="color:#FFAB70;" data-v-8c9498c0>glyph</span><span style="color:#E1E4E8;" data-v-8c9498c0>) </span><span style="color:#F97583;" data-v-8c9498c0>=&gt;</span><span style="color:#E1E4E8;" data-v-8c9498c0> {}) </span><span style="color:#F97583;" data-v-8c9498c0>=&gt;</span><span style="color:#E1E4E8;" data-v-8c9498c0> {</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#F97583;" data-v-8c9498c0>      const</span><span style="color:#79B8FF;" data-v-8c9498c0> cache</span><span style="color:#F97583;" data-v-8c9498c0> =</span><span style="color:#F97583;" data-v-8c9498c0> new</span><span style="color:#B392F0;" data-v-8c9498c0> Map</span><span style="color:#E1E4E8;" data-v-8c9498c0>()</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#F97583;" data-v-8c9498c0>      async</span><span style="color:#F97583;" data-v-8c9498c0> function</span><span style="color:#B392F0;" data-v-8c9498c0> updateCache</span><span style="color:#E1E4E8;" data-v-8c9498c0>(</span><span style="color:#FFAB70;" data-v-8c9498c0>str</span><span style="color:#E1E4E8;" data-v-8c9498c0>) {</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>        FreeType.</span><span style="color:#B392F0;" data-v-8c9498c0>SetFont</span><span style="color:#E1E4E8;" data-v-8c9498c0>(face.family_name, face.style_name)</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>        FreeType.</span><span style="color:#B392F0;" data-v-8c9498c0>SetCharmap</span><span style="color:#E1E4E8;" data-v-8c9498c0>(FreeType.</span><span style="color:#79B8FF;" data-v-8c9498c0>FT_ENCODING_UNICODE</span><span style="color:#E1E4E8;" data-v-8c9498c0>)</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>        FreeType.</span><span style="color:#B392F0;" data-v-8c9498c0>SetPixelSize</span><span style="color:#E1E4E8;" data-v-8c9498c0>(</span><span style="color:#79B8FF;" data-v-8c9498c0>0</span><span style="color:#E1E4E8;" data-v-8c9498c0>, size)</span></span>
+<span class="line" data-v-8c9498c0></span>
+<span class="line" data-v-8c9498c0><span style="color:#6A737D;" data-v-8c9498c0>        // Get char codes without bitmaps</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#F97583;" data-v-8c9498c0>        const</span><span style="color:#79B8FF;" data-v-8c9498c0> codes</span><span style="color:#F97583;" data-v-8c9498c0> =</span><span style="color:#E1E4E8;" data-v-8c9498c0> []</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#F97583;" data-v-8c9498c0>        for</span><span style="color:#E1E4E8;" data-v-8c9498c0> (</span><span style="color:#F97583;" data-v-8c9498c0>const</span><span style="color:#79B8FF;" data-v-8c9498c0> char</span><span style="color:#F97583;" data-v-8c9498c0> of</span><span style="color:#F97583;" data-v-8c9498c0> new</span><span style="color:#B392F0;" data-v-8c9498c0> Set</span><span style="color:#E1E4E8;" data-v-8c9498c0>(str)) {</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#F97583;" data-v-8c9498c0>          const</span><span style="color:#79B8FF;" data-v-8c9498c0> point</span><span style="color:#F97583;" data-v-8c9498c0> =</span><span style="color:#E1E4E8;" data-v-8c9498c0> char.</span><span style="color:#B392F0;" data-v-8c9498c0>codePointAt</span><span style="color:#E1E4E8;" data-v-8c9498c0>(</span><span style="color:#79B8FF;" data-v-8c9498c0>0</span><span style="color:#E1E4E8;" data-v-8c9498c0>)</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#F97583;" data-v-8c9498c0>          if</span><span style="color:#E1E4E8;" data-v-8c9498c0> (</span><span style="color:#F97583;" data-v-8c9498c0>!</span><span style="color:#E1E4E8;" data-v-8c9498c0>cache.</span><span style="color:#B392F0;" data-v-8c9498c0>has</span><span style="color:#E1E4E8;" data-v-8c9498c0>(char) </span><span style="color:#F97583;" data-v-8c9498c0>&amp;&amp;</span><span style="color:#E1E4E8;" data-v-8c9498c0> point </span><span style="color:#F97583;" data-v-8c9498c0>!==</span><span style="color:#79B8FF;" data-v-8c9498c0> undefined</span><span style="color:#E1E4E8;" data-v-8c9498c0>) {</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>            codes.</span><span style="color:#B392F0;" data-v-8c9498c0>push</span><span style="color:#E1E4E8;" data-v-8c9498c0>(point)</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>          }</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>        }</span></span>
+<span class="line" data-v-8c9498c0></span>
+<span class="line" data-v-8c9498c0><span style="color:#6A737D;" data-v-8c9498c0>        // Populate missing bitmaps</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#F97583;" data-v-8c9498c0>        const</span><span style="color:#79B8FF;" data-v-8c9498c0> newGlyphs</span><span style="color:#F97583;" data-v-8c9498c0> =</span><span style="color:#E1E4E8;" data-v-8c9498c0> FreeType.</span><span style="color:#B392F0;" data-v-8c9498c0>LoadGlyphs</span><span style="color:#E1E4E8;" data-v-8c9498c0>(</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>          codes,</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>          FreeType.</span><span style="color:#79B8FF;" data-v-8c9498c0>FT_LOAD_RENDER</span><span style="color:#F97583;" data-v-8c9498c0> |</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>            FreeType.</span><span style="color:#79B8FF;" data-v-8c9498c0>FT_LOAD_MONOCHROME</span><span style="color:#F97583;" data-v-8c9498c0> |</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>            FreeType.</span><span style="color:#79B8FF;" data-v-8c9498c0>FT_LOAD_TARGET_MONO</span><span style="color:#F97583;" data-v-8c9498c0> |</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>            (forceAutoHint </span><span style="color:#F97583;" data-v-8c9498c0>?</span><span style="color:#E1E4E8;" data-v-8c9498c0> FreeType.</span><span style="color:#79B8FF;" data-v-8c9498c0>FT_LOAD_FORCE_AUTOHINT</span><span style="color:#F97583;" data-v-8c9498c0> :</span><span style="color:#79B8FF;" data-v-8c9498c0> 0</span><span style="color:#E1E4E8;" data-v-8c9498c0>)</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>        )</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#F97583;" data-v-8c9498c0>        for</span><span style="color:#E1E4E8;" data-v-8c9498c0> (</span><span style="color:#F97583;" data-v-8c9498c0>const</span><span style="color:#E1E4E8;" data-v-8c9498c0> [</span><span style="color:#79B8FF;" data-v-8c9498c0>code</span><span style="color:#E1E4E8;" data-v-8c9498c0>, </span><span style="color:#79B8FF;" data-v-8c9498c0>glyph</span><span style="color:#E1E4E8;" data-v-8c9498c0>] </span><span style="color:#F97583;" data-v-8c9498c0>of</span><span style="color:#E1E4E8;" data-v-8c9498c0> newGlyphs) {</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#F97583;" data-v-8c9498c0>          const</span><span style="color:#79B8FF;" data-v-8c9498c0> char</span><span style="color:#F97583;" data-v-8c9498c0> =</span><span style="color:#E1E4E8;" data-v-8c9498c0> String.</span><span style="color:#B392F0;" data-v-8c9498c0>fromCodePoint</span><span style="color:#E1E4E8;" data-v-8c9498c0>(code)</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#F97583;" data-v-8c9498c0>          await</span><span style="color:#B392F0;" data-v-8c9498c0> handleNewGlyph</span><span style="color:#E1E4E8;" data-v-8c9498c0>(code, char, glyph)</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>          cache.</span><span style="color:#B392F0;" data-v-8c9498c0>set</span><span style="color:#E1E4E8;" data-v-8c9498c0>(char, {</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>            glyph,</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>            bitmap: glyph.bitmap.imagedata</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#F97583;" data-v-8c9498c0>              ?</span><span style="color:#F97583;" data-v-8c9498c0> await</span><span style="color:#B392F0;" data-v-8c9498c0> createImageBitmap</span><span style="color:#E1E4E8;" data-v-8c9498c0>(glyph.bitmap.imagedata)</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#F97583;" data-v-8c9498c0>              :</span><span style="color:#79B8FF;" data-v-8c9498c0> null</span><span style="color:#E1E4E8;" data-v-8c9498c0>,</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>          })</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>        }</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>      }</span></span>
+<span class="line" data-v-8c9498c0></span>
+<span class="line" data-v-8c9498c0><span style="color:#6A737D;" data-v-8c9498c0>      /**</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#6A737D;" data-v-8c9498c0>       * </span><span style="color:#F97583;" data-v-8c9498c0>@param</span><span style="color:#B392F0;" data-v-8c9498c0> {CanvasRenderingContext2D}</span><span style="color:#E1E4E8;" data-v-8c9498c0> ctx</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#6A737D;" data-v-8c9498c0>       * </span><span style="color:#F97583;" data-v-8c9498c0>@param</span><span style="color:#B392F0;" data-v-8c9498c0> {string}</span><span style="color:#E1E4E8;" data-v-8c9498c0> str</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#6A737D;" data-v-8c9498c0>       * </span><span style="color:#F97583;" data-v-8c9498c0>@param</span><span style="color:#B392F0;" data-v-8c9498c0> {number}</span><span style="color:#E1E4E8;" data-v-8c9498c0> offsetx</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#6A737D;" data-v-8c9498c0>       * </span><span style="color:#F97583;" data-v-8c9498c0>@param</span><span style="color:#B392F0;" data-v-8c9498c0> {number}</span><span style="color:#E1E4E8;" data-v-8c9498c0> offsety</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#6A737D;" data-v-8c9498c0>       */</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#F97583;" data-v-8c9498c0>      const</span><span style="color:#B392F0;" data-v-8c9498c0> draw</span><span style="color:#F97583;" data-v-8c9498c0> =</span><span style="color:#F97583;" data-v-8c9498c0> async</span><span style="color:#E1E4E8;" data-v-8c9498c0> (</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#FFAB70;" data-v-8c9498c0>        ctx</span><span style="color:#E1E4E8;" data-v-8c9498c0>,</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#FFAB70;" data-v-8c9498c0>        str</span><span style="color:#E1E4E8;" data-v-8c9498c0>,</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#FFAB70;" data-v-8c9498c0>        offsetx</span><span style="color:#E1E4E8;" data-v-8c9498c0>,</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#FFAB70;" data-v-8c9498c0>        offsety</span><span style="color:#E1E4E8;" data-v-8c9498c0>,</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>        { </span><span style="color:#FFAB70;" data-v-8c9498c0>letterSpacing</span><span style="color:#F97583;" data-v-8c9498c0> =</span><span style="color:#79B8FF;" data-v-8c9498c0> 0</span><span style="color:#E1E4E8;" data-v-8c9498c0> } </span><span style="color:#F97583;" data-v-8c9498c0>=</span><span style="color:#E1E4E8;" data-v-8c9498c0> {}</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>      ) </span><span style="color:#F97583;" data-v-8c9498c0>=&gt;</span><span style="color:#E1E4E8;" data-v-8c9498c0> {</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#F97583;" data-v-8c9498c0>        await</span><span style="color:#B392F0;" data-v-8c9498c0> updateCache</span><span style="color:#E1E4E8;" data-v-8c9498c0>(str)</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#F97583;" data-v-8c9498c0>        let</span><span style="color:#E1E4E8;" data-v-8c9498c0> prev </span><span style="color:#F97583;" data-v-8c9498c0>=</span><span style="color:#79B8FF;" data-v-8c9498c0> null</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#F97583;" data-v-8c9498c0>        for</span><span style="color:#E1E4E8;" data-v-8c9498c0> (</span><span style="color:#F97583;" data-v-8c9498c0>const</span><span style="color:#79B8FF;" data-v-8c9498c0> char</span><span style="color:#F97583;" data-v-8c9498c0> of</span><span style="color:#E1E4E8;" data-v-8c9498c0> str) {</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#F97583;" data-v-8c9498c0>          const</span><span style="color:#E1E4E8;" data-v-8c9498c0> { </span><span style="color:#79B8FF;" data-v-8c9498c0>glyph</span><span style="color:#E1E4E8;" data-v-8c9498c0>, </span><span style="color:#79B8FF;" data-v-8c9498c0>bitmap</span><span style="color:#E1E4E8;" data-v-8c9498c0> } </span><span style="color:#F97583;" data-v-8c9498c0>=</span><span style="color:#E1E4E8;" data-v-8c9498c0> cache.</span><span style="color:#B392F0;" data-v-8c9498c0>get</span><span style="color:#E1E4E8;" data-v-8c9498c0>(char) </span><span style="color:#F97583;" data-v-8c9498c0>||</span><span style="color:#E1E4E8;" data-v-8c9498c0> {}</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#F97583;" data-v-8c9498c0>          if</span><span style="color:#E1E4E8;" data-v-8c9498c0> (glyph) {</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#6A737D;" data-v-8c9498c0>            // Kerning</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#F97583;" data-v-8c9498c0>            if</span><span style="color:#E1E4E8;" data-v-8c9498c0> (prev) {</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#F97583;" data-v-8c9498c0>              const</span><span style="color:#79B8FF;" data-v-8c9498c0> kerning</span><span style="color:#F97583;" data-v-8c9498c0> =</span><span style="color:#E1E4E8;" data-v-8c9498c0> FreeType.</span><span style="color:#B392F0;" data-v-8c9498c0>GetKerning</span><span style="color:#E1E4E8;" data-v-8c9498c0>(</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>                prev.glyph_index,</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>                glyph.glyph_index,</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#79B8FF;" data-v-8c9498c0>                0</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>              )</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>              offsetx </span><span style="color:#F97583;" data-v-8c9498c0>+=</span><span style="color:#E1E4E8;" data-v-8c9498c0> kerning.x </span><span style="color:#F97583;" data-v-8c9498c0>&gt;&gt;</span><span style="color:#79B8FF;" data-v-8c9498c0> 6</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>            }</span></span>
+<span class="line" data-v-8c9498c0></span>
+<span class="line" data-v-8c9498c0><span style="color:#F97583;" data-v-8c9498c0>            if</span><span style="color:#E1E4E8;" data-v-8c9498c0> (bitmap) {</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>              ctx.</span><span style="color:#B392F0;" data-v-8c9498c0>drawImage</span><span style="color:#E1E4E8;" data-v-8c9498c0>(</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>                bitmap,</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>                offsetx </span><span style="color:#F97583;" data-v-8c9498c0>+</span><span style="color:#E1E4E8;" data-v-8c9498c0> glyph.bitmap_left,</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>                offsety </span><span style="color:#F97583;" data-v-8c9498c0>-</span><span style="color:#E1E4E8;" data-v-8c9498c0> glyph.bitmap_top</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>              )</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>            }</span></span>
+<span class="line" data-v-8c9498c0></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>            offsetx </span><span style="color:#F97583;" data-v-8c9498c0>+=</span><span style="color:#E1E4E8;" data-v-8c9498c0> glyph.advance.x </span><span style="color:#F97583;" data-v-8c9498c0>&gt;&gt;</span><span style="color:#79B8FF;" data-v-8c9498c0> 6</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>            offsetx </span><span style="color:#F97583;" data-v-8c9498c0>+=</span><span style="color:#E1E4E8;" data-v-8c9498c0> letterSpacing</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>            prev </span><span style="color:#F97583;" data-v-8c9498c0>=</span><span style="color:#E1E4E8;" data-v-8c9498c0> glyph</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>          }</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>        }</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>      }</span></span>
+<span class="line" data-v-8c9498c0></span>
+<span class="line" data-v-8c9498c0><span style="color:#F97583;" data-v-8c9498c0>      const</span><span style="color:#B392F0;" data-v-8c9498c0> measure</span><span style="color:#F97583;" data-v-8c9498c0> =</span><span style="color:#F97583;" data-v-8c9498c0> async</span><span style="color:#E1E4E8;" data-v-8c9498c0> (</span><span style="color:#FFAB70;" data-v-8c9498c0>str</span><span style="color:#E1E4E8;" data-v-8c9498c0>, { </span><span style="color:#FFAB70;" data-v-8c9498c0>letterSpacing</span><span style="color:#F97583;" data-v-8c9498c0> =</span><span style="color:#79B8FF;" data-v-8c9498c0> 0</span><span style="color:#E1E4E8;" data-v-8c9498c0> } </span><span style="color:#F97583;" data-v-8c9498c0>=</span><span style="color:#E1E4E8;" data-v-8c9498c0> {}) </span><span style="color:#F97583;" data-v-8c9498c0>=&gt;</span><span style="color:#E1E4E8;" data-v-8c9498c0> {</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#F97583;" data-v-8c9498c0>        await</span><span style="color:#B392F0;" data-v-8c9498c0> updateCache</span><span style="color:#E1E4E8;" data-v-8c9498c0>(str)</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#F97583;" data-v-8c9498c0>        let</span><span style="color:#E1E4E8;" data-v-8c9498c0> width </span><span style="color:#F97583;" data-v-8c9498c0>=</span><span style="color:#79B8FF;" data-v-8c9498c0> 0</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#F97583;" data-v-8c9498c0>        let</span><span style="color:#E1E4E8;" data-v-8c9498c0> prev </span><span style="color:#F97583;" data-v-8c9498c0>=</span><span style="color:#79B8FF;" data-v-8c9498c0> null</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#F97583;" data-v-8c9498c0>        for</span><span style="color:#E1E4E8;" data-v-8c9498c0> (</span><span style="color:#F97583;" data-v-8c9498c0>const</span><span style="color:#79B8FF;" data-v-8c9498c0> char</span><span style="color:#F97583;" data-v-8c9498c0> of</span><span style="color:#E1E4E8;" data-v-8c9498c0> str) {</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#F97583;" data-v-8c9498c0>          const</span><span style="color:#E1E4E8;" data-v-8c9498c0> { </span><span style="color:#79B8FF;" data-v-8c9498c0>glyph</span><span style="color:#E1E4E8;" data-v-8c9498c0> } </span><span style="color:#F97583;" data-v-8c9498c0>=</span><span style="color:#E1E4E8;" data-v-8c9498c0> cache.</span><span style="color:#B392F0;" data-v-8c9498c0>get</span><span style="color:#E1E4E8;" data-v-8c9498c0>(char) </span><span style="color:#F97583;" data-v-8c9498c0>||</span><span style="color:#E1E4E8;" data-v-8c9498c0> {}</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#F97583;" data-v-8c9498c0>          if</span><span style="color:#E1E4E8;" data-v-8c9498c0> (glyph) {</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#F97583;" data-v-8c9498c0>            if</span><span style="color:#E1E4E8;" data-v-8c9498c0> (prev) {</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#F97583;" data-v-8c9498c0>              const</span><span style="color:#79B8FF;" data-v-8c9498c0> kerning</span><span style="color:#F97583;" data-v-8c9498c0> =</span><span style="color:#E1E4E8;" data-v-8c9498c0> FreeType.</span><span style="color:#B392F0;" data-v-8c9498c0>GetKerning</span><span style="color:#E1E4E8;" data-v-8c9498c0>(</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>                prev.glyph_index,</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>                glyph.glyph_index,</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#79B8FF;" data-v-8c9498c0>                0</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>              )</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>              width </span><span style="color:#F97583;" data-v-8c9498c0>+=</span><span style="color:#E1E4E8;" data-v-8c9498c0> kerning.x </span><span style="color:#F97583;" data-v-8c9498c0>&gt;&gt;</span><span style="color:#79B8FF;" data-v-8c9498c0> 6</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>              width </span><span style="color:#F97583;" data-v-8c9498c0>+=</span><span style="color:#E1E4E8;" data-v-8c9498c0> letterSpacing</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>            }</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>            width </span><span style="color:#F97583;" data-v-8c9498c0>+=</span><span style="color:#E1E4E8;" data-v-8c9498c0> glyph.advance.x </span><span style="color:#F97583;" data-v-8c9498c0>&gt;&gt;</span><span style="color:#79B8FF;" data-v-8c9498c0> 6</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>            prev </span><span style="color:#F97583;" data-v-8c9498c0>=</span><span style="color:#E1E4E8;" data-v-8c9498c0> glyph</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>          }</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>        }</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#F97583;" data-v-8c9498c0>        return</span><span style="color:#E1E4E8;" data-v-8c9498c0> width</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>      }</span></span>
+<span class="line" data-v-8c9498c0></span>
+<span class="line" data-v-8c9498c0><span style="color:#F97583;" data-v-8c9498c0>      const</span><span style="color:#B392F0;" data-v-8c9498c0> getGlyph</span><span style="color:#F97583;" data-v-8c9498c0> =</span><span style="color:#F97583;" data-v-8c9498c0> async</span><span style="color:#E1E4E8;" data-v-8c9498c0> (</span><span style="color:#FFAB70;" data-v-8c9498c0>char</span><span style="color:#E1E4E8;" data-v-8c9498c0>) </span><span style="color:#F97583;" data-v-8c9498c0>=&gt;</span><span style="color:#E1E4E8;" data-v-8c9498c0> {</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#F97583;" data-v-8c9498c0>        await</span><span style="color:#B392F0;" data-v-8c9498c0> updateCache</span><span style="color:#E1E4E8;" data-v-8c9498c0>(char)</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#F97583;" data-v-8c9498c0>        return</span><span style="color:#E1E4E8;" data-v-8c9498c0> cache.</span><span style="color:#B392F0;" data-v-8c9498c0>get</span><span style="color:#E1E4E8;" data-v-8c9498c0>(char)</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>      }</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#F97583;" data-v-8c9498c0>      return</span><span style="color:#E1E4E8;" data-v-8c9498c0> { draw, measure, getGlyph }</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>    }</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#F97583;" data-v-8c9498c0>    return</span><span style="color:#E1E4E8;" data-v-8c9498c0> { withSize }</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>  }</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#F97583;" data-v-8c9498c0>  return</span><span style="color:#E1E4E8;" data-v-8c9498c0> { loadFont }</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>}</span></span></code></pre><h2 id="example-usage" data-v-8c9498c0><a aria-hidden="true" tabindex="-1" href="#example-usage" data-v-8c9498c0><span class="icon icon-link" data-v-8c9498c0></span></a>Example usage</h2><pre class="shiki github-dark" style="background-color:#252423;color:#e1e4e8;" tabindex="0" data-v-8c9498c0><code data-v-8c9498c0><span class="line" data-v-8c9498c0><span style="color:#F97583;" data-v-8c9498c0>const</span><span style="color:#79B8FF;" data-v-8c9498c0> renderer</span><span style="color:#F97583;" data-v-8c9498c0> =</span><span style="color:#F97583;" data-v-8c9498c0> await</span><span style="color:#B392F0;" data-v-8c9498c0> createFreeTypeRenderer</span><span style="color:#E1E4E8;" data-v-8c9498c0>()</span></span>
+<span class="line" data-v-8c9498c0></span>
+<span class="line" data-v-8c9498c0><span style="color:#F97583;" data-v-8c9498c0>const</span><span style="color:#79B8FF;" data-v-8c9498c0> berkeleyMono</span><span style="color:#F97583;" data-v-8c9498c0> =</span><span style="color:#F97583;" data-v-8c9498c0> await</span><span style="color:#E1E4E8;" data-v-8c9498c0> window</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>  .</span><span style="color:#B392F0;" data-v-8c9498c0>queryLocalFonts</span><span style="color:#E1E4E8;" data-v-8c9498c0>({ postscriptNames: [</span><span style="color:#9ECBFF;" data-v-8c9498c0>&#39;BerkeleyMono-Bold&#39;</span><span style="color:#E1E4E8;" data-v-8c9498c0>] })</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>  .</span><span style="color:#B392F0;" data-v-8c9498c0>then</span><span style="color:#E1E4E8;" data-v-8c9498c0>((</span><span style="color:#FFAB70;" data-v-8c9498c0>fonts</span><span style="color:#E1E4E8;" data-v-8c9498c0>) </span><span style="color:#F97583;" data-v-8c9498c0>=&gt;</span><span style="color:#E1E4E8;" data-v-8c9498c0> fonts[</span><span style="color:#79B8FF;" data-v-8c9498c0>0</span><span style="color:#E1E4E8;" data-v-8c9498c0>].</span><span style="color:#B392F0;" data-v-8c9498c0>blob</span><span style="color:#E1E4E8;" data-v-8c9498c0>())</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>  .</span><span style="color:#B392F0;" data-v-8c9498c0>then</span><span style="color:#E1E4E8;" data-v-8c9498c0>((</span><span style="color:#FFAB70;" data-v-8c9498c0>blob</span><span style="color:#E1E4E8;" data-v-8c9498c0>) </span><span style="color:#F97583;" data-v-8c9498c0>=&gt;</span><span style="color:#E1E4E8;" data-v-8c9498c0> blob.</span><span style="color:#B392F0;" data-v-8c9498c0>arrayBuffer</span><span style="color:#E1E4E8;" data-v-8c9498c0>())</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>  .</span><span style="color:#B392F0;" data-v-8c9498c0>then</span><span style="color:#E1E4E8;" data-v-8c9498c0>((</span><span style="color:#FFAB70;" data-v-8c9498c0>buffer</span><span style="color:#E1E4E8;" data-v-8c9498c0>) </span><span style="color:#F97583;" data-v-8c9498c0>=&gt;</span><span style="color:#E1E4E8;" data-v-8c9498c0> renderer.</span><span style="color:#B392F0;" data-v-8c9498c0>loadFont</span><span style="color:#E1E4E8;" data-v-8c9498c0>(buffer))</span></span>
+<span class="line" data-v-8c9498c0></span>
+<span class="line" data-v-8c9498c0><span style="color:#F97583;" data-v-8c9498c0>await</span><span style="color:#E1E4E8;" data-v-8c9498c0> berkeleyMono.</span><span style="color:#B392F0;" data-v-8c9498c0>withSize</span><span style="color:#E1E4E8;" data-v-8c9498c0>(</span><span style="color:#79B8FF;" data-v-8c9498c0>19</span><span style="color:#E1E4E8;" data-v-8c9498c0>).</span><span style="color:#B392F0;" data-v-8c9498c0>draw</span><span style="color:#E1E4E8;" data-v-8c9498c0>(ctx, </span><span style="color:#9ECBFF;" data-v-8c9498c0>&#39;Hello, world!&#39;</span><span style="color:#E1E4E8;" data-v-8c9498c0>, </span><span style="color:#79B8FF;" data-v-8c9498c0>0</span><span style="color:#E1E4E8;" data-v-8c9498c0>, </span><span style="color:#79B8FF;" data-v-8c9498c0>19</span><span style="color:#E1E4E8;" data-v-8c9498c0>)</span></span></code></pre><!--]--></div>
+        </div>
+      </main>
+      <footer>
+        <div
+          class="notes-layout-container mx-auto py-4 px-6 text-#8b8685 text-right text-sm"
+          id="footerContents"
+        >
+          <notes-page-footer></notes-page-footer>
+        </div>
+      </footer>
+    </div>
+    <script>
+window.precompiledNoteBehavior = function(require, exports, module, Vue) {"use strict";Object.defineProperty(exports, "__esModule", {value: true});/* Analyzed bindings: {
+  "queryFonts": "setup-maybe-ref",
+  "availableFonts": "setup-maybe-ref",
+  "selectedFont": "setup-maybe-ref",
+  "selectedFontSize": "setup-maybe-ref",
+  "text": "setup-maybe-ref",
+  "canvas": "setup-maybe-ref"
+} */
+
+  async function createFreeTypeRenderer() {
+    const { default: FreeTypeInit } = await import('https://cdn.jsdelivr.net/npm/freetype-wasm@0/dist/freetype.js')
+    const FreeType = await FreeTypeInit()
+
+    /**
+     * Loads a font from a URL or ArrayBuffer.
+     */
+    const loadFont = async (url, { forceAutoHint = true } = {}) => {
+      let font
+      if (typeof url === 'string') {
+        const response = await fetch(url)
+        if (!response.ok) {
+          throw new Error('Failed to load font')
+        }
+        font = await response.arrayBuffer()
+      } else if (url instanceof ArrayBuffer) {
+        font = url
+      } else {
+        throw new Error('Invalid font source')
+      }
+
+      const [face] = FreeType.LoadFontFromBytes(new Uint8Array(font))
+
+      /**
+       * Creates a renderer for a specific font size.
+       */
+      const withSize = (size, handleNewGlyph = (code, char, glyph) => {}) => {
+        const cache = new Map()
+        async function updateCache(str) {
+          FreeType.SetFont(face.family_name, face.style_name)
+          FreeType.SetCharmap(FreeType.FT_ENCODING_UNICODE)
+          FreeType.SetPixelSize(0, size)
+
+          // Get char codes without bitmaps
+          const codes = []
+          for (const char of new Set(str)) {
+            const point = char.codePointAt(0)
+            if (!cache.has(char) && point !== undefined) {
+              codes.push(point)
+            }
+          }
+
+          // Populate missing bitmaps
+          const newGlyphs = FreeType.LoadGlyphs(
+            codes,
+            FreeType.FT_LOAD_RENDER |
+              FreeType.FT_LOAD_MONOCHROME |
+              FreeType.FT_LOAD_TARGET_MONO |
+              (forceAutoHint ? FreeType.FT_LOAD_FORCE_AUTOHINT : 0)
+          )
+          for (const [code, glyph] of newGlyphs) {
+            const char = String.fromCodePoint(code)
+            await handleNewGlyph(code, char, glyph)
+            cache.set(char, {
+              glyph,
+              bitmap: glyph.bitmap.imagedata
+                ? await createImageBitmap(glyph.bitmap.imagedata)
+                : null,
+            })
+          }
+        }
+
+        /**
+         * @param {CanvasRenderingContext2D} ctx
+         * @param {string} str
+         * @param {number} offsetx
+         * @param {number} offsety
+         */
+        const draw = async (
+          ctx,
+          str,
+          offsetx,
+          offsety,
+          { letterSpacing = 0 } = {}
+        ) => {
+          await updateCache(str)
+          let prev = null
+          for (const char of str) {
+            const { glyph, bitmap } = cache.get(char) || {}
+            if (glyph) {
+              // Kerning
+              if (prev) {
+                const kerning = FreeType.GetKerning(
+                  prev.glyph_index,
+                  glyph.glyph_index,
+                  0
+                )
+                offsetx += kerning.x >> 6
+              }
+
+              if (bitmap) {
+                ctx.drawImage(
+                  bitmap,
+                  offsetx + glyph.bitmap_left,
+                  offsety - glyph.bitmap_top
+                )
+              }
+
+              offsetx += glyph.advance.x >> 6
+              offsetx += letterSpacing
+              prev = glyph
+            }
+          }
+        }
+
+        const measure = async (str, { letterSpacing = 0 } = {}) => {
+          await updateCache(str)
+          let width = 0
+          let prev = null
+          for (const char of str) {
+            const { glyph } = cache.get(char) || {}
+            if (glyph) {
+              if (prev) {
+                const kerning = FreeType.GetKerning(
+                  prev.glyph_index,
+                  glyph.glyph_index,
+                  0
+                )
+                width += kerning.x >> 6
+                width += letterSpacing
+              }
+              width += glyph.advance.x >> 6
+              prev = glyph
+            }
+          }
+          return width
+        }
+
+        const getGlyph = async (char) => {
+          await updateCache(char)
+          return cache.get(char)
+        }
+        return { draw, measure, getGlyph }
+      }
+      return { withSize }
+    }
+    return { loadFont }
+  }
+
+  const __sfc__ = {
+    setup() {
+      const availableFonts = Vue.ref([])
+      const selectedFont = Vue.ref(null)
+      const canvas = Vue.ref(null)
+      const selectedFontSize = Vue.ref(12)
+      const text = Vue.ref('A quick brown fox jumps over the lazy dog')
+
+      async function queryFonts () {
+        try {
+          const result = await window.queryLocalFonts()
+          const set = new Set(result.map(font => font.postscriptName))
+          selectedFont.value = [
+            'BerkeleyMono-Bold',
+            'JetBrainsMonoRoman-Bold',
+            'MonaspaceKrypton-Bold',
+            'Cousine-Regular',
+            'Menlo-Regular',
+            'Verdana'
+          ].find(f => set.has(f)) || result[0].postscriptName
+          availableFonts.value = result;
+          console.log('Available fonts', result)
+        } catch (err) {
+          alert(`Unable to query fonts: ${err}`);
+        }
+      }
+
+      let rendererPromise
+      Vue.onMounted(() => {
+        rendererPromise = createFreeTypeRenderer()
+
+        const canvasElement = canvas.value
+        canvasElement.draggable = true;
+        canvasElement.ondragstart = (e) => {
+          if (!e.dataTransfer) {
+            return;
+          }
+          e.dataTransfer.clearData();
+          const dataUrl = canvasElement.toDataURL();
+          e.dataTransfer.setData(
+            "DownloadURL",
+            ["image/png", `${selectedFont.value}.rendered.png`, dataUrl].join(":")
+          );
+        };
+      })
+
+      const fontCache = new Map()
+
+      Vue.watch([
+        selectedFont,
+        selectedFontSize,
+        text,
+      ], async ([font, sizeStr, str]) => {
+        const size = parseInt(sizeStr)
+        try {
+          const renderer = await rendererPromise
+          let freeTypeFont = fontCache.get(font)
+          if (!freeTypeFont) {
+            const fontBlob = await window.queryLocalFonts({ postscriptNames: [font] })
+              .then((fonts) => fonts[0].blob())
+              .then((blob) => blob.arrayBuffer())
+            freeTypeFont = await renderer.loadFont(fontBlob)
+            fontCache.set(font, freeTypeFont)
+          }
+          const fontWithSize = freeTypeFont.withSize(size)
+          const width = await fontWithSize.measure(str)
+          const ctx = canvas.value.getContext('2d')
+          canvas.value.width = width + 16
+          canvas.value.height = size + 24
+          ctx.clearRect(0, 0, canvas.value.width, canvas.value.height)
+          await fontWithSize.draw(ctx, str, Math.floor((canvas.value.width - width) / 2), canvas.value.height - 16)
+        } catch (e) {
+          console.error(e)
+        }
+      })
+      return {
+        queryFonts,
+        availableFonts,
+        selectedFont,
+        selectedFontSize,
+        text,
+        canvas,
+      }
+    }
+  }
+;
+var _vue = require('vue');
+
+const _withScopeId = n => (_vue.pushScopeId.call(void 0, "data-v-8c9498c0"),n=n(),_vue.popScopeId.call(void 0, ),n)
+const _hoisted_1 = /*#__PURE__*/_vue.createStaticVNode.call(void 0, "<h1 id=\"drawing-low-resolution-monochrome-text-with-freetype-wasm\" data-v-8c9498c0><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#drawing-low-resolution-monochrome-text-with-freetype-wasm\" data-v-8c9498c0><span class=\"icon icon-link\" data-v-8c9498c0></span></a>Drawing low resolution monochrome text with freetype-wasm</h1><p data-v-8c9498c0>I recently got myself a <a href=\"https://www.brother-usa.com/ptouch/cube-plus/home\" data-v-8c9498c0>label printer</a>, which can only print pixels in monochrome (black or white, no grayscale). Separately, earlier this year I bought this gorgeous monospace font <a href=\"https://berkeleygraphics.com/typefaces/berkeley-mono/\" data-v-8c9498c0>Berkeley Mono</a>. It looks great on my terminal… Now I want to print labels using this same font… but the result looks like the first image below:</p>", 2)
+const _hoisted_3 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_vue.createElementVNode.call(void 0, "figure", null, [
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "p", null, [
+    /*#__PURE__*/_vue.createElementVNode.call(void 0, "img", { src: "https://im.dt.in.th/ipfs/bafybeia5pdsp4dvlaaeipxvti6omszfutdpaqagrzwc4gslujr2o2wlc3u/b.webp" })
+  ]),
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "figcaption", null, "Before: Using macOS native font renderer")
+], -1 /* HOISTED */))
+const _hoisted_4 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_vue.createElementVNode.call(void 0, "figure", null, [
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "p", null, [
+    /*#__PURE__*/_vue.createElementVNode.call(void 0, "img", { src: "https://im.dt.in.th/ipfs/bafybeiel6dogs6jg4foviam5p7po6oztktm4deawntn7srk52nrcmdrqla/a.webp" })
+  ]),
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "figcaption", null, "After: Using freetype-wasm + manual adjustments")
+], -1 /* HOISTED */))
+const _hoisted_5 = /*#__PURE__*/_vue.createStaticVNode.call(void 0, "<p data-v-8c9498c0>To get a better printout (second image), I need to find an alternative way to render text — one that can render small text as monochrome pixels well. That’s when I found <a href=\"https://freetype.org/autohinting/hinter.html\" data-v-8c9498c0><strong data-v-8c9498c0>The FreeType Auto-Hinter</strong></a>.</p><p data-v-8c9498c0>Now I need a way to use it to generate a monochrome bitmap image. As I’m a <a href=\"WebPlatform\" data-v-8c9498c0>web</a> developer, I want something that I can use in a web browser. That’s when I found <a href=\"https://github.com/Ciantic/freetype-wasm\" data-v-8c9498c0><strong data-v-8c9498c0>freetype-wasm</strong></a>.</p><p data-v-8c9498c0>Lastly, the <a href=\"https://developer.chrome.com/docs/capabilities/web-apis/local-fonts\" data-v-8c9498c0><strong data-v-8c9498c0>Local Font Access API</strong></a> lets web applications directly access locally-installed fonts like a desktop font rather than a web font.</p><h2 id=\"try-it-out\" data-v-8c9498c0><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#try-it-out\" data-v-8c9498c0><span class=\"icon icon-link\" data-v-8c9498c0></span></a>Try it out!</h2><p data-v-8c9498c0>First, we need access to your fonts:</p>", 5)
+const _hoisted_10 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_vue.createElementVNode.call(void 0, "p", null, "Pick a font and size below:", -1 /* HOISTED */))
+const _hoisted_11 = ["disabled"]
+const _hoisted_12 = {
+  key: 0,
+  disabled: ""
+}
+const _hoisted_13 = ["value"]
+const _hoisted_14 = ["disabled"]
+const _hoisted_15 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_vue.createElementVNode.call(void 0, "p", null, "Enter some text to render it:", -1 /* HOISTED */))
+const _hoisted_16 = ["disabled"]
+const _hoisted_17 = { style: {"min-height":"96px"} }
+const _hoisted_18 = {
+  ref: "canvas",
+  width: "320",
+  height: "48",
+  style: {"border":"1px solid black","background":"white"}
+}
+const _hoisted_19 = /*#__PURE__*/_vue.createStaticVNode.call(void 0, "<h2 id=\"the-freetype-renderer\" data-v-8c9498c0><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#the-freetype-renderer\" data-v-8c9498c0><span class=\"icon icon-link\" data-v-8c9498c0></span></a>The FreeType renderer</h2><p data-v-8c9498c0>This function initializes the FreeType library and provides a way to load fonts and render text.</p><pre class=\"shiki github-dark\" style=\"background-color:#252423;color:#e1e4e8;\" tabindex=\"0\" data-v-8c9498c0><code data-v-8c9498c0><span class=\"line\" data-v-8c9498c0><span style=\"color:#F97583;\" data-v-8c9498c0>import</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> FreeTypeInit </span><span style=\"color:#F97583;\" data-v-8c9498c0>from</span><span style=\"color:#9ECBFF;\" data-v-8c9498c0> &#39;https://cdn.jsdelivr.net/npm/freetype-wasm@0/dist/freetype.js&#39;</span></span>\n<span class=\"line\" data-v-8c9498c0></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#6A737D;\" data-v-8c9498c0>// Based on https://github.com/Ciantic/freetype-wasm/blob/master/example/example.js</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#F97583;\" data-v-8c9498c0>async</span><span style=\"color:#F97583;\" data-v-8c9498c0> function</span><span style=\"color:#B392F0;\" data-v-8c9498c0> createFreeTypeRenderer</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>() {</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#F97583;\" data-v-8c9498c0>  const</span><span style=\"color:#79B8FF;\" data-v-8c9498c0> FreeType</span><span style=\"color:#F97583;\" data-v-8c9498c0> =</span><span style=\"color:#F97583;\" data-v-8c9498c0> await</span><span style=\"color:#B392F0;\" data-v-8c9498c0> FreeTypeInit</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>()</span></span>\n<span class=\"line\" data-v-8c9498c0></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#6A737D;\" data-v-8c9498c0>  /**</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#6A737D;\" data-v-8c9498c0>   * Loads a font from a URL or ArrayBuffer.</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#6A737D;\" data-v-8c9498c0>   */</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#F97583;\" data-v-8c9498c0>  const</span><span style=\"color:#B392F0;\" data-v-8c9498c0> loadFont</span><span style=\"color:#F97583;\" data-v-8c9498c0> =</span><span style=\"color:#F97583;\" data-v-8c9498c0> async</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> (</span><span style=\"color:#FFAB70;\" data-v-8c9498c0>url</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>, { </span><span style=\"color:#FFAB70;\" data-v-8c9498c0>forceAutoHint</span><span style=\"color:#F97583;\" data-v-8c9498c0> =</span><span style=\"color:#79B8FF;\" data-v-8c9498c0> true</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> } </span><span style=\"color:#F97583;\" data-v-8c9498c0>=</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> {}) </span><span style=\"color:#F97583;\" data-v-8c9498c0>=&gt;</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> {</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#F97583;\" data-v-8c9498c0>    let</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> font</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#F97583;\" data-v-8c9498c0>    if</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> (</span><span style=\"color:#F97583;\" data-v-8c9498c0>typeof</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> url </span><span style=\"color:#F97583;\" data-v-8c9498c0>===</span><span style=\"color:#9ECBFF;\" data-v-8c9498c0> &#39;string&#39;</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>) {</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#F97583;\" data-v-8c9498c0>      const</span><span style=\"color:#79B8FF;\" data-v-8c9498c0> response</span><span style=\"color:#F97583;\" data-v-8c9498c0> =</span><span style=\"color:#F97583;\" data-v-8c9498c0> await</span><span style=\"color:#B392F0;\" data-v-8c9498c0> fetch</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>(url)</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#F97583;\" data-v-8c9498c0>      if</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> (</span><span style=\"color:#F97583;\" data-v-8c9498c0>!</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>response.ok) {</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#F97583;\" data-v-8c9498c0>        throw</span><span style=\"color:#F97583;\" data-v-8c9498c0> new</span><span style=\"color:#B392F0;\" data-v-8c9498c0> Error</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>(</span><span style=\"color:#9ECBFF;\" data-v-8c9498c0>&#39;Failed to load font&#39;</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>)</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>      }</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>      font </span><span style=\"color:#F97583;\" data-v-8c9498c0>=</span><span style=\"color:#F97583;\" data-v-8c9498c0> await</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> response.</span><span style=\"color:#B392F0;\" data-v-8c9498c0>arrayBuffer</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>()</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>    } </span><span style=\"color:#F97583;\" data-v-8c9498c0>else</span><span style=\"color:#F97583;\" data-v-8c9498c0> if</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> (url </span><span style=\"color:#F97583;\" data-v-8c9498c0>instanceof</span><span style=\"color:#B392F0;\" data-v-8c9498c0> ArrayBuffer</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>) {</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>      font </span><span style=\"color:#F97583;\" data-v-8c9498c0>=</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> url</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>    } </span><span style=\"color:#F97583;\" data-v-8c9498c0>else</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> {</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#F97583;\" data-v-8c9498c0>      throw</span><span style=\"color:#F97583;\" data-v-8c9498c0> new</span><span style=\"color:#B392F0;\" data-v-8c9498c0> Error</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>(</span><span style=\"color:#9ECBFF;\" data-v-8c9498c0>&#39;Invalid font source&#39;</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>)</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>    }</span></span>\n<span class=\"line\" data-v-8c9498c0></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#F97583;\" data-v-8c9498c0>    const</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> [</span><span style=\"color:#79B8FF;\" data-v-8c9498c0>face</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>] </span><span style=\"color:#F97583;\" data-v-8c9498c0>=</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> FreeType.</span><span style=\"color:#B392F0;\" data-v-8c9498c0>LoadFontFromBytes</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>(</span><span style=\"color:#F97583;\" data-v-8c9498c0>new</span><span style=\"color:#B392F0;\" data-v-8c9498c0> Uint8Array</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>(font))</span></span>\n<span class=\"line\" data-v-8c9498c0></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#6A737D;\" data-v-8c9498c0>    /**</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#6A737D;\" data-v-8c9498c0>     * Creates a renderer for a specific font size.</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#6A737D;\" data-v-8c9498c0>     */</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#F97583;\" data-v-8c9498c0>    const</span><span style=\"color:#B392F0;\" data-v-8c9498c0> withSize</span><span style=\"color:#F97583;\" data-v-8c9498c0> =</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> (</span><span style=\"color:#FFAB70;\" data-v-8c9498c0>size</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>, </span><span style=\"color:#B392F0;\" data-v-8c9498c0>handleNewGlyph</span><span style=\"color:#F97583;\" data-v-8c9498c0> =</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> (</span><span style=\"color:#FFAB70;\" data-v-8c9498c0>code</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>, </span><span style=\"color:#FFAB70;\" data-v-8c9498c0>char</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>, </span><span style=\"color:#FFAB70;\" data-v-8c9498c0>glyph</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>) </span><span style=\"color:#F97583;\" data-v-8c9498c0>=&gt;</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> {}) </span><span style=\"color:#F97583;\" data-v-8c9498c0>=&gt;</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> {</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#F97583;\" data-v-8c9498c0>      const</span><span style=\"color:#79B8FF;\" data-v-8c9498c0> cache</span><span style=\"color:#F97583;\" data-v-8c9498c0> =</span><span style=\"color:#F97583;\" data-v-8c9498c0> new</span><span style=\"color:#B392F0;\" data-v-8c9498c0> Map</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>()</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#F97583;\" data-v-8c9498c0>      async</span><span style=\"color:#F97583;\" data-v-8c9498c0> function</span><span style=\"color:#B392F0;\" data-v-8c9498c0> updateCache</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>(</span><span style=\"color:#FFAB70;\" data-v-8c9498c0>str</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>) {</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>        FreeType.</span><span style=\"color:#B392F0;\" data-v-8c9498c0>SetFont</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>(face.family_name, face.style_name)</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>        FreeType.</span><span style=\"color:#B392F0;\" data-v-8c9498c0>SetCharmap</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>(FreeType.</span><span style=\"color:#79B8FF;\" data-v-8c9498c0>FT_ENCODING_UNICODE</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>)</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>        FreeType.</span><span style=\"color:#B392F0;\" data-v-8c9498c0>SetPixelSize</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>(</span><span style=\"color:#79B8FF;\" data-v-8c9498c0>0</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>, size)</span></span>\n<span class=\"line\" data-v-8c9498c0></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#6A737D;\" data-v-8c9498c0>        // Get char codes without bitmaps</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#F97583;\" data-v-8c9498c0>        const</span><span style=\"color:#79B8FF;\" data-v-8c9498c0> codes</span><span style=\"color:#F97583;\" data-v-8c9498c0> =</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> []</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#F97583;\" data-v-8c9498c0>        for</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> (</span><span style=\"color:#F97583;\" data-v-8c9498c0>const</span><span style=\"color:#79B8FF;\" data-v-8c9498c0> char</span><span style=\"color:#F97583;\" data-v-8c9498c0> of</span><span style=\"color:#F97583;\" data-v-8c9498c0> new</span><span style=\"color:#B392F0;\" data-v-8c9498c0> Set</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>(str)) {</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#F97583;\" data-v-8c9498c0>          const</span><span style=\"color:#79B8FF;\" data-v-8c9498c0> point</span><span style=\"color:#F97583;\" data-v-8c9498c0> =</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> char.</span><span style=\"color:#B392F0;\" data-v-8c9498c0>codePointAt</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>(</span><span style=\"color:#79B8FF;\" data-v-8c9498c0>0</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>)</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#F97583;\" data-v-8c9498c0>          if</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> (</span><span style=\"color:#F97583;\" data-v-8c9498c0>!</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>cache.</span><span style=\"color:#B392F0;\" data-v-8c9498c0>has</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>(char) </span><span style=\"color:#F97583;\" data-v-8c9498c0>&amp;&amp;</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> point </span><span style=\"color:#F97583;\" data-v-8c9498c0>!==</span><span style=\"color:#79B8FF;\" data-v-8c9498c0> undefined</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>) {</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>            codes.</span><span style=\"color:#B392F0;\" data-v-8c9498c0>push</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>(point)</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>          }</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>        }</span></span>\n<span class=\"line\" data-v-8c9498c0></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#6A737D;\" data-v-8c9498c0>        // Populate missing bitmaps</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#F97583;\" data-v-8c9498c0>        const</span><span style=\"color:#79B8FF;\" data-v-8c9498c0> newGlyphs</span><span style=\"color:#F97583;\" data-v-8c9498c0> =</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> FreeType.</span><span style=\"color:#B392F0;\" data-v-8c9498c0>LoadGlyphs</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>(</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>          codes,</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>          FreeType.</span><span style=\"color:#79B8FF;\" data-v-8c9498c0>FT_LOAD_RENDER</span><span style=\"color:#F97583;\" data-v-8c9498c0> |</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>            FreeType.</span><span style=\"color:#79B8FF;\" data-v-8c9498c0>FT_LOAD_MONOCHROME</span><span style=\"color:#F97583;\" data-v-8c9498c0> |</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>            FreeType.</span><span style=\"color:#79B8FF;\" data-v-8c9498c0>FT_LOAD_TARGET_MONO</span><span style=\"color:#F97583;\" data-v-8c9498c0> |</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>            (forceAutoHint </span><span style=\"color:#F97583;\" data-v-8c9498c0>?</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> FreeType.</span><span style=\"color:#79B8FF;\" data-v-8c9498c0>FT_LOAD_FORCE_AUTOHINT</span><span style=\"color:#F97583;\" data-v-8c9498c0> :</span><span style=\"color:#79B8FF;\" data-v-8c9498c0> 0</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>)</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>        )</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#F97583;\" data-v-8c9498c0>        for</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> (</span><span style=\"color:#F97583;\" data-v-8c9498c0>const</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> [</span><span style=\"color:#79B8FF;\" data-v-8c9498c0>code</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>, </span><span style=\"color:#79B8FF;\" data-v-8c9498c0>glyph</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>] </span><span style=\"color:#F97583;\" data-v-8c9498c0>of</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> newGlyphs) {</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#F97583;\" data-v-8c9498c0>          const</span><span style=\"color:#79B8FF;\" data-v-8c9498c0> char</span><span style=\"color:#F97583;\" data-v-8c9498c0> =</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> String.</span><span style=\"color:#B392F0;\" data-v-8c9498c0>fromCodePoint</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>(code)</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#F97583;\" data-v-8c9498c0>          await</span><span style=\"color:#B392F0;\" data-v-8c9498c0> handleNewGlyph</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>(code, char, glyph)</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>          cache.</span><span style=\"color:#B392F0;\" data-v-8c9498c0>set</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>(char, {</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>            glyph,</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>            bitmap: glyph.bitmap.imagedata</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#F97583;\" data-v-8c9498c0>              ?</span><span style=\"color:#F97583;\" data-v-8c9498c0> await</span><span style=\"color:#B392F0;\" data-v-8c9498c0> createImageBitmap</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>(glyph.bitmap.imagedata)</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#F97583;\" data-v-8c9498c0>              :</span><span style=\"color:#79B8FF;\" data-v-8c9498c0> null</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>,</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>          })</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>        }</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>      }</span></span>\n<span class=\"line\" data-v-8c9498c0></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#6A737D;\" data-v-8c9498c0>      /**</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#6A737D;\" data-v-8c9498c0>       * </span><span style=\"color:#F97583;\" data-v-8c9498c0>@param</span><span style=\"color:#B392F0;\" data-v-8c9498c0> {CanvasRenderingContext2D}</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> ctx</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#6A737D;\" data-v-8c9498c0>       * </span><span style=\"color:#F97583;\" data-v-8c9498c0>@param</span><span style=\"color:#B392F0;\" data-v-8c9498c0> {string}</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> str</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#6A737D;\" data-v-8c9498c0>       * </span><span style=\"color:#F97583;\" data-v-8c9498c0>@param</span><span style=\"color:#B392F0;\" data-v-8c9498c0> {number}</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> offsetx</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#6A737D;\" data-v-8c9498c0>       * </span><span style=\"color:#F97583;\" data-v-8c9498c0>@param</span><span style=\"color:#B392F0;\" data-v-8c9498c0> {number}</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> offsety</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#6A737D;\" data-v-8c9498c0>       */</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#F97583;\" data-v-8c9498c0>      const</span><span style=\"color:#B392F0;\" data-v-8c9498c0> draw</span><span style=\"color:#F97583;\" data-v-8c9498c0> =</span><span style=\"color:#F97583;\" data-v-8c9498c0> async</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> (</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#FFAB70;\" data-v-8c9498c0>        ctx</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>,</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#FFAB70;\" data-v-8c9498c0>        str</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>,</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#FFAB70;\" data-v-8c9498c0>        offsetx</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>,</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#FFAB70;\" data-v-8c9498c0>        offsety</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>,</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>        { </span><span style=\"color:#FFAB70;\" data-v-8c9498c0>letterSpacing</span><span style=\"color:#F97583;\" data-v-8c9498c0> =</span><span style=\"color:#79B8FF;\" data-v-8c9498c0> 0</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> } </span><span style=\"color:#F97583;\" data-v-8c9498c0>=</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> {}</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>      ) </span><span style=\"color:#F97583;\" data-v-8c9498c0>=&gt;</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> {</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#F97583;\" data-v-8c9498c0>        await</span><span style=\"color:#B392F0;\" data-v-8c9498c0> updateCache</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>(str)</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#F97583;\" data-v-8c9498c0>        let</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> prev </span><span style=\"color:#F97583;\" data-v-8c9498c0>=</span><span style=\"color:#79B8FF;\" data-v-8c9498c0> null</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#F97583;\" data-v-8c9498c0>        for</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> (</span><span style=\"color:#F97583;\" data-v-8c9498c0>const</span><span style=\"color:#79B8FF;\" data-v-8c9498c0> char</span><span style=\"color:#F97583;\" data-v-8c9498c0> of</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> str) {</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#F97583;\" data-v-8c9498c0>          const</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> { </span><span style=\"color:#79B8FF;\" data-v-8c9498c0>glyph</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>, </span><span style=\"color:#79B8FF;\" data-v-8c9498c0>bitmap</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> } </span><span style=\"color:#F97583;\" data-v-8c9498c0>=</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> cache.</span><span style=\"color:#B392F0;\" data-v-8c9498c0>get</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>(char) </span><span style=\"color:#F97583;\" data-v-8c9498c0>||</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> {}</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#F97583;\" data-v-8c9498c0>          if</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> (glyph) {</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#6A737D;\" data-v-8c9498c0>            // Kerning</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#F97583;\" data-v-8c9498c0>            if</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> (prev) {</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#F97583;\" data-v-8c9498c0>              const</span><span style=\"color:#79B8FF;\" data-v-8c9498c0> kerning</span><span style=\"color:#F97583;\" data-v-8c9498c0> =</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> FreeType.</span><span style=\"color:#B392F0;\" data-v-8c9498c0>GetKerning</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>(</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>                prev.glyph_index,</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>                glyph.glyph_index,</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#79B8FF;\" data-v-8c9498c0>                0</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>              )</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>              offsetx </span><span style=\"color:#F97583;\" data-v-8c9498c0>+=</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> kerning.x </span><span style=\"color:#F97583;\" data-v-8c9498c0>&gt;&gt;</span><span style=\"color:#79B8FF;\" data-v-8c9498c0> 6</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>            }</span></span>\n<span class=\"line\" data-v-8c9498c0></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#F97583;\" data-v-8c9498c0>            if</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> (bitmap) {</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>              ctx.</span><span style=\"color:#B392F0;\" data-v-8c9498c0>drawImage</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>(</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>                bitmap,</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>                offsetx </span><span style=\"color:#F97583;\" data-v-8c9498c0>+</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> glyph.bitmap_left,</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>                offsety </span><span style=\"color:#F97583;\" data-v-8c9498c0>-</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> glyph.bitmap_top</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>              )</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>            }</span></span>\n<span class=\"line\" data-v-8c9498c0></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>            offsetx </span><span style=\"color:#F97583;\" data-v-8c9498c0>+=</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> glyph.advance.x </span><span style=\"color:#F97583;\" data-v-8c9498c0>&gt;&gt;</span><span style=\"color:#79B8FF;\" data-v-8c9498c0> 6</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>            offsetx </span><span style=\"color:#F97583;\" data-v-8c9498c0>+=</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> letterSpacing</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>            prev </span><span style=\"color:#F97583;\" data-v-8c9498c0>=</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> glyph</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>          }</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>        }</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>      }</span></span>\n<span class=\"line\" data-v-8c9498c0></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#F97583;\" data-v-8c9498c0>      const</span><span style=\"color:#B392F0;\" data-v-8c9498c0> measure</span><span style=\"color:#F97583;\" data-v-8c9498c0> =</span><span style=\"color:#F97583;\" data-v-8c9498c0> async</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> (</span><span style=\"color:#FFAB70;\" data-v-8c9498c0>str</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>, { </span><span style=\"color:#FFAB70;\" data-v-8c9498c0>letterSpacing</span><span style=\"color:#F97583;\" data-v-8c9498c0> =</span><span style=\"color:#79B8FF;\" data-v-8c9498c0> 0</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> } </span><span style=\"color:#F97583;\" data-v-8c9498c0>=</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> {}) </span><span style=\"color:#F97583;\" data-v-8c9498c0>=&gt;</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> {</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#F97583;\" data-v-8c9498c0>        await</span><span style=\"color:#B392F0;\" data-v-8c9498c0> updateCache</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>(str)</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#F97583;\" data-v-8c9498c0>        let</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> width </span><span style=\"color:#F97583;\" data-v-8c9498c0>=</span><span style=\"color:#79B8FF;\" data-v-8c9498c0> 0</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#F97583;\" data-v-8c9498c0>        let</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> prev </span><span style=\"color:#F97583;\" data-v-8c9498c0>=</span><span style=\"color:#79B8FF;\" data-v-8c9498c0> null</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#F97583;\" data-v-8c9498c0>        for</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> (</span><span style=\"color:#F97583;\" data-v-8c9498c0>const</span><span style=\"color:#79B8FF;\" data-v-8c9498c0> char</span><span style=\"color:#F97583;\" data-v-8c9498c0> of</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> str) {</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#F97583;\" data-v-8c9498c0>          const</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> { </span><span style=\"color:#79B8FF;\" data-v-8c9498c0>glyph</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> } </span><span style=\"color:#F97583;\" data-v-8c9498c0>=</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> cache.</span><span style=\"color:#B392F0;\" data-v-8c9498c0>get</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>(char) </span><span style=\"color:#F97583;\" data-v-8c9498c0>||</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> {}</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#F97583;\" data-v-8c9498c0>          if</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> (glyph) {</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#F97583;\" data-v-8c9498c0>            if</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> (prev) {</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#F97583;\" data-v-8c9498c0>              const</span><span style=\"color:#79B8FF;\" data-v-8c9498c0> kerning</span><span style=\"color:#F97583;\" data-v-8c9498c0> =</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> FreeType.</span><span style=\"color:#B392F0;\" data-v-8c9498c0>GetKerning</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>(</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>                prev.glyph_index,</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>                glyph.glyph_index,</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#79B8FF;\" data-v-8c9498c0>                0</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>              )</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>              width </span><span style=\"color:#F97583;\" data-v-8c9498c0>+=</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> kerning.x </span><span style=\"color:#F97583;\" data-v-8c9498c0>&gt;&gt;</span><span style=\"color:#79B8FF;\" data-v-8c9498c0> 6</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>              width </span><span style=\"color:#F97583;\" data-v-8c9498c0>+=</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> letterSpacing</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>            }</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>            width </span><span style=\"color:#F97583;\" data-v-8c9498c0>+=</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> glyph.advance.x </span><span style=\"color:#F97583;\" data-v-8c9498c0>&gt;&gt;</span><span style=\"color:#79B8FF;\" data-v-8c9498c0> 6</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>            prev </span><span style=\"color:#F97583;\" data-v-8c9498c0>=</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> glyph</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>          }</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>        }</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#F97583;\" data-v-8c9498c0>        return</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> width</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>      }</span></span>\n<span class=\"line\" data-v-8c9498c0></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#F97583;\" data-v-8c9498c0>      const</span><span style=\"color:#B392F0;\" data-v-8c9498c0> getGlyph</span><span style=\"color:#F97583;\" data-v-8c9498c0> =</span><span style=\"color:#F97583;\" data-v-8c9498c0> async</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> (</span><span style=\"color:#FFAB70;\" data-v-8c9498c0>char</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>) </span><span style=\"color:#F97583;\" data-v-8c9498c0>=&gt;</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> {</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#F97583;\" data-v-8c9498c0>        await</span><span style=\"color:#B392F0;\" data-v-8c9498c0> updateCache</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>(char)</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#F97583;\" data-v-8c9498c0>        return</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> cache.</span><span style=\"color:#B392F0;\" data-v-8c9498c0>get</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>(char)</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>      }</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#F97583;\" data-v-8c9498c0>      return</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> { draw, measure, getGlyph }</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>    }</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#F97583;\" data-v-8c9498c0>    return</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> { withSize }</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>  }</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#F97583;\" data-v-8c9498c0>  return</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> { loadFont }</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>}</span></span></code></pre><h2 id=\"example-usage\" data-v-8c9498c0><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#example-usage\" data-v-8c9498c0><span class=\"icon icon-link\" data-v-8c9498c0></span></a>Example usage</h2><pre class=\"shiki github-dark\" style=\"background-color:#252423;color:#e1e4e8;\" tabindex=\"0\" data-v-8c9498c0><code data-v-8c9498c0><span class=\"line\" data-v-8c9498c0><span style=\"color:#F97583;\" data-v-8c9498c0>const</span><span style=\"color:#79B8FF;\" data-v-8c9498c0> renderer</span><span style=\"color:#F97583;\" data-v-8c9498c0> =</span><span style=\"color:#F97583;\" data-v-8c9498c0> await</span><span style=\"color:#B392F0;\" data-v-8c9498c0> createFreeTypeRenderer</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>()</span></span>\n<span class=\"line\" data-v-8c9498c0></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#F97583;\" data-v-8c9498c0>const</span><span style=\"color:#79B8FF;\" data-v-8c9498c0> berkeleyMono</span><span style=\"color:#F97583;\" data-v-8c9498c0> =</span><span style=\"color:#F97583;\" data-v-8c9498c0> await</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> window</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>  .</span><span style=\"color:#B392F0;\" data-v-8c9498c0>queryLocalFonts</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>({ postscriptNames: [</span><span style=\"color:#9ECBFF;\" data-v-8c9498c0>&#39;BerkeleyMono-Bold&#39;</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>] })</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>  .</span><span style=\"color:#B392F0;\" data-v-8c9498c0>then</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>((</span><span style=\"color:#FFAB70;\" data-v-8c9498c0>fonts</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>) </span><span style=\"color:#F97583;\" data-v-8c9498c0>=&gt;</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> fonts[</span><span style=\"color:#79B8FF;\" data-v-8c9498c0>0</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>].</span><span style=\"color:#B392F0;\" data-v-8c9498c0>blob</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>())</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>  .</span><span style=\"color:#B392F0;\" data-v-8c9498c0>then</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>((</span><span style=\"color:#FFAB70;\" data-v-8c9498c0>blob</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>) </span><span style=\"color:#F97583;\" data-v-8c9498c0>=&gt;</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> blob.</span><span style=\"color:#B392F0;\" data-v-8c9498c0>arrayBuffer</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>())</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>  .</span><span style=\"color:#B392F0;\" data-v-8c9498c0>then</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>((</span><span style=\"color:#FFAB70;\" data-v-8c9498c0>buffer</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>) </span><span style=\"color:#F97583;\" data-v-8c9498c0>=&gt;</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> renderer.</span><span style=\"color:#B392F0;\" data-v-8c9498c0>loadFont</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>(buffer))</span></span>\n<span class=\"line\" data-v-8c9498c0></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#F97583;\" data-v-8c9498c0>await</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> berkeleyMono.</span><span style=\"color:#B392F0;\" data-v-8c9498c0>withSize</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>(</span><span style=\"color:#79B8FF;\" data-v-8c9498c0>19</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>).</span><span style=\"color:#B392F0;\" data-v-8c9498c0>draw</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>(ctx, </span><span style=\"color:#9ECBFF;\" data-v-8c9498c0>&#39;Hello, world!&#39;</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>, </span><span style=\"color:#79B8FF;\" data-v-8c9498c0>0</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>, </span><span style=\"color:#79B8FF;\" data-v-8c9498c0>19</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>)</span></span></code></pre>", 5)
+function render(_ctx, _cache, $props, $setup, $data, $options) {
+  const _component_r_cell = _vue.resolveComponent.call(void 0, "r-cell")
+  const _component_r_grid = _vue.resolveComponent.call(void 0, "r-grid")
+
+  return (_vue.openBlock.call(void 0, ), _vue.createElementBlock.call(void 0, _vue.Fragment, null, [
+    _hoisted_1,
+    _vue.createVNode.call(void 0, _component_r_grid, {
+      columns: "2",
+      "columns-s": "1",
+      class: "n-exs",
+      style: {"gap":"1em"}
+    }, {
+      default: _vue.withCtx.call(void 0, () => [
+        _vue.createVNode.call(void 0, _component_r_cell, null, {
+          default: _vue.withCtx.call(void 0, () => [
+            _hoisted_3
+          ]),
+          _: 1 /* STABLE */
+        }),
+        _vue.createVNode.call(void 0, _component_r_cell, null, {
+          default: _vue.withCtx.call(void 0, () => [
+            _hoisted_4
+          ]),
+          _: 1 /* STABLE */
+        })
+      ]),
+      _: 1 /* STABLE */
+    }),
+    _hoisted_5,
+    _vue.createElementVNode.call(void 0, "p", null, [
+      _vue.createElementVNode.call(void 0, "button", {
+        onClick: _cache[0] || (_cache[0] = (...args) => ($setup.queryFonts && $setup.queryFonts(...args)))
+      }, "Query fonts")
+    ]),
+    _hoisted_10,
+    _vue.createElementVNode.call(void 0, "p", null, [
+      _vue.withDirectives.call(void 0, _vue.createElementVNode.call(void 0, "select", {
+        disabled: $setup.availableFonts.length === 0,
+        "onUpdate:modelValue": _cache[1] || (_cache[1] = $event => (($setup.selectedFont) = $event))
+      }, [
+        ($setup.availableFonts.length === 0)
+          ? (_vue.openBlock.call(void 0, ), _vue.createElementBlock.call(void 0, "option", _hoisted_12, "Please click the above button first."))
+          : _vue.createCommentVNode.call(void 0, "v-if", true),
+        (_vue.openBlock.call(void 0, true), _vue.createElementBlock.call(void 0, _vue.Fragment, null, _vue.renderList.call(void 0, $setup.availableFonts, (font) => {
+          return (_vue.openBlock.call(void 0, ), _vue.createElementBlock.call(void 0, "option", {
+            value: font.postscriptName
+          }, _vue.toDisplayString.call(void 0, font.fullName), 9 /* TEXT, PROPS */, _hoisted_13))
+        }), 256 /* UNKEYED_FRAGMENT */))
+      ], 8 /* PROPS */, _hoisted_11), [
+        [_vue.vModelSelect, $setup.selectedFont]
+      ]),
+      _vue.withDirectives.call(void 0, _vue.createElementVNode.call(void 0, "input", {
+        disabled: $setup.availableFonts.length === 0,
+        type: "number",
+        min: "1",
+        "onUpdate:modelValue": _cache[2] || (_cache[2] = $event => (($setup.selectedFontSize) = $event)),
+        style: {"width":"64px"}
+      }, null, 8 /* PROPS */, _hoisted_14), [
+        [_vue.vModelText, $setup.selectedFontSize]
+      ])
+    ]),
+    _hoisted_15,
+    _vue.createElementVNode.call(void 0, "p", null, [
+      _vue.withDirectives.call(void 0, _vue.createElementVNode.call(void 0, "input", {
+        disabled: !$setup.selectedFont,
+        type: "text",
+        "onUpdate:modelValue": _cache[3] || (_cache[3] = $event => (($setup.text) = $event)),
+        placeholder: "Enter text to render",
+        style: {"box-sizing":"border-box","width":"100%"}
+      }, null, 8 /* PROPS */, _hoisted_16), [
+        [_vue.vModelText, $setup.text]
+      ])
+    ]),
+    _vue.createElementVNode.call(void 0, "p", _hoisted_17, [
+      _vue.createElementVNode.call(void 0, "canvas", _hoisted_18, null, 512 /* NEED_PATCH */)
+    ]),
+    _hoisted_19
+  ], 64 /* STABLE_FRAGMENT */))
+}
+__sfc__.render = render
+__sfc__.__scopeId = "data-v-8c9498c0"
+__sfc__.__file = "Note.vue"
+exports. default = __sfc__};
+window.precompiledFrontMatter = {"title":"Drawing low resolution monochrome text with freetype-wasm","public":true};
+</script>
+  </body>
+</html>

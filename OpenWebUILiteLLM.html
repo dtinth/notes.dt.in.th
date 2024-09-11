@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html data-precompiled=true lang="en" data-dtinth="true">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OpenWebUILiteLLM | notes.dt.in.th</title><meta property="og:title" content="OpenWebUILiteLLM" data-source="note">
+<meta property="og:image" content="https://screenshot.source.in.th/image/_/notes/OpenWebUILiteLLM" data-source="note">
+<meta property="og:image:width" content="1800" data-source="note">
+<meta property="og:image:height" content="1680" data-source="note">
+<link rel="canonical" href="https://notes.dt.in.th/OpenWebUILiteLLM" data-source="note">
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/iconify-icon@2.1.0/dist/iconify-icon.min.js"
+      integrity="sha256-dY2Ug42wyv3rl+sLVKEg3jbPs8f+hi7tmJ836AxVDwI="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/blurhash-image@1.0.1/blurhash-image.min.js"
+      integrity="sha256-qrUUgTGk7xA7iVCwraHNQjwy2JryA0K4L3DL4qidagQ="
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" crossorigin src="/runtime/index.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/supabase-CjkNZD6A.js">
+    <link rel="stylesheet" crossorigin href="/runtime/index.css">
+  </head>
+  <body class="bg-#252423 text-#e9e8e7 antialiased">
+    <header class="h-[58px] bg-#090807 border-b border-#454443 z-20 flex">
+      <div class="flex items-center pl-[18px] flex-none">
+        <a
+          class="flex items-center text-#8b8685 hover:text-#ffffbb text-lg"
+          href="/"
+          >notes.dt.in.th</a
+        >
+      </div>
+      <div
+        class="flex-1 flex items-center text-#8b8685 [&_a:hover]:text-#ffffbb overflow-hidden"
+        id="headerMiddle"
+      >
+        <div class="px-2 flex-none">›</div><div class="truncate"><a title="Hardware (topic)" href="Hardware">Hardware</a></div><div class="px-2 flex-none">›</div><div class="truncate"><a title="Reverse-engineering Insta360 Link Controller WebSockets protocol" href="Insta360LinkControllerWebSocketProtocol">Reverse-engineering Insta360 Link Controller WebSockets protocol</a></div>
+      </div>
+      <div
+        class="flex items-center px-[18px] flex-none gap-4"
+        id="headerToolbar"
+      ></div>
+    </header>
+    <div class="h-entry">
+      <main class="bg-#353433" id="main">
+        <div class="notes-layout-container mx-auto p-6 py-12" id="mainContents">
+          <div class="prose e-content" id="noteContents"><!--[--><h1 id="configuring-open-webui-and-litellm-with-docker-compose-to-talk-to-openai-anthropic-and-gemini-apis"><a aria-hidden="true" tabindex="-1" href="#configuring-open-webui-and-litellm-with-docker-compose-to-talk-to-openai-anthropic-and-gemini-apis"><span class="icon icon-link"></span></a>Configuring Open WebUI and LiteLLM with Docker Compose to talk to OpenAI, Anthropic, and Gemini APIs</h1><p>I want to use a single UI to interact with <a href="LargeLanguageModel">LLMs</a> from different providers (OpenAI, Anthropic, and Google). I found that there is a way to do this now, but you have to self-host some software.</p><ol><li><a href="https://github.com/open-webui/open-webui"><strong>Open WebUI</strong></a> — A web-based LLM client that works Ollama and any OpenAI-compatible API.</li><li><a href="https://github.com/BerriAI/litellm"><strong>LiteLLM</strong></a> — A proxy server that exposes 100s of LLMs with a unified, OpenAI-compatible API.</li></ol><p><img src="https://im.dt.in.th/ipfs/bafybeiavabarskefnfaenl57lwkugoioswkapqaqvb46ovh3ric2jso4ga/image.webp" alt=""></p><p>The UI is very flexible. You can choose which model to talk to, or talk to all of them at once:</p><p><img src="https://im.dt.in.th/ipfs/bafybeidw67od5gpxgmhlnjxhtnhmd4xih5xwznpjkl4t7bj2fzdjialxoy/image.webp" alt=""></p><p>This is how I set it up:</p><ol><li><p><strong>Set up the environment variables.</strong> Put the API keys in a <code>.env</code> file.</p><pre><code>OPENAI_API_KEY=
+ANTHROPIC_API_KEY=
+GEMINI_API_KEY=
+</code></pre></li><li><p><strong>Create a LiteLLM config file.</strong> Put the model names and API keys in a <code>litellm_config.yaml</code> file.</p><pre class="shiki github-dark" style="background-color:#252423;color:#e1e4e8;" tabindex="0"><code><span class="line"><span style="color:#85E89D;">model_list</span><span style="color:#E1E4E8;">:</span></span>
+<span class="line"><span style="color:#E1E4E8;">  - </span><span style="color:#85E89D;">model_name</span><span style="color:#E1E4E8;">: </span><span style="color:#9ECBFF;">gpt-4o</span></span>
+<span class="line"><span style="color:#85E89D;">    litellm_params</span><span style="color:#E1E4E8;">:</span></span>
+<span class="line"><span style="color:#85E89D;">      model</span><span style="color:#E1E4E8;">: </span><span style="color:#9ECBFF;">openai/gpt-4o</span></span>
+<span class="line"><span style="color:#E1E4E8;">  - </span><span style="color:#85E89D;">model_name</span><span style="color:#E1E4E8;">: </span><span style="color:#9ECBFF;">claude-3-5-sonnet</span></span>
+<span class="line"><span style="color:#85E89D;">    litellm_params</span><span style="color:#E1E4E8;">:</span></span>
+<span class="line"><span style="color:#85E89D;">      model</span><span style="color:#E1E4E8;">: </span><span style="color:#9ECBFF;">anthropic/claude-3-5-sonnet-20240620</span></span>
+<span class="line"><span style="color:#E1E4E8;">  - </span><span style="color:#85E89D;">model_name</span><span style="color:#E1E4E8;">: </span><span style="color:#9ECBFF;">gemini-1.5-pro-latest</span></span>
+<span class="line"><span style="color:#85E89D;">    litellm_params</span><span style="color:#E1E4E8;">:</span></span>
+<span class="line"><span style="color:#85E89D;">      model</span><span style="color:#E1E4E8;">: </span><span style="color:#9ECBFF;">gemini/gemini-1.5-pro-latest</span></span></code></pre></li><li><p><strong>Create a Docker Compose project.</strong> Here’s the <code>docker-compose.yml</code> file that puts it all together:</p><pre class="shiki github-dark" style="background-color:#252423;color:#e1e4e8;" tabindex="0"><code><span class="line"><span style="color:#85E89D;">services</span><span style="color:#E1E4E8;">:</span></span>
+<span class="line"><span style="color:#85E89D;">  webui</span><span style="color:#E1E4E8;">:</span></span>
+<span class="line"><span style="color:#85E89D;">    image</span><span style="color:#E1E4E8;">: </span><span style="color:#9ECBFF;">ghcr.io/open-webui/open-webui:main</span></span>
+<span class="line"><span style="color:#85E89D;">    restart</span><span style="color:#E1E4E8;">: </span><span style="color:#9ECBFF;">unless-stopped</span></span>
+<span class="line"><span style="color:#85E89D;">    ports</span><span style="color:#E1E4E8;">:</span></span>
+<span class="line"><span style="color:#E1E4E8;">      - </span><span style="color:#9ECBFF;">&#39;127.0.0.1:33371:8080&#39;</span></span>
+<span class="line"><span style="color:#85E89D;">    environment</span><span style="color:#E1E4E8;">:</span></span>
+<span class="line"><span style="color:#E1E4E8;">      - </span><span style="color:#9ECBFF;">OPENAI_API_KEY=dummy</span></span>
+<span class="line"><span style="color:#E1E4E8;">      - </span><span style="color:#9ECBFF;">OPENAI_API_BASE_URL=http://litellm:4000/v1</span></span>
+<span class="line"><span style="color:#85E89D;">    volumes</span><span style="color:#E1E4E8;">:</span></span>
+<span class="line"><span style="color:#E1E4E8;">      - </span><span style="color:#9ECBFF;">open-webui:/app/backend/data</span></span>
+<span class="line"><span style="color:#85E89D;">  litellm</span><span style="color:#E1E4E8;">:</span></span>
+<span class="line"><span style="color:#85E89D;">    image</span><span style="color:#E1E4E8;">: </span><span style="color:#9ECBFF;">ghcr.io/berriai/litellm:main-latest</span></span>
+<span class="line"><span style="color:#85E89D;">    restart</span><span style="color:#E1E4E8;">: </span><span style="color:#9ECBFF;">unless-stopped</span></span>
+<span class="line"><span style="color:#85E89D;">    command</span><span style="color:#E1E4E8;">:</span></span>
+<span class="line"><span style="color:#E1E4E8;">      - </span><span style="color:#9ECBFF;">&#39;--config=/litellm_config.yaml&#39;</span></span>
+<span class="line"><span style="color:#E1E4E8;">      - </span><span style="color:#9ECBFF;">&#39;--detailed_debug&#39;</span></span>
+<span class="line"><span style="color:#85E89D;">    ports</span><span style="color:#E1E4E8;">:</span></span>
+<span class="line"><span style="color:#E1E4E8;">      - </span><span style="color:#9ECBFF;">&#39;127.0.0.1:33372:4000&#39;</span></span>
+<span class="line"><span style="color:#85E89D;">    environment</span><span style="color:#E1E4E8;">:</span></span>
+<span class="line"><span style="color:#E1E4E8;">      - </span><span style="color:#9ECBFF;">LITELLM_MASTER_KEY=dummy</span></span>
+<span class="line"><span style="color:#E1E4E8;">      - </span><span style="color:#9ECBFF;">OPENAI_API_KEY</span></span>
+<span class="line"><span style="color:#E1E4E8;">      - </span><span style="color:#9ECBFF;">GEMINI_API_KEY</span></span>
+<span class="line"><span style="color:#E1E4E8;">      - </span><span style="color:#9ECBFF;">ANTHROPIC_API_KEY</span></span>
+<span class="line"><span style="color:#85E89D;">    volumes</span><span style="color:#E1E4E8;">:</span></span>
+<span class="line"><span style="color:#E1E4E8;">      - </span><span style="color:#9ECBFF;">./litellm_config.yaml:/litellm_config.yaml</span></span>
+<span class="line"><span style="color:#85E89D;">volumes</span><span style="color:#E1E4E8;">:</span></span>
+<span class="line"><span style="color:#85E89D;">  open-webui</span><span style="color:#E1E4E8;">:</span></span></code></pre></li><li><p><strong>Start the project.</strong> Run <code>docker compose up -d</code> to start the project, then go to <code>http://localhost:33371/</code> and create an account there.</p></li></ol><!--]--></div>
+        </div>
+      </main>
+      <footer>
+        <div
+          class="notes-layout-container mx-auto py-4 px-6 text-#8b8685 text-right text-sm"
+          id="footerContents"
+        >
+          <notes-page-footer></notes-page-footer>
+        </div>
+      </footer>
+    </div>
+    <script>
+window.precompiledNoteBehavior = function(require, exports, module, Vue) {"use strict";Object.defineProperty(exports, "__esModule", {value: true});const __sfc__ = {};
+var _vue = require('vue');
+
+const _hoisted_1 = /*#__PURE__*/_vue.createStaticVNode.call(void 0, "<h1 id=\"configuring-open-webui-and-litellm-with-docker-compose-to-talk-to-openai-anthropic-and-gemini-apis\"><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#configuring-open-webui-and-litellm-with-docker-compose-to-talk-to-openai-anthropic-and-gemini-apis\"><span class=\"icon icon-link\"></span></a>Configuring Open WebUI and LiteLLM with Docker Compose to talk to OpenAI, Anthropic, and Gemini APIs</h1><p>I want to use a single UI to interact with <a href=\"LargeLanguageModel\">LLMs</a> from different providers (OpenAI, Anthropic, and Google). I found that there is a way to do this now, but you have to self-host some software.</p><ol><li><a href=\"https://github.com/open-webui/open-webui\"><strong>Open WebUI</strong></a> — A web-based LLM client that works Ollama and any OpenAI-compatible API.</li><li><a href=\"https://github.com/BerriAI/litellm\"><strong>LiteLLM</strong></a> — A proxy server that exposes 100s of LLMs with a unified, OpenAI-compatible API.</li></ol><p><img src=\"https://im.dt.in.th/ipfs/bafybeiavabarskefnfaenl57lwkugoioswkapqaqvb46ovh3ric2jso4ga/image.webp\" alt=\"\"></p><p>The UI is very flexible. You can choose which model to talk to, or talk to all of them at once:</p><p><img src=\"https://im.dt.in.th/ipfs/bafybeidw67od5gpxgmhlnjxhtnhmd4xih5xwznpjkl4t7bj2fzdjialxoy/image.webp\" alt=\"\"></p><p>This is how I set it up:</p><ol><li><p><strong>Set up the environment variables.</strong> Put the API keys in a <code>.env</code> file.</p><pre><code>OPENAI_API_KEY=\nANTHROPIC_API_KEY=\nGEMINI_API_KEY=\n</code></pre></li><li><p><strong>Create a LiteLLM config file.</strong> Put the model names and API keys in a <code>litellm_config.yaml</code> file.</p><pre class=\"shiki github-dark\" style=\"background-color:#252423;color:#e1e4e8;\" tabindex=\"0\"><code><span class=\"line\"><span style=\"color:#85E89D;\">model_list</span><span style=\"color:#E1E4E8;\">:</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">  - </span><span style=\"color:#85E89D;\">model_name</span><span style=\"color:#E1E4E8;\">: </span><span style=\"color:#9ECBFF;\">gpt-4o</span></span>\n<span class=\"line\"><span style=\"color:#85E89D;\">    litellm_params</span><span style=\"color:#E1E4E8;\">:</span></span>\n<span class=\"line\"><span style=\"color:#85E89D;\">      model</span><span style=\"color:#E1E4E8;\">: </span><span style=\"color:#9ECBFF;\">openai/gpt-4o</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">  - </span><span style=\"color:#85E89D;\">model_name</span><span style=\"color:#E1E4E8;\">: </span><span style=\"color:#9ECBFF;\">claude-3-5-sonnet</span></span>\n<span class=\"line\"><span style=\"color:#85E89D;\">    litellm_params</span><span style=\"color:#E1E4E8;\">:</span></span>\n<span class=\"line\"><span style=\"color:#85E89D;\">      model</span><span style=\"color:#E1E4E8;\">: </span><span style=\"color:#9ECBFF;\">anthropic/claude-3-5-sonnet-20240620</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">  - </span><span style=\"color:#85E89D;\">model_name</span><span style=\"color:#E1E4E8;\">: </span><span style=\"color:#9ECBFF;\">gemini-1.5-pro-latest</span></span>\n<span class=\"line\"><span style=\"color:#85E89D;\">    litellm_params</span><span style=\"color:#E1E4E8;\">:</span></span>\n<span class=\"line\"><span style=\"color:#85E89D;\">      model</span><span style=\"color:#E1E4E8;\">: </span><span style=\"color:#9ECBFF;\">gemini/gemini-1.5-pro-latest</span></span></code></pre></li><li><p><strong>Create a Docker Compose project.</strong> Here’s the <code>docker-compose.yml</code> file that puts it all together:</p><pre class=\"shiki github-dark\" style=\"background-color:#252423;color:#e1e4e8;\" tabindex=\"0\"><code><span class=\"line\"><span style=\"color:#85E89D;\">services</span><span style=\"color:#E1E4E8;\">:</span></span>\n<span class=\"line\"><span style=\"color:#85E89D;\">  webui</span><span style=\"color:#E1E4E8;\">:</span></span>\n<span class=\"line\"><span style=\"color:#85E89D;\">    image</span><span style=\"color:#E1E4E8;\">: </span><span style=\"color:#9ECBFF;\">ghcr.io/open-webui/open-webui:main</span></span>\n<span class=\"line\"><span style=\"color:#85E89D;\">    restart</span><span style=\"color:#E1E4E8;\">: </span><span style=\"color:#9ECBFF;\">unless-stopped</span></span>\n<span class=\"line\"><span style=\"color:#85E89D;\">    ports</span><span style=\"color:#E1E4E8;\">:</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">      - </span><span style=\"color:#9ECBFF;\">&#39;127.0.0.1:33371:8080&#39;</span></span>\n<span class=\"line\"><span style=\"color:#85E89D;\">    environment</span><span style=\"color:#E1E4E8;\">:</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">      - </span><span style=\"color:#9ECBFF;\">OPENAI_API_KEY=dummy</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">      - </span><span style=\"color:#9ECBFF;\">OPENAI_API_BASE_URL=http://litellm:4000/v1</span></span>\n<span class=\"line\"><span style=\"color:#85E89D;\">    volumes</span><span style=\"color:#E1E4E8;\">:</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">      - </span><span style=\"color:#9ECBFF;\">open-webui:/app/backend/data</span></span>\n<span class=\"line\"><span style=\"color:#85E89D;\">  litellm</span><span style=\"color:#E1E4E8;\">:</span></span>\n<span class=\"line\"><span style=\"color:#85E89D;\">    image</span><span style=\"color:#E1E4E8;\">: </span><span style=\"color:#9ECBFF;\">ghcr.io/berriai/litellm:main-latest</span></span>\n<span class=\"line\"><span style=\"color:#85E89D;\">    restart</span><span style=\"color:#E1E4E8;\">: </span><span style=\"color:#9ECBFF;\">unless-stopped</span></span>\n<span class=\"line\"><span style=\"color:#85E89D;\">    command</span><span style=\"color:#E1E4E8;\">:</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">      - </span><span style=\"color:#9ECBFF;\">&#39;--config=/litellm_config.yaml&#39;</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">      - </span><span style=\"color:#9ECBFF;\">&#39;--detailed_debug&#39;</span></span>\n<span class=\"line\"><span style=\"color:#85E89D;\">    ports</span><span style=\"color:#E1E4E8;\">:</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">      - </span><span style=\"color:#9ECBFF;\">&#39;127.0.0.1:33372:4000&#39;</span></span>\n<span class=\"line\"><span style=\"color:#85E89D;\">    environment</span><span style=\"color:#E1E4E8;\">:</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">      - </span><span style=\"color:#9ECBFF;\">LITELLM_MASTER_KEY=dummy</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">      - </span><span style=\"color:#9ECBFF;\">OPENAI_API_KEY</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">      - </span><span style=\"color:#9ECBFF;\">GEMINI_API_KEY</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">      - </span><span style=\"color:#9ECBFF;\">ANTHROPIC_API_KEY</span></span>\n<span class=\"line\"><span style=\"color:#85E89D;\">    volumes</span><span style=\"color:#E1E4E8;\">:</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">      - </span><span style=\"color:#9ECBFF;\">./litellm_config.yaml:/litellm_config.yaml</span></span>\n<span class=\"line\"><span style=\"color:#85E89D;\">volumes</span><span style=\"color:#E1E4E8;\">:</span></span>\n<span class=\"line\"><span style=\"color:#85E89D;\">  open-webui</span><span style=\"color:#E1E4E8;\">:</span></span></code></pre></li><li><p><strong>Start the project.</strong> Run <code>docker compose up -d</code> to start the project, then go to <code>http://localhost:33371/</code> and create an account there.</p></li></ol>", 8)
+function render(_ctx, _cache) {
+  return _hoisted_1
+}
+__sfc__.render = render
+__sfc__.__file = "Note.vue"
+exports. default = __sfc__};
+window.precompiledFrontMatter = {"public":true};
+</script>
+  </body>
+</html>

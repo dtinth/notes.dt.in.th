@@ -1,0 +1,1117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+	<channel>
+		<title><![CDATA[dtinth]]></title>
+		<description><![CDATA[Thai Pangsakulyanont’s writings]]></description>
+		<link>https://dt.in.th</link>
+		<generator>RSS for Node</generator>
+		<lastBuildDate>Wed, 11 Sep 2024 16:05:53 GMT</lastBuildDate>
+		<atom:link href="https://notes.dt.in.th/api/recent.xml" rel="self" type="application/rss+xml" />
+		<item>
+			<title><![CDATA[Paste image to decode QR code]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/PasteQR">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/PasteQR</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/PasteQR</guid>
+			<pubDate>Wed, 11 Sep 2024 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Using Elysia in Node.js]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/ElysiaNode">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/ElysiaNode</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/ElysiaNode</guid>
+			<pubDate>Sun, 01 Sep 2024 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Reverse-engineering Insta360 Link Controller WebSockets protocol]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/Insta360LinkControllerWebSocketProtocol">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/Insta360LinkControllerWebSocketProtocol</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/Insta360LinkControllerWebSocketProtocol</guid>
+			<pubDate>Sat, 31 Aug 2024 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[How I structure Playwright page objects]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/PlaywrightPageObject">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/PlaywrightPageObject</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/PlaywrightPageObject</guid>
+			<pubDate>Wed, 28 Aug 2024 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Reading data from OBZ Barcode Reader on the web using Web Serial API]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/OBZBarcodeScannerJS">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/OBZBarcodeScannerJS</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/OBZBarcodeScannerJS</guid>
+			<pubDate>Mon, 26 Aug 2024 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Configuring Open WebUI and LiteLLM with Docker Compose to talk to OpenAI, Anthropic, and Gemini APIs]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/OpenWebUILiteLLM">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/OpenWebUILiteLLM</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/OpenWebUILiteLLM</guid>
+			<pubDate>Mon, 15 Jul 2024 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[LLM กับข้อสอบ O-NET ม.6]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/ThaiLanguageLLMBenchmark">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/ThaiLanguageLLMBenchmark</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/ThaiLanguageLLMBenchmark</guid>
+			<pubDate>Sun, 30 Jun 2024 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Drawing low resolution monochrome text with freetype-wasm]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/FreeTypeJSBlackWhiteText">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/FreeTypeJSBlackWhiteText</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/FreeTypeJSBlackWhiteText</guid>
+			<pubDate>Sun, 21 Apr 2024 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Getting Tailwind CSS 4 (alpha 14) to run in the browser]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/TailwindCSS4Alpha14Notes">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/TailwindCSS4Alpha14Notes</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/TailwindCSS4Alpha14Notes</guid>
+			<pubDate>Sat, 20 Apr 2024 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Auto-merging dependabot PRs]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/DependabotAutoMerge">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/DependabotAutoMerge</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/DependabotAutoMerge</guid>
+			<pubDate>Tue, 30 Jan 2024 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Modifying the alpha channel of a color using CSS]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/CSSChangeColorOpacity">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/CSSChangeColorOpacity</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/CSSChangeColorOpacity</guid>
+			<pubDate>Mon, 29 Jan 2024 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Faster PostgreSQL during development]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/PostgresDevConfig">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/PostgresDevConfig</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/PostgresDevConfig</guid>
+			<pubDate>Wed, 17 Jan 2024 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[A data dictionary that describes itself]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/DataDictionary">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/DataDictionary</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/DataDictionary</guid>
+			<pubDate>Tue, 16 Jan 2024 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[A URL to a blank file on IPFS]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/IpfsBlankFileUrl">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/IpfsBlankFileUrl</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/IpfsBlankFileUrl</guid>
+			<pubDate>Sun, 10 Sep 2023 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[How to retag a Docker image on a remote registry without pulling the image to local machine]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/DockerRetagImage">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/DockerRetagImage</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/DockerRetagImage</guid>
+			<pubDate>Sat, 09 Sep 2023 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Moving data from one PostgreSQL database to another]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/PostgresMigrate">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/PostgresMigrate</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/PostgresMigrate</guid>
+			<pubDate>Fri, 08 Sep 2023 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Getting a long-lived access token for a Facebook page]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/FacebookPageLongLivedAccessToken">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/FacebookPageLongLivedAccessToken</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/FacebookPageLongLivedAccessToken</guid>
+			<pubDate>Mon, 21 Aug 2023 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[How to launch Chrome for Testing]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/LaunchingChromeForTesting">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/LaunchingChromeForTesting</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/LaunchingChromeForTesting</guid>
+			<pubDate>Sun, 20 Aug 2023 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[OKLCH Color Scale Plotter]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/OklchPlot">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/OklchPlot</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/OklchPlot</guid>
+			<pubDate>Sat, 19 Aug 2023 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Accessing user ID in NextAuth.js with JWT session]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/NextAuthUserIdInSession">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/NextAuthUserIdInSession</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/NextAuthUserIdInSession</guid>
+			<pubDate>Mon, 10 Jul 2023 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Making Caddy use a self-signed SSL certificate]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/CaddySelfSigned">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/CaddySelfSigned</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/CaddySelfSigned</guid>
+			<pubDate>Sun, 02 Jul 2023 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Setting up CORS in Caddy]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/CaddyCORS">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/CaddyCORS</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/CaddyCORS</guid>
+			<pubDate>Sun, 02 Jul 2023 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Backing up a Linux cloud server with Restic]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/ResticBackup">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/ResticBackup</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/ResticBackup</guid>
+			<pubDate>Sat, 01 Jul 2023 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[MongoDB in Docker: ‘Authentication Failed’ when logging in to a non-default database name]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/MongoDBAuthSource">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/MongoDBAuthSource</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/MongoDBAuthSource</guid>
+			<pubDate>Fri, 23 Jun 2023 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[HDR QR Code]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/HDRQRCode">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/HDRQRCode</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/HDRQRCode</guid>
+			<pubDate>Sun, 18 Jun 2023 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Using Google Cloud Service Accounts to authenticate between your own services]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/GoogleCloudServiceAccountIdToken">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/GoogleCloudServiceAccountIdToken</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/GoogleCloudServiceAccountIdToken</guid>
+			<pubDate>Sat, 10 Jun 2023 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[ข้อความภาษาไทยใน Discord ยาวเท่าไหร่ วรรณยุกต์ถึงไม่หาย]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/DiscordThaiMessage">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/DiscordThaiMessage</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/DiscordThaiMessage</guid>
+			<pubDate>Sat, 20 May 2023 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[npm checkmark]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/NpmCheckmark">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/NpmCheckmark</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/NpmCheckmark</guid>
+			<pubDate>Thu, 20 Apr 2023 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Port number randomizer]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/RandomPort">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/RandomPort</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/RandomPort</guid>
+			<pubDate>Wed, 05 Apr 2023 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Building Firebase Realtime Database Security Rules with GPT-4]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/20230403T162555Z1842">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/20230403T162555Z1842</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/20230403T162555Z1842</guid>
+			<pubDate>Tue, 04 Apr 2023 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Béance tubaire volontaire]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/20230320T204610Z3613">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/20230320T204610Z3613</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/20230320T204610Z3613</guid>
+			<pubDate>Mon, 20 Mar 2023 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[The HustleGPT challenge]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/20230321T132222Z8523">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/20230321T132222Z8523</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/20230321T132222Z8523</guid>
+			<pubDate>Mon, 20 Mar 2023 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Disappearing combining marks in Discord (ปัญหาสระกับวรรณยุกต์หาย)]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/DiscordThaiCombiningMarks">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/DiscordThaiCombiningMarks</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/DiscordThaiCombiningMarks</guid>
+			<pubDate>Fri, 10 Mar 2023 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[VS Code REST Client snippets]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/20220907T163410Z4258">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/20220907T163410Z4258</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/20220907T163410Z4258</guid>
+			<pubDate>Sat, 04 Mar 2023 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[GitOps in weird places (talk)]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/GitOpsInWeirdPlaces">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/GitOpsInWeirdPlaces</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/GitOpsInWeirdPlaces</guid>
+			<pubDate>Mon, 27 Feb 2023 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Local talk internationalization]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/LocalTalkInternationalization">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/LocalTalkInternationalization</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/LocalTalkInternationalization</guid>
+			<pubDate>Tue, 21 Feb 2023 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[When Maths Strike Back: Behind the 3D QR code effect in ppqr.app]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/WhenMathsStrikeBack">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/WhenMathsStrikeBack</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/WhenMathsStrikeBack</guid>
+			<pubDate>Tue, 21 Feb 2023 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[`Array.from({ length: 5 }, (_, x) => x)`]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/20230128T173333Z1984">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/20230128T173333Z1984</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/20230128T173333Z1984</guid>
+			<pubDate>Sat, 28 Jan 2023 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Configuring tRPC error logging in T3 apps]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/NextTrpcError">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/NextTrpcError</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/NextTrpcError</guid>
+			<pubDate>Tue, 24 Jan 2023 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[StableLib snippets]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/StableLibSnippets">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/StableLibSnippets</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/StableLibSnippets</guid>
+			<pubDate>Mon, 23 Jan 2023 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[How I memorize the morse code (without deliberate practice)]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/Morse">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/Morse</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/Morse</guid>
+			<pubDate>Tue, 17 Jan 2023 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[UDP hole punching in Jamulus]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/20230109T134032Z1877">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/20230109T134032Z1877</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/20230109T134032Z1877</guid>
+			<pubDate>Mon, 09 Jan 2023 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[อัพเดตโปรเจควงแหวนเว็บ, เปิดเพจ Facebook, Mastodon]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/20230103T095819Z9158">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/20230103T095819Z9158</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/20230103T095819Z9158</guid>
+			<pubDate>Tue, 03 Jan 2023 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Adding OpenTelemetry tracing to a Next.js app with Output File Tracing enabled]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/NextOutputFileTracingOTel">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/NextOutputFileTracingOTel</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/NextOutputFileTracingOTel</guid>
+			<pubDate>Thu, 15 Dec 2022 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Analyzing Next.js bundle size]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/NextBundleSize">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/NextBundleSize</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/NextBundleSize</guid>
+			<pubDate>Tue, 13 Dec 2022 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Analyzing and optimizing Vite bundle size]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/ViteBundleSize">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/ViteBundleSize</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/ViteBundleSize</guid>
+			<pubDate>Mon, 12 Dec 2022 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Adding a QR code scanner to a web app]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/QRScan">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/QRScan</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/QRScan</guid>
+			<pubDate>Mon, 12 Dec 2022 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[A logger module based on pino]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/PinoLogger">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/PinoLogger</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/PinoLogger</guid>
+			<pubDate>Mon, 12 Dec 2022 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Creating encrypted directories with gocryptfs]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/20221209T090307Z6968">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/20221209T090307Z6968</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/20221209T090307Z6968</guid>
+			<pubDate>Fri, 09 Dec 2022 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Runtime environment variables in Next.js]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/NextRuntimeEnv">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/NextRuntimeEnv</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/NextRuntimeEnv</guid>
+			<pubDate>Wed, 30 Nov 2022 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Combining audio and video using ffmpeg]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/20221029T145732Z5942">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/20221029T145732Z5942</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/20221029T145732Z5942</guid>
+			<pubDate>Sat, 29 Oct 2022 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[My VS Code snippets keyboard shortcuts (keybindings)]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/VSCodeKeybindings">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/VSCodeKeybindings</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/VSCodeKeybindings</guid>
+			<pubDate>Tue, 11 Oct 2022 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Adding a Desktop environment to a Debian/Ubuntu server]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/20221015T091530Z4968">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/20221015T091530Z4968</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/20221015T091530Z4968</guid>
+			<pubDate>Sat, 15 Oct 2022 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Server-side source maps in Next.js]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/NextServerSideSourceMaps">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/NextServerSideSourceMaps</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/NextServerSideSourceMaps</guid>
+			<pubDate>Mon, 03 Oct 2022 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Building CLI apps using @rushstack/ts-command-line library]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/TsCommandLine">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/TsCommandLine</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/TsCommandLine</guid>
+			<pubDate>Sun, 02 Oct 2022 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Setting up Semgrep in GitHub Actions]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/SemgrepGitHubActions">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/SemgrepGitHubActions</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/SemgrepGitHubActions</guid>
+			<pubDate>Thu, 29 Sep 2022 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Discord text chat in voice channels notifications behavior]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/DiscordVoiceChannelTextNotifications">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/DiscordVoiceChannelTextNotifications</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/DiscordVoiceChannelTextNotifications</guid>
+			<pubDate>Sun, 25 Sep 2022 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Minio JavaScript library snippets]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/MinioJS">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/MinioJS</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/MinioJS</guid>
+			<pubDate>Sun, 25 Sep 2022 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[A snippet to install Docker on a Linux machine]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/DockerInstall">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/DockerInstall</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/DockerInstall</guid>
+			<pubDate>Fri, 23 Sep 2022 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Making a Next.js app a PWA]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/NextPWA">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/NextPWA</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/NextPWA</guid>
+			<pubDate>Sun, 18 Sep 2022 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Setting default Next.js development server port]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/NextDevPort">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/NextDevPort</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/NextDevPort</guid>
+			<pubDate>Sat, 17 Sep 2022 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Client-side-only components in Next.js]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/NextClientSideOnly">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/NextClientSideOnly</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/NextClientSideOnly</guid>
+			<pubDate>Wed, 14 Sep 2022 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[A survey of JWT storage locations in client-side app SDKs]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/JWTStorageInClientSideSDKs">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/JWTStorageInClientSideSDKs</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/JWTStorageInClientSideSDKs</guid>
+			<pubDate>Sat, 10 Sep 2022 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Running Node.js app in a Docker container without building the image]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/NodeInDocker">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/NodeInDocker</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/NodeInDocker</guid>
+			<pubDate>Fri, 09 Sep 2022 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Adding Bootstrap CSS to Next.js application]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/20220907T134709Z7128">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/20220907T134709Z7128</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/20220907T134709Z7128</guid>
+			<pubDate>Wed, 07 Sep 2022 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[util.parseArgs snippets]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/NodeParseArgsSnippets">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/NodeParseArgsSnippets</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/NodeParseArgsSnippets</guid>
+			<pubDate>Sun, 28 Aug 2022 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Using Google APIs in Node.js with a service account]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/NodeGoogleAPIsServiceAccount">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/NodeGoogleAPIsServiceAccount</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/NodeGoogleAPIsServiceAccount</guid>
+			<pubDate>Sun, 28 Aug 2022 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Docker (Colima) audio encoding CPU performance on M1 Macs]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/20220823T084141Z6586">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/20220823T084141Z6586</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/20220823T084141Z6586</guid>
+			<pubDate>Tue, 23 Aug 2022 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Audio encoding benchmark with FFmpeg]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/AudioEncodingBenchmark">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/AudioEncodingBenchmark</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/AudioEncodingBenchmark</guid>
+			<pubDate>Tue, 23 Aug 2022 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Replacing Docker Desktop on Mac with Colima]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/DockerMacOSColima">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/DockerMacOSColima</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/DockerMacOSColima</guid>
+			<pubDate>Mon, 22 Aug 2022 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Setting up packlets]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/PackletsSetup">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/PackletsSetup</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/PackletsSetup</guid>
+			<pubDate>Thu, 18 Aug 2022 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Google APIs frustration diagram of the day]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/20220817T202304Z1234">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/20220817T202304Z1234</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/20220817T202304Z1234</guid>
+			<pubDate>Wed, 17 Aug 2022 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Setting up Flutter and Android in macOS using Homebrew]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/FlutterMacOS">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/FlutterMacOS</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/FlutterMacOS</guid>
+			<pubDate>Fri, 12 Aug 2022 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Installing cloudflared in Codespaces]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/CodespacesCloudflared">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/CodespacesCloudflared</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/CodespacesCloudflared</guid>
+			<pubDate>Wed, 10 Aug 2022 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Authenticating as a GitHub App in Octokit.js]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/OctokitGitHubAppAuth">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/OctokitGitHubAppAuth</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/OctokitGitHubAppAuth</guid>
+			<pubDate>Thu, 28 Jul 2022 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Observations from using Node.js worker_threads with ESM]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/NodeWorkerThreadsESM">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/NodeWorkerThreadsESM</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/NodeWorkerThreadsESM</guid>
+			<pubDate>Wed, 27 Jul 2022 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Fastify-in-Express]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/FastifyInExpress">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/FastifyInExpress</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/FastifyInExpress</guid>
+			<pubDate>Wed, 27 Jul 2022 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Cloning private GitHub projects onto a new worker Linux box.]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/GitHubDeployKeySSHConfig">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/GitHubDeployKeySSHConfig</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/GitHubDeployKeySSHConfig</guid>
+			<pubDate>Wed, 27 Jul 2022 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Run an X11 display server and noVNC on Codespaces]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/CodespacesDisplayServer">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/CodespacesDisplayServer</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/CodespacesDisplayServer</guid>
+			<pubDate>Tue, 19 Jul 2022 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Installing Google Chrome on Codespaces (and also chromedriver)]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/CodespacesGoogleChrome">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/CodespacesGoogleChrome</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/CodespacesGoogleChrome</guid>
+			<pubDate>Mon, 18 Jul 2022 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Fixing SvelteKit problem not able to require pure-ES module packages]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/SvelteKitPureESM">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/SvelteKitPureESM</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/SvelteKitPureESM</guid>
+			<pubDate>Sat, 16 Jul 2022 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Codespaces-like development container setup]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/Codebox">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/Codebox</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/Codebox</guid>
+			<pubDate>Thu, 14 Jul 2022 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Example Firebase ID Tokens]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/20220710T144059Z3505">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/20220710T144059Z3505</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/20220710T144059Z3505</guid>
+			<pubDate>Sun, 10 Jul 2022 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Projecting 2D elements onto a photo using matrix3d, 2022 edition]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/20220706T182428Z2438">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/20220706T182428Z2438</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/20220706T182428Z2438</guid>
+			<pubDate>Thu, 07 Jul 2022 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Verifying Firebase ID tokens in Node.js without Firebase Admin SDK]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/JoseVerifyFirebaseIdToken">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/JoseVerifyFirebaseIdToken</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/JoseVerifyFirebaseIdToken</guid>
+			<pubDate>Wed, 06 Jul 2022 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[GitHub Actions: Push commit as GitHub App]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/GitHubActionsPushAsGitHubApp">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/GitHubActionsPushAsGitHubApp</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/GitHubActionsPushAsGitHubApp</guid>
+			<pubDate>Mon, 04 Jul 2022 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Testing that PWAs work offline using Playwright]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/PlaywrightOfflineFirstTest">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/PlaywrightOfflineFirstTest</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/PlaywrightOfflineFirstTest</guid>
+			<pubDate>Tue, 21 Jun 2022 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Bitwise operations ในภาษา javascript]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/20220618T153208Z6392">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/20220618T153208Z6392</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/20220618T153208Z6392</guid>
+			<pubDate>Sat, 18 Jun 2022 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[ตัดคำภาษาไทยใน Node.js (หรือใน Browser)]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/ThaiWordSegmentationInJavaScript">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/ThaiWordSegmentationInJavaScript</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/ThaiWordSegmentationInJavaScript</guid>
+			<pubDate>Sat, 18 Jun 2022 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Quickly publish a Markdown page without build tool]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/PublishMarkdownPageWithoutBuildTool">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/PublishMarkdownPageWithoutBuildTool</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/PublishMarkdownPageWithoutBuildTool</guid>
+			<pubDate>Fri, 17 Jun 2022 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[BarCamp Bangkhen Blog Coverage]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/20220610T104229Z0256">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/20220610T104229Z0256</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/20220610T104229Z0256</guid>
+			<pubDate>Fri, 10 Jun 2022 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Watching livestreams together in a synchronized manner]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/SynchronizedLiveWatchParty">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/SynchronizedLiveWatchParty</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/SynchronizedLiveWatchParty</guid>
+			<pubDate>Mon, 06 Jun 2022 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Pointer events tester]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/PointerEventsTester">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/PointerEventsTester</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/PointerEventsTester</guid>
+			<pubDate>Mon, 06 Jun 2022 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Hacking Surface Pen’s eraser support into Excalidraw]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/ExcalidrawSurfacePen">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/ExcalidrawSurfacePen</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/ExcalidrawSurfacePen</guid>
+			<pubDate>Mon, 06 Jun 2022 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[GitHub Actions workflow to save files to Linode Object Storage]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/GitHubActionsLinodeObjectStorageUpload">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/GitHubActionsLinodeObjectStorageUpload</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/GitHubActionsLinodeObjectStorageUpload</guid>
+			<pubDate>Sun, 05 Jun 2022 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[How to make authenticated API calls to Google Cloud Function (2nd generation) or Google Cloud Run services from Cloudflare Workers (or other non-Node.js JavaScipt runtimes)]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/InvokingGoogleCloudRunFromCloudflareWorkers">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/InvokingGoogleCloudRunFromCloudflareWorkers</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/InvokingGoogleCloudRunFromCloudflareWorkers</guid>
+			<pubDate>Wed, 25 May 2022 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Creating types and values with the same name in TypeScript]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/TypeScriptValuesAndTypesWithSameName">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/TypeScriptValuesAndTypesWithSameName</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/TypeScriptValuesAndTypesWithSameName</guid>
+			<pubDate>Tue, 24 May 2022 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Simple front-end feature flags]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/FrontendFeatureFlags">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/FrontendFeatureFlags</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/FrontendFeatureFlags</guid>
+			<pubDate>Thu, 28 Apr 2022 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[CircleCI dummy (no-op) config]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/CircleCIDummyConfig">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/CircleCIDummyConfig</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/CircleCIDummyConfig</guid>
+			<pubDate>Fri, 15 Apr 2022 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Short-lived mutability]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/ShortLivedMutability">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/ShortLivedMutability</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/ShortLivedMutability</guid>
+			<pubDate>Wed, 06 Apr 2022 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Yarn PnP set up]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/YarnPnPSetup">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/YarnPnPSetup</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/YarnPnPSetup</guid>
+			<pubDate>Mon, 04 Apr 2022 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Using yargs in ESM Node.js scripts]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/20220402T022350Z1042">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/20220402T022350Z1042</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/20220402T022350Z1042</guid>
+			<pubDate>Sat, 02 Apr 2022 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Setting up Jest in ESM projects]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/JestESM">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/JestESM</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/JestESM</guid>
+			<pubDate>Fri, 01 Apr 2022 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[jose (JWT) in Node.js cookbook]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/JoseCookbook">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/JoseCookbook</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/JoseCookbook</guid>
+			<pubDate>Thu, 31 Mar 2022 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Music I use to concentrate]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/FocusMusic">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/FocusMusic</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/FocusMusic</guid>
+			<pubDate>Thu, 24 Feb 2022 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Disabling an App Engine service without also disabling Firestore]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/20220215T075203Z1549">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/20220215T075203Z1549</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/20220215T075203Z1549</guid>
+			<pubDate>Tue, 15 Feb 2022 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[TIL: pgrep and pkill]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/20220204T170710Z2789">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/20220204T170710Z2789</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/20220204T170710Z2789</guid>
+			<pubDate>Fri, 04 Feb 2022 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Running smoke tests on Vercel deployments using GitHub Actions]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/20220201T050627Z4237">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/20220201T050627Z4237</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/20220201T050627Z4237</guid>
+			<pubDate>Tue, 01 Feb 2022 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[อัพเดตโปรเจควงแหวนเว็บ, เพิ่ม RSS feed]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/20220130T152100Z0000">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/20220130T152100Z0000</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/20220130T152100Z0000</guid>
+			<pubDate>Sun, 30 Jan 2022 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Notes about React 18 RC.0]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/React18RC">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/React18RC</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/React18RC</guid>
+			<pubDate>Wed, 26 Jan 2022 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[เจอโปรเจค microCOVID บน GitHub]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/20220113T173004Z0993">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/20220113T173004Z0993</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/20220113T173004Z0993</guid>
+			<pubDate>Thu, 13 Jan 2022 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Advent of Code 2021: Day 24]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/AdventOfCode2021Day24">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/AdventOfCode2021Day24</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/AdventOfCode2021Day24</guid>
+			<pubDate>Fri, 24 Dec 2021 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Book Review: Bridging the Communication Gap: Specification by Example and Agile Acceptance Testing]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/20211206T162318Z2845">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/20211206T162318Z2845</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/20211206T162318Z2845</guid>
+			<pubDate>Mon, 06 Dec 2021 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[A GitHub Actions workflow to generate Git patches for auto-fixable issues]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/20211206T085919Z1225">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/20211206T085919Z1225</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/20211206T085919Z1225</guid>
+			<pubDate>Mon, 06 Dec 2021 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Reloading content script without reloading the extension when developing Chrome extensions]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/20211111T053935Z7474">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/20211111T053935Z7474</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/20211111T053935Z7474</guid>
+			<pubDate>Thu, 11 Nov 2021 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[PlanetScale เป็นบริการ MySQL-compatible serverless database]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/20211107T144129Z3745">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/20211107T144129Z3745</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/20211107T144129Z3745</guid>
+			<pubDate>Sun, 07 Nov 2021 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Proof-of-concept: Web based Jamulus client]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/20210920T171647Z1352">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/20210920T171647Z1352</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/20210920T171647Z1352</guid>
+			<pubDate>Mon, 20 Sep 2021 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Jamulus protocol study notes]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/JamulusProtocolStudyNotes">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/JamulusProtocolStudyNotes</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/JamulusProtocolStudyNotes</guid>
+			<pubDate>Sun, 19 Sep 2021 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Dealing with TypeScript’s strictness]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/TypeScript">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/TypeScript</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/TypeScript</guid>
+			<pubDate>Tue, 06 Jul 2021 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[ปริภูมิสี LCH (color space)]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/20210530T165138Z0657">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/20210530T165138Z0657</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/20210530T165138Z0657</guid>
+			<pubDate>Sun, 30 May 2021 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Time to buy a new Mac?]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/20210205T200327Z3667">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/20210205T200327Z3667</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/20210205T200327Z3667</guid>
+			<pubDate>Fri, 05 Feb 2021 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Using async functions with chrome.runtime.onMessage]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/20210122T221126Z3124">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/20210122T221126Z3124</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/20210122T221126Z3124</guid>
+			<pubDate>Fri, 22 Jan 2021 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Copy to Clipboard (pbcopy) for Windows and WSL]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/WindowsCopyToClipboardCLI">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/WindowsCopyToClipboardCLI</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/WindowsCopyToClipboardCLI</guid>
+			<pubDate>Wed, 20 Jan 2021 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[A local file storage for the web and interopearability layer for web-based apps]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/20210109T141458Z5537">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/20210109T141458Z5537</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/20210109T141458Z5537</guid>
+			<pubDate>Sat, 09 Jan 2021 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Freshly-baked apps every midnight]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/FreshAppFactory">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/FreshAppFactory</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/FreshAppFactory</guid>
+			<pubDate>Wed, 06 Jan 2021 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Using macOS's dashes and smart quotes shortcuts in Windows]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/MacOSSmartQuotesInWindows">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/MacOSSmartQuotesInWindows</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/MacOSSmartQuotesInWindows</guid>
+			<pubDate>Sun, 03 Jan 2021 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[ว่าด้วยเรื่องการทำ Side-project ให้เสร็จ]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/20210101T080513Z6254">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/20210101T080513Z6254</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/20210101T080513Z6254</guid>
+			<pubDate>Fri, 01 Jan 2021 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Let’s deploy the simplest URL redirection service to Netlify!]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/NetlifyURLRedirector">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/NetlifyURLRedirector</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/NetlifyURLRedirector</guid>
+			<pubDate>Tue, 29 Dec 2020 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Ruby code-golfing tricks]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/RubyCodeGolfingTricks">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/RubyCodeGolfingTricks</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/RubyCodeGolfingTricks</guid>
+			<pubDate>Sat, 26 Dec 2020 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Solving problems by adding code from left to right in Ruby]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/RubyMethodChaining">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/RubyMethodChaining</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/RubyMethodChaining</guid>
+			<pubDate>Tue, 22 Dec 2020 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Counters in Ruby]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/RubyCounters">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/RubyCounters</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/RubyCounters</guid>
+			<pubDate>Tue, 22 Dec 2020 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Solving problems by adding code from left to right in Ruby]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/20201218T075006Z6541">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/20201218T075006Z6541</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/20201218T075006Z6541</guid>
+			<pubDate>Fri, 18 Dec 2020 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Do not cache faulty responses in your service worker]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/20201213T174144Z3126">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/20201213T174144Z3126</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/20201213T174144Z3126</guid>
+			<pubDate>Sun, 13 Dec 2020 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Adding some interactivity to my notes]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/NotesInteractivity">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/NotesInteractivity</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/NotesInteractivity</guid>
+			<pubDate>Fri, 11 Dec 2020 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Flickergate]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/20201208T175615Z2125">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/20201208T175615Z2125</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/20201208T175615Z2125</guid>
+			<pubDate>Tue, 08 Dec 2020 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[JavaScript powered by TypeScript (project Salsa)]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/20201125T110802Z7306">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/20201125T110802Z7306</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/20201125T110802Z7306</guid>
+			<pubDate>Wed, 25 Nov 2020 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Setting up a reverse proxy using Caddy]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/CaddyReverseProxy">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/CaddyReverseProxy</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/CaddyReverseProxy</guid>
+			<pubDate>Sat, 21 Nov 2020 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Capturing screenshots of translucent windows with shadows in Windows]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/20201117T201556Z6214">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/20201117T201556Z6214</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/20201117T201556Z6214</guid>
+			<pubDate>Tue, 17 Nov 2020 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Interactive footnotes]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/InteractiveFootnotes">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/InteractiveFootnotes</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/InteractiveFootnotes</guid>
+			<pubDate>Sat, 14 Nov 2020 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Vanity Ed25519 SSH public keys]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/VanityEd25519SSHKey">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/VanityEd25519SSHKey</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/VanityEd25519SSHKey</guid>
+			<pubDate>Thu, 12 Nov 2020 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[VS Code as a Markdown-based note-taking platform?]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/20201108T202126Z2125">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/20201108T202126Z2125</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/20201108T202126Z2125</guid>
+			<pubDate>Sun, 08 Nov 2020 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[On state management tools in React]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/20201104T101354Z5519">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/20201104T101354Z5519</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/20201104T101354Z5519</guid>
+			<pubDate>Wed, 04 Nov 2020 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Quickly protecting an Express HTTP server with GitHub authentication via Auth0]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/20201102T104426Z6417">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/20201102T104426Z6417</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/20201102T104426Z6417</guid>
+			<pubDate>Mon, 02 Nov 2020 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Generating SAS for Azure Blob Storage]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/20201030T194637Z6864">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/20201030T194637Z6864</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/20201030T194637Z6864</guid>
+			<pubDate>Fri, 30 Oct 2020 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[EdDSA JWT Ed25519 Node.js]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/20201015T185602Z2963">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/20201015T185602Z2963</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/20201015T185602Z2963</guid>
+			<pubDate>Thu, 15 Oct 2020 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Building a personal but multi-tenant web page screenshotting service with Puppeteer and Vercel]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/PersonalPuppeteer">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/PersonalPuppeteer</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/PersonalPuppeteer</guid>
+			<pubDate>Wed, 14 Oct 2020 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Array#filter type narrowing]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/20201014T155147Z5685">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/20201014T155147Z5685</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/20201014T155147Z5685</guid>
+			<pubDate>Wed, 14 Oct 2020 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Apparently perfumed alcohol sprays are a thing…]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/20201013T083028Z4498">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/20201013T083028Z4498</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/20201013T083028Z4498</guid>
+			<pubDate>Tue, 13 Oct 2020 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[On learning GitHub Actions]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/20201003T173001Z7642">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/20201003T173001Z7642</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/20201003T173001Z7642</guid>
+			<pubDate>Sat, 03 Oct 2020 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[The `<blurhash-image>` Web Component]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/20200920T134111Z3753">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/20200920T134111Z3753</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/20200920T134111Z3753</guid>
+			<pubDate>Sun, 20 Sep 2020 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Ways to render Markdown in React]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/20200612T134702Z5627">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/20200612T134702Z5627</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/20200612T134702Z5627</guid>
+			<pubDate>Fri, 12 Jun 2020 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Context provider pattern in React]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/20200612T133614Z5625">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/20200612T133614Z5625</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/20200612T133614Z5625</guid>
+			<pubDate>Fri, 12 Jun 2020 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Using multiple refs in React]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/20200609T210456Z7886">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/20200609T210456Z7886</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/20200609T210456Z7886</guid>
+			<pubDate>Tue, 09 Jun 2020 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[การเลือกใช้ระหว่าง Vue กับ React (May 2020)]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/20200502T090200Z0000">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/20200502T090200Z0000</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/20200502T090200Z0000</guid>
+			<pubDate>Sat, 02 May 2020 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Test infrastructure ของโครงการ TypeScript]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/20200411T141700Z7725">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/20200411T141700Z7725</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/20200411T141700Z7725</guid>
+			<pubDate>Sat, 11 Apr 2020 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[ว่าด้วยเรื่องการใช้โจทย์อัลกอริธึมในการสัมภาษณ์งาน]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/20190803T094000Z2912">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/20190803T094000Z2912</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/20190803T094000Z2912</guid>
+			<pubDate>Sat, 03 Aug 2019 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[“มีมาตรวัดอะไรที่บอกว่าโปรแกรมเมอร์คนไหน ‘โค้ดได้’ หรือ ‘โค้ดเป็น’”]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/20181228T000000Z0000">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/20181228T000000Z0000</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/20181228T000000Z0000</guid>
+			<pubDate>Fri, 28 Dec 2018 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title><![CDATA[Gitthereum]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/20180828T153800Z0775">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/20180828T153800Z0775</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/20180828T153800Z0775</guid>
+			<pubDate>Tue, 28 Aug 2018 00:00:00 GMT</pubDate>
+		</item>
+	</channel>
+</rss>

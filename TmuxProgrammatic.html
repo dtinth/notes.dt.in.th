@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html data-precompiled=true lang="en" data-dtinth="true">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>“How to create a named tmux sessions and windows in an idempotent way?” | notes.dt.in.th</title><meta property="og:title" content="“How to create a named tmux sessions and windows in an idempotent way?”" data-source="note">
+<meta property="og:image" content="https://screenshot.source.in.th/image/_/notes/TmuxProgrammatic" data-source="note">
+<meta property="og:image:width" content="1800" data-source="note">
+<meta property="og:image:height" content="1680" data-source="note">
+<link rel="canonical" href="https://notes.dt.in.th/TmuxProgrammatic" data-source="note">
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/iconify-icon@2.1.0/dist/iconify-icon.min.js"
+      integrity="sha256-dY2Ug42wyv3rl+sLVKEg3jbPs8f+hi7tmJ836AxVDwI="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/blurhash-image@1.0.1/blurhash-image.min.js"
+      integrity="sha256-qrUUgTGk7xA7iVCwraHNQjwy2JryA0K4L3DL4qidagQ="
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" crossorigin src="/runtime/index.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/supabase-CjkNZD6A.js">
+    <link rel="stylesheet" crossorigin href="/runtime/index.css">
+  </head>
+  <body class="bg-#252423 text-#e9e8e7 antialiased">
+    <header class="h-[58px] bg-#090807 border-b border-#454443 z-20 flex">
+      <div class="flex items-center pl-[18px] flex-none">
+        <a
+          class="flex items-center text-#8b8685 hover:text-#ffffbb text-lg"
+          href="/"
+          >notes.dt.in.th</a
+        >
+      </div>
+      <div
+        class="flex-1 flex items-center text-#8b8685 [&_a:hover]:text-#ffffbb overflow-hidden"
+        id="headerMiddle"
+      >
+        <div class="px-2 flex-none">›</div><div class="truncate"><a title="Linux (topic)" href="Linux">Linux</a></div><div class="px-2 flex-none">›</div><div class="truncate"><a title="tmux (topic)" href="Tmux">tmux</a></div>
+      </div>
+      <div
+        class="flex items-center px-[18px] flex-none gap-4"
+        id="headerToolbar"
+      ></div>
+    </header>
+    <div class="h-entry">
+      <main class="bg-#353433" id="main">
+        <div class="notes-layout-container mx-auto p-6 py-12" id="mainContents">
+          <div class="prose e-content" id="noteContents"><!--[--><p>I recently had a need to automate the creation of a <a href="Tmux">tmux</a> session, window, and pane. I wanted to do this in an idempotent way, so that I could run the same command multiple times without creating duplicate stuff. So I asked ChatGPT:</p><p>“How to create a named tmux session in an idempotent way?”</p><blockquote><p>To create a named tmux session in an idempotent way, you can use the <strong><code>tmux new-session</code></strong> command with the <strong><code>-s</code></strong> flag to specify a name for the session. For example, to create a session named <strong><code>my-session</code></strong>, you can use the following command:</p><pre class="shiki github-dark" style="background-color:#252423;color:#e1e4e8;" tabindex="0"><code><span class="line"><span style="color:#B392F0;">tmux new-session</span><span style="color:#79B8FF;"> -s</span><span style="color:#9ECBFF;"> my-session</span></span></code></pre><p>To make this command idempotent, you can check if a session with the specified name already exists before running the command. You can use the <strong><code>tmux has-session</code></strong> command to check if a session with a given name exists, and then only run the <strong><code>tmux new-session</code></strong> command if the session does not exist.</p><p>Here is an example of a script that creates a named tmux session in an idempotent way:</p><pre class="shiki github-dark" style="background-color:#252423;color:#e1e4e8;" tabindex="0"><code><span class="line"><span style="color:#6A737D;"># check if the session already exists</span></span>
+<span class="line"><span style="color:#F97583;">if</span><span style="color:#F97583;"> !</span><span style="color:#B392F0;"> tmux</span><span style="color:#9ECBFF;"> has-session</span><span style="color:#79B8FF;"> -t my-session</span></span>
+<span class="line"><span style="color:#F97583;">then</span></span>
+<span class="line"><span style="color:#6A737D;">  # create the session if it does not exist</span></span>
+<span class="line"><span style="color:#B392F0;">  tmux</span><span style="color:#9ECBFF;"> new-session</span><span style="color:#79B8FF;"> -s my-session</span></span>
+<span class="line"><span style="color:#F97583;">fi</span></span></code></pre><p>This script will check if a session named <strong><code>my-session</code></strong> already exists, and if it does not exist, it will create the session. This ensures that the <strong><code>tmux new-session</code></strong> command is only run if the session does not already exist, making the script idempotent.</p></blockquote><p>“How to create a named window in an idempotent way?”</p><blockquote><p>To create a named window in an idempotent way, you can use the <strong><code>tmux new-window</code></strong> command with the <strong><code>-n</code></strong> flag to specify a name for the window. For example, to create a window named <strong><code>my-window</code></strong>, you can use the following command:</p><pre class="shiki github-dark" style="background-color:#252423;color:#e1e4e8;" tabindex="0"><code><span class="line"><span style="color:#B392F0;">tmux new-window -n</span><span style="color:#9ECBFF;"> my-window</span></span></code></pre><p>To make this command idempotent, you can check if a window with the specified name already exists before running the command. You can use the <strong><code>tmux list-windows</code></strong> command to list all windows in the current session, and then check if the specified window name is in the list of windows. If the window does not exist, you can run the <strong><code>tmux new-window</code></strong> command to create it.</p><p>Here is an example of a script that creates a named tmux window in an idempotent way:</p><pre class="shiki github-dark" style="background-color:#252423;color:#e1e4e8;" tabindex="0"><code><span class="line"><span style="color:#6A737D;"># list all windows in the current session</span></span>
+<span class="line"><span style="color:#E1E4E8;">windows</span><span style="color:#F97583;">=</span><span style="color:#E1E4E8;">$(</span><span style="color:#B392F0;">tmux</span><span style="color:#9ECBFF;"> list-windows</span><span style="color:#E1E4E8;">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D;"># check if the window already exists</span></span>
+<span class="line"><span style="color:#F97583;">if</span><span style="color:#F97583;"> !</span><span style="color:#B392F0;"> echo</span><span style="color:#9ECBFF;"> &quot;</span><span style="color:#E1E4E8;">$windows</span><span style="color:#9ECBFF;">&quot; </span><span style="color:#F97583;">|</span><span style="color:#B392F0;"> grep</span><span style="color:#79B8FF;"> -q </span><span style="color:#9ECBFF;">&quot;my-window&quot;</span></span>
+<span class="line"><span style="color:#F97583;">then</span></span>
+<span class="line"><span style="color:#6A737D;">  # create the window if it does not exist</span></span>
+<span class="line"><span style="color:#B392F0;">  tmux</span><span style="color:#9ECBFF;"> new-window</span><span style="color:#79B8FF;"> -n</span><span style="color:#9ECBFF;"> my-window</span></span>
+<span class="line"><span style="color:#F97583;">fi</span></span></code></pre><p>This script will check if a window named <strong><code>my-window</code></strong> already exists in the current session, and if it does not exist, it will create the window. This ensures that the <strong><code>tmux new-window</code></strong> command is only run if the window does not already exist, making the script idempotent.</p></blockquote><!--]--></div>
+        </div>
+      </main>
+      <footer>
+        <div
+          class="notes-layout-container mx-auto py-4 px-6 text-#8b8685 text-right text-sm"
+          id="footerContents"
+        >
+          <notes-page-footer></notes-page-footer>
+        </div>
+      </footer>
+    </div>
+    <script>
+window.precompiledNoteBehavior = function(require, exports, module, Vue) {"use strict";Object.defineProperty(exports, "__esModule", {value: true});const __sfc__ = {};
+var _vue = require('vue');
+
+const _hoisted_1 = /*#__PURE__*/_vue.createStaticVNode.call(void 0, "<p>I recently had a need to automate the creation of a <a href=\"Tmux\">tmux</a> session, window, and pane. I wanted to do this in an idempotent way, so that I could run the same command multiple times without creating duplicate stuff. So I asked ChatGPT:</p><p>“How to create a named tmux session in an idempotent way?”</p><blockquote><p>To create a named tmux session in an idempotent way, you can use the <strong><code>tmux new-session</code></strong> command with the <strong><code>-s</code></strong> flag to specify a name for the session. For example, to create a session named <strong><code>my-session</code></strong>, you can use the following command:</p><pre class=\"shiki github-dark\" style=\"background-color:#252423;color:#e1e4e8;\" tabindex=\"0\"><code><span class=\"line\"><span style=\"color:#B392F0;\">tmux new-session</span><span style=\"color:#79B8FF;\"> -s</span><span style=\"color:#9ECBFF;\"> my-session</span></span></code></pre><p>To make this command idempotent, you can check if a session with the specified name already exists before running the command. You can use the <strong><code>tmux has-session</code></strong> command to check if a session with a given name exists, and then only run the <strong><code>tmux new-session</code></strong> command if the session does not exist.</p><p>Here is an example of a script that creates a named tmux session in an idempotent way:</p><pre class=\"shiki github-dark\" style=\"background-color:#252423;color:#e1e4e8;\" tabindex=\"0\"><code><span class=\"line\"><span style=\"color:#6A737D;\"># check if the session already exists</span></span>\n<span class=\"line\"><span style=\"color:#F97583;\">if</span><span style=\"color:#F97583;\"> !</span><span style=\"color:#B392F0;\"> tmux</span><span style=\"color:#9ECBFF;\"> has-session</span><span style=\"color:#79B8FF;\"> -t my-session</span></span>\n<span class=\"line\"><span style=\"color:#F97583;\">then</span></span>\n<span class=\"line\"><span style=\"color:#6A737D;\">  # create the session if it does not exist</span></span>\n<span class=\"line\"><span style=\"color:#B392F0;\">  tmux</span><span style=\"color:#9ECBFF;\"> new-session</span><span style=\"color:#79B8FF;\"> -s my-session</span></span>\n<span class=\"line\"><span style=\"color:#F97583;\">fi</span></span></code></pre><p>This script will check if a session named <strong><code>my-session</code></strong> already exists, and if it does not exist, it will create the session. This ensures that the <strong><code>tmux new-session</code></strong> command is only run if the session does not already exist, making the script idempotent.</p></blockquote><p>“How to create a named window in an idempotent way?”</p><blockquote><p>To create a named window in an idempotent way, you can use the <strong><code>tmux new-window</code></strong> command with the <strong><code>-n</code></strong> flag to specify a name for the window. For example, to create a window named <strong><code>my-window</code></strong>, you can use the following command:</p><pre class=\"shiki github-dark\" style=\"background-color:#252423;color:#e1e4e8;\" tabindex=\"0\"><code><span class=\"line\"><span style=\"color:#B392F0;\">tmux new-window -n</span><span style=\"color:#9ECBFF;\"> my-window</span></span></code></pre><p>To make this command idempotent, you can check if a window with the specified name already exists before running the command. You can use the <strong><code>tmux list-windows</code></strong> command to list all windows in the current session, and then check if the specified window name is in the list of windows. If the window does not exist, you can run the <strong><code>tmux new-window</code></strong> command to create it.</p><p>Here is an example of a script that creates a named tmux window in an idempotent way:</p><pre class=\"shiki github-dark\" style=\"background-color:#252423;color:#e1e4e8;\" tabindex=\"0\"><code><span class=\"line\"><span style=\"color:#6A737D;\"># list all windows in the current session</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">windows</span><span style=\"color:#F97583;\">=</span><span style=\"color:#E1E4E8;\">$(</span><span style=\"color:#B392F0;\">tmux</span><span style=\"color:#9ECBFF;\"> list-windows</span><span style=\"color:#E1E4E8;\">)</span></span>\n<span class=\"line\"></span>\n<span class=\"line\"><span style=\"color:#6A737D;\"># check if the window already exists</span></span>\n<span class=\"line\"><span style=\"color:#F97583;\">if</span><span style=\"color:#F97583;\"> !</span><span style=\"color:#B392F0;\"> echo</span><span style=\"color:#9ECBFF;\"> &quot;</span><span style=\"color:#E1E4E8;\">$windows</span><span style=\"color:#9ECBFF;\">&quot; </span><span style=\"color:#F97583;\">|</span><span style=\"color:#B392F0;\"> grep</span><span style=\"color:#79B8FF;\"> -q </span><span style=\"color:#9ECBFF;\">&quot;my-window&quot;</span></span>\n<span class=\"line\"><span style=\"color:#F97583;\">then</span></span>\n<span class=\"line\"><span style=\"color:#6A737D;\">  # create the window if it does not exist</span></span>\n<span class=\"line\"><span style=\"color:#B392F0;\">  tmux</span><span style=\"color:#9ECBFF;\"> new-window</span><span style=\"color:#79B8FF;\"> -n</span><span style=\"color:#9ECBFF;\"> my-window</span></span>\n<span class=\"line\"><span style=\"color:#F97583;\">fi</span></span></code></pre><p>This script will check if a window named <strong><code>my-window</code></strong> already exists in the current session, and if it does not exist, it will create the window. This ensures that the <strong><code>tmux new-window</code></strong> command is only run if the window does not already exist, making the script idempotent.</p></blockquote>", 5)
+function render(_ctx, _cache) {
+  return _hoisted_1
+}
+__sfc__.render = render
+__sfc__.__file = "Note.vue"
+exports. default = __sfc__};
+window.precompiledFrontMatter = {"public":true,"title":"“How to create a named tmux sessions and windows in an idempotent way?”"};
+</script>
+  </body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html data-precompiled=true lang="en" data-dtinth="true">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The `&lt;blurhash-image&gt;` Web Component | notes.dt.in.th</title><meta property="og:title" content="The `&lt;blurhash-image&gt;` Web Component" data-source="note">
+<meta property="og:image" content="https://screenshot.source.in.th/image/_/notes/20200920T134111Z3753" data-source="note">
+<meta property="og:image:width" content="1800" data-source="note">
+<meta property="og:image:height" content="1680" data-source="note">
+<link rel="canonical" href="https://notes.dt.in.th/20200920T134111Z3753" data-source="note"><style id="note-styles">/* layer: default */
+.fixed[data-v-8c9498c0]{position:fixed;}
+.my[data-v-8c9498c0]{margin-top:1rem;margin-bottom:1rem;}
+.contents[data-v-8c9498c0]{display:contents;}</style>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/iconify-icon@2.1.0/dist/iconify-icon.min.js"
+      integrity="sha256-dY2Ug42wyv3rl+sLVKEg3jbPs8f+hi7tmJ836AxVDwI="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/blurhash-image@1.0.1/blurhash-image.min.js"
+      integrity="sha256-qrUUgTGk7xA7iVCwraHNQjwy2JryA0K4L3DL4qidagQ="
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" crossorigin src="/runtime/index.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/supabase-CjkNZD6A.js">
+    <link rel="stylesheet" crossorigin href="/runtime/index.css">
+  </head>
+  <body class="bg-#252423 text-#e9e8e7 antialiased">
+    <header class="h-[58px] bg-#090807 border-b border-#454443 z-20 flex">
+      <div class="flex items-center pl-[18px] flex-none">
+        <a
+          class="flex items-center text-#8b8685 hover:text-#ffffbb text-lg"
+          href="/"
+          >notes.dt.in.th</a
+        >
+      </div>
+      <div
+        class="flex-1 flex items-center text-#8b8685 [&_a:hover]:text-#ffffbb overflow-hidden"
+        id="headerMiddle"
+      >
+        <div class="px-2 flex-none">›</div><div class="truncate"><a title="Web Platform (topic)" href="WebPlatform">Web Platform</a></div><div class="px-2 flex-none">›</div><div class="truncate"><a title="Web Components (topic)" href="WebComponents">Web Components</a></div>
+      </div>
+      <div
+        class="flex items-center px-[18px] flex-none gap-4"
+        id="headerToolbar"
+      ></div>
+    </header>
+    <div class="h-entry">
+      <main class="bg-#353433" id="main">
+        <div class="notes-layout-container mx-auto p-6 py-12" id="mainContents">
+          <div class="prose e-content" id="noteContents"><!--[--><div class="notes-callout" data-type="Warning" data-v-8c9498c0><p class="notes-callout__label" data-v-8c9498c0><!---->Obsoleted</p><p data-v-8c9498c0>As of 2024-09-09, the contents on this page is obsolete. Dave Caruso made an <a href="https://github.com/paperdave/blurhash-image" data-v-8c9498c0>ultra-minified version</a> which is 6x smaller than mine and also <a href="https://www.npmjs.com/package/blurhash-image" data-v-8c9498c0>available on npm</a>. I no longer use TSDX (nowadays I use <a href="https://vitejs.dev/" data-v-8c9498c0>Vite</a>, <a href="https://tsup.egoist.dev/" data-v-8c9498c0>tsup</a>, or just publish my new packages to <a href="https://jsr.io/" data-v-8c9498c0>JSR</a>).</p></div><p data-v-8c9498c0>I want to try integrating <a href="https://blurha.sh/" data-v-8c9498c0>BlurHash</a> with <a href="https://dt.in.th" data-v-8c9498c0>my VuePress-based portfolio</a>. The rough plan:</p><ol data-v-8c9498c0><li data-v-8c9498c0><p data-v-8c9498c0><a href="https://github.com/dtinth/dt.in.th/blob/617d2915bfb30786a432efd952831563d59402ba/.vuepress/scripts/generateBlurhash.js" data-v-8c9498c0>Generate</a> a BlurHash for each picture, and save it to a <a href="https://github.com/dtinth/dt.in.th/blob/617d2915bfb30786a432efd952831563d59402ba/.vuepress/data/blurhashes.js" data-v-8c9498c0>data file</a>.</p></li><li data-v-8c9498c0><p data-v-8c9498c0>When rendering the image, see if there’s a BlurHash generated. If so, <a href="https://github.com/dtinth/dt.in.th/blob/617d2915bfb30786a432efd952831563d59402ba/.vuepress/local-components/PageCard.vue#L6" data-v-8c9498c0>render a component passing the BlurHash to it</a>: <code data-v-8c9498c0>&lt;blurhash-image blurhash=&quot;L78;My-@ngE0R6t9s,WUIoIUWBxu&quot;&gt;&lt;/blurhash&gt;</code>. (I don’t want to SSR the rendered image because the generated PNG file is several times larger than the BlurHash. For example, the Blurhash <code data-v-8c9498c0>L78;My-@ngE0R6t9s,WUIoIUWBxu</code> rendered to 16x16 PNG image resulted in a data URL that’s 800+ bytes long)</p></li><li data-v-8c9498c0><p data-v-8c9498c0>The client-side component then renders the BlurHash on the page.</p></li></ol><p data-v-8c9498c0>This 3rd step went almost smoothly, but it turns out the client side components are not initialized until the main Vue app is loaded and being hydrated into the DOM.</p><p data-v-8c9498c0>Therefore, I decided to extract the component into an <a href="WebComponents" data-v-8c9498c0>HTML Custom Element</a>. This custom element should be small enough to be inlined into the web page. This resulted in this <a href="https://github.com/dtinth/blurhash-image" data-v-8c9498c0><code data-v-8c9498c0>&lt;blurhash-image&gt;</code> Web Component</a>. It is distributed as a 2.7 KB (minified and gzipped) snippet that would make the <code data-v-8c9498c0>&lt;blurhash-image&gt;</code> tag</p><p data-v-8c9498c0><strong data-v-8c9498c0>Tooling</strong>: I decided to use TSDX for ease-of-development. I don&#39;t want to configure Rollup and stuff by myself. I encountered a few issues though:</p><ul data-v-8c9498c0><li data-v-8c9498c0><p data-v-8c9498c0><a href="https://github.com/formium/tsdx/issues/179" data-v-8c9498c0>TSDX does not bundle the dependencies by default</a>. Luckily a <a href="https://github.com/formium/tsdx/issues/179#issuecomment-525306272" data-v-8c9498c0>workaround</a> exists.</p></li><li data-v-8c9498c0><p data-v-8c9498c0>The resulting bundle is larger than it needs to be because classes are transpiled down to ES5. This is fixed by <a href="https://babeljs.io/docs/en/next/babel-preset-env.html#browserslist-integration" data-v-8c9498c0>adding <code data-v-8c9498c0>browserslist</code> field to <code data-v-8c9498c0>package.json</code></a>. I used <code data-v-8c9498c0>&quot;since 2018 and not dead&quot;</code>. I&#39;m sure there are better strings that I could use, but since this element is designed to be run on its own <code data-v-8c9498c0>&lt;script&gt;</code> tag (not bundled), any incompatibilities that arises will not bring the whole webpage down with it (graceful degradation).</p></li></ul><p data-v-8c9498c0><strong data-v-8c9498c0>HTML snippet</strong>: I want to put the HTML snippet right inside README file. This is a good time to try out <a href="https://www.npmjs.com/package/markdown-magic" data-v-8c9498c0><code data-v-8c9498c0>markdown-magic</code></a>. I like that it made self-updating Markdown files much easier, but don’t like that, as of v1.0.0, processors must all be synchronous...</p><!--]--></div>
+        </div>
+      </main>
+      <footer>
+        <div
+          class="notes-layout-container mx-auto py-4 px-6 text-#8b8685 text-right text-sm"
+          id="footerContents"
+        >
+          <notes-page-footer></notes-page-footer>
+        </div>
+      </footer>
+    </div>
+    <script>
+window.precompiledNoteBehavior = function(require, exports, module, Vue) {"use strict";Object.defineProperty(exports, "__esModule", {value: true});const __sfc__ = {};
+var _vue = require('vue');
+
+const _withScopeId = n => (_vue.pushScopeId.call(void 0, "data-v-8c9498c0"),n=n(),_vue.popScopeId.call(void 0, ),n)
+const _hoisted_1 = {
+  class: "notes-callout",
+  "data-type": "Warning"
+}
+const _hoisted_2 = { class: "notes-callout__label" }
+const _hoisted_3 = /*#__PURE__*/_vue.createStaticVNode.call(void 0, "<p data-v-8c9498c0>As of 2024-09-09, the contents on this page is obsolete. Dave Caruso made an <a href=\"https://github.com/paperdave/blurhash-image\" data-v-8c9498c0>ultra-minified version</a> which is 6x smaller than mine and also <a href=\"https://www.npmjs.com/package/blurhash-image\" data-v-8c9498c0>available on npm</a>. I no longer use TSDX (nowadays I use <a href=\"https://vitejs.dev/\" data-v-8c9498c0>Vite</a>, <a href=\"https://tsup.egoist.dev/\" data-v-8c9498c0>tsup</a>, or just publish my new packages to <a href=\"https://jsr.io/\" data-v-8c9498c0>JSR</a>).</p>", 1)
+const _hoisted_4 = /*#__PURE__*/_vue.createStaticVNode.call(void 0, "<p data-v-8c9498c0>I want to try integrating <a href=\"https://blurha.sh/\" data-v-8c9498c0>BlurHash</a> with <a href=\"https://dt.in.th\" data-v-8c9498c0>my VuePress-based portfolio</a>. The rough plan:</p><ol data-v-8c9498c0><li data-v-8c9498c0><p data-v-8c9498c0><a href=\"https://github.com/dtinth/dt.in.th/blob/617d2915bfb30786a432efd952831563d59402ba/.vuepress/scripts/generateBlurhash.js\" data-v-8c9498c0>Generate</a> a BlurHash for each picture, and save it to a <a href=\"https://github.com/dtinth/dt.in.th/blob/617d2915bfb30786a432efd952831563d59402ba/.vuepress/data/blurhashes.js\" data-v-8c9498c0>data file</a>.</p></li><li data-v-8c9498c0><p data-v-8c9498c0>When rendering the image, see if there’s a BlurHash generated. If so, <a href=\"https://github.com/dtinth/dt.in.th/blob/617d2915bfb30786a432efd952831563d59402ba/.vuepress/local-components/PageCard.vue#L6\" data-v-8c9498c0>render a component passing the BlurHash to it</a>: <code data-v-8c9498c0>&lt;blurhash-image blurhash=&quot;L78;My-@ngE0R6t9s,WUIoIUWBxu&quot;&gt;&lt;/blurhash&gt;</code>. (I don’t want to SSR the rendered image because the generated PNG file is several times larger than the BlurHash. For example, the Blurhash <code data-v-8c9498c0>L78;My-@ngE0R6t9s,WUIoIUWBxu</code> rendered to 16x16 PNG image resulted in a data URL that’s 800+ bytes long)</p></li><li data-v-8c9498c0><p data-v-8c9498c0>The client-side component then renders the BlurHash on the page.</p></li></ol><p data-v-8c9498c0>This 3rd step went almost smoothly, but it turns out the client side components are not initialized until the main Vue app is loaded and being hydrated into the DOM.</p><p data-v-8c9498c0>Therefore, I decided to extract the component into an <a href=\"WebComponents\" data-v-8c9498c0>HTML Custom Element</a>. This custom element should be small enough to be inlined into the web page. This resulted in this <a href=\"https://github.com/dtinth/blurhash-image\" data-v-8c9498c0><code data-v-8c9498c0>&lt;blurhash-image&gt;</code> Web Component</a>. It is distributed as a 2.7 KB (minified and gzipped) snippet that would make the <code data-v-8c9498c0>&lt;blurhash-image&gt;</code> tag</p><p data-v-8c9498c0><strong data-v-8c9498c0>Tooling</strong>: I decided to use TSDX for ease-of-development. I don&#39;t want to configure Rollup and stuff by myself. I encountered a few issues though:</p><ul data-v-8c9498c0><li data-v-8c9498c0><p data-v-8c9498c0><a href=\"https://github.com/formium/tsdx/issues/179\" data-v-8c9498c0>TSDX does not bundle the dependencies by default</a>. Luckily a <a href=\"https://github.com/formium/tsdx/issues/179#issuecomment-525306272\" data-v-8c9498c0>workaround</a> exists.</p></li><li data-v-8c9498c0><p data-v-8c9498c0>The resulting bundle is larger than it needs to be because classes are transpiled down to ES5. This is fixed by <a href=\"https://babeljs.io/docs/en/next/babel-preset-env.html#browserslist-integration\" data-v-8c9498c0>adding <code data-v-8c9498c0>browserslist</code> field to <code data-v-8c9498c0>package.json</code></a>. I used <code data-v-8c9498c0>&quot;since 2018 and not dead&quot;</code>. I&#39;m sure there are better strings that I could use, but since this element is designed to be run on its own <code data-v-8c9498c0>&lt;script&gt;</code> tag (not bundled), any incompatibilities that arises will not bring the whole webpage down with it (graceful degradation).</p></li></ul><p data-v-8c9498c0><strong data-v-8c9498c0>HTML snippet</strong>: I want to put the HTML snippet right inside README file. This is a good time to try out <a href=\"https://www.npmjs.com/package/markdown-magic\" data-v-8c9498c0><code data-v-8c9498c0>markdown-magic</code></a>. I like that it made self-updating Markdown files much easier, but don’t like that, as of v1.0.0, processors must all be synchronous...</p>", 7)
+function render(_ctx, _cache) {
+  const _component_notes_callout_icon = _vue.resolveComponent.call(void 0, "notes-callout-icon")
+
+  return (_vue.openBlock.call(void 0, ), _vue.createElementBlock.call(void 0, _vue.Fragment, null, [
+    _vue.createElementVNode.call(void 0, "div", _hoisted_1, [
+      _vue.createElementVNode.call(void 0, "p", _hoisted_2, [
+        _vue.createVNode.call(void 0, _component_notes_callout_icon, { type: "Warning" }),
+        _vue.createTextVNode.call(void 0, "Obsoleted")
+      ]),
+      _hoisted_3
+    ]),
+    _hoisted_4
+  ], 64 /* STABLE_FRAGMENT */))
+}
+__sfc__.render = render
+__sfc__.__scopeId = "data-v-8c9498c0"
+__sfc__.__file = "Note.vue"
+exports. default = __sfc__};
+window.precompiledFrontMatter = {"projects":["dt.in.th","blurhash-image"],"public":true,"title":"The `\u003cblurhash-image>` Web Component"};
+</script>
+  </body>
+</html>

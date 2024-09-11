@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html data-precompiled=true lang="en" data-dtinth="true">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Running Node.js app in a Docker container without building the image | notes.dt.in.th</title><meta property="og:title" content="Running Node.js app in a Docker container without building the image" data-source="note">
+<meta property="og:image" content="https://screenshot.source.in.th/image/_/notes/NodeInDocker" data-source="note">
+<meta property="og:image:width" content="1800" data-source="note">
+<meta property="og:image:height" content="1680" data-source="note">
+<link rel="canonical" href="https://notes.dt.in.th/NodeInDocker" data-source="note"><style id="note-styles">/* layer: default */
+.my[data-v-8c9498c0]{margin-top:1rem;margin-bottom:1rem;}</style>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/iconify-icon@2.1.0/dist/iconify-icon.min.js"
+      integrity="sha256-dY2Ug42wyv3rl+sLVKEg3jbPs8f+hi7tmJ836AxVDwI="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/blurhash-image@1.0.1/blurhash-image.min.js"
+      integrity="sha256-qrUUgTGk7xA7iVCwraHNQjwy2JryA0K4L3DL4qidagQ="
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" crossorigin src="/runtime/index.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/supabase-CjkNZD6A.js">
+    <link rel="stylesheet" crossorigin href="/runtime/index.css">
+  </head>
+  <body class="bg-#252423 text-#e9e8e7 antialiased">
+    <header class="h-[58px] bg-#090807 border-b border-#454443 z-20 flex">
+      <div class="flex items-center pl-[18px] flex-none">
+        <a
+          class="flex items-center text-#8b8685 hover:text-#ffffbb text-lg"
+          href="/"
+          >notes.dt.in.th</a
+        >
+      </div>
+      <div
+        class="flex-1 flex items-center text-#8b8685 [&_a:hover]:text-#ffffbb overflow-hidden"
+        id="headerMiddle"
+      >
+        <div class="px-2 flex-none">›</div><div class="truncate"><a title="Docker (topic)" href="Docker">Docker</a></div>
+      </div>
+      <div
+        class="flex items-center px-[18px] flex-none gap-4"
+        id="headerToolbar"
+      ></div>
+    </header>
+    <div class="h-entry">
+      <main class="bg-#353433" id="main">
+        <div class="notes-layout-container mx-auto p-6 py-12" id="mainContents">
+          <div class="prose e-content" id="noteContents"><!--[--><p data-v-8c9498c0>I have a <a href="Nodejs" data-v-8c9498c0>Node.js</a> script that I want to put on a cloud server. However, that server may not have Node.js installed, or it may have a different version of Node.js installed. So, I want to run my script in a <a href="Docker" data-v-8c9498c0>Docker</a> container.</p><p data-v-8c9498c0>Start with a Docker Compose file:</p><pre class="shiki github-dark" style="background-color:#252423;color:#e1e4e8;" tabindex="0" data-v-8c9498c0><code data-v-8c9498c0><span class="line" data-v-8c9498c0><span style="color:#6A737D;" data-v-8c9498c0># docker-compose.yml</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#85E89D;" data-v-8c9498c0>services</span><span style="color:#E1E4E8;" data-v-8c9498c0>:</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#85E89D;" data-v-8c9498c0>  worker</span><span style="color:#E1E4E8;" data-v-8c9498c0>:</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#85E89D;" data-v-8c9498c0>    image</span><span style="color:#E1E4E8;" data-v-8c9498c0>: </span><span style="color:#9ECBFF;" data-v-8c9498c0>node:16</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#85E89D;" data-v-8c9498c0>    working_dir</span><span style="color:#E1E4E8;" data-v-8c9498c0>: </span><span style="color:#9ECBFF;" data-v-8c9498c0>/app</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#85E89D;" data-v-8c9498c0>    init</span><span style="color:#E1E4E8;" data-v-8c9498c0>: </span><span style="color:#79B8FF;" data-v-8c9498c0>true</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#85E89D;" data-v-8c9498c0>    command</span><span style="color:#E1E4E8;" data-v-8c9498c0>: </span><span style="color:#9ECBFF;" data-v-8c9498c0>yarn start</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#85E89D;" data-v-8c9498c0>    restart</span><span style="color:#E1E4E8;" data-v-8c9498c0>: </span><span style="color:#9ECBFF;" data-v-8c9498c0>always</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#85E89D;" data-v-8c9498c0>    volumes</span><span style="color:#E1E4E8;" data-v-8c9498c0>:</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>      - </span><span style="color:#9ECBFF;" data-v-8c9498c0>.:/app</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>      - </span><span style="color:#9ECBFF;" data-v-8c9498c0>node_modules:/app/node_modules</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#85E89D;" data-v-8c9498c0>volumes</span><span style="color:#E1E4E8;" data-v-8c9498c0>:</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#85E89D;" data-v-8c9498c0>  node_modules</span><span style="color:#E1E4E8;" data-v-8c9498c0>:</span></span></code></pre><p data-v-8c9498c0>Install the dependencies:</p><pre class="shiki github-dark" style="background-color:#252423;color:#e1e4e8;" tabindex="0" data-v-8c9498c0><code data-v-8c9498c0><span class="line" data-v-8c9498c0><span style="color:#B392F0;" data-v-8c9498c0>docker</span><span style="color:#9ECBFF;" data-v-8c9498c0> compose</span><span style="color:#9ECBFF;" data-v-8c9498c0> run</span><span style="color:#79B8FF;" data-v-8c9498c0> --rm</span><span style="color:#9ECBFF;" data-v-8c9498c0> worker</span><span style="color:#9ECBFF;" data-v-8c9498c0> yarn</span></span></code></pre><p data-v-8c9498c0>Run it:</p><pre class="shiki github-dark" style="background-color:#252423;color:#e1e4e8;" tabindex="0" data-v-8c9498c0><code data-v-8c9498c0><span class="line" data-v-8c9498c0><span style="color:#B392F0;" data-v-8c9498c0>docker</span><span style="color:#9ECBFF;" data-v-8c9498c0> compose</span><span style="color:#9ECBFF;" data-v-8c9498c0> up</span></span></code></pre><!--]--></div>
+        </div>
+      </main>
+      <footer>
+        <div
+          class="notes-layout-container mx-auto py-4 px-6 text-#8b8685 text-right text-sm"
+          id="footerContents"
+        >
+          <notes-page-footer></notes-page-footer>
+        </div>
+      </footer>
+    </div>
+    <script>
+window.precompiledNoteBehavior = function(require, exports, module, Vue) {"use strict";Object.defineProperty(exports, "__esModule", {value: true});const __sfc__ = {};
+var _vue = require('vue');
+
+const _withScopeId = n => (_vue.pushScopeId.call(void 0, "data-v-8c9498c0"),n=n(),_vue.popScopeId.call(void 0, ),n)
+const _hoisted_1 = /*#__PURE__*/_vue.createStaticVNode.call(void 0, "<p data-v-8c9498c0>I have a <a href=\"Nodejs\" data-v-8c9498c0>Node.js</a> script that I want to put on a cloud server. However, that server may not have Node.js installed, or it may have a different version of Node.js installed. So, I want to run my script in a <a href=\"Docker\" data-v-8c9498c0>Docker</a> container.</p><p data-v-8c9498c0>Start with a Docker Compose file:</p><pre class=\"shiki github-dark\" style=\"background-color:#252423;color:#e1e4e8;\" tabindex=\"0\" data-v-8c9498c0><code data-v-8c9498c0><span class=\"line\" data-v-8c9498c0><span style=\"color:#6A737D;\" data-v-8c9498c0># docker-compose.yml</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#85E89D;\" data-v-8c9498c0>services</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>:</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#85E89D;\" data-v-8c9498c0>  worker</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>:</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#85E89D;\" data-v-8c9498c0>    image</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>: </span><span style=\"color:#9ECBFF;\" data-v-8c9498c0>node:16</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#85E89D;\" data-v-8c9498c0>    working_dir</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>: </span><span style=\"color:#9ECBFF;\" data-v-8c9498c0>/app</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#85E89D;\" data-v-8c9498c0>    init</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>: </span><span style=\"color:#79B8FF;\" data-v-8c9498c0>true</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#85E89D;\" data-v-8c9498c0>    command</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>: </span><span style=\"color:#9ECBFF;\" data-v-8c9498c0>yarn start</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#85E89D;\" data-v-8c9498c0>    restart</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>: </span><span style=\"color:#9ECBFF;\" data-v-8c9498c0>always</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#85E89D;\" data-v-8c9498c0>    volumes</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>:</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>      - </span><span style=\"color:#9ECBFF;\" data-v-8c9498c0>.:/app</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>      - </span><span style=\"color:#9ECBFF;\" data-v-8c9498c0>node_modules:/app/node_modules</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#85E89D;\" data-v-8c9498c0>volumes</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>:</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#85E89D;\" data-v-8c9498c0>  node_modules</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>:</span></span></code></pre><p data-v-8c9498c0>Install the dependencies:</p><pre class=\"shiki github-dark\" style=\"background-color:#252423;color:#e1e4e8;\" tabindex=\"0\" data-v-8c9498c0><code data-v-8c9498c0><span class=\"line\" data-v-8c9498c0><span style=\"color:#B392F0;\" data-v-8c9498c0>docker</span><span style=\"color:#9ECBFF;\" data-v-8c9498c0> compose</span><span style=\"color:#9ECBFF;\" data-v-8c9498c0> run</span><span style=\"color:#79B8FF;\" data-v-8c9498c0> --rm</span><span style=\"color:#9ECBFF;\" data-v-8c9498c0> worker</span><span style=\"color:#9ECBFF;\" data-v-8c9498c0> yarn</span></span></code></pre><p data-v-8c9498c0>Run it:</p><pre class=\"shiki github-dark\" style=\"background-color:#252423;color:#e1e4e8;\" tabindex=\"0\" data-v-8c9498c0><code data-v-8c9498c0><span class=\"line\" data-v-8c9498c0><span style=\"color:#B392F0;\" data-v-8c9498c0>docker</span><span style=\"color:#9ECBFF;\" data-v-8c9498c0> compose</span><span style=\"color:#9ECBFF;\" data-v-8c9498c0> up</span></span></code></pre>", 7)
+function render(_ctx, _cache) {
+  return _hoisted_1
+}
+__sfc__.render = render
+__sfc__.__scopeId = "data-v-8c9498c0"
+__sfc__.__file = "Note.vue"
+exports. default = __sfc__};
+window.precompiledFrontMatter = {"public":true,"title":"Running Node.js app in a Docker container without building the image"};
+</script>
+  </body>
+</html>

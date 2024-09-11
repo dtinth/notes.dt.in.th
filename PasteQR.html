@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html data-precompiled=true lang="en" data-dtinth="true">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Paste image to decode QR code | notes.dt.in.th</title><meta property="og:title" content="Paste image to decode QR code" data-source="note">
+<meta property="og:image" content="https://screenshot.source.in.th/image/_/notes/PasteQR" data-source="note">
+<meta property="og:image:width" content="1800" data-source="note">
+<meta property="og:image:height" content="1680" data-source="note">
+<link rel="canonical" href="https://notes.dt.in.th/PasteQR" data-source="note"><style id="note-styles">/* layer: default */
+.mt-1[data-v-8c9498c0]{margin-top:0.25rem;}
+.block[data-v-8c9498c0]{display:block;}
+.px-1\.5[data-v-8c9498c0]{padding-left:0.375rem;padding-right:0.375rem;}
+.py-0\.5[data-v-8c9498c0]{padding-top:0.125rem;padding-bottom:0.125rem;}</style>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/iconify-icon@2.1.0/dist/iconify-icon.min.js"
+      integrity="sha256-dY2Ug42wyv3rl+sLVKEg3jbPs8f+hi7tmJ836AxVDwI="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/blurhash-image@1.0.1/blurhash-image.min.js"
+      integrity="sha256-qrUUgTGk7xA7iVCwraHNQjwy2JryA0K4L3DL4qidagQ="
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" crossorigin src="/runtime/index.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/supabase-CjkNZD6A.js">
+    <link rel="stylesheet" crossorigin href="/runtime/index.css">
+  </head>
+  <body class="bg-#252423 text-#e9e8e7 antialiased">
+    <header class="h-[58px] bg-#090807 border-b border-#454443 z-20 flex">
+      <div class="flex items-center pl-[18px] flex-none">
+        <a
+          class="flex items-center text-#8b8685 hover:text-#ffffbb text-lg"
+          href="/"
+          >notes.dt.in.th</a
+        >
+      </div>
+      <div
+        class="flex-1 flex items-center text-#8b8685 [&_a:hover]:text-#ffffbb overflow-hidden"
+        id="headerMiddle"
+      >
+        <div class="px-2 flex-none">›</div><div class="truncate"><a title="Tools (topic)" href="Tools">Tools</a></div>
+      </div>
+      <div
+        class="flex items-center px-[18px] flex-none gap-4"
+        id="headerToolbar"
+      ></div>
+    </header>
+    <div class="h-entry">
+      <main class="bg-#353433" id="main">
+        <div class="notes-layout-container mx-auto p-6 py-12" id="mainContents">
+          <div class="prose e-content" id="noteContents"><!--[--><h1 id="paste-image-to-decode-qr-code" data-v-8c9498c0><a aria-hidden="true" tabindex="-1" href="#paste-image-to-decode-qr-code" data-v-8c9498c0><span class="icon icon-link" data-v-8c9498c0></span></a>Paste image to decode QR code</h1><p data-v-8c9498c0><strong data-v-8c9498c0>Found a QR code on your screen and don’t want to take out your phone to scan it? Paste the image here to decode it.</strong> This little tool uses the <a href="https://developer.chrome.com/docs/capabilities/shape-detection#barcodedetector" data-v-8c9498c0>BarcodeDetector</a> API to detect QR codes in images. <a href="https://caniuse.com/mdn-api_barcodedetector" data-v-8c9498c0>See browser support.</a></p><div style="min-height:160px;" data-v-8c9498c0><div class="notes-callout" data-type="Warning" data-v-8c9498c0><p class="notes-callout__label" data-v-8c9498c0><!---->Loading…</p><p data-v-8c9498c0>Please wait, this page is loading…</p></div><!----><!----><!----><!----><!----></div><!--]--></div>
+        </div>
+      </main>
+      <footer>
+        <div
+          class="notes-layout-container mx-auto py-4 px-6 text-#8b8685 text-right text-sm"
+          id="footerContents"
+        >
+          <notes-page-footer></notes-page-footer>
+        </div>
+      </footer>
+    </div>
+    <script>
+window.precompiledNoteBehavior = function(require, exports, module, Vue) {"use strict";Object.defineProperty(exports, "__esModule", {value: true});/* Analyzed bindings: {
+  "state": "setup-maybe-ref",
+  "decodedData": "setup-maybe-ref",
+  "paste": "setup-const",
+  "onPaste": "setup-const",
+  "copy": "setup-const"
+} */
+var _vue = require('vue');
+
+const _withScopeId = n => (_vue.pushScopeId.call(void 0, "data-v-8c9498c0"),n=n(),_vue.popScopeId.call(void 0, ),n)
+const _hoisted_1 = /*#__PURE__*/_vue.createStaticVNode.call(void 0, "<h1 id=\"paste-image-to-decode-qr-code\" data-v-8c9498c0><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#paste-image-to-decode-qr-code\" data-v-8c9498c0><span class=\"icon icon-link\" data-v-8c9498c0></span></a>Paste image to decode QR code</h1><p data-v-8c9498c0><strong data-v-8c9498c0>Found a QR code on your screen and don’t want to take out your phone to scan it? Paste the image here to decode it.</strong> This little tool uses the <a href=\"https://developer.chrome.com/docs/capabilities/shape-detection#barcodedetector\" data-v-8c9498c0>BarcodeDetector</a> API to detect QR codes in images. <a href=\"https://caniuse.com/mdn-api_barcodedetector\" data-v-8c9498c0>See browser support.</a></p>", 2)
+const _hoisted_3 = { style: {"min-height":"160px"} }
+const _hoisted_4 = {
+  key: 0,
+  class: "notes-callout",
+  "data-type": "Warning"
+}
+const _hoisted_5 = { class: "notes-callout__label" }
+const _hoisted_6 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_vue.createElementVNode.call(void 0, "p", null, "Please wait, this page is loading…", -1 /* HOISTED */))
+const _hoisted_7 = {
+  key: 1,
+  class: "notes-callout",
+  "data-type": "Warning"
+}
+const _hoisted_8 = { class: "notes-callout__label" }
+const _hoisted_9 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_vue.createElementVNode.call(void 0, "p", null, "Please wait, processing the image…", -1 /* HOISTED */))
+const _hoisted_10 = {
+  key: 2,
+  class: "notes-callout",
+  "data-type": "Danger"
+}
+const _hoisted_11 = { class: "notes-callout__label" }
+const _hoisted_12 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_vue.createElementVNode.call(void 0, "p", null, "Sorry, your browser does not support the BarcodeDetector API. Please use a browser that supports it.", -1 /* HOISTED */))
+const _hoisted_13 = {
+  key: 3,
+  class: "notes-callout",
+  "data-type": "Note"
+}
+const _hoisted_14 = { class: "notes-callout__label" }
+const _hoisted_15 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_vue.createElementVNode.call(void 0, "strong", null, "Paste an image on this page to decode the QR code.", -1 /* HOISTED */))
+const _hoisted_16 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_vue.createElementVNode.call(void 0, "br", null, null, -1 /* HOISTED */))
+const _hoisted_17 = { class: "block mt-1" }
+const _hoisted_18 = {
+  key: 4,
+  class: "notes-callout",
+  "data-type": "Danger"
+}
+const _hoisted_19 = { class: "notes-callout__label" }
+const _hoisted_20 = { class: "block mt-1" }
+const _hoisted_21 = {
+  key: 5,
+  class: "notes-callout",
+  "data-type": "Success"
+}
+const _hoisted_22 = { class: "notes-callout__label" }
+const _hoisted_23 = ["value"]
+const _hoisted_24 = { class: "block mt-1" }
+
+
+const __sfc__ = {
+  __name: 'Note',
+  setup(__props) {
+
+  const state = Vue.reactive({ type: 'loading', data: '', error: '' })
+  const decodedData = Vue.ref(null)
+
+  async function paste() {
+    const clipboardContents = await navigator.clipboard.read();
+    try {
+      for (const item of clipboardContents) {
+        if (!item.types.includes("image/png")) {
+          throw new Error("Clipboard does not contain PNG image data.");
+        }
+        const blob = await item.getType("image/png");
+        onPaste({
+          clipboardData: {
+            items: [{ type: "image/png", getAsFile: () => blob }],
+          },
+        })
+        break
+      }
+    } catch (e) {
+      state.type = 'error'
+      state.error = `${e}`
+      console.error(e)
+    }
+  }
+
+  async function onPaste(e) {
+    state.type = 'working'
+    try {
+      const items = e.clipboardData.items
+      for (let i = 0; i < items.length; i++) {
+        const item = items[i]
+        if (item.type.indexOf('image') !== -1) {
+          const blob = item.getAsFile()
+          const imageBitmap = await createImageBitmap(blob);
+          const barcodeDetector = new BarcodeDetector()
+          const barcodes = await barcodeDetector.detect(imageBitmap)
+          console.log(barcodes)
+          if (barcodes.length > 0) {
+            state.type = 'success'
+            state.data = barcodes[0].rawValue
+          } else {
+            state.type = 'error'
+            state.error = 'No QR code found in the image.'
+          }
+          return
+        }
+      }
+      state.type = 'error'
+      state.error = 'No image found in the clipboard.'
+    } catch (e) {
+      state.type = 'error'
+      state.error = `${e}`
+      console.error(e)
+    }
+  }
+
+  async function copy(e) {
+    await navigator.clipboard.writeText(state.data)
+    decodedData.value.focus()
+    decodedData.value.select()
+  }
+
+  Vue.onMounted(() => {
+    if (("BarcodeDetector" in window)) {
+      state.type = 'ready'
+    } else {
+      state.type = 'unsupported'
+    }
+    document.addEventListener('paste', onPaste)
+  })
+
+  Vue.onUnmounted(() => {
+    document.removeEventListener('paste', onPaste)
+  })
+
+return (_ctx, _cache) => {
+  const _component_notes_callout_icon = _vue.resolveComponent.call(void 0, "notes-callout-icon")
+  const _component_iconify_icon = _vue.resolveComponent.call(void 0, "iconify-icon")
+
+  return (_vue.openBlock.call(void 0, ), _vue.createElementBlock.call(void 0, _vue.Fragment, null, [
+    _hoisted_1,
+    _vue.createElementVNode.call(void 0, "div", _hoisted_3, [
+      (_vue.unref.call(void 0, state).type == 'loading')
+        ? (_vue.openBlock.call(void 0, ), _vue.createElementBlock.call(void 0, "div", _hoisted_4, [
+            _vue.createElementVNode.call(void 0, "p", _hoisted_5, [
+              _vue.createVNode.call(void 0, _component_notes_callout_icon, { type: "Warning" }),
+              _vue.createTextVNode.call(void 0, "Loading…")
+            ]),
+            _hoisted_6
+          ]))
+        : _vue.createCommentVNode.call(void 0, "v-if", true),
+      (_vue.unref.call(void 0, state).type == 'working')
+        ? (_vue.openBlock.call(void 0, ), _vue.createElementBlock.call(void 0, "div", _hoisted_7, [
+            _vue.createElementVNode.call(void 0, "p", _hoisted_8, [
+              _vue.createVNode.call(void 0, _component_notes_callout_icon, { type: "Warning" }),
+              _vue.createTextVNode.call(void 0, "Processing…")
+            ]),
+            _hoisted_9
+          ]))
+        : _vue.createCommentVNode.call(void 0, "v-if", true),
+      (_vue.unref.call(void 0, state).type == 'unsupported')
+        ? (_vue.openBlock.call(void 0, ), _vue.createElementBlock.call(void 0, "div", _hoisted_10, [
+            _vue.createElementVNode.call(void 0, "p", _hoisted_11, [
+              _vue.createVNode.call(void 0, _component_notes_callout_icon, { type: "Danger" }),
+              _vue.createTextVNode.call(void 0, "Browser not supported")
+            ]),
+            _hoisted_12
+          ]))
+        : _vue.createCommentVNode.call(void 0, "v-if", true),
+      (_vue.unref.call(void 0, state).type == 'ready')
+        ? (_vue.openBlock.call(void 0, ), _vue.createElementBlock.call(void 0, "div", _hoisted_13, [
+            _vue.createElementVNode.call(void 0, "p", _hoisted_14, [
+              _vue.createVNode.call(void 0, _component_notes_callout_icon, { type: "Note" }),
+              _vue.createTextVNode.call(void 0, "Ready")
+            ]),
+            _vue.createElementVNode.call(void 0, "p", null, [
+              _hoisted_15,
+              _hoisted_16,
+              _vue.createTextVNode.call(void 0, "All processing is done on your device; no data is sent anywhere. "),
+              _vue.createElementVNode.call(void 0, "span", _hoisted_17, [
+                _vue.createElementVNode.call(void 0, "button", {
+                  onClick: paste,
+                  class: "btn py-0.5 px-1.5"
+                }, [
+                  _vue.createVNode.call(void 0, _component_iconify_icon, {
+                    icon: "octicon:paste-16",
+                    inline: ""
+                  }),
+                  _vue.createTextVNode.call(void 0, " Click here to paste")
+                ]),
+                _vue.createTextVNode.call(void 0, " or use the usual keyboard shortcut.")
+              ])
+            ])
+          ]))
+        : _vue.createCommentVNode.call(void 0, "v-if", true),
+      (_vue.unref.call(void 0, state).type == 'error')
+        ? (_vue.openBlock.call(void 0, ), _vue.createElementBlock.call(void 0, "div", _hoisted_18, [
+            _vue.createElementVNode.call(void 0, "p", _hoisted_19, [
+              _vue.createVNode.call(void 0, _component_notes_callout_icon, { type: "Danger" }),
+              _vue.createTextVNode.call(void 0, "Error")
+            ]),
+            _vue.createElementVNode.call(void 0, "p", null, [
+              _vue.createTextVNode.call(void 0, _vue.toDisplayString.call(void 0, _vue.unref.call(void 0, state).error) + " ", 1 /* TEXT */),
+              _vue.createElementVNode.call(void 0, "span", _hoisted_20, [
+                _vue.createElementVNode.call(void 0, "button", {
+                  onClick: paste,
+                  class: "btn py-0.5 px-1.5"
+                }, [
+                  _vue.createVNode.call(void 0, _component_iconify_icon, {
+                    icon: "octicon:paste-16",
+                    inline: ""
+                  }),
+                  _vue.createTextVNode.call(void 0, " Click here to paste")
+                ]),
+                _vue.createTextVNode.call(void 0, " or use the usual keyboard shortcut.")
+              ])
+            ])
+          ]))
+        : _vue.createCommentVNode.call(void 0, "v-if", true),
+      (_vue.unref.call(void 0, state).type == 'success')
+        ? (_vue.openBlock.call(void 0, ), _vue.createElementBlock.call(void 0, "div", _hoisted_21, [
+            _vue.createElementVNode.call(void 0, "p", _hoisted_22, [
+              _vue.createVNode.call(void 0, _component_notes_callout_icon, { type: "Success" }),
+              _vue.createTextVNode.call(void 0, "Decoded data in QR code")
+            ]),
+            _vue.createElementVNode.call(void 0, "textarea", {
+              class: "form-control",
+              value: _vue.unref.call(void 0, state).data,
+              readonly: "",
+              ref_key: "decodedData",
+              ref: decodedData
+            }, null, 8 /* PROPS */, _hoisted_23),
+            _vue.createElementVNode.call(void 0, "span", _hoisted_24, [
+              _vue.createElementVNode.call(void 0, "button", {
+                onClick: copy,
+                class: "btn py-0.5 px-1.5"
+              }, [
+                _vue.createVNode.call(void 0, _component_iconify_icon, {
+                  icon: "octicon:copy-16",
+                  inline: ""
+                }),
+                _vue.createTextVNode.call(void 0, " Copy to clipboard")
+              ])
+            ])
+          ]))
+        : _vue.createCommentVNode.call(void 0, "v-if", true)
+    ])
+  ], 64 /* STABLE_FRAGMENT */))
+}
+}
+
+}
+__sfc__.__scopeId = "data-v-8c9498c0"
+__sfc__.__file = "Note.vue"
+exports. default = __sfc__};
+window.precompiledFrontMatter = {"public":true,"title":"Paste image to decode QR code"};
+</script>
+  </body>
+</html>

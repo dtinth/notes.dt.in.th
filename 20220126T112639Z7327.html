@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html data-precompiled=true lang="en" data-dtinth="true">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>20220126T112639Z7327 | notes.dt.in.th</title><meta property="og:title" content="20220126T112639Z7327" data-source="note">
+<meta property="og:image" content="https://screenshot.source.in.th/image/_/notes/20220126T112639Z7327" data-source="note">
+<meta property="og:image:width" content="1800" data-source="note">
+<meta property="og:image:height" content="1680" data-source="note">
+<link rel="canonical" href="https://notes.dt.in.th/20220126T112639Z7327" data-source="note"><style id="note-styles">/* layer: default */
+.my[data-v-8c9498c0]{margin-top:1rem;margin-bottom:1rem;}
+.me[data-v-8c9498c0]{margin-inline-end:1rem;}
+.hidden[data-v-8c9498c0]{display:none;}
+.resize[data-v-8c9498c0]{resize:both;}</style>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/iconify-icon@2.1.0/dist/iconify-icon.min.js"
+      integrity="sha256-dY2Ug42wyv3rl+sLVKEg3jbPs8f+hi7tmJ836AxVDwI="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/blurhash-image@1.0.1/blurhash-image.min.js"
+      integrity="sha256-qrUUgTGk7xA7iVCwraHNQjwy2JryA0K4L3DL4qidagQ="
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" crossorigin src="/runtime/index.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/supabase-CjkNZD6A.js">
+    <link rel="stylesheet" crossorigin href="/runtime/index.css">
+  </head>
+  <body class="bg-#252423 text-#e9e8e7 antialiased">
+    <header class="h-[58px] bg-#090807 border-b border-#454443 z-20 flex">
+      <div class="flex items-center pl-[18px] flex-none">
+        <a
+          class="flex items-center text-#8b8685 hover:text-#ffffbb text-lg"
+          href="/"
+          >notes.dt.in.th</a
+        >
+      </div>
+      <div
+        class="flex-1 flex items-center text-#8b8685 [&_a:hover]:text-#ffffbb overflow-hidden"
+        id="headerMiddle"
+      >
+        <div class="px-2 flex-none">›</div><div class="truncate"><a title="Cloud Platform (topic)" href="CloudPlatform">Cloud Platform</a></div><div class="px-2 flex-none">›</div><div class="truncate"><a title="Vercel (topic)" href="Vercel">Vercel</a></div><div class="px-2 flex-none">›</div><div class="truncate"><a title="Next.js (topic)" href="Next">Next.js</a></div><div class="px-2 flex-none">›</div><div class="truncate"><a title="React (topic)" href="React">React</a></div>
+      </div>
+      <div
+        class="flex items-center px-[18px] flex-none gap-4"
+        id="headerToolbar"
+      ></div>
+    </header>
+    <div class="h-entry">
+      <main class="bg-#353433" id="main">
+        <div class="notes-layout-container mx-auto p-6 py-12" id="mainContents">
+          <div class="prose e-content" id="noteContents"><!--[--><h1 id="react-18s-stricteffectmode" data-v-8c9498c0><a aria-hidden="true" tabindex="-1" href="#react-18s-stricteffectmode" data-v-8c9498c0><span class="icon icon-link" data-v-8c9498c0></span></a>React 18’s StrictEffectMode</h1><p data-v-8c9498c0>These notes are copied from <a href="https://www.reddit.com/r/reactjs/comments/scz8rs/notes_about_react_18_rc_curated_from_react_18s/hua329h/" data-v-8c9498c0>my Reddit comments</a> about my earlier <a href="React18RC" data-v-8c9498c0>Notes about React 18 RC</a>.</p><h2 id="about-stricteffectmode" data-v-8c9498c0><a aria-hidden="true" tabindex="-1" href="#about-stricteffectmode" data-v-8c9498c0><span class="icon icon-link" data-v-8c9498c0></span></a>About StrictEffectMode</h2><p data-v-8c9498c0><a href="https://www.reddit.com/r/reactjs/comments/scz8rs/comment/hua2nig/?utm_source=reddit&amp;utm_medium=web2x&amp;context=3" data-v-8c9498c0>Comment</a></p><p data-v-8c9498c0>One more tidbit that I found particular interesting [in React 18] is the “doubling” of effects in <code data-v-8c9498c0>&lt;React.StrictMode&gt;</code> (no.10). I got bitten by it. I used to write code like this:</p><pre class="shiki github-dark" style="background-color:#252423;color:#e1e4e8;" tabindex="0" data-v-8c9498c0><code data-v-8c9498c0><span class="line" data-v-8c9498c0><span style="color:#F97583;" data-v-8c9498c0>function</span><span style="color:#B392F0;" data-v-8c9498c0> App</span><span style="color:#E1E4E8;" data-v-8c9498c0>() {</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#F97583;" data-v-8c9498c0>  const</span><span style="color:#79B8FF;" data-v-8c9498c0> canvasRef</span><span style="color:#F97583;" data-v-8c9498c0> =</span><span style="color:#B392F0;" data-v-8c9498c0> useRef</span><span style="color:#E1E4E8;" data-v-8c9498c0>(</span><span style="color:#79B8FF;" data-v-8c9498c0>null</span><span style="color:#E1E4E8;" data-v-8c9498c0>)</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#B392F0;" data-v-8c9498c0>  useEffect</span><span style="color:#E1E4E8;" data-v-8c9498c0>(() </span><span style="color:#F97583;" data-v-8c9498c0>=&gt;</span><span style="color:#E1E4E8;" data-v-8c9498c0> {</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>    window.</span><span style="color:#B392F0;" data-v-8c9498c0>addEventListener</span><span style="color:#E1E4E8;" data-v-8c9498c0>(</span><span style="color:#9ECBFF;" data-v-8c9498c0>&#39;resize&#39;</span><span style="color:#E1E4E8;" data-v-8c9498c0>, () </span><span style="color:#F97583;" data-v-8c9498c0>=&gt;</span><span style="color:#E1E4E8;" data-v-8c9498c0> {</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#B392F0;" data-v-8c9498c0>      resizeCanvasToWindow</span><span style="color:#E1E4E8;" data-v-8c9498c0>(canvasRef.current)</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>    })</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>  }, [])</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#6A737D;" data-v-8c9498c0>  // ...</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>}</span></span></code></pre><p data-v-8c9498c0>Note that I never called <code data-v-8c9498c0>removeEventListener()</code>. Normally this is a red flag, but since it’s the root component that never gets unmounted, this is actually fine. At least, in earlier versions of React this is not problem (although they <a href="https://stackoverflow.com/questions/61254372/my-react-component-is-rendering-twice-because-of-strict-mode/61897567#61897567" data-v-8c9498c0>render twice</a>, they invoke effects just once.)</p><p data-v-8c9498c0>However, in React 18, under <code data-v-8c9498c0>&lt;React.StrictMode&gt;</code>, under development build, React will actually invoke the effect twice (i.e. <code data-v-8c9498c0>effect()?.(); effect()</code>) just to force you to always clean up after your effects.</p><p data-v-8c9498c0>With the example above, the event listener is now attached <strong data-v-8c9498c0>twice</strong>, so each <code data-v-8c9498c0>&#39;resize&#39;</code> event invokes <code data-v-8c9498c0>resizeCanvasToWindow()</code> 2 times. (To fix, I need to add <code data-v-8c9498c0>removeEventListener()</code> in <code data-v-8c9498c0>useEffect</code>’s return. Took me a while to figure that one out!)</p><h2 id="the-history-of-stricteffectmode" data-v-8c9498c0><a aria-hidden="true" tabindex="-1" href="#the-history-of-stricteffectmode" data-v-8c9498c0><span class="icon icon-link" data-v-8c9498c0></span></a>The history of StrictEffectMode</h2><p data-v-8c9498c0><a href="https://www.reddit.com/r/reactjs/comments/scz8rs/comment/hua56ke/?utm_source=reddit&amp;utm_medium=web2x&amp;context=3" data-v-8c9498c0>Comment</a></p><p data-v-8c9498c0>In case you are curious about the story I <a href="https://github.com/facebook/react/blame/f2a59df48bec2352a4dd3b5415282a4ea240a4f8/packages/react-reconciler/src/__tests__/StrictEffectsMode-test.js" data-v-8c9498c0><code data-v-8c9498c0>git blame</code>’d the test files</a> and here’s what I found:</p><ul data-v-8c9498c0><li data-v-8c9498c0>This feature is called <strong data-v-8c9498c0>StrictEffectsMode</strong> (test file name).</li><li data-v-8c9498c0>Sep 2020: The feature is implemented in <a href="https://github.com/facebook/react/pull/19523" data-v-8c9498c0>PR #19523</a> but is hidden behind a feature flag.</li><li data-v-8c9498c0>Feb 2021: 3 levels of strict modes introduced in <a href="https://github.com/facebook/react/pull/20844" data-v-8c9498c0>PR #20844</a> and <a href="https://github.com/facebook/react/pull/20849" data-v-8c9498c0>PR #20849</a>. <ul data-v-8c9498c0><li data-v-8c9498c0>Level 0 (sloppy mode) is <code data-v-8c9498c0>ReactDOM.render</code>.</li><li data-v-8c9498c0>Level 1 (legacy mode) is <code data-v-8c9498c0>ReactDOM.render</code> + <code data-v-8c9498c0>StrictMode</code> (which double-renders).</li><li data-v-8c9498c0>Level 2 (strict effects mode) is <code data-v-8c9498c0>ReactDOM.createRoot</code> + <code data-v-8c9498c0>StrictMode</code> (which double-renders + double-effects).</li></ul></li></ul><!--]--></div>
+        </div>
+      </main>
+      <footer>
+        <div
+          class="notes-layout-container mx-auto py-4 px-6 text-#8b8685 text-right text-sm"
+          id="footerContents"
+        >
+          <notes-page-footer></notes-page-footer>
+        </div>
+      </footer>
+    </div>
+    <script>
+window.precompiledNoteBehavior = function(require, exports, module, Vue) {"use strict";Object.defineProperty(exports, "__esModule", {value: true});const __sfc__ = {};
+var _vue = require('vue');
+
+const _withScopeId = n => (_vue.pushScopeId.call(void 0, "data-v-8c9498c0"),n=n(),_vue.popScopeId.call(void 0, ),n)
+const _hoisted_1 = /*#__PURE__*/_vue.createStaticVNode.call(void 0, "<h1 id=\"react-18s-stricteffectmode\" data-v-8c9498c0><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#react-18s-stricteffectmode\" data-v-8c9498c0><span class=\"icon icon-link\" data-v-8c9498c0></span></a>React 18’s StrictEffectMode</h1><p data-v-8c9498c0>These notes are copied from <a href=\"https://www.reddit.com/r/reactjs/comments/scz8rs/notes_about_react_18_rc_curated_from_react_18s/hua329h/\" data-v-8c9498c0>my Reddit comments</a> about my earlier <a href=\"React18RC\" data-v-8c9498c0>Notes about React 18 RC</a>.</p><h2 id=\"about-stricteffectmode\" data-v-8c9498c0><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#about-stricteffectmode\" data-v-8c9498c0><span class=\"icon icon-link\" data-v-8c9498c0></span></a>About StrictEffectMode</h2><p data-v-8c9498c0><a href=\"https://www.reddit.com/r/reactjs/comments/scz8rs/comment/hua2nig/?utm_source=reddit&amp;utm_medium=web2x&amp;context=3\" data-v-8c9498c0>Comment</a></p><p data-v-8c9498c0>One more tidbit that I found particular interesting [in React 18] is the “doubling” of effects in <code data-v-8c9498c0>&lt;React.StrictMode&gt;</code> (no.10). I got bitten by it. I used to write code like this:</p><pre class=\"shiki github-dark\" style=\"background-color:#252423;color:#e1e4e8;\" tabindex=\"0\" data-v-8c9498c0><code data-v-8c9498c0><span class=\"line\" data-v-8c9498c0><span style=\"color:#F97583;\" data-v-8c9498c0>function</span><span style=\"color:#B392F0;\" data-v-8c9498c0> App</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>() {</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#F97583;\" data-v-8c9498c0>  const</span><span style=\"color:#79B8FF;\" data-v-8c9498c0> canvasRef</span><span style=\"color:#F97583;\" data-v-8c9498c0> =</span><span style=\"color:#B392F0;\" data-v-8c9498c0> useRef</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>(</span><span style=\"color:#79B8FF;\" data-v-8c9498c0>null</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>)</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#B392F0;\" data-v-8c9498c0>  useEffect</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>(() </span><span style=\"color:#F97583;\" data-v-8c9498c0>=&gt;</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> {</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>    window.</span><span style=\"color:#B392F0;\" data-v-8c9498c0>addEventListener</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>(</span><span style=\"color:#9ECBFF;\" data-v-8c9498c0>&#39;resize&#39;</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>, () </span><span style=\"color:#F97583;\" data-v-8c9498c0>=&gt;</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> {</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#B392F0;\" data-v-8c9498c0>      resizeCanvasToWindow</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>(canvasRef.current)</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>    })</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>  }, [])</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#6A737D;\" data-v-8c9498c0>  // ...</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>}</span></span></code></pre><p data-v-8c9498c0>Note that I never called <code data-v-8c9498c0>removeEventListener()</code>. Normally this is a red flag, but since it’s the root component that never gets unmounted, this is actually fine. At least, in earlier versions of React this is not problem (although they <a href=\"https://stackoverflow.com/questions/61254372/my-react-component-is-rendering-twice-because-of-strict-mode/61897567#61897567\" data-v-8c9498c0>render twice</a>, they invoke effects just once.)</p><p data-v-8c9498c0>However, in React 18, under <code data-v-8c9498c0>&lt;React.StrictMode&gt;</code>, under development build, React will actually invoke the effect twice (i.e. <code data-v-8c9498c0>effect()?.(); effect()</code>) just to force you to always clean up after your effects.</p><p data-v-8c9498c0>With the example above, the event listener is now attached <strong data-v-8c9498c0>twice</strong>, so each <code data-v-8c9498c0>&#39;resize&#39;</code> event invokes <code data-v-8c9498c0>resizeCanvasToWindow()</code> 2 times. (To fix, I need to add <code data-v-8c9498c0>removeEventListener()</code> in <code data-v-8c9498c0>useEffect</code>’s return. Took me a while to figure that one out!)</p><h2 id=\"the-history-of-stricteffectmode\" data-v-8c9498c0><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#the-history-of-stricteffectmode\" data-v-8c9498c0><span class=\"icon icon-link\" data-v-8c9498c0></span></a>The history of StrictEffectMode</h2><p data-v-8c9498c0><a href=\"https://www.reddit.com/r/reactjs/comments/scz8rs/comment/hua56ke/?utm_source=reddit&amp;utm_medium=web2x&amp;context=3\" data-v-8c9498c0>Comment</a></p><p data-v-8c9498c0>In case you are curious about the story I <a href=\"https://github.com/facebook/react/blame/f2a59df48bec2352a4dd3b5415282a4ea240a4f8/packages/react-reconciler/src/__tests__/StrictEffectsMode-test.js\" data-v-8c9498c0><code data-v-8c9498c0>git blame</code>’d the test files</a> and here’s what I found:</p><ul data-v-8c9498c0><li data-v-8c9498c0>This feature is called <strong data-v-8c9498c0>StrictEffectsMode</strong> (test file name).</li><li data-v-8c9498c0>Sep 2020: The feature is implemented in <a href=\"https://github.com/facebook/react/pull/19523\" data-v-8c9498c0>PR #19523</a> but is hidden behind a feature flag.</li><li data-v-8c9498c0>Feb 2021: 3 levels of strict modes introduced in <a href=\"https://github.com/facebook/react/pull/20844\" data-v-8c9498c0>PR #20844</a> and <a href=\"https://github.com/facebook/react/pull/20849\" data-v-8c9498c0>PR #20849</a>. <ul data-v-8c9498c0><li data-v-8c9498c0>Level 0 (sloppy mode) is <code data-v-8c9498c0>ReactDOM.render</code>.</li><li data-v-8c9498c0>Level 1 (legacy mode) is <code data-v-8c9498c0>ReactDOM.render</code> + <code data-v-8c9498c0>StrictMode</code> (which double-renders).</li><li data-v-8c9498c0>Level 2 (strict effects mode) is <code data-v-8c9498c0>ReactDOM.createRoot</code> + <code data-v-8c9498c0>StrictMode</code> (which double-renders + double-effects).</li></ul></li></ul>", 13)
+function render(_ctx, _cache) {
+  return _hoisted_1
+}
+__sfc__.render = render
+__sfc__.__scopeId = "data-v-8c9498c0"
+__sfc__.__file = "Note.vue"
+exports. default = __sfc__};
+window.precompiledFrontMatter = {"public":true};
+</script>
+  </body>
+</html>

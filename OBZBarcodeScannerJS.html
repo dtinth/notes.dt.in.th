@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html data-precompiled=true lang="en" data-dtinth="true">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reading data from OBZ Barcode Reader on the web using Web Serial API | notes.dt.in.th</title><meta property="og:title" content="Reading data from OBZ Barcode Reader on the web using Web Serial API" data-source="note">
+<meta property="og:image" content="https://screenshot.source.in.th/image/_/notes/OBZBarcodeScannerJS" data-source="note">
+<meta property="og:image:width" content="1800" data-source="note">
+<meta property="og:image:height" content="1680" data-source="note">
+<link rel="canonical" href="https://notes.dt.in.th/OBZBarcodeScannerJS" data-source="note">
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/iconify-icon@2.1.0/dist/iconify-icon.min.js"
+      integrity="sha256-dY2Ug42wyv3rl+sLVKEg3jbPs8f+hi7tmJ836AxVDwI="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/blurhash-image@1.0.1/blurhash-image.min.js"
+      integrity="sha256-qrUUgTGk7xA7iVCwraHNQjwy2JryA0K4L3DL4qidagQ="
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" crossorigin src="/runtime/index.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/supabase-CjkNZD6A.js">
+    <link rel="stylesheet" crossorigin href="/runtime/index.css">
+  </head>
+  <body class="bg-#252423 text-#e9e8e7 antialiased">
+    <header class="h-[58px] bg-#090807 border-b border-#454443 z-20 flex">
+      <div class="flex items-center pl-[18px] flex-none">
+        <a
+          class="flex items-center text-#8b8685 hover:text-#ffffbb text-lg"
+          href="/"
+          >notes.dt.in.th</a
+        >
+      </div>
+      <div
+        class="flex-1 flex items-center text-#8b8685 [&_a:hover]:text-#ffffbb overflow-hidden"
+        id="headerMiddle"
+      >
+        <div class="px-2 flex-none">›</div><div class="truncate"><a title="Hardware (topic)" href="Hardware">Hardware</a></div>
+      </div>
+      <div
+        class="flex items-center px-[18px] flex-none gap-4"
+        id="headerToolbar"
+      ></div>
+    </header>
+    <div class="h-entry">
+      <main class="bg-#353433" id="main">
+        <div class="notes-layout-container mx-auto p-6 py-12" id="mainContents">
+          <div class="prose e-content" id="noteContents"><!--[--><h1 id="reading-data-from-obz-barcode-reader-on-the-web-using-web-serial-api"><a aria-hidden="true" tabindex="-1" href="#reading-data-from-obz-barcode-reader-on-the-web-using-web-serial-api"><span class="icon icon-link"></span></a>Reading data from OBZ Barcode Reader on the web using Web Serial API</h1><p>I just purchased <a href="https://www.obzshop.com/barcode_scanner/40.html">a barcode scanner from OBZ</a>. Normally, it functions as a USB keyboard: when you scan a barcode, it types the barcode&#39;s value as if you typed it on a keyboard. This means the barcode data is sent to whatever application has focus.</p><p>However, the scanner also has a USB-COM mode, which allows it to act as a serial device. This means it can send the barcode data directly to a program that reads from a serial port. Thankfully, the <a href="WebPlatform">web platform</a> has a <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Serial_API">Web Serial API</a> that allows web applications to read from serial ports.</p><h2 id="demo"><a aria-hidden="true" tabindex="-1" href="#demo"><span class="icon icon-link"></span></a>Demo</h2><p><button>Connect</button> Click the button to connect</p><h2 id="notes"><a aria-hidden="true" tabindex="-1" href="#notes"><span class="icon icon-link"></span></a>Notes</h2><ul><li>On Linux, you need to <a href="https://askubuntu.com/a/58122">have the permissions to access the serial port</a>.</li></ul><h2 id="code"><a aria-hidden="true" tabindex="-1" href="#code"><span class="icon icon-link"></span></a>Code</h2><pre class="shiki github-dark" style="background-color:#252423;color:#e1e4e8;" tabindex="0"><code><span class="line"><span style="color:#6A737D;">// Connect to the barcode scanner</span></span>
+<span class="line"><span style="color:#F97583;">const</span><span style="color:#79B8FF;"> port</span><span style="color:#F97583;"> =</span><span style="color:#F97583;"> await</span><span style="color:#E1E4E8;"> navigator.serial.</span><span style="color:#B392F0;">requestPort</span><span style="color:#E1E4E8;">()</span></span>
+<span class="line"><span style="color:#F97583;">await</span><span style="color:#E1E4E8;"> port.</span><span style="color:#B392F0;">open</span><span style="color:#E1E4E8;">({ baudRate: </span><span style="color:#79B8FF;">9600</span><span style="color:#E1E4E8;"> })</span></span>
+<span class="line"><span style="color:#F97583;">const</span><span style="color:#79B8FF;"> readable</span><span style="color:#F97583;"> =</span><span style="color:#E1E4E8;"> port.readable.</span><span style="color:#B392F0;">pipeThrough</span><span style="color:#E1E4E8;">(</span><span style="color:#F97583;">new</span><span style="color:#B392F0;"> TextDecoderStream</span><span style="color:#E1E4E8;">())</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D;">// Handler for barcode scans</span></span>
+<span class="line"><span style="color:#F97583;">const</span><span style="color:#B392F0;"> onScan</span><span style="color:#F97583;"> =</span><span style="color:#E1E4E8;"> (</span><span style="color:#FFAB70;">data</span><span style="color:#E1E4E8;">) </span><span style="color:#F97583;">=&gt;</span><span style="color:#E1E4E8;"> {</span></span>
+<span class="line"><span style="color:#E1E4E8;">  console.</span><span style="color:#B392F0;">log</span><span style="color:#E1E4E8;">(</span><span style="color:#9ECBFF;">`Scanned: ${</span><span style="color:#E1E4E8;">data</span><span style="color:#9ECBFF;">}`</span><span style="color:#E1E4E8;">)</span></span>
+<span class="line"><span style="color:#E1E4E8;">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D;">// Read data from the barcode scanner</span></span>
+<span class="line"><span style="color:#F97583;">let</span><span style="color:#E1E4E8;"> output </span><span style="color:#F97583;">=</span><span style="color:#9ECBFF;"> &#39;&#39;</span></span>
+<span class="line"><span style="color:#F97583;">for</span><span style="color:#F97583;"> await</span><span style="color:#E1E4E8;"> (</span><span style="color:#F97583;">const</span><span style="color:#79B8FF;"> value</span><span style="color:#F97583;"> of</span><span style="color:#E1E4E8;"> readable) {</span></span>
+<span class="line"><span style="color:#E1E4E8;">  output </span><span style="color:#F97583;">+=</span><span style="color:#E1E4E8;"> value</span></span>
+<span class="line"><span style="color:#F97583;">  for</span><span style="color:#E1E4E8;"> (;;) {</span></span>
+<span class="line"><span style="color:#F97583;">    let</span><span style="color:#E1E4E8;"> index </span><span style="color:#F97583;">=</span><span style="color:#E1E4E8;"> output.</span><span style="color:#B392F0;">indexOf</span><span style="color:#E1E4E8;">(String.</span><span style="color:#B392F0;">fromCharCode</span><span style="color:#E1E4E8;">(</span><span style="color:#79B8FF;">13</span><span style="color:#E1E4E8;">))</span></span>
+<span class="line"><span style="color:#F97583;">    if</span><span style="color:#E1E4E8;"> (index </span><span style="color:#F97583;">===</span><span style="color:#F97583;"> -</span><span style="color:#79B8FF;">1</span><span style="color:#E1E4E8;">) {</span></span>
+<span class="line"><span style="color:#F97583;">      break</span></span>
+<span class="line"><span style="color:#E1E4E8;">    }</span></span>
+<span class="line"><span style="color:#F97583;">    const</span><span style="color:#79B8FF;"> line</span><span style="color:#F97583;"> =</span><span style="color:#E1E4E8;"> output.</span><span style="color:#B392F0;">slice</span><span style="color:#E1E4E8;">(</span><span style="color:#79B8FF;">0</span><span style="color:#E1E4E8;">, index)</span></span>
+<span class="line"><span style="color:#E1E4E8;">    output </span><span style="color:#F97583;">=</span><span style="color:#E1E4E8;"> output.</span><span style="color:#B392F0;">slice</span><span style="color:#E1E4E8;">(index </span><span style="color:#F97583;">+</span><span style="color:#79B8FF;"> 1</span><span style="color:#E1E4E8;">)</span></span>
+<span class="line"><span style="color:#B392F0;">    onScan</span><span style="color:#E1E4E8;">(line)</span></span>
+<span class="line"><span style="color:#E1E4E8;">  }</span></span>
+<span class="line"><span style="color:#E1E4E8;">}</span></span></code></pre><p>It’s great to know that the <a href="WebPlatform">web platform</a> has powerful APIs that lets us interface with <a href="Hardware">hardware devices</a>.</p><!--]--></div>
+        </div>
+      </main>
+      <footer>
+        <div
+          class="notes-layout-container mx-auto py-4 px-6 text-#8b8685 text-right text-sm"
+          id="footerContents"
+        >
+          <notes-page-footer></notes-page-footer>
+        </div>
+      </footer>
+    </div>
+    <script>
+window.precompiledNoteBehavior = function(require, exports, module, Vue) {"use strict";Object.defineProperty(exports, "__esModule", {value: true});/* Analyzed bindings: {
+  "connect": "setup-maybe-ref",
+  "status": "setup-maybe-ref"
+} */
+
+  const __sfc__ = {
+    setup() {
+      const status = Vue.ref('Click the button to connect')
+      const connect = async () => {
+        status.value = 'Connecting...'
+        try {
+          const serial = navigator.serial || (await (async () => {
+            status.value = 'Loading web-serial-polyfill...'
+            const mod = await import('https://cdn.jsdelivr.net/npm/web-serial-polyfill@1.0.15/dist/serial.js')
+            return mod.serial
+          })())
+          const port = await serial.requestPort();
+          status.value = 'Port obtained, opening...'
+
+          await port.open({ baudRate: 9600 });
+          status.value = 'Port opened, reading...'
+
+          const readable = port.readable.pipeThrough(new TextDecoderStream());
+
+          let output = ''
+          for await (const value of readable) {
+            output += value;
+            for (;;) {
+              let index = output.indexOf(String.fromCharCode(13));
+              if (index === -1) {
+                break;
+              }
+              const line = output.slice(0, index);
+              output = output.slice(index + 1);
+              status.value = `Read: "${line}" at ${new Date().toLocaleTimeString()}`
+            }
+          }
+          status.value = 'Connection closed'
+        } catch (error) {
+          status.value = `Error: ${error}`
+        }
+      }
+
+      return {
+        connect,
+        status
+      }
+    }
+  }
+;
+var _vue = require('vue');
+
+const _hoisted_1 = /*#__PURE__*/_vue.createStaticVNode.call(void 0, "<h1 id=\"reading-data-from-obz-barcode-reader-on-the-web-using-web-serial-api\"><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#reading-data-from-obz-barcode-reader-on-the-web-using-web-serial-api\"><span class=\"icon icon-link\"></span></a>Reading data from OBZ Barcode Reader on the web using Web Serial API</h1><p>I just purchased <a href=\"https://www.obzshop.com/barcode_scanner/40.html\">a barcode scanner from OBZ</a>. Normally, it functions as a USB keyboard: when you scan a barcode, it types the barcode&#39;s value as if you typed it on a keyboard. This means the barcode data is sent to whatever application has focus.</p><p>However, the scanner also has a USB-COM mode, which allows it to act as a serial device. This means it can send the barcode data directly to a program that reads from a serial port. Thankfully, the <a href=\"WebPlatform\">web platform</a> has a <a href=\"https://developer.mozilla.org/en-US/docs/Web/API/Web_Serial_API\">Web Serial API</a> that allows web applications to read from serial ports.</p><h2 id=\"demo\"><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#demo\"><span class=\"icon icon-link\"></span></a>Demo</h2>", 4)
+const _hoisted_5 = /*#__PURE__*/_vue.createStaticVNode.call(void 0, "<h2 id=\"notes\"><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#notes\"><span class=\"icon icon-link\"></span></a>Notes</h2><ul><li>On Linux, you need to <a href=\"https://askubuntu.com/a/58122\">have the permissions to access the serial port</a>.</li></ul><h2 id=\"code\"><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#code\"><span class=\"icon icon-link\"></span></a>Code</h2><pre class=\"shiki github-dark\" style=\"background-color:#252423;color:#e1e4e8;\" tabindex=\"0\"><code><span class=\"line\"><span style=\"color:#6A737D;\">// Connect to the barcode scanner</span></span>\n<span class=\"line\"><span style=\"color:#F97583;\">const</span><span style=\"color:#79B8FF;\"> port</span><span style=\"color:#F97583;\"> =</span><span style=\"color:#F97583;\"> await</span><span style=\"color:#E1E4E8;\"> navigator.serial.</span><span style=\"color:#B392F0;\">requestPort</span><span style=\"color:#E1E4E8;\">()</span></span>\n<span class=\"line\"><span style=\"color:#F97583;\">await</span><span style=\"color:#E1E4E8;\"> port.</span><span style=\"color:#B392F0;\">open</span><span style=\"color:#E1E4E8;\">({ baudRate: </span><span style=\"color:#79B8FF;\">9600</span><span style=\"color:#E1E4E8;\"> })</span></span>\n<span class=\"line\"><span style=\"color:#F97583;\">const</span><span style=\"color:#79B8FF;\"> readable</span><span style=\"color:#F97583;\"> =</span><span style=\"color:#E1E4E8;\"> port.readable.</span><span style=\"color:#B392F0;\">pipeThrough</span><span style=\"color:#E1E4E8;\">(</span><span style=\"color:#F97583;\">new</span><span style=\"color:#B392F0;\"> TextDecoderStream</span><span style=\"color:#E1E4E8;\">())</span></span>\n<span class=\"line\"></span>\n<span class=\"line\"><span style=\"color:#6A737D;\">// Handler for barcode scans</span></span>\n<span class=\"line\"><span style=\"color:#F97583;\">const</span><span style=\"color:#B392F0;\"> onScan</span><span style=\"color:#F97583;\"> =</span><span style=\"color:#E1E4E8;\"> (</span><span style=\"color:#FFAB70;\">data</span><span style=\"color:#E1E4E8;\">) </span><span style=\"color:#F97583;\">=&gt;</span><span style=\"color:#E1E4E8;\"> {</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">  console.</span><span style=\"color:#B392F0;\">log</span><span style=\"color:#E1E4E8;\">(</span><span style=\"color:#9ECBFF;\">`Scanned: ${</span><span style=\"color:#E1E4E8;\">data</span><span style=\"color:#9ECBFF;\">}`</span><span style=\"color:#E1E4E8;\">)</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">}</span></span>\n<span class=\"line\"></span>\n<span class=\"line\"><span style=\"color:#6A737D;\">// Read data from the barcode scanner</span></span>\n<span class=\"line\"><span style=\"color:#F97583;\">let</span><span style=\"color:#E1E4E8;\"> output </span><span style=\"color:#F97583;\">=</span><span style=\"color:#9ECBFF;\"> &#39;&#39;</span></span>\n<span class=\"line\"><span style=\"color:#F97583;\">for</span><span style=\"color:#F97583;\"> await</span><span style=\"color:#E1E4E8;\"> (</span><span style=\"color:#F97583;\">const</span><span style=\"color:#79B8FF;\"> value</span><span style=\"color:#F97583;\"> of</span><span style=\"color:#E1E4E8;\"> readable) {</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">  output </span><span style=\"color:#F97583;\">+=</span><span style=\"color:#E1E4E8;\"> value</span></span>\n<span class=\"line\"><span style=\"color:#F97583;\">  for</span><span style=\"color:#E1E4E8;\"> (;;) {</span></span>\n<span class=\"line\"><span style=\"color:#F97583;\">    let</span><span style=\"color:#E1E4E8;\"> index </span><span style=\"color:#F97583;\">=</span><span style=\"color:#E1E4E8;\"> output.</span><span style=\"color:#B392F0;\">indexOf</span><span style=\"color:#E1E4E8;\">(String.</span><span style=\"color:#B392F0;\">fromCharCode</span><span style=\"color:#E1E4E8;\">(</span><span style=\"color:#79B8FF;\">13</span><span style=\"color:#E1E4E8;\">))</span></span>\n<span class=\"line\"><span style=\"color:#F97583;\">    if</span><span style=\"color:#E1E4E8;\"> (index </span><span style=\"color:#F97583;\">===</span><span style=\"color:#F97583;\"> -</span><span style=\"color:#79B8FF;\">1</span><span style=\"color:#E1E4E8;\">) {</span></span>\n<span class=\"line\"><span style=\"color:#F97583;\">      break</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">    }</span></span>\n<span class=\"line\"><span style=\"color:#F97583;\">    const</span><span style=\"color:#79B8FF;\"> line</span><span style=\"color:#F97583;\"> =</span><span style=\"color:#E1E4E8;\"> output.</span><span style=\"color:#B392F0;\">slice</span><span style=\"color:#E1E4E8;\">(</span><span style=\"color:#79B8FF;\">0</span><span style=\"color:#E1E4E8;\">, index)</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">    output </span><span style=\"color:#F97583;\">=</span><span style=\"color:#E1E4E8;\"> output.</span><span style=\"color:#B392F0;\">slice</span><span style=\"color:#E1E4E8;\">(index </span><span style=\"color:#F97583;\">+</span><span style=\"color:#79B8FF;\"> 1</span><span style=\"color:#E1E4E8;\">)</span></span>\n<span class=\"line\"><span style=\"color:#B392F0;\">    onScan</span><span style=\"color:#E1E4E8;\">(line)</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">  }</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">}</span></span></code></pre><p>It’s great to know that the <a href=\"WebPlatform\">web platform</a> has powerful APIs that lets us interface with <a href=\"Hardware\">hardware devices</a>.</p>", 5)
+function render(_ctx, _cache, $props, $setup, $data, $options) {
+  return (_vue.openBlock.call(void 0, ), _vue.createElementBlock.call(void 0, _vue.Fragment, null, [
+    _hoisted_1,
+    _vue.createElementVNode.call(void 0, "p", null, [
+      _vue.createElementVNode.call(void 0, "button", {
+        ref: "connectButton",
+        onClick: _cache[0] || (_cache[0] = (...args) => ($setup.connect && $setup.connect(...args)))
+      }, "Connect", 512 /* NEED_PATCH */),
+      _vue.createTextVNode.call(void 0, " " + _vue.toDisplayString.call(void 0, $setup.status), 1 /* TEXT */)
+    ]),
+    _hoisted_5
+  ], 64 /* STABLE_FRAGMENT */))
+}
+__sfc__.render = render
+__sfc__.__file = "Note.vue"
+exports. default = __sfc__};
+window.precompiledFrontMatter = {"public":true,"title":"Reading data from OBZ Barcode Reader on the web using Web Serial API"};
+</script>
+  </body>
+</html>

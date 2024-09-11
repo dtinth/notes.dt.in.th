@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html data-precompiled=true lang="en" data-dtinth="true">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Audio encoding CPU performance on M1 Macs | notes.dt.in.th</title><meta property="og:title" content="Audio encoding CPU performance on M1 Macs" data-source="note">
+<meta property="og:image" content="https://screenshot.source.in.th/image/_/notes/20220823T084141Z6586" data-source="note">
+<meta property="og:image:width" content="1800" data-source="note">
+<meta property="og:image:height" content="1680" data-source="note">
+<link rel="canonical" href="https://notes.dt.in.th/20220823T084141Z6586" data-source="note"><style id="note-styles">/* layer: default */
+.table[data-v-8c9498c0]{display:table;}</style>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/iconify-icon@2.1.0/dist/iconify-icon.min.js"
+      integrity="sha256-dY2Ug42wyv3rl+sLVKEg3jbPs8f+hi7tmJ836AxVDwI="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/blurhash-image@1.0.1/blurhash-image.min.js"
+      integrity="sha256-qrUUgTGk7xA7iVCwraHNQjwy2JryA0K4L3DL4qidagQ="
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" crossorigin src="/runtime/index.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/supabase-CjkNZD6A.js">
+    <link rel="stylesheet" crossorigin href="/runtime/index.css">
+  </head>
+  <body class="bg-#252423 text-#e9e8e7 antialiased">
+    <header class="h-[58px] bg-#090807 border-b border-#454443 z-20 flex">
+      <div class="flex items-center pl-[18px] flex-none">
+        <a
+          class="flex items-center text-#8b8685 hover:text-#ffffbb text-lg"
+          href="/"
+          >notes.dt.in.th</a
+        >
+      </div>
+      <div
+        class="flex-1 flex items-center text-#8b8685 [&_a:hover]:text-#ffffbb overflow-hidden"
+        id="headerMiddle"
+      >
+        <div class="px-2 flex-none">›</div><div class="truncate"><a title="Recent writings" href="Recent">Recent writings</a></div>
+      </div>
+      <div
+        class="flex items-center px-[18px] flex-none gap-4"
+        id="headerToolbar"
+      ></div>
+    </header>
+    <div class="h-entry">
+      <main class="bg-#353433" id="main">
+        <div class="notes-layout-container mx-auto p-6 py-12" id="mainContents">
+          <div class="prose e-content" id="noteContents"><!--[--><p data-v-8c9498c0>This table shows the speed of <a href="AudioEncodingBenchmark" data-v-8c9498c0>encoding 5 minutes of white noise using ffmpeg</a> on an M1 MacBook Pro. Encoding is performed 5 times, showing the best result:</p><table data-v-8c9498c0><thead data-v-8c9498c0><tr data-v-8c9498c0><th data-v-8c9498c0>Environment</th><th align="right" data-v-8c9498c0>Speed</th><th align="right" data-v-8c9498c0>Comparison</th></tr></thead><tbody data-v-8c9498c0><tr data-v-8c9498c0><td data-v-8c9498c0>Native</td><td align="right" data-v-8c9498c0>232.0x</td><td align="right" data-v-8c9498c0>Baseline</td></tr><tr data-v-8c9498c0><td data-v-8c9498c0>Rosetta 2</td><td align="right" data-v-8c9498c0>63.1x</td><td align="right" data-v-8c9498c0><strong data-v-8c9498c0>3.7x slower</strong></td></tr><tr data-v-8c9498c0><td data-v-8c9498c0>Docker (<a href="DockerMacOSColima" data-v-8c9498c0>Colima</a>) linux/aarch64</td><td align="right" data-v-8c9498c0>51.0x</td><td align="right" data-v-8c9498c0><strong data-v-8c9498c0>4.5x slower</strong></td></tr><tr data-v-8c9498c0><td data-v-8c9498c0>Docker (<a href="DockerMacOSColima" data-v-8c9498c0>Colima</a>) linux/x86_64</td><td align="right" data-v-8c9498c0>5.5x</td><td align="right" data-v-8c9498c0><strong data-v-8c9498c0>42.2x slower</strong></td></tr></tbody></table><h2 id="native" data-v-8c9498c0><a aria-hidden="true" tabindex="-1" href="#native" data-v-8c9498c0><span class="icon icon-link" data-v-8c9498c0></span></a>Native</h2><pre data-v-8c9498c0><code data-v-8c9498c0>node_modules/@ffmpeg-installer/darwin-arm64/ffmpeg
+ffmpeg version 4.4 Copyright (c) 2000-2021 the FFmpeg developers
+  built with Apple clang version 12.0.0 (clang-1200.0.32.27)
+</code></pre><h2 id="rosetta-2" data-v-8c9498c0><a aria-hidden="true" tabindex="-1" href="#rosetta-2" data-v-8c9498c0><span class="icon icon-link" data-v-8c9498c0></span></a>Rosetta 2</h2><pre data-v-8c9498c0><code data-v-8c9498c0>node_modules/@ffmpeg-installer/darwin-x64/ffmpeg
+ffmpeg version N-92718-g092cb17983-tessus  https://evermeet.cx/ffmpeg/  Copyright (c) 2000-2018 the FFmpeg developers
+  built with Apple LLVM version 10.0.0 (clang-1000.11.45.5)
+</code></pre><h2 id="docker-aarch64" data-v-8c9498c0><a aria-hidden="true" tabindex="-1" href="#docker-aarch64" data-v-8c9498c0><span class="icon icon-link" data-v-8c9498c0></span></a>Docker aarch64</h2><pre data-v-8c9498c0><code data-v-8c9498c0>node_modules/@ffmpeg-installer/linux-arm64/ffmpeg
+ffmpeg version N-49006-gd81913e680-static https://johnvansickle.com/ffmpeg/  Copyright (c) 2000-2019 the FFmpeg developers
+  built with gcc 6.3.0 (Debian 6.3.0-18+deb9u1) 20170516
+</code></pre><h2 id="docker-x86_64" data-v-8c9498c0><a aria-hidden="true" tabindex="-1" href="#docker-x86_64" data-v-8c9498c0><span class="icon icon-link" data-v-8c9498c0></span></a>Docker x86_64</h2><pre data-v-8c9498c0><code data-v-8c9498c0>node_modules/@ffmpeg-installer/linux-x64/ffmpeg
+ffmpeg version N-47683-g0e8eb07980-static https://johnvansickle.com/ffmpeg/  Copyright (c) 2000-2018 the FFmpeg developers
+  built with gcc 6.3.0 (Debian 6.3.0-18+deb9u1) 20170516
+</code></pre><!--]--></div>
+        </div>
+      </main>
+      <footer>
+        <div
+          class="notes-layout-container mx-auto py-4 px-6 text-#8b8685 text-right text-sm"
+          id="footerContents"
+        >
+          <notes-page-footer></notes-page-footer>
+        </div>
+      </footer>
+    </div>
+    <script>
+window.precompiledNoteBehavior = function(require, exports, module, Vue) {"use strict";Object.defineProperty(exports, "__esModule", {value: true});const __sfc__ = {};
+var _vue = require('vue');
+
+const _withScopeId = n => (_vue.pushScopeId.call(void 0, "data-v-8c9498c0"),n=n(),_vue.popScopeId.call(void 0, ),n)
+const _hoisted_1 = /*#__PURE__*/_vue.createStaticVNode.call(void 0, "<p data-v-8c9498c0>This table shows the speed of <a href=\"AudioEncodingBenchmark\" data-v-8c9498c0>encoding 5 minutes of white noise using ffmpeg</a> on an M1 MacBook Pro. Encoding is performed 5 times, showing the best result:</p><table data-v-8c9498c0><thead data-v-8c9498c0><tr data-v-8c9498c0><th data-v-8c9498c0>Environment</th><th align=\"right\" data-v-8c9498c0>Speed</th><th align=\"right\" data-v-8c9498c0>Comparison</th></tr></thead><tbody data-v-8c9498c0><tr data-v-8c9498c0><td data-v-8c9498c0>Native</td><td align=\"right\" data-v-8c9498c0>232.0x</td><td align=\"right\" data-v-8c9498c0>Baseline</td></tr><tr data-v-8c9498c0><td data-v-8c9498c0>Rosetta 2</td><td align=\"right\" data-v-8c9498c0>63.1x</td><td align=\"right\" data-v-8c9498c0><strong data-v-8c9498c0>3.7x slower</strong></td></tr><tr data-v-8c9498c0><td data-v-8c9498c0>Docker (<a href=\"DockerMacOSColima\" data-v-8c9498c0>Colima</a>) linux/aarch64</td><td align=\"right\" data-v-8c9498c0>51.0x</td><td align=\"right\" data-v-8c9498c0><strong data-v-8c9498c0>4.5x slower</strong></td></tr><tr data-v-8c9498c0><td data-v-8c9498c0>Docker (<a href=\"DockerMacOSColima\" data-v-8c9498c0>Colima</a>) linux/x86_64</td><td align=\"right\" data-v-8c9498c0>5.5x</td><td align=\"right\" data-v-8c9498c0><strong data-v-8c9498c0>42.2x slower</strong></td></tr></tbody></table><h2 id=\"native\" data-v-8c9498c0><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#native\" data-v-8c9498c0><span class=\"icon icon-link\" data-v-8c9498c0></span></a>Native</h2><pre data-v-8c9498c0><code data-v-8c9498c0>node_modules/@ffmpeg-installer/darwin-arm64/ffmpeg\nffmpeg version 4.4 Copyright (c) 2000-2021 the FFmpeg developers\n  built with Apple clang version 12.0.0 (clang-1200.0.32.27)\n</code></pre><h2 id=\"rosetta-2\" data-v-8c9498c0><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#rosetta-2\" data-v-8c9498c0><span class=\"icon icon-link\" data-v-8c9498c0></span></a>Rosetta 2</h2><pre data-v-8c9498c0><code data-v-8c9498c0>node_modules/@ffmpeg-installer/darwin-x64/ffmpeg\nffmpeg version N-92718-g092cb17983-tessus  https://evermeet.cx/ffmpeg/  Copyright (c) 2000-2018 the FFmpeg developers\n  built with Apple LLVM version 10.0.0 (clang-1000.11.45.5)\n</code></pre><h2 id=\"docker-aarch64\" data-v-8c9498c0><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#docker-aarch64\" data-v-8c9498c0><span class=\"icon icon-link\" data-v-8c9498c0></span></a>Docker aarch64</h2><pre data-v-8c9498c0><code data-v-8c9498c0>node_modules/@ffmpeg-installer/linux-arm64/ffmpeg\nffmpeg version N-49006-gd81913e680-static https://johnvansickle.com/ffmpeg/  Copyright (c) 2000-2019 the FFmpeg developers\n  built with gcc 6.3.0 (Debian 6.3.0-18+deb9u1) 20170516\n</code></pre><h2 id=\"docker-x86_64\" data-v-8c9498c0><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#docker-x86_64\" data-v-8c9498c0><span class=\"icon icon-link\" data-v-8c9498c0></span></a>Docker x86_64</h2><pre data-v-8c9498c0><code data-v-8c9498c0>node_modules/@ffmpeg-installer/linux-x64/ffmpeg\nffmpeg version N-47683-g0e8eb07980-static https://johnvansickle.com/ffmpeg/  Copyright (c) 2000-2018 the FFmpeg developers\n  built with gcc 6.3.0 (Debian 6.3.0-18+deb9u1) 20170516\n</code></pre>", 10)
+function render(_ctx, _cache) {
+  return _hoisted_1
+}
+__sfc__.render = render
+__sfc__.__scopeId = "data-v-8c9498c0"
+__sfc__.__file = "Note.vue"
+exports. default = __sfc__};
+window.precompiledFrontMatter = {"public":true,"title":"Audio encoding CPU performance on M1 Macs"};
+</script>
+  </body>
+</html>

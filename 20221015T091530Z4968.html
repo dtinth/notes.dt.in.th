@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html data-precompiled=true lang="en" data-dtinth="true">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Adding a Desktop environment to a Debian/Ubuntu server | notes.dt.in.th</title><meta property="og:title" content="Adding a Desktop environment to a Debian/Ubuntu server" data-source="note">
+<meta property="og:image" content="https://screenshot.source.in.th/image/_/notes/20221015T091530Z4968" data-source="note">
+<meta property="og:image:width" content="1800" data-source="note">
+<meta property="og:image:height" content="1680" data-source="note">
+<link rel="canonical" href="https://notes.dt.in.th/20221015T091530Z4968" data-source="note"><style id="note-styles">/* layer: default */
+.my[data-v-8c9498c0]{margin-top:1rem;margin-bottom:1rem;}</style>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/iconify-icon@2.1.0/dist/iconify-icon.min.js"
+      integrity="sha256-dY2Ug42wyv3rl+sLVKEg3jbPs8f+hi7tmJ836AxVDwI="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/blurhash-image@1.0.1/blurhash-image.min.js"
+      integrity="sha256-qrUUgTGk7xA7iVCwraHNQjwy2JryA0K4L3DL4qidagQ="
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" crossorigin src="/runtime/index.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/supabase-CjkNZD6A.js">
+    <link rel="stylesheet" crossorigin href="/runtime/index.css">
+  </head>
+  <body class="bg-#252423 text-#e9e8e7 antialiased">
+    <header class="h-[58px] bg-#090807 border-b border-#454443 z-20 flex">
+      <div class="flex items-center pl-[18px] flex-none">
+        <a
+          class="flex items-center text-#8b8685 hover:text-#ffffbb text-lg"
+          href="/"
+          >notes.dt.in.th</a
+        >
+      </div>
+      <div
+        class="flex-1 flex items-center text-#8b8685 [&_a:hover]:text-#ffffbb overflow-hidden"
+        id="headerMiddle"
+      >
+        <div class="px-2 flex-none">›</div><div class="truncate"><a title="Linux (topic)" href="Linux">Linux</a></div>
+      </div>
+      <div
+        class="flex items-center px-[18px] flex-none gap-4"
+        id="headerToolbar"
+      ></div>
+    </header>
+    <div class="h-entry">
+      <main class="bg-#353433" id="main">
+        <div class="notes-layout-container mx-auto p-6 py-12" id="mainContents">
+          <div class="prose e-content" id="noteContents"><!--[--><p data-v-8c9498c0>Situation:</p><ul data-v-8c9498c0><li data-v-8c9498c0><p data-v-8c9498c0>I have a cloud server running Ubuntu <a href="Linux" data-v-8c9498c0>Linux</a>. I want to add a desktop environment to it. I want to be able to use the server as a desktop computer without using <a href="Docker" data-v-8c9498c0>Docker</a>.</p></li><li data-v-8c9498c0><p data-v-8c9498c0>I want to run each component on-demand (e.g. by SSHing and running them inside <a href="Tmux" data-v-8c9498c0>tmux</a>) without using e.g. systemd.</p></li><li data-v-8c9498c0><p data-v-8c9498c0>I want to remotely access the desktop environment from my laptop via VNC.</p></li></ul><h2 id="install-a-desktop-environment" data-v-8c9498c0><a aria-hidden="true" tabindex="-1" href="#install-a-desktop-environment" data-v-8c9498c0><span class="icon icon-link" data-v-8c9498c0></span></a>Install a desktop environment</h2><pre class="shiki github-dark" style="background-color:#252423;color:#e1e4e8;" tabindex="0" data-v-8c9498c0><code data-v-8c9498c0><span class="line" data-v-8c9498c0><span style="color:#B392F0;" data-v-8c9498c0>sudo</span><span style="color:#9ECBFF;" data-v-8c9498c0> apt</span><span style="color:#9ECBFF;" data-v-8c9498c0> install</span><span style="color:#9ECBFF;" data-v-8c9498c0> tigervnc-standalone-server</span><span style="color:#9ECBFF;" data-v-8c9498c0> xfce4</span><span style="color:#9ECBFF;" data-v-8c9498c0> xfce4-terminal</span></span></code></pre><h2 id="create-a-password-file" data-v-8c9498c0><a aria-hidden="true" tabindex="-1" href="#create-a-password-file" data-v-8c9498c0><span class="icon icon-link" data-v-8c9498c0></span></a>Create a password file</h2><pre class="shiki github-dark" style="background-color:#252423;color:#e1e4e8;" tabindex="0" data-v-8c9498c0><code data-v-8c9498c0><span class="line" data-v-8c9498c0><span style="color:#B392F0;" data-v-8c9498c0>vncpasswd</span></span></code></pre><h2 id="start-vnc--x-server" data-v-8c9498c0><a aria-hidden="true" tabindex="-1" href="#start-vnc--x-server" data-v-8c9498c0><span class="icon icon-link" data-v-8c9498c0></span></a>Start VNC + X server</h2><pre class="shiki github-dark" style="background-color:#252423;color:#e1e4e8;" tabindex="0" data-v-8c9498c0><code data-v-8c9498c0><span class="line" data-v-8c9498c0><span style="color:#B392F0;" data-v-8c9498c0>Xtigervnc</span><span style="color:#79B8FF;" data-v-8c9498c0> -geometry</span><span style="color:#9ECBFF;" data-v-8c9498c0> 1920x1080</span><span style="color:#79B8FF;" data-v-8c9498c0> -listen</span><span style="color:#9ECBFF;" data-v-8c9498c0> tcp</span><span style="color:#79B8FF;" data-v-8c9498c0> -localhost</span><span style="color:#79B8FF;" data-v-8c9498c0> -AlwaysShared</span><span style="color:#79B8FF;" data-v-8c9498c0> -AcceptKeyEvents</span><span style="color:#79B8FF;" data-v-8c9498c0> -AcceptPointerEvents</span><span style="color:#79B8FF;" data-v-8c9498c0> -SendCutText</span><span style="color:#79B8FF;" data-v-8c9498c0> -AcceptCutText</span><span style="color:#79B8FF;" data-v-8c9498c0> -PasswordFile</span><span style="color:#9ECBFF;" data-v-8c9498c0> ~/.vnc/passwd</span><span style="color:#9ECBFF;" data-v-8c9498c0> :0</span></span></code></pre><h2 id="start-desktop-environment" data-v-8c9498c0><a aria-hidden="true" tabindex="-1" href="#start-desktop-environment" data-v-8c9498c0><span class="icon icon-link" data-v-8c9498c0></span></a>Start desktop environment</h2><pre class="shiki github-dark" style="background-color:#252423;color:#e1e4e8;" tabindex="0" data-v-8c9498c0><code data-v-8c9498c0><span class="line" data-v-8c9498c0><span style="color:#B392F0;" data-v-8c9498c0>env</span><span style="color:#9ECBFF;" data-v-8c9498c0> DISPLAY=:0</span><span style="color:#9ECBFF;" data-v-8c9498c0> xfce4-session</span></span></code></pre><!--]--></div>
+        </div>
+      </main>
+      <footer>
+        <div
+          class="notes-layout-container mx-auto py-4 px-6 text-#8b8685 text-right text-sm"
+          id="footerContents"
+        >
+          <notes-page-footer></notes-page-footer>
+        </div>
+      </footer>
+    </div>
+    <script>
+window.precompiledNoteBehavior = function(require, exports, module, Vue) {"use strict";Object.defineProperty(exports, "__esModule", {value: true});const __sfc__ = {};
+var _vue = require('vue');
+
+const _withScopeId = n => (_vue.pushScopeId.call(void 0, "data-v-8c9498c0"),n=n(),_vue.popScopeId.call(void 0, ),n)
+const _hoisted_1 = /*#__PURE__*/_vue.createStaticVNode.call(void 0, "<p data-v-8c9498c0>Situation:</p><ul data-v-8c9498c0><li data-v-8c9498c0><p data-v-8c9498c0>I have a cloud server running Ubuntu <a href=\"Linux\" data-v-8c9498c0>Linux</a>. I want to add a desktop environment to it. I want to be able to use the server as a desktop computer without using <a href=\"Docker\" data-v-8c9498c0>Docker</a>.</p></li><li data-v-8c9498c0><p data-v-8c9498c0>I want to run each component on-demand (e.g. by SSHing and running them inside <a href=\"Tmux\" data-v-8c9498c0>tmux</a>) without using e.g. systemd.</p></li><li data-v-8c9498c0><p data-v-8c9498c0>I want to remotely access the desktop environment from my laptop via VNC.</p></li></ul><h2 id=\"install-a-desktop-environment\" data-v-8c9498c0><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#install-a-desktop-environment\" data-v-8c9498c0><span class=\"icon icon-link\" data-v-8c9498c0></span></a>Install a desktop environment</h2><pre class=\"shiki github-dark\" style=\"background-color:#252423;color:#e1e4e8;\" tabindex=\"0\" data-v-8c9498c0><code data-v-8c9498c0><span class=\"line\" data-v-8c9498c0><span style=\"color:#B392F0;\" data-v-8c9498c0>sudo</span><span style=\"color:#9ECBFF;\" data-v-8c9498c0> apt</span><span style=\"color:#9ECBFF;\" data-v-8c9498c0> install</span><span style=\"color:#9ECBFF;\" data-v-8c9498c0> tigervnc-standalone-server</span><span style=\"color:#9ECBFF;\" data-v-8c9498c0> xfce4</span><span style=\"color:#9ECBFF;\" data-v-8c9498c0> xfce4-terminal</span></span></code></pre><h2 id=\"create-a-password-file\" data-v-8c9498c0><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#create-a-password-file\" data-v-8c9498c0><span class=\"icon icon-link\" data-v-8c9498c0></span></a>Create a password file</h2><pre class=\"shiki github-dark\" style=\"background-color:#252423;color:#e1e4e8;\" tabindex=\"0\" data-v-8c9498c0><code data-v-8c9498c0><span class=\"line\" data-v-8c9498c0><span style=\"color:#B392F0;\" data-v-8c9498c0>vncpasswd</span></span></code></pre><h2 id=\"start-vnc--x-server\" data-v-8c9498c0><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#start-vnc--x-server\" data-v-8c9498c0><span class=\"icon icon-link\" data-v-8c9498c0></span></a>Start VNC + X server</h2><pre class=\"shiki github-dark\" style=\"background-color:#252423;color:#e1e4e8;\" tabindex=\"0\" data-v-8c9498c0><code data-v-8c9498c0><span class=\"line\" data-v-8c9498c0><span style=\"color:#B392F0;\" data-v-8c9498c0>Xtigervnc</span><span style=\"color:#79B8FF;\" data-v-8c9498c0> -geometry</span><span style=\"color:#9ECBFF;\" data-v-8c9498c0> 1920x1080</span><span style=\"color:#79B8FF;\" data-v-8c9498c0> -listen</span><span style=\"color:#9ECBFF;\" data-v-8c9498c0> tcp</span><span style=\"color:#79B8FF;\" data-v-8c9498c0> -localhost</span><span style=\"color:#79B8FF;\" data-v-8c9498c0> -AlwaysShared</span><span style=\"color:#79B8FF;\" data-v-8c9498c0> -AcceptKeyEvents</span><span style=\"color:#79B8FF;\" data-v-8c9498c0> -AcceptPointerEvents</span><span style=\"color:#79B8FF;\" data-v-8c9498c0> -SendCutText</span><span style=\"color:#79B8FF;\" data-v-8c9498c0> -AcceptCutText</span><span style=\"color:#79B8FF;\" data-v-8c9498c0> -PasswordFile</span><span style=\"color:#9ECBFF;\" data-v-8c9498c0> ~/.vnc/passwd</span><span style=\"color:#9ECBFF;\" data-v-8c9498c0> :0</span></span></code></pre><h2 id=\"start-desktop-environment\" data-v-8c9498c0><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#start-desktop-environment\" data-v-8c9498c0><span class=\"icon icon-link\" data-v-8c9498c0></span></a>Start desktop environment</h2><pre class=\"shiki github-dark\" style=\"background-color:#252423;color:#e1e4e8;\" tabindex=\"0\" data-v-8c9498c0><code data-v-8c9498c0><span class=\"line\" data-v-8c9498c0><span style=\"color:#B392F0;\" data-v-8c9498c0>env</span><span style=\"color:#9ECBFF;\" data-v-8c9498c0> DISPLAY=:0</span><span style=\"color:#9ECBFF;\" data-v-8c9498c0> xfce4-session</span></span></code></pre>", 10)
+function render(_ctx, _cache) {
+  return _hoisted_1
+}
+__sfc__.render = render
+__sfc__.__scopeId = "data-v-8c9498c0"
+__sfc__.__file = "Note.vue"
+exports. default = __sfc__};
+window.precompiledFrontMatter = {"public":true,"title":"Adding a Desktop environment to a Debian/Ubuntu server"};
+</script>
+  </body>
+</html>

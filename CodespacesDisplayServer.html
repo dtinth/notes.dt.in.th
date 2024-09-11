@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html data-precompiled=true lang="en" data-dtinth="true">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Run an X11 display server and noVNC on Codespaces | notes.dt.in.th</title><meta property="og:title" content="Run an X11 display server and noVNC on Codespaces" data-source="note">
+<meta property="og:image" content="https://screenshot.source.in.th/image/_/notes/CodespacesDisplayServer" data-source="note">
+<meta property="og:image:width" content="1800" data-source="note">
+<meta property="og:image:height" content="1680" data-source="note">
+<link rel="canonical" href="https://notes.dt.in.th/CodespacesDisplayServer" data-source="note">
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/iconify-icon@2.1.0/dist/iconify-icon.min.js"
+      integrity="sha256-dY2Ug42wyv3rl+sLVKEg3jbPs8f+hi7tmJ836AxVDwI="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/blurhash-image@1.0.1/blurhash-image.min.js"
+      integrity="sha256-qrUUgTGk7xA7iVCwraHNQjwy2JryA0K4L3DL4qidagQ="
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" crossorigin src="/runtime/index.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/supabase-CjkNZD6A.js">
+    <link rel="stylesheet" crossorigin href="/runtime/index.css">
+  </head>
+  <body class="bg-#252423 text-#e9e8e7 antialiased">
+    <header class="h-[58px] bg-#090807 border-b border-#454443 z-20 flex">
+      <div class="flex items-center pl-[18px] flex-none">
+        <a
+          class="flex items-center text-#8b8685 hover:text-#ffffbb text-lg"
+          href="/"
+          >notes.dt.in.th</a
+        >
+      </div>
+      <div
+        class="flex-1 flex items-center text-#8b8685 [&_a:hover]:text-#ffffbb overflow-hidden"
+        id="headerMiddle"
+      >
+        <div class="px-2 flex-none">›</div><div class="truncate"><a title="GitHub (topic)" href="GitHub">GitHub</a></div><div class="px-2 flex-none">›</div><div class="truncate"><a title="GitHub Codespaces (topic)" href="Codespaces">GitHub Codespaces</a></div>
+      </div>
+      <div
+        class="flex items-center px-[18px] flex-none gap-4"
+        id="headerToolbar"
+      ></div>
+    </header>
+    <div class="h-entry">
+      <main class="bg-#353433" id="main">
+        <div class="notes-layout-container mx-auto p-6 py-12" id="mainContents">
+          <div class="prose e-content" id="noteContents"><!--[--><p>When running a default <a href="Codespaces">Codespaces</a> image, sometimes I want to use GUI applications (e.g. web browsers for testing).</p><p>This is possible with <a href="https://novnc.com/">noVNC</a> (a web-based VNC client) and <a href="https://tigervnc.org/">Xtigervnc</a> (a VNC server that supports X11). Here’s a script to set them up with <a href="Docker">Docker</a> Compose. To use it, copy the following snippet into a new Bash terminal:</p><pre class="shiki github-dark" style="background-color:#252423;color:#e1e4e8;" tabindex="0"><code><span class="line"><span style="color:#B392F0;">mkdir</span><span style="color:#79B8FF;"> -p</span><span style="color:#9ECBFF;"> ~/setup-display</span><span style="color:#E1E4E8;"> &amp;&amp; </span><span style="color:#79B8FF;">cd</span><span style="color:#9ECBFF;"> ~/setup-display</span></span>
+<span class="line"><span style="color:#B392F0;">cat</span><span style="color:#F97583;"> &gt;</span><span style="color:#9ECBFF;"> docker-compose.yml</span><span style="color:#F97583;"> &lt;&lt;</span><span style="color:#9ECBFF;">EOF</span></span>
+<span class="line"><span style="color:#9ECBFF;">services:</span></span>
+<span class="line"><span style="color:#9ECBFF;">  display:</span></span>
+<span class="line"><span style="color:#9ECBFF;">    image: ghcr.io/dtinth/xtigervnc-docker:main</span></span>
+<span class="line"><span style="color:#9ECBFF;">    tmpfs: /tmp</span></span>
+<span class="line"><span style="color:#9ECBFF;">    restart: always</span></span>
+<span class="line"><span style="color:#9ECBFF;">    environment:</span></span>
+<span class="line"><span style="color:#9ECBFF;">      VNC_GEOMETRY: 1440x900</span></span>
+<span class="line"><span style="color:#9ECBFF;">    ports:</span></span>
+<span class="line"><span style="color:#9ECBFF;">      - 127.0.0.1:5900:5900</span></span>
+<span class="line"><span style="color:#9ECBFF;">      - 127.0.0.1:6000:6000</span></span>
+<span class="line"><span style="color:#9ECBFF;">  novnc:</span></span>
+<span class="line"><span style="color:#9ECBFF;">    image: geek1011/easy-novnc</span></span>
+<span class="line"><span style="color:#9ECBFF;">    restart: always</span></span>
+<span class="line"><span style="color:#9ECBFF;">    command: -a :5800 -h display --no-url-password</span></span>
+<span class="line"><span style="color:#9ECBFF;">    ports:</span></span>
+<span class="line"><span style="color:#9ECBFF;">      - 127.0.0.1:5800:5800</span></span>
+<span class="line"><span style="color:#9ECBFF;">EOF</span></span>
+<span class="line"><span style="color:#B392F0;">docker</span><span style="color:#9ECBFF;"> compose</span><span style="color:#9ECBFF;"> up</span><span style="color:#79B8FF;"> -d</span></span></code></pre><p>Once run, we need to tell our applications to connect to the server we started. To do that, set the DISPLAY environment variable to <code>127.0.0.1:0</code>:</p><pre class="shiki github-dark" style="background-color:#252423;color:#e1e4e8;" tabindex="0"><code><span class="line"><span style="color:#F97583;">export</span><span style="color:#E1E4E8;"> DISPLAY</span><span style="color:#F97583;">=</span><span style="color:#E1E4E8;">127.0.0.1:0</span></span></code></pre><p>Once that’s done, we can start our GUI applications from that terminal.</p><h2 id="playwright-test--vs-code"><a aria-hidden="true" tabindex="-1" href="#playwright-test--vs-code"><span class="icon icon-link"></span></a>Playwright Test + VS Code</h2><p>To <a href="https://playwright.dev/docs/getting-started-vscode">use Playwright Test with VS Code</a> in GitHub Codespaces:</p><ol><li><p>Go to Settings in VS Code.</p></li><li><p>Click on <strong>Remote [Codespaces]</strong> tab.</p></li><li><p>Search for <code>playwright.env</code> and then click on <strong>Edit in settings.json</strong>.</p></li><li><p>Add the following to the settings:</p><pre class="shiki github-dark" style="background-color:#252423;color:#e1e4e8;" tabindex="0"><code><span class="line"><span style="color:#9ECBFF;">  &quot;playwright.env&quot;</span><span style="color:#E1E4E8;">: {</span></span>
+<span class="line"><span style="color:#79B8FF;">    &quot;DISPLAY&quot;</span><span style="color:#E1E4E8;">: </span><span style="color:#9ECBFF;">&quot;127.0.0.1:0&quot;</span></span>
+<span class="line"><span style="color:#E1E4E8;">  }</span></span></code></pre></li></ol><p>After this, you should be able to debug <a href="Playwright">Playwright</a> tests in VS Code.</p><p>Note that the <a href="https://github.com/microsoft/playwright/releases/tag/v1.25.0">“Show &amp; reuse browser” feature introduced in Playwright v1.25</a> is not working yet. <a href="https://github.com/microsoft/playwright/issues/17616">A workaround is available in the Playwright GitHub issue</a>.</p><!--]--></div>
+        </div>
+      </main>
+      <footer>
+        <div
+          class="notes-layout-container mx-auto py-4 px-6 text-#8b8685 text-right text-sm"
+          id="footerContents"
+        >
+          <notes-page-footer></notes-page-footer>
+        </div>
+      </footer>
+    </div>
+    <script>
+window.precompiledNoteBehavior = function(require, exports, module, Vue) {"use strict";Object.defineProperty(exports, "__esModule", {value: true});const __sfc__ = {};
+var _vue = require('vue');
+
+const _hoisted_1 = /*#__PURE__*/_vue.createStaticVNode.call(void 0, "<p>When running a default <a href=\"Codespaces\">Codespaces</a> image, sometimes I want to use GUI applications (e.g. web browsers for testing).</p><p>This is possible with <a href=\"https://novnc.com/\">noVNC</a> (a web-based VNC client) and <a href=\"https://tigervnc.org/\">Xtigervnc</a> (a VNC server that supports X11). Here’s a script to set them up with <a href=\"Docker\">Docker</a> Compose. To use it, copy the following snippet into a new Bash terminal:</p><pre class=\"shiki github-dark\" style=\"background-color:#252423;color:#e1e4e8;\" tabindex=\"0\"><code><span class=\"line\"><span style=\"color:#B392F0;\">mkdir</span><span style=\"color:#79B8FF;\"> -p</span><span style=\"color:#9ECBFF;\"> ~/setup-display</span><span style=\"color:#E1E4E8;\"> &amp;&amp; </span><span style=\"color:#79B8FF;\">cd</span><span style=\"color:#9ECBFF;\"> ~/setup-display</span></span>\n<span class=\"line\"><span style=\"color:#B392F0;\">cat</span><span style=\"color:#F97583;\"> &gt;</span><span style=\"color:#9ECBFF;\"> docker-compose.yml</span><span style=\"color:#F97583;\"> &lt;&lt;</span><span style=\"color:#9ECBFF;\">EOF</span></span>\n<span class=\"line\"><span style=\"color:#9ECBFF;\">services:</span></span>\n<span class=\"line\"><span style=\"color:#9ECBFF;\">  display:</span></span>\n<span class=\"line\"><span style=\"color:#9ECBFF;\">    image: ghcr.io/dtinth/xtigervnc-docker:main</span></span>\n<span class=\"line\"><span style=\"color:#9ECBFF;\">    tmpfs: /tmp</span></span>\n<span class=\"line\"><span style=\"color:#9ECBFF;\">    restart: always</span></span>\n<span class=\"line\"><span style=\"color:#9ECBFF;\">    environment:</span></span>\n<span class=\"line\"><span style=\"color:#9ECBFF;\">      VNC_GEOMETRY: 1440x900</span></span>\n<span class=\"line\"><span style=\"color:#9ECBFF;\">    ports:</span></span>\n<span class=\"line\"><span style=\"color:#9ECBFF;\">      - 127.0.0.1:5900:5900</span></span>\n<span class=\"line\"><span style=\"color:#9ECBFF;\">      - 127.0.0.1:6000:6000</span></span>\n<span class=\"line\"><span style=\"color:#9ECBFF;\">  novnc:</span></span>\n<span class=\"line\"><span style=\"color:#9ECBFF;\">    image: geek1011/easy-novnc</span></span>\n<span class=\"line\"><span style=\"color:#9ECBFF;\">    restart: always</span></span>\n<span class=\"line\"><span style=\"color:#9ECBFF;\">    command: -a :5800 -h display --no-url-password</span></span>\n<span class=\"line\"><span style=\"color:#9ECBFF;\">    ports:</span></span>\n<span class=\"line\"><span style=\"color:#9ECBFF;\">      - 127.0.0.1:5800:5800</span></span>\n<span class=\"line\"><span style=\"color:#9ECBFF;\">EOF</span></span>\n<span class=\"line\"><span style=\"color:#B392F0;\">docker</span><span style=\"color:#9ECBFF;\"> compose</span><span style=\"color:#9ECBFF;\"> up</span><span style=\"color:#79B8FF;\"> -d</span></span></code></pre><p>Once run, we need to tell our applications to connect to the server we started. To do that, set the DISPLAY environment variable to <code>127.0.0.1:0</code>:</p><pre class=\"shiki github-dark\" style=\"background-color:#252423;color:#e1e4e8;\" tabindex=\"0\"><code><span class=\"line\"><span style=\"color:#F97583;\">export</span><span style=\"color:#E1E4E8;\"> DISPLAY</span><span style=\"color:#F97583;\">=</span><span style=\"color:#E1E4E8;\">127.0.0.1:0</span></span></code></pre><p>Once that’s done, we can start our GUI applications from that terminal.</p><h2 id=\"playwright-test--vs-code\"><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#playwright-test--vs-code\"><span class=\"icon icon-link\"></span></a>Playwright Test + VS Code</h2><p>To <a href=\"https://playwright.dev/docs/getting-started-vscode\">use Playwright Test with VS Code</a> in GitHub Codespaces:</p><ol><li><p>Go to Settings in VS Code.</p></li><li><p>Click on <strong>Remote [Codespaces]</strong> tab.</p></li><li><p>Search for <code>playwright.env</code> and then click on <strong>Edit in settings.json</strong>.</p></li><li><p>Add the following to the settings:</p><pre class=\"shiki github-dark\" style=\"background-color:#252423;color:#e1e4e8;\" tabindex=\"0\"><code><span class=\"line\"><span style=\"color:#9ECBFF;\">  &quot;playwright.env&quot;</span><span style=\"color:#E1E4E8;\">: {</span></span>\n<span class=\"line\"><span style=\"color:#79B8FF;\">    &quot;DISPLAY&quot;</span><span style=\"color:#E1E4E8;\">: </span><span style=\"color:#9ECBFF;\">&quot;127.0.0.1:0&quot;</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">  }</span></span></code></pre></li></ol><p>After this, you should be able to debug <a href=\"Playwright\">Playwright</a> tests in VS Code.</p><p>Note that the <a href=\"https://github.com/microsoft/playwright/releases/tag/v1.25.0\">“Show &amp; reuse browser” feature introduced in Playwright v1.25</a> is not working yet. <a href=\"https://github.com/microsoft/playwright/issues/17616\">A workaround is available in the Playwright GitHub issue</a>.</p>", 11)
+function render(_ctx, _cache) {
+  return _hoisted_1
+}
+__sfc__.render = render
+__sfc__.__file = "Note.vue"
+exports. default = __sfc__};
+window.precompiledFrontMatter = {"public":true,"title":"Run an X11 display server and noVNC on Codespaces","aliases":["20220719T064918Z5905"]};
+</script>
+  </body>
+</html>

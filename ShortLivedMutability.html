@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html data-precompiled=true lang="en" data-dtinth="true">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Short-lived mutability | notes.dt.in.th</title><meta property="og:title" content="Short-lived mutability" data-source="note">
+<meta property="og:image" content="https://screenshot.source.in.th/image/_/notes/ShortLivedMutability" data-source="note">
+<meta property="og:image:width" content="1800" data-source="note">
+<meta property="og:image:height" content="1680" data-source="note">
+<link rel="canonical" href="https://notes.dt.in.th/ShortLivedMutability" data-source="note"><style id="note-styles">/* layer: default */
+.me[data-v-8c9498c0]{margin-inline-end:1rem;}</style>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/iconify-icon@2.1.0/dist/iconify-icon.min.js"
+      integrity="sha256-dY2Ug42wyv3rl+sLVKEg3jbPs8f+hi7tmJ836AxVDwI="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/blurhash-image@1.0.1/blurhash-image.min.js"
+      integrity="sha256-qrUUgTGk7xA7iVCwraHNQjwy2JryA0K4L3DL4qidagQ="
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" crossorigin src="/runtime/index.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/supabase-CjkNZD6A.js">
+    <link rel="stylesheet" crossorigin href="/runtime/index.css">
+  </head>
+  <body class="bg-#252423 text-#e9e8e7 antialiased">
+    <header class="h-[58px] bg-#090807 border-b border-#454443 z-20 flex">
+      <div class="flex items-center pl-[18px] flex-none">
+        <a
+          class="flex items-center text-#8b8685 hover:text-#ffffbb text-lg"
+          href="/"
+          >notes.dt.in.th</a
+        >
+      </div>
+      <div
+        class="flex-1 flex items-center text-#8b8685 [&_a:hover]:text-#ffffbb overflow-hidden"
+        id="headerMiddle"
+      >
+        <div class="px-2 flex-none">›</div><div class="truncate"><a title="JavaScript (topic)" href="JavaScript">JavaScript</a></div>
+      </div>
+      <div
+        class="flex items-center px-[18px] flex-none gap-4"
+        id="headerToolbar"
+      ></div>
+    </header>
+    <div class="h-entry">
+      <main class="bg-#353433" id="main">
+        <div class="notes-layout-container mx-auto p-6 py-12" id="mainContents">
+          <div class="prose e-content" id="noteContents"><!--[--><h1 id="short-lived-mutability" data-v-8c9498c0><a aria-hidden="true" tabindex="-1" href="#short-lived-mutability" data-v-8c9498c0><span class="icon icon-link" data-v-8c9498c0></span></a>Short-lived mutability</h1><p data-v-8c9498c0>There once was a buzz that says ‘mutability is bad’ and that people should stop mutating things down to the lowest level. But now, I am starting to see in the <a href="JavaScript" data-v-8c9498c0>JavaScript</a> ecosystem that <strong data-v-8c9498c0>short-lived mutability</strong> can be useful and is becoming a trend on recent JavaScript libraries.</p><p data-v-8c9498c0>I define <strong data-v-8c9498c0>short-lived mutability</strong> as a piece of imperative code that mutates stuff to get the job done within a single microtask, under the following rules:</p><ul data-v-8c9498c0><li data-v-8c9498c0>Everything that is mutated is created within that microtask.</li><li data-v-8c9498c0>Once the microtask is done, the mutated stuff is no longer mutable.</li></ul><h2 id="non-examples" data-v-8c9498c0><a aria-hidden="true" tabindex="-1" href="#non-examples" data-v-8c9498c0><span class="icon icon-link" data-v-8c9498c0></span></a>Non-examples</h2><ul data-v-8c9498c0><li data-v-8c9498c0><strong data-v-8c9498c0>DOM manipulation.</strong> In most cases, DOM that is being mutated exists before the microtask runs, and can still be mutated after the microtask is done.</li></ul><h2 id="examples" data-v-8c9498c0><a aria-hidden="true" tabindex="-1" href="#examples" data-v-8c9498c0><span class="icon icon-link" data-v-8c9498c0></span></a>Examples</h2><ul data-v-8c9498c0><li data-v-8c9498c0><p data-v-8c9498c0><a href="https://github.com/immerjs/immer" data-v-8c9498c0><strong data-v-8c9498c0>Immer</strong></a> — The Immer library lets you write imperative-ish code to deal with immutable data structures, leading to more idiomatic JavaScript code. Immer works by taking a recipe — a piece of impertative code that mutates a draft state (which is temporarily mutable for the extent of the recipe’s execution) — and an object to produce a new version of that object in an immutable way. Since the recipe is not async, it fits within a single microtask.</p></li><li data-v-8c9498c0><p data-v-8c9498c0><a href="https://reactjs.org/docs/hooks-intro.html" data-v-8c9498c0><strong data-v-8c9498c0>React Hooks</strong></a> — Calling a React hook mutates the functional components’s internal state to be able to store state in a place managed by React. A global dispatcher allows the hook implementation to be aware of what component is currently being worked on, without requiring callers to explicitly pass around internal data structure. For more information on this mechanism see <a href="https://www.swyx.io/hooks/" data-v-8c9498c0><em data-v-8c9498c0>Getting Closure on Hooks</em></a>.</p></li><li data-v-8c9498c0><p data-v-8c9498c0><a href="https://en.wikipedia.org/wiki/Immediate_mode_GUI" data-v-8c9498c0><strong data-v-8c9498c0>Immediate mode GUI</strong></a> — This design pattern allows one to write an imperative yet declarative build a GUI. Every frame, the GUI-declaration code is executed, where the caller “declares” what GUI elements should be shown, and the result is rendered afterwards. For a quick example, see the first part of the <a href="https://www.youtube.com/watch?v=wh_W-veFpKU" data-v-8c9498c0>mCoding’s video <em data-v-8c9498c0>“Pythonizing Imgui (feat. Cython) and contributing to open source”</em></a>.</p></li></ul><h2 id="patterns" data-v-8c9498c0><a aria-hidden="true" tabindex="-1" href="#patterns" data-v-8c9498c0><span class="icon icon-link" data-v-8c9498c0></span></a>Patterns</h2><p data-v-8c9498c0>A pattern emerges:</p><ul data-v-8c9498c0><li data-v-8c9498c0>To the eyes of an outsider, nothing is being mutated.</li><li data-v-8c9498c0>To the eyes of an insider, we are writing straightforward code that is straight up mutating things, yet due to its short-lived nature, the imperative code has no long-term effects.</li></ul><p data-v-8c9498c0>So now it sounds to me like “short-lived imperative logic, <a href="https://www.destroyallsoftware.com/screencasts/catalog/functional-core-imperative-shell" data-v-8c9498c0>functional core, imperative shell</a>.”</p><!--]--></div>
+        </div>
+      </main>
+      <footer>
+        <div
+          class="notes-layout-container mx-auto py-4 px-6 text-#8b8685 text-right text-sm"
+          id="footerContents"
+        >
+          <notes-page-footer></notes-page-footer>
+        </div>
+      </footer>
+    </div>
+    <script>
+window.precompiledNoteBehavior = function(require, exports, module, Vue) {"use strict";Object.defineProperty(exports, "__esModule", {value: true});const __sfc__ = {};
+var _vue = require('vue');
+
+const _withScopeId = n => (_vue.pushScopeId.call(void 0, "data-v-8c9498c0"),n=n(),_vue.popScopeId.call(void 0, ),n)
+const _hoisted_1 = /*#__PURE__*/_vue.createStaticVNode.call(void 0, "<h1 id=\"short-lived-mutability\" data-v-8c9498c0><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#short-lived-mutability\" data-v-8c9498c0><span class=\"icon icon-link\" data-v-8c9498c0></span></a>Short-lived mutability</h1><p data-v-8c9498c0>There once was a buzz that says ‘mutability is bad’ and that people should stop mutating things down to the lowest level. But now, I am starting to see in the <a href=\"JavaScript\" data-v-8c9498c0>JavaScript</a> ecosystem that <strong data-v-8c9498c0>short-lived mutability</strong> can be useful and is becoming a trend on recent JavaScript libraries.</p><p data-v-8c9498c0>I define <strong data-v-8c9498c0>short-lived mutability</strong> as a piece of imperative code that mutates stuff to get the job done within a single microtask, under the following rules:</p><ul data-v-8c9498c0><li data-v-8c9498c0>Everything that is mutated is created within that microtask.</li><li data-v-8c9498c0>Once the microtask is done, the mutated stuff is no longer mutable.</li></ul><h2 id=\"non-examples\" data-v-8c9498c0><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#non-examples\" data-v-8c9498c0><span class=\"icon icon-link\" data-v-8c9498c0></span></a>Non-examples</h2><ul data-v-8c9498c0><li data-v-8c9498c0><strong data-v-8c9498c0>DOM manipulation.</strong> In most cases, DOM that is being mutated exists before the microtask runs, and can still be mutated after the microtask is done.</li></ul><h2 id=\"examples\" data-v-8c9498c0><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#examples\" data-v-8c9498c0><span class=\"icon icon-link\" data-v-8c9498c0></span></a>Examples</h2><ul data-v-8c9498c0><li data-v-8c9498c0><p data-v-8c9498c0><a href=\"https://github.com/immerjs/immer\" data-v-8c9498c0><strong data-v-8c9498c0>Immer</strong></a> — The Immer library lets you write imperative-ish code to deal with immutable data structures, leading to more idiomatic JavaScript code. Immer works by taking a recipe — a piece of impertative code that mutates a draft state (which is temporarily mutable for the extent of the recipe’s execution) — and an object to produce a new version of that object in an immutable way. Since the recipe is not async, it fits within a single microtask.</p></li><li data-v-8c9498c0><p data-v-8c9498c0><a href=\"https://reactjs.org/docs/hooks-intro.html\" data-v-8c9498c0><strong data-v-8c9498c0>React Hooks</strong></a> — Calling a React hook mutates the functional components’s internal state to be able to store state in a place managed by React. A global dispatcher allows the hook implementation to be aware of what component is currently being worked on, without requiring callers to explicitly pass around internal data structure. For more information on this mechanism see <a href=\"https://www.swyx.io/hooks/\" data-v-8c9498c0><em data-v-8c9498c0>Getting Closure on Hooks</em></a>.</p></li><li data-v-8c9498c0><p data-v-8c9498c0><a href=\"https://en.wikipedia.org/wiki/Immediate_mode_GUI\" data-v-8c9498c0><strong data-v-8c9498c0>Immediate mode GUI</strong></a> — This design pattern allows one to write an imperative yet declarative build a GUI. Every frame, the GUI-declaration code is executed, where the caller “declares” what GUI elements should be shown, and the result is rendered afterwards. For a quick example, see the first part of the <a href=\"https://www.youtube.com/watch?v=wh_W-veFpKU\" data-v-8c9498c0>mCoding’s video <em data-v-8c9498c0>“Pythonizing Imgui (feat. Cython) and contributing to open source”</em></a>.</p></li></ul><h2 id=\"patterns\" data-v-8c9498c0><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#patterns\" data-v-8c9498c0><span class=\"icon icon-link\" data-v-8c9498c0></span></a>Patterns</h2><p data-v-8c9498c0>A pattern emerges:</p><ul data-v-8c9498c0><li data-v-8c9498c0>To the eyes of an outsider, nothing is being mutated.</li><li data-v-8c9498c0>To the eyes of an insider, we are writing straightforward code that is straight up mutating things, yet due to its short-lived nature, the imperative code has no long-term effects.</li></ul><p data-v-8c9498c0>So now it sounds to me like “short-lived imperative logic, <a href=\"https://www.destroyallsoftware.com/screencasts/catalog/functional-core-imperative-shell\" data-v-8c9498c0>functional core, imperative shell</a>.”</p>", 12)
+function render(_ctx, _cache) {
+  return _hoisted_1
+}
+__sfc__.render = render
+__sfc__.__scopeId = "data-v-8c9498c0"
+__sfc__.__file = "Note.vue"
+exports. default = __sfc__};
+window.precompiledFrontMatter = {"public":true,"title":"Short-lived mutability","aliases":["20220406T150008Z2912"]};
+</script>
+  </body>
+</html>

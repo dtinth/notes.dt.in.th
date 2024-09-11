@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html data-precompiled=true lang="en" data-dtinth="true">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Some useful Semgrep rules for JavaScript and TypeScript | notes.dt.in.th</title><meta property="og:title" content="Some useful Semgrep rules for JavaScript and TypeScript" data-source="note">
+<meta property="og:image" content="https://screenshot.source.in.th/image/_/notes/SemgrepInJavaScriptProjects" data-source="note">
+<meta property="og:image:width" content="1800" data-source="note">
+<meta property="og:image:height" content="1680" data-source="note">
+<link rel="canonical" href="https://notes.dt.in.th/SemgrepInJavaScriptProjects" data-source="note">
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/iconify-icon@2.1.0/dist/iconify-icon.min.js"
+      integrity="sha256-dY2Ug42wyv3rl+sLVKEg3jbPs8f+hi7tmJ836AxVDwI="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/blurhash-image@1.0.1/blurhash-image.min.js"
+      integrity="sha256-qrUUgTGk7xA7iVCwraHNQjwy2JryA0K4L3DL4qidagQ="
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" crossorigin src="/runtime/index.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/supabase-CjkNZD6A.js">
+    <link rel="stylesheet" crossorigin href="/runtime/index.css">
+  </head>
+  <body class="bg-#252423 text-#e9e8e7 antialiased">
+    <header class="h-[58px] bg-#090807 border-b border-#454443 z-20 flex">
+      <div class="flex items-center pl-[18px] flex-none">
+        <a
+          class="flex items-center text-#8b8685 hover:text-#ffffbb text-lg"
+          href="/"
+          >notes.dt.in.th</a
+        >
+      </div>
+      <div
+        class="flex-1 flex items-center text-#8b8685 [&_a:hover]:text-#ffffbb overflow-hidden"
+        id="headerMiddle"
+      >
+        <div class="px-2 flex-none">›</div><div class="truncate"><a title="Software Engineering (topic)" href="SoftwareEngineering">Software Engineering</a></div><div class="px-2 flex-none">›</div><div class="truncate"><a title="Continuous Integration (topic)" href="ContinuousIntegration">Continuous Integration</a></div><div class="px-2 flex-none">›</div><div class="truncate"><a title="Semgrep (topic)" href="Semgrep">Semgrep</a></div>
+      </div>
+      <div
+        class="flex items-center px-[18px] flex-none gap-4"
+        id="headerToolbar"
+      ></div>
+    </header>
+    <div class="h-entry">
+      <main class="bg-#353433" id="main">
+        <div class="notes-layout-container mx-auto p-6 py-12" id="mainContents">
+          <div class="prose e-content" id="noteContents"><!--[--><p>Some useful <a href="Semgrep">Semgrep</a> rules for <a href="JavaScript">JavaScript</a> and <a href="TypeScript">TypeScript</a>…</p><h2 id="general-rules"><a aria-hidden="true" tabindex="-1" href="#general-rules"><span class="icon icon-link"></span></a>General rules</h2><p>These rules are general and not specific to project.</p><pre class="shiki github-dark" style="background-color:#252423;color:#e1e4e8;" tabindex="0"><code><span class="line"><span style="color:#85E89D;">rules</span><span style="color:#E1E4E8;">:</span></span>
+<span class="line"><span style="color:#E1E4E8;">  - </span><span style="color:#85E89D;">id</span><span style="color:#E1E4E8;">: </span><span style="color:#9ECBFF;">error_subclass_name</span></span>
+<span class="line"><span style="color:#85E89D;">    patterns</span><span style="color:#E1E4E8;">:</span></span>
+<span class="line"><span style="color:#E1E4E8;">      - </span><span style="color:#85E89D;">pattern</span><span style="color:#E1E4E8;">: </span><span style="color:#9ECBFF;">&#39;class $X extends Error { ... }&#39;</span></span>
+<span class="line"><span style="color:#E1E4E8;">      - </span><span style="color:#85E89D;">pattern-not</span><span style="color:#E1E4E8;">: </span><span style="color:#9ECBFF;">&#39;class $X extends Error { ... constructor(...) { ... this.name = &quot;$X&quot;; ... } ... }&#39;</span></span>
+<span class="line"><span style="color:#85E89D;">    message</span><span style="color:#E1E4E8;">: </span><span style="color:#F97583;">|</span></span>
+<span class="line"><span style="color:#9ECBFF;">      A subclass of Error should set the `name` property to the name of the class.</span></span>
+<span class="line"><span style="color:#85E89D;">    languages</span><span style="color:#E1E4E8;">: [</span><span style="color:#9ECBFF;">ts</span><span style="color:#E1E4E8;">]</span></span>
+<span class="line"><span style="color:#85E89D;">    severity</span><span style="color:#E1E4E8;">: </span><span style="color:#9ECBFF;">ERROR</span></span></code></pre><p>More rules in their own articles:</p><ul><li><a href="TypeScriptValuesAndTypesWithSameName#automatic-enforcement">Creating types and values with the same name in TypeScript</a></li></ul><h2 id="project-specific-rules"><a aria-hidden="true" tabindex="-1" href="#project-specific-rules"><span class="icon icon-link"></span></a>Project specific rules</h2><pre class="shiki github-dark" style="background-color:#252423;color:#e1e4e8;" tabindex="0"><code><span class="line"><span style="color:#85E89D;">rules</span><span style="color:#E1E4E8;">:</span></span>
+<span class="line"><span style="color:#E1E4E8;">  - </span><span style="color:#85E89D;">id</span><span style="color:#E1E4E8;">: </span><span style="color:#9ECBFF;">no_direct_testing_library_import</span></span>
+<span class="line"><span style="color:#85E89D;">    pattern</span><span style="color:#E1E4E8;">: </span><span style="color:#9ECBFF;">&#39;import &quot;@testing-library/react&quot;&#39;</span></span>
+<span class="line"><span style="color:#85E89D;">    message</span><span style="color:#E1E4E8;">: </span><span style="color:#F97583;">|</span></span>
+<span class="line"><span style="color:#9ECBFF;">      Do not directly import React Testing Library. Instead, import it from the `testing-utils` packlet.</span></span>
+<span class="line"><span style="color:#85E89D;">    languages</span><span style="color:#E1E4E8;">: [</span><span style="color:#9ECBFF;">ts</span><span style="color:#E1E4E8;">]</span></span>
+<span class="line"><span style="color:#85E89D;">    severity</span><span style="color:#E1E4E8;">: </span><span style="color:#9ECBFF;">ERROR</span></span>
+<span class="line"><span style="color:#85E89D;">    paths</span><span style="color:#E1E4E8;">:</span></span>
+<span class="line"><span style="color:#85E89D;">      exclude</span><span style="color:#E1E4E8;">:</span></span>
+<span class="line"><span style="color:#E1E4E8;">        - </span><span style="color:#9ECBFF;">src/packlets/testing-utils/**</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8;">  - </span><span style="color:#85E89D;">id</span><span style="color:#E1E4E8;">: </span><span style="color:#9ECBFF;">no_index_fontawesome_import</span></span>
+<span class="line"><span style="color:#85E89D;">    patterns</span><span style="color:#E1E4E8;">:</span></span>
+<span class="line"><span style="color:#E1E4E8;">      - </span><span style="color:#85E89D;">pattern</span><span style="color:#E1E4E8;">: </span><span style="color:#9ECBFF;">&#39;import &quot;$P&quot;&#39;</span></span>
+<span class="line"><span style="color:#E1E4E8;">      - </span><span style="color:#85E89D;">metavariable-regex</span><span style="color:#E1E4E8;">:</span></span>
+<span class="line"><span style="color:#85E89D;">          metavariable</span><span style="color:#E1E4E8;">: </span><span style="color:#9ECBFF;">$P</span></span>
+<span class="line"><span style="color:#85E89D;">          regex</span><span style="color:#E1E4E8;">: </span><span style="color:#9ECBFF;">&#39;.*@fortawesome/.*-svg-icons(?!/)&#39;</span></span>
+<span class="line"><span style="color:#85E89D;">    message</span><span style="color:#E1E4E8;">: </span><span style="color:#9ECBFF;">Do not import the entire fontawesome library, as it would lead to a huge bundle size. Import only the icon files you need.</span></span>
+<span class="line"><span style="color:#85E89D;">    languages</span><span style="color:#E1E4E8;">: [</span><span style="color:#9ECBFF;">ts</span><span style="color:#E1E4E8;">]</span></span>
+<span class="line"><span style="color:#85E89D;">    severity</span><span style="color:#E1E4E8;">: </span><span style="color:#9ECBFF;">ERROR</span></span></code></pre><!--]--></div>
+        </div>
+      </main>
+      <footer>
+        <div
+          class="notes-layout-container mx-auto py-4 px-6 text-#8b8685 text-right text-sm"
+          id="footerContents"
+        >
+          <notes-page-footer></notes-page-footer>
+        </div>
+      </footer>
+    </div>
+    <script>
+window.precompiledNoteBehavior = function(require, exports, module, Vue) {"use strict";Object.defineProperty(exports, "__esModule", {value: true});const __sfc__ = {};
+var _vue = require('vue');
+
+const _hoisted_1 = /*#__PURE__*/_vue.createStaticVNode.call(void 0, "<p>Some useful <a href=\"Semgrep\">Semgrep</a> rules for <a href=\"JavaScript\">JavaScript</a> and <a href=\"TypeScript\">TypeScript</a>…</p><h2 id=\"general-rules\"><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#general-rules\"><span class=\"icon icon-link\"></span></a>General rules</h2><p>These rules are general and not specific to project.</p><pre class=\"shiki github-dark\" style=\"background-color:#252423;color:#e1e4e8;\" tabindex=\"0\"><code><span class=\"line\"><span style=\"color:#85E89D;\">rules</span><span style=\"color:#E1E4E8;\">:</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">  - </span><span style=\"color:#85E89D;\">id</span><span style=\"color:#E1E4E8;\">: </span><span style=\"color:#9ECBFF;\">error_subclass_name</span></span>\n<span class=\"line\"><span style=\"color:#85E89D;\">    patterns</span><span style=\"color:#E1E4E8;\">:</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">      - </span><span style=\"color:#85E89D;\">pattern</span><span style=\"color:#E1E4E8;\">: </span><span style=\"color:#9ECBFF;\">&#39;class $X extends Error { ... }&#39;</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">      - </span><span style=\"color:#85E89D;\">pattern-not</span><span style=\"color:#E1E4E8;\">: </span><span style=\"color:#9ECBFF;\">&#39;class $X extends Error { ... constructor(...) { ... this.name = &quot;$X&quot;; ... } ... }&#39;</span></span>\n<span class=\"line\"><span style=\"color:#85E89D;\">    message</span><span style=\"color:#E1E4E8;\">: </span><span style=\"color:#F97583;\">|</span></span>\n<span class=\"line\"><span style=\"color:#9ECBFF;\">      A subclass of Error should set the `name` property to the name of the class.</span></span>\n<span class=\"line\"><span style=\"color:#85E89D;\">    languages</span><span style=\"color:#E1E4E8;\">: [</span><span style=\"color:#9ECBFF;\">ts</span><span style=\"color:#E1E4E8;\">]</span></span>\n<span class=\"line\"><span style=\"color:#85E89D;\">    severity</span><span style=\"color:#E1E4E8;\">: </span><span style=\"color:#9ECBFF;\">ERROR</span></span></code></pre><p>More rules in their own articles:</p><ul><li><a href=\"TypeScriptValuesAndTypesWithSameName#automatic-enforcement\">Creating types and values with the same name in TypeScript</a></li></ul><h2 id=\"project-specific-rules\"><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#project-specific-rules\"><span class=\"icon icon-link\"></span></a>Project specific rules</h2><pre class=\"shiki github-dark\" style=\"background-color:#252423;color:#e1e4e8;\" tabindex=\"0\"><code><span class=\"line\"><span style=\"color:#85E89D;\">rules</span><span style=\"color:#E1E4E8;\">:</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">  - </span><span style=\"color:#85E89D;\">id</span><span style=\"color:#E1E4E8;\">: </span><span style=\"color:#9ECBFF;\">no_direct_testing_library_import</span></span>\n<span class=\"line\"><span style=\"color:#85E89D;\">    pattern</span><span style=\"color:#E1E4E8;\">: </span><span style=\"color:#9ECBFF;\">&#39;import &quot;@testing-library/react&quot;&#39;</span></span>\n<span class=\"line\"><span style=\"color:#85E89D;\">    message</span><span style=\"color:#E1E4E8;\">: </span><span style=\"color:#F97583;\">|</span></span>\n<span class=\"line\"><span style=\"color:#9ECBFF;\">      Do not directly import React Testing Library. Instead, import it from the `testing-utils` packlet.</span></span>\n<span class=\"line\"><span style=\"color:#85E89D;\">    languages</span><span style=\"color:#E1E4E8;\">: [</span><span style=\"color:#9ECBFF;\">ts</span><span style=\"color:#E1E4E8;\">]</span></span>\n<span class=\"line\"><span style=\"color:#85E89D;\">    severity</span><span style=\"color:#E1E4E8;\">: </span><span style=\"color:#9ECBFF;\">ERROR</span></span>\n<span class=\"line\"><span style=\"color:#85E89D;\">    paths</span><span style=\"color:#E1E4E8;\">:</span></span>\n<span class=\"line\"><span style=\"color:#85E89D;\">      exclude</span><span style=\"color:#E1E4E8;\">:</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">        - </span><span style=\"color:#9ECBFF;\">src/packlets/testing-utils/**</span></span>\n<span class=\"line\"></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">  - </span><span style=\"color:#85E89D;\">id</span><span style=\"color:#E1E4E8;\">: </span><span style=\"color:#9ECBFF;\">no_index_fontawesome_import</span></span>\n<span class=\"line\"><span style=\"color:#85E89D;\">    patterns</span><span style=\"color:#E1E4E8;\">:</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">      - </span><span style=\"color:#85E89D;\">pattern</span><span style=\"color:#E1E4E8;\">: </span><span style=\"color:#9ECBFF;\">&#39;import &quot;$P&quot;&#39;</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">      - </span><span style=\"color:#85E89D;\">metavariable-regex</span><span style=\"color:#E1E4E8;\">:</span></span>\n<span class=\"line\"><span style=\"color:#85E89D;\">          metavariable</span><span style=\"color:#E1E4E8;\">: </span><span style=\"color:#9ECBFF;\">$P</span></span>\n<span class=\"line\"><span style=\"color:#85E89D;\">          regex</span><span style=\"color:#E1E4E8;\">: </span><span style=\"color:#9ECBFF;\">&#39;.*@fortawesome/.*-svg-icons(?!/)&#39;</span></span>\n<span class=\"line\"><span style=\"color:#85E89D;\">    message</span><span style=\"color:#E1E4E8;\">: </span><span style=\"color:#9ECBFF;\">Do not import the entire fontawesome library, as it would lead to a huge bundle size. Import only the icon files you need.</span></span>\n<span class=\"line\"><span style=\"color:#85E89D;\">    languages</span><span style=\"color:#E1E4E8;\">: [</span><span style=\"color:#9ECBFF;\">ts</span><span style=\"color:#E1E4E8;\">]</span></span>\n<span class=\"line\"><span style=\"color:#85E89D;\">    severity</span><span style=\"color:#E1E4E8;\">: </span><span style=\"color:#9ECBFF;\">ERROR</span></span></code></pre>", 8)
+function render(_ctx, _cache) {
+  return _hoisted_1
+}
+__sfc__.render = render
+__sfc__.__file = "Note.vue"
+exports. default = __sfc__};
+window.precompiledFrontMatter = {"public":true,"title":"Some useful Semgrep rules for JavaScript and TypeScript","aliases":["20220211T082003Z4948"]};
+</script>
+  </body>
+</html>

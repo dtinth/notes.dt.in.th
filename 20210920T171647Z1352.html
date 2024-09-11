@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html data-precompiled=true lang="en" data-dtinth="true">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>20210920T171647Z1352 | notes.dt.in.th</title><meta property="og:title" content="20210920T171647Z1352" data-source="note">
+<meta property="og:image" content="https://screenshot.source.in.th/image/_/notes/20210920T171647Z1352" data-source="note">
+<meta property="og:image:width" content="1800" data-source="note">
+<meta property="og:image:height" content="1680" data-source="note">
+<link rel="canonical" href="https://notes.dt.in.th/20210920T171647Z1352" data-source="note"><style id="note-styles">/* layer: default */
+.my[data-v-8c9498c0]{margin-top:1rem;margin-bottom:1rem;}
+.ms[data-v-8c9498c0]{margin-inline-start:1rem;}</style>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/iconify-icon@2.1.0/dist/iconify-icon.min.js"
+      integrity="sha256-dY2Ug42wyv3rl+sLVKEg3jbPs8f+hi7tmJ836AxVDwI="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/blurhash-image@1.0.1/blurhash-image.min.js"
+      integrity="sha256-qrUUgTGk7xA7iVCwraHNQjwy2JryA0K4L3DL4qidagQ="
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" crossorigin src="/runtime/index.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/supabase-CjkNZD6A.js">
+    <link rel="stylesheet" crossorigin href="/runtime/index.css">
+  </head>
+  <body class="bg-#252423 text-#e9e8e7 antialiased">
+    <header class="h-[58px] bg-#090807 border-b border-#454443 z-20 flex">
+      <div class="flex items-center pl-[18px] flex-none">
+        <a
+          class="flex items-center text-#8b8685 hover:text-#ffffbb text-lg"
+          href="/"
+          >notes.dt.in.th</a
+        >
+      </div>
+      <div
+        class="flex-1 flex items-center text-#8b8685 [&_a:hover]:text-#ffffbb overflow-hidden"
+        id="headerMiddle"
+      >
+        <div class="px-2 flex-none">›</div><div class="truncate"><a title="Jamulus (topic)" href="Jamulus">Jamulus</a></div>
+      </div>
+      <div
+        class="flex items-center px-[18px] flex-none gap-4"
+        id="headerToolbar"
+      ></div>
+    </header>
+    <div class="h-entry">
+      <main class="bg-#353433" id="main">
+        <div class="notes-layout-container mx-auto p-6 py-12" id="mainContents">
+          <div class="prose e-content" id="noteContents"><!--[--><h1 id="proof-of-concept-web-based-jamulus-client" data-v-8c9498c0><a aria-hidden="true" tabindex="-1" href="#proof-of-concept-web-based-jamulus-client" data-v-8c9498c0><span class="icon icon-link" data-v-8c9498c0></span></a>Proof-of-concept: Web based Jamulus client</h1><p data-v-8c9498c0>Posted at <a href="https://github.com/jamulussoftware/jamulus/discussions/2039" data-v-8c9498c0>https://github.com/jamulussoftware/jamulus/discussions/2039</a>.</p><h2 id="video" data-v-8c9498c0><a aria-hidden="true" tabindex="-1" href="#video" data-v-8c9498c0><span class="icon icon-link" data-v-8c9498c0></span></a>Video</h2><p data-v-8c9498c0>First, here’s a demo:</p><p data-v-8c9498c0>https://user-images.githubusercontent.com/193136/134050768-e919104a-652d-4543-a025-60facf870013.mp4</p><h2 id="quick-facts" data-v-8c9498c0><a aria-hidden="true" tabindex="-1" href="#quick-facts" data-v-8c9498c0><span class="icon icon-link" data-v-8c9498c0></span></a>Quick facts</h2><ul data-v-8c9498c0><li data-v-8c9498c0><a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API" data-v-8c9498c0>Web Audio API</a> can provide low latency audio access to audio output with base latency of 5.33 ms (buffer size of 128 samples) under <a href="https://developer.mozilla.org/en-US/docs/Web/API/AudioContext/AudioContext#options" data-v-8c9498c0><code data-v-8c9498c0>latencyHint: &#39;interactive&#39;</code> mode</a>.</li><li data-v-8c9498c0><a href="https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API" data-v-8c9498c0>WebRTC</a> can create a low-latency UDP-like data channel under <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCDataChannel" data-v-8c9498c0><code data-v-8c9498c0>ordered: false, maxRetransmits: 0</code> settings</a>. We also get end-to-end encryption for free.</li><li data-v-8c9498c0>libopus can be compiled into WebAssembly and used inside an AudioWorklet.</li><li data-v-8c9498c0>As of writing, all of the above is supported in the latest version of Safari on iOS.</li></ul><h2 id="how-it-works" data-v-8c9498c0><a aria-hidden="true" tabindex="-1" href="#how-it-works" data-v-8c9498c0><span class="icon icon-link" data-v-8c9498c0></span></a>How it works</h2><p data-v-8c9498c0>There are 3 main components:</p><ol data-v-8c9498c0><li data-v-8c9498c0><p data-v-8c9498c0><strong data-v-8c9498c0><a href="Jamulus" data-v-8c9498c0>Jamulus</a> server.</strong></p></li><li data-v-8c9498c0><p data-v-8c9498c0><strong data-v-8c9498c0>WebRTC-UDP gateway.</strong></p><ul data-v-8c9498c0><li data-v-8c9498c0>Source code: https://github.com/dtinth/rtcjam</li><li data-v-8c9498c0>It should be run on the same server as the Jamulus server. It does nothing more than providing browser access to Jamulus server over a different transport layer.</li><li data-v-8c9498c0>Since it will run on a publicly-accessible server, there will be no need to use STUN/TURN solutions.</li><li data-v-8c9498c0>Once a WebRTC connection is established, all data will be forwarded to <code data-v-8c9498c0>localhost:22124</code> (and vice versa).</li></ul></li><li data-v-8c9498c0><p data-v-8c9498c0><strong data-v-8c9498c0>Web-based Jamulus client.</strong></p><ul data-v-8c9498c0><li data-v-8c9498c0>Source code: https://github.com/dtinth/webjam</li><li data-v-8c9498c0>This web-based client speaks <a href="https://github.com/dtinth/webjam/blob/main/src/App.svelte" data-v-8c9498c0>the usual Jamulus protocol</a>. However the transport layer is WebRTC instead of plain UDP.</li><li data-v-8c9498c0>An <code data-v-8c9498c0>AudioWorklet</code> uses <a href="https://github.com/dtinth/libopusjs/tree/jamulus" data-v-8c9498c0>libopus compiled to WebAssembly</a> to decode Opus frames and feeds it to the speaker.</li></ul></li></ol><h2 id="limitations-of-the-poc" data-v-8c9498c0><a aria-hidden="true" tabindex="-1" href="#limitations-of-the-poc" data-v-8c9498c0><span class="icon icon-link" data-v-8c9498c0></span></a>Limitations of the POC</h2><ul data-v-8c9498c0><li data-v-8c9498c0>Right now it can only receive audio, as the encoder has not been implemented yet. The PoC is hardcoded to send silent Opus frames to the server.</li><li data-v-8c9498c0>The PoC is hardcoded to use Stereo High Quality mode with 16 frames of jitter buffer. Client name is hardcoded to WebJam.</li><li data-v-8c9498c0>Memory and CPU usage is very inefficient — a lot of clones and byte-by-byte operations in JavaScript. Safari on my iPad Pro (2015) crashes (page is forced to reload) after 1 minute of usage :joy:. But I believe this can be improved by putting more things in WebAssembly, e.g. Jamulus protocol handler, jitter buffer, etc. <a href="https://developers.google.com/web/updates/2018/06/audio-worklet-design-pattern#using_audio_worklet_with_webassembly" data-v-8c9498c0>There is a tutorial on using WebAssembly with AudioWorklet on Google Developers</a></li><li data-v-8c9498c0>The gateway server currently has no security mechanism at all; it accepts and forwards incoming UDP packets from any host (not just the target server).</li></ul><p data-v-8c9498c0><strong data-v-8c9498c0>Note:</strong> I have no intention to develop this any further. All this is just to satisfy my curiosity. However, I think it can be a good starting point to expand Jamulus to the web platform if anyone wants to pursue this goal.</p><!--]--></div>
+        </div>
+      </main>
+      <footer>
+        <div
+          class="notes-layout-container mx-auto py-4 px-6 text-#8b8685 text-right text-sm"
+          id="footerContents"
+        >
+          <notes-page-footer></notes-page-footer>
+        </div>
+      </footer>
+    </div>
+    <script>
+window.precompiledNoteBehavior = function(require, exports, module, Vue) {"use strict";Object.defineProperty(exports, "__esModule", {value: true});const __sfc__ = {};
+var _vue = require('vue');
+
+const _withScopeId = n => (_vue.pushScopeId.call(void 0, "data-v-8c9498c0"),n=n(),_vue.popScopeId.call(void 0, ),n)
+const _hoisted_1 = /*#__PURE__*/_vue.createStaticVNode.call(void 0, "<h1 id=\"proof-of-concept-web-based-jamulus-client\" data-v-8c9498c0><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#proof-of-concept-web-based-jamulus-client\" data-v-8c9498c0><span class=\"icon icon-link\" data-v-8c9498c0></span></a>Proof-of-concept: Web based Jamulus client</h1><p data-v-8c9498c0>Posted at <a href=\"https://github.com/jamulussoftware/jamulus/discussions/2039\" data-v-8c9498c0>https://github.com/jamulussoftware/jamulus/discussions/2039</a>.</p><h2 id=\"video\" data-v-8c9498c0><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#video\" data-v-8c9498c0><span class=\"icon icon-link\" data-v-8c9498c0></span></a>Video</h2><p data-v-8c9498c0>First, here’s a demo:</p><p data-v-8c9498c0>https://user-images.githubusercontent.com/193136/134050768-e919104a-652d-4543-a025-60facf870013.mp4</p><h2 id=\"quick-facts\" data-v-8c9498c0><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#quick-facts\" data-v-8c9498c0><span class=\"icon icon-link\" data-v-8c9498c0></span></a>Quick facts</h2><ul data-v-8c9498c0><li data-v-8c9498c0><a href=\"https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API\" data-v-8c9498c0>Web Audio API</a> can provide low latency audio access to audio output with base latency of 5.33 ms (buffer size of 128 samples) under <a href=\"https://developer.mozilla.org/en-US/docs/Web/API/AudioContext/AudioContext#options\" data-v-8c9498c0><code data-v-8c9498c0>latencyHint: &#39;interactive&#39;</code> mode</a>.</li><li data-v-8c9498c0><a href=\"https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API\" data-v-8c9498c0>WebRTC</a> can create a low-latency UDP-like data channel under <a href=\"https://developer.mozilla.org/en-US/docs/Web/API/RTCDataChannel\" data-v-8c9498c0><code data-v-8c9498c0>ordered: false, maxRetransmits: 0</code> settings</a>. We also get end-to-end encryption for free.</li><li data-v-8c9498c0>libopus can be compiled into WebAssembly and used inside an AudioWorklet.</li><li data-v-8c9498c0>As of writing, all of the above is supported in the latest version of Safari on iOS.</li></ul><h2 id=\"how-it-works\" data-v-8c9498c0><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#how-it-works\" data-v-8c9498c0><span class=\"icon icon-link\" data-v-8c9498c0></span></a>How it works</h2><p data-v-8c9498c0>There are 3 main components:</p><ol data-v-8c9498c0><li data-v-8c9498c0><p data-v-8c9498c0><strong data-v-8c9498c0><a href=\"Jamulus\" data-v-8c9498c0>Jamulus</a> server.</strong></p></li><li data-v-8c9498c0><p data-v-8c9498c0><strong data-v-8c9498c0>WebRTC-UDP gateway.</strong></p><ul data-v-8c9498c0><li data-v-8c9498c0>Source code: https://github.com/dtinth/rtcjam</li><li data-v-8c9498c0>It should be run on the same server as the Jamulus server. It does nothing more than providing browser access to Jamulus server over a different transport layer.</li><li data-v-8c9498c0>Since it will run on a publicly-accessible server, there will be no need to use STUN/TURN solutions.</li><li data-v-8c9498c0>Once a WebRTC connection is established, all data will be forwarded to <code data-v-8c9498c0>localhost:22124</code> (and vice versa).</li></ul></li><li data-v-8c9498c0><p data-v-8c9498c0><strong data-v-8c9498c0>Web-based Jamulus client.</strong></p><ul data-v-8c9498c0><li data-v-8c9498c0>Source code: https://github.com/dtinth/webjam</li><li data-v-8c9498c0>This web-based client speaks <a href=\"https://github.com/dtinth/webjam/blob/main/src/App.svelte\" data-v-8c9498c0>the usual Jamulus protocol</a>. However the transport layer is WebRTC instead of plain UDP.</li><li data-v-8c9498c0>An <code data-v-8c9498c0>AudioWorklet</code> uses <a href=\"https://github.com/dtinth/libopusjs/tree/jamulus\" data-v-8c9498c0>libopus compiled to WebAssembly</a> to decode Opus frames and feeds it to the speaker.</li></ul></li></ol><h2 id=\"limitations-of-the-poc\" data-v-8c9498c0><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#limitations-of-the-poc\" data-v-8c9498c0><span class=\"icon icon-link\" data-v-8c9498c0></span></a>Limitations of the POC</h2><ul data-v-8c9498c0><li data-v-8c9498c0>Right now it can only receive audio, as the encoder has not been implemented yet. The PoC is hardcoded to send silent Opus frames to the server.</li><li data-v-8c9498c0>The PoC is hardcoded to use Stereo High Quality mode with 16 frames of jitter buffer. Client name is hardcoded to WebJam.</li><li data-v-8c9498c0>Memory and CPU usage is very inefficient — a lot of clones and byte-by-byte operations in JavaScript. Safari on my iPad Pro (2015) crashes (page is forced to reload) after 1 minute of usage :joy:. But I believe this can be improved by putting more things in WebAssembly, e.g. Jamulus protocol handler, jitter buffer, etc. <a href=\"https://developers.google.com/web/updates/2018/06/audio-worklet-design-pattern#using_audio_worklet_with_webassembly\" data-v-8c9498c0>There is a tutorial on using WebAssembly with AudioWorklet on Google Developers</a></li><li data-v-8c9498c0>The gateway server currently has no security mechanism at all; it accepts and forwards incoming UDP packets from any host (not just the target server).</li></ul><p data-v-8c9498c0><strong data-v-8c9498c0>Note:</strong> I have no intention to develop this any further. All this is just to satisfy my curiosity. However, I think it can be a good starting point to expand Jamulus to the web platform if anyone wants to pursue this goal.</p>", 13)
+function render(_ctx, _cache) {
+  return _hoisted_1
+}
+__sfc__.render = render
+__sfc__.__scopeId = "data-v-8c9498c0"
+__sfc__.__file = "Note.vue"
+exports. default = __sfc__};
+window.precompiledFrontMatter = {"public":true};
+</script>
+  </body>
+</html>

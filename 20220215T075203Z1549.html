@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html data-precompiled=true lang="en" data-dtinth="true">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Disabling an App Engine service without also disabling Firestore | notes.dt.in.th</title><meta property="og:title" content="Disabling an App Engine service without also disabling Firestore" data-source="note">
+<meta property="og:image" content="https://screenshot.source.in.th/image/_/notes/20220215T075203Z1549" data-source="note">
+<meta property="og:image:width" content="1800" data-source="note">
+<meta property="og:image:height" content="1680" data-source="note">
+<link rel="canonical" href="https://notes.dt.in.th/20220215T075203Z1549" data-source="note"><style id="note-styles">/* layer: default */
+.my[data-v-8c9498c0]{margin-top:1rem;margin-bottom:1rem;}</style>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/iconify-icon@2.1.0/dist/iconify-icon.min.js"
+      integrity="sha256-dY2Ug42wyv3rl+sLVKEg3jbPs8f+hi7tmJ836AxVDwI="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/blurhash-image@1.0.1/blurhash-image.min.js"
+      integrity="sha256-qrUUgTGk7xA7iVCwraHNQjwy2JryA0K4L3DL4qidagQ="
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" crossorigin src="/runtime/index.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/supabase-CjkNZD6A.js">
+    <link rel="stylesheet" crossorigin href="/runtime/index.css">
+  </head>
+  <body class="bg-#252423 text-#e9e8e7 antialiased">
+    <header class="h-[58px] bg-#090807 border-b border-#454443 z-20 flex">
+      <div class="flex items-center pl-[18px] flex-none">
+        <a
+          class="flex items-center text-#8b8685 hover:text-#ffffbb text-lg"
+          href="/"
+          >notes.dt.in.th</a
+        >
+      </div>
+      <div
+        class="flex-1 flex items-center text-#8b8685 [&_a:hover]:text-#ffffbb overflow-hidden"
+        id="headerMiddle"
+      >
+        <div class="px-2 flex-none">›</div><div class="truncate"><a title="Cloud Platform (topic)" href="CloudPlatform">Cloud Platform</a></div><div class="px-2 flex-none">›</div><div class="truncate"><a title="Google Cloud (topic)" href="GoogleCloud">Google Cloud</a></div>
+      </div>
+      <div
+        class="flex items-center px-[18px] flex-none gap-4"
+        id="headerToolbar"
+      ></div>
+    </header>
+    <div class="h-entry">
+      <main class="bg-#353433" id="main">
+        <div class="notes-layout-container mx-auto p-6 py-12" id="mainContents">
+          <div class="prose e-content" id="noteContents"><!--[--><h1 id="disabling-an-app-engine-service-without-also-disabling-firestore" data-v-8c9498c0><a aria-hidden="true" tabindex="-1" href="#disabling-an-app-engine-service-without-also-disabling-firestore" data-v-8c9498c0><span class="icon icon-link" data-v-8c9498c0></span></a>Disabling an App Engine service without also disabling Firestore</h1><p data-v-8c9498c0>I switched one of my <a href="GoogleCloud" data-v-8c9498c0>Google Cloud</a> projects from <a href="https://cloud.google.com/appengine" data-v-8c9498c0>Google App Engine</a> to <a href="https://cloud.google.com/run" data-v-8c9498c0>Google Cloud Run</a> because it is cheaper for my use case.</p><p data-v-8c9498c0>Once the migration is completed, I disabled the Google App Engine app.</p><figure data-v-8c9498c0><p data-v-8c9498c0><img src="https://static.dt.in.th/uploads/2022/02/15/disable-btn.png" alt="" data-v-8c9498c0></p></figure><h2 id="everything-breaks" data-v-8c9498c0><a aria-hidden="true" tabindex="-1" href="#everything-breaks" data-v-8c9498c0><span class="icon icon-link" data-v-8c9498c0></span></a>Everything breaks</h2><p data-v-8c9498c0>So the App Engine app is successfully disabled but my app (which runs on Cloud Run) also stops working. Turns out, the problem is, <strong data-v-8c9498c0>disabling App Engine also disables Firestore, a <a href="Firebase" data-v-8c9498c0>Firebase</a> service.</strong> When I attempt to use Firestore, I get an error:</p><blockquote data-v-8c9498c0><p data-v-8c9498c0>The project MY_PROJECT does not exist or it does not contain an active Cloud Datastore or Cloud Firestore database. Please visit http://console.cloud.google.com to create a project or https://console.cloud.google.com/datastore/setup?project=MY_PROJECT to add a Cloud Datastore or Cloud Firestore database. <strong data-v-8c9498c0>Note that Cloud Datastore or Cloud Firestore always have an associated App Engine app and this app must not be disabled.</strong></p></blockquote><h2 id="deleting-the-service" data-v-8c9498c0><a aria-hidden="true" tabindex="-1" href="#deleting-the-service" data-v-8c9498c0><span class="icon icon-link" data-v-8c9498c0></span></a>Deleting the service</h2><p data-v-8c9498c0>So, instead of disabling App Engine, I will leave it enabled and I’ll just delete the service, so that I don’t get charged for the compute instance. It turns out that <strong data-v-8c9498c0>the default service cannot be deleted.</strong></p><figure data-v-8c9498c0><p data-v-8c9498c0><img src="https://static.dt.in.th/uploads/2022/02/15/cannot-delet-service.png" alt="" data-v-8c9498c0></p></figure><h2 id="stopping-the-service" data-v-8c9498c0><a aria-hidden="true" tabindex="-1" href="#stopping-the-service" data-v-8c9498c0><span class="icon icon-link" data-v-8c9498c0></span></a>Stopping the service</h2><p data-v-8c9498c0>Ok, alright, so I will not delete the service. Instead, I will stop it, so that no instance will be running. However, <strong data-v-8c9498c0>apps in the standard environments cannot be stopped in some circumstances.</strong></p><figure data-v-8c9498c0><p data-v-8c9498c0><img src="https://static.dt.in.th/uploads/2022/02/15/cannot-delete-service.png" alt="" data-v-8c9498c0></p></figure><h2 id="replacing-the-service" data-v-8c9498c0><a aria-hidden="true" tabindex="-1" href="#replacing-the-service" data-v-8c9498c0><span class="icon icon-link" data-v-8c9498c0></span></a>Replacing the service</h2><p data-v-8c9498c0>So I need switch the service to the flexible environment, so that it can be stopped. One way to do this is to <strong data-v-8c9498c0>deploy a hello world application</strong> to replace the service.</p><pre data-v-8c9498c0><code data-v-8c9498c0>git clone https://github.com/GoogleCloudPlatform/nodejs-docs-samples
+cd nodejs-docs-samples/appengine/hello-world/flexible
+gcloud app deploy
+</code></pre><h2 id="stopping-the-service-for-real" data-v-8c9498c0><a aria-hidden="true" tabindex="-1" href="#stopping-the-service-for-real" data-v-8c9498c0><span class="icon icon-link" data-v-8c9498c0></span></a>Stopping the service for real</h2><p data-v-8c9498c0>Finally, the service can be stopped.</p><figure data-v-8c9498c0><p data-v-8c9498c0><img src="https://static.dt.in.th/uploads/2022/02/15/after-deploy.png" alt="" data-v-8c9498c0></p></figure><p data-v-8c9498c0>Once stopped, I confirmed that the Instance Count is 0.</p><figure data-v-8c9498c0><p data-v-8c9498c0><img src="https://static.dt.in.th/uploads/2022/02/15/stopped.png" alt="" data-v-8c9498c0></p></figure><!--]--></div>
+        </div>
+      </main>
+      <footer>
+        <div
+          class="notes-layout-container mx-auto py-4 px-6 text-#8b8685 text-right text-sm"
+          id="footerContents"
+        >
+          <notes-page-footer></notes-page-footer>
+        </div>
+      </footer>
+    </div>
+    <script>
+window.precompiledNoteBehavior = function(require, exports, module, Vue) {"use strict";Object.defineProperty(exports, "__esModule", {value: true});const __sfc__ = {};
+var _vue = require('vue');
+
+const _withScopeId = n => (_vue.pushScopeId.call(void 0, "data-v-8c9498c0"),n=n(),_vue.popScopeId.call(void 0, ),n)
+const _hoisted_1 = /*#__PURE__*/_vue.createStaticVNode.call(void 0, "<h1 id=\"disabling-an-app-engine-service-without-also-disabling-firestore\" data-v-8c9498c0><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#disabling-an-app-engine-service-without-also-disabling-firestore\" data-v-8c9498c0><span class=\"icon icon-link\" data-v-8c9498c0></span></a>Disabling an App Engine service without also disabling Firestore</h1><p data-v-8c9498c0>I switched one of my <a href=\"GoogleCloud\" data-v-8c9498c0>Google Cloud</a> projects from <a href=\"https://cloud.google.com/appengine\" data-v-8c9498c0>Google App Engine</a> to <a href=\"https://cloud.google.com/run\" data-v-8c9498c0>Google Cloud Run</a> because it is cheaper for my use case.</p><p data-v-8c9498c0>Once the migration is completed, I disabled the Google App Engine app.</p><figure data-v-8c9498c0><p data-v-8c9498c0><img src=\"https://static.dt.in.th/uploads/2022/02/15/disable-btn.png\" alt=\"\" data-v-8c9498c0></p></figure><h2 id=\"everything-breaks\" data-v-8c9498c0><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#everything-breaks\" data-v-8c9498c0><span class=\"icon icon-link\" data-v-8c9498c0></span></a>Everything breaks</h2><p data-v-8c9498c0>So the App Engine app is successfully disabled but my app (which runs on Cloud Run) also stops working. Turns out, the problem is, <strong data-v-8c9498c0>disabling App Engine also disables Firestore, a <a href=\"Firebase\" data-v-8c9498c0>Firebase</a> service.</strong> When I attempt to use Firestore, I get an error:</p><blockquote data-v-8c9498c0><p data-v-8c9498c0>The project MY_PROJECT does not exist or it does not contain an active Cloud Datastore or Cloud Firestore database. Please visit http://console.cloud.google.com to create a project or https://console.cloud.google.com/datastore/setup?project=MY_PROJECT to add a Cloud Datastore or Cloud Firestore database. <strong data-v-8c9498c0>Note that Cloud Datastore or Cloud Firestore always have an associated App Engine app and this app must not be disabled.</strong></p></blockquote><h2 id=\"deleting-the-service\" data-v-8c9498c0><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#deleting-the-service\" data-v-8c9498c0><span class=\"icon icon-link\" data-v-8c9498c0></span></a>Deleting the service</h2><p data-v-8c9498c0>So, instead of disabling App Engine, I will leave it enabled and I’ll just delete the service, so that I don’t get charged for the compute instance. It turns out that <strong data-v-8c9498c0>the default service cannot be deleted.</strong></p><figure data-v-8c9498c0><p data-v-8c9498c0><img src=\"https://static.dt.in.th/uploads/2022/02/15/cannot-delet-service.png\" alt=\"\" data-v-8c9498c0></p></figure><h2 id=\"stopping-the-service\" data-v-8c9498c0><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#stopping-the-service\" data-v-8c9498c0><span class=\"icon icon-link\" data-v-8c9498c0></span></a>Stopping the service</h2><p data-v-8c9498c0>Ok, alright, so I will not delete the service. Instead, I will stop it, so that no instance will be running. However, <strong data-v-8c9498c0>apps in the standard environments cannot be stopped in some circumstances.</strong></p><figure data-v-8c9498c0><p data-v-8c9498c0><img src=\"https://static.dt.in.th/uploads/2022/02/15/cannot-delete-service.png\" alt=\"\" data-v-8c9498c0></p></figure><h2 id=\"replacing-the-service\" data-v-8c9498c0><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#replacing-the-service\" data-v-8c9498c0><span class=\"icon icon-link\" data-v-8c9498c0></span></a>Replacing the service</h2><p data-v-8c9498c0>So I need switch the service to the flexible environment, so that it can be stopped. One way to do this is to <strong data-v-8c9498c0>deploy a hello world application</strong> to replace the service.</p><pre data-v-8c9498c0><code data-v-8c9498c0>git clone https://github.com/GoogleCloudPlatform/nodejs-docs-samples\ncd nodejs-docs-samples/appengine/hello-world/flexible\ngcloud app deploy\n</code></pre><h2 id=\"stopping-the-service-for-real\" data-v-8c9498c0><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#stopping-the-service-for-real\" data-v-8c9498c0><span class=\"icon icon-link\" data-v-8c9498c0></span></a>Stopping the service for real</h2><p data-v-8c9498c0>Finally, the service can be stopped.</p><figure data-v-8c9498c0><p data-v-8c9498c0><img src=\"https://static.dt.in.th/uploads/2022/02/15/after-deploy.png\" alt=\"\" data-v-8c9498c0></p></figure><p data-v-8c9498c0>Once stopped, I confirmed that the Instance Count is 0.</p><figure data-v-8c9498c0><p data-v-8c9498c0><img src=\"https://static.dt.in.th/uploads/2022/02/15/stopped.png\" alt=\"\" data-v-8c9498c0></p></figure>", 21)
+function render(_ctx, _cache) {
+  return _hoisted_1
+}
+__sfc__.render = render
+__sfc__.__scopeId = "data-v-8c9498c0"
+__sfc__.__file = "Note.vue"
+exports. default = __sfc__};
+window.precompiledFrontMatter = {"public":true,"stackoverflow":"https://stackoverflow.com/a/71124509/559913","title":"Disabling an App Engine service without also disabling Firestore"};
+</script>
+  </body>
+</html>

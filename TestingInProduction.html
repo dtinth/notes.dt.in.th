@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html data-precompiled=true lang="en" data-dtinth="true">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Testing in production | notes.dt.in.th</title><meta property="og:title" content="Testing in production" data-source="note">
+<meta property="og:image" content="https://screenshot.source.in.th/image/_/notes/TestingInProduction" data-source="note">
+<meta property="og:image:width" content="1800" data-source="note">
+<meta property="og:image:height" content="1680" data-source="note">
+<link rel="canonical" href="https://notes.dt.in.th/TestingInProduction" data-source="note">
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/iconify-icon@2.1.0/dist/iconify-icon.min.js"
+      integrity="sha256-dY2Ug42wyv3rl+sLVKEg3jbPs8f+hi7tmJ836AxVDwI="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/blurhash-image@1.0.1/blurhash-image.min.js"
+      integrity="sha256-qrUUgTGk7xA7iVCwraHNQjwy2JryA0K4L3DL4qidagQ="
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" crossorigin src="/runtime/index.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/supabase-CjkNZD6A.js">
+    <link rel="stylesheet" crossorigin href="/runtime/index.css">
+  </head>
+  <body class="bg-#252423 text-#e9e8e7 antialiased">
+    <header class="h-[58px] bg-#090807 border-b border-#454443 z-20 flex">
+      <div class="flex items-center pl-[18px] flex-none">
+        <a
+          class="flex items-center text-#8b8685 hover:text-#ffffbb text-lg"
+          href="/"
+          >notes.dt.in.th</a
+        >
+      </div>
+      <div
+        class="flex-1 flex items-center text-#8b8685 [&_a:hover]:text-#ffffbb overflow-hidden"
+        id="headerMiddle"
+      >
+        <div class="px-2 flex-none">›</div><div class="truncate"><a title="Software Engineering (topic)" href="SoftwareEngineering">Software Engineering</a></div>
+      </div>
+      <div
+        class="flex items-center px-[18px] flex-none gap-4"
+        id="headerToolbar"
+      ></div>
+    </header>
+    <div class="h-entry">
+      <main class="bg-#353433" id="main">
+        <div class="notes-layout-container mx-auto p-6 py-12" id="mainContents">
+          <div class="prose e-content" id="noteContents"><!--[--><p><strong>Testing in production</strong> usually gets a bad rap, but when done well, can become a great tool for writing quality <a href="SoftwareEngineering">software</a>. This entails writing software that is <strong>testable in production.</strong></p><h2 id="learning-notes"><a aria-hidden="true" tabindex="-1" href="#learning-notes"><span class="icon icon-link"></span></a>Learning notes</h2><ul><li><p><a href="https://www.youtube.com/watch?v=9C0efJkT0Hg">Michael Bryzek (2017). “Testing in Production - Quality Software Faster.” <em>QCon 2017</em></a></p><ul><li>If you don’t test in production, how do you know that your software works in production?</li><li>By adopting a testing in production mindset, “we could prove to ourselves that our software works, and interestingly, it helps us test software in a number of different ways that previously was difficult.”</li><li>At Flow: <ul><li>True <a href="ContinuousDelivery">continuous delivery</a> (merge = deploy to prod immediately).</li><li>Continuous integration happens <strong>before</strong> merging.</li><li>No staging environment, no dev environment, no QA environment. “We don’t have any pre-production environments or any environments like that by any other name.”</li></ul></li><li>Examples for testing in production and techniques used. <ul><li>How they verify that the checkout flow works: They have a bot that places a real order (on real stores) against production (through an iPhone app!) every few minutes. In the order processing code, 3 lines of code is added to check if the email address is a test email address. If it is, the order is immediately cancelled. To avoid affecting customers, an API is exposed to return items with lots of stocking in the inventory. They then set up an alert to verify when there’s no order for more than 3 minutes (or the test user encountered an error).</li><li>Load testing in production — At Gilt products went on sale at noon. So between 11:59 and 12:00 traffic increases 50x, and traffic between 12:00 to 13:00 drives 80% of the revenue. So they run load tests on other times where there is very low impact on the revenue. “Every single day, the load test runs, and on the day it breaks, we find out 12 hours before it matters, and we have a chance at protecting the revenue for the business.”</li><li>Integration tests in production — Accounts/organizations can be marked as “sandbox”. Integration tests create sandbox organizations at start, and delete them at the end. There are only a few differences between the sandbox and production organizations, e.g. charges are no-op in the sandbox, and other things are the same between sandbox and production.</li></ul></li><li><strong>Treat every service as a third party</strong></li></ul></li><li><p><a href="https://www.youtube.com/watch?v=qE1OoRebOIE">Charity Majors (2018). “Observability-Driven Development.” <em>GopherCon EU 2018</em></a></p><ul><li>“The more that we try to resist it, the more we take our precious scarce engineering cycles, and instead of investing them into making our testing in production resilient and robust and not scary, we tend to pour it all into this very fragile idea that we can stave off all problems by running everything on staging first.”</li><li>“Why do people sink so much time into staging, when they can&#39;t even tell if their own production environment is healthy or not? Because their <a href="Observability">o11y</a> is so shitty they literally have no idea what&#39;s going on in production, usually.”</li></ul></li><li><p><a href="https://www.youtube.com/watch?v=lbO6INBICpQ">Szczepan Faber (2018). “Testing in production at LinkedIn.” <em>Devoxx Poland 2018</em></a></p><ul><li>LinkedIn deploys 1,000 changes per week by 300 unique contributors.</li><li>“One of the great decisions that we made: to push hard for <a href="ContinuousDelivery">continuous delivery</a>.”</li><li>Key mitigation strategy: Separate code rollout from feature rollout.</li><li>Their A/B testing tooling can automatically detect stale code paths, and open a ticket to remove them. Some engineers are responsible for removing stale code paths.</li></ul></li><li><p>Making systems multi-tenant allows easier E2E testing in production. Case studies from <a href="https://www.uber.com/en-TH/blog/multitenancy-microservice-architecture/">Uber</a> and <a href="https://doordash.engineering/2022/03/03/moving-e2e-testing-into-production-with-multi-tenancy-for-increased-speed-and-reliability/">DoorDash</a>.</p></li><li><p>Lessons from Squeaky: <a href="https://www.infoq.com/news/2022/05/removing-staging-environments/">“How Removing Staging Environments Can Improve Your Deployments”</a></p><ul><li><p>Problems with staging environments:</p><ul><li>Pre-live environments are never at parity with production</li><li>There’s always a queue, which makes releases larger and reduces ownership</li><li>Process replaces accountability</li></ul></li><li><p>Four key tenets of Squeaky’s approach:</p><ul><li>Only merge code that is ready to go live</li><li>A flat branching strategy</li><li>Feature flagging for high-risk changes</li><li>Hands-on deployments (monitoring, logging, alarms, blue/green deployments)</li></ul></li></ul></li><li><p><a href="https://twitter.com/jim_bisenius/status/1612243624439472129">“if you can&#39;t deploy straight to prod, just write better code” —@jim_bisenius</a></p></li></ul><!--]--></div>
+        </div>
+      </main>
+      <footer>
+        <div
+          class="notes-layout-container mx-auto py-4 px-6 text-#8b8685 text-right text-sm"
+          id="footerContents"
+        >
+          <notes-page-footer></notes-page-footer>
+        </div>
+      </footer>
+    </div>
+    <script>
+window.precompiledNoteBehavior = function(require, exports, module, Vue) {"use strict";Object.defineProperty(exports, "__esModule", {value: true});const __sfc__ = {};
+var _vue = require('vue');
+
+const _hoisted_1 = /*#__PURE__*/_vue.createStaticVNode.call(void 0, "<p><strong>Testing in production</strong> usually gets a bad rap, but when done well, can become a great tool for writing quality <a href=\"SoftwareEngineering\">software</a>. This entails writing software that is <strong>testable in production.</strong></p><h2 id=\"learning-notes\"><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#learning-notes\"><span class=\"icon icon-link\"></span></a>Learning notes</h2><ul><li><p><a href=\"https://www.youtube.com/watch?v=9C0efJkT0Hg\">Michael Bryzek (2017). “Testing in Production - Quality Software Faster.” <em>QCon 2017</em></a></p><ul><li>If you don’t test in production, how do you know that your software works in production?</li><li>By adopting a testing in production mindset, “we could prove to ourselves that our software works, and interestingly, it helps us test software in a number of different ways that previously was difficult.”</li><li>At Flow: <ul><li>True <a href=\"ContinuousDelivery\">continuous delivery</a> (merge = deploy to prod immediately).</li><li>Continuous integration happens <strong>before</strong> merging.</li><li>No staging environment, no dev environment, no QA environment. “We don’t have any pre-production environments or any environments like that by any other name.”</li></ul></li><li>Examples for testing in production and techniques used. <ul><li>How they verify that the checkout flow works: They have a bot that places a real order (on real stores) against production (through an iPhone app!) every few minutes. In the order processing code, 3 lines of code is added to check if the email address is a test email address. If it is, the order is immediately cancelled. To avoid affecting customers, an API is exposed to return items with lots of stocking in the inventory. They then set up an alert to verify when there’s no order for more than 3 minutes (or the test user encountered an error).</li><li>Load testing in production — At Gilt products went on sale at noon. So between 11:59 and 12:00 traffic increases 50x, and traffic between 12:00 to 13:00 drives 80% of the revenue. So they run load tests on other times where there is very low impact on the revenue. “Every single day, the load test runs, and on the day it breaks, we find out 12 hours before it matters, and we have a chance at protecting the revenue for the business.”</li><li>Integration tests in production — Accounts/organizations can be marked as “sandbox”. Integration tests create sandbox organizations at start, and delete them at the end. There are only a few differences between the sandbox and production organizations, e.g. charges are no-op in the sandbox, and other things are the same between sandbox and production.</li></ul></li><li><strong>Treat every service as a third party</strong></li></ul></li><li><p><a href=\"https://www.youtube.com/watch?v=qE1OoRebOIE\">Charity Majors (2018). “Observability-Driven Development.” <em>GopherCon EU 2018</em></a></p><ul><li>“The more that we try to resist it, the more we take our precious scarce engineering cycles, and instead of investing them into making our testing in production resilient and robust and not scary, we tend to pour it all into this very fragile idea that we can stave off all problems by running everything on staging first.”</li><li>“Why do people sink so much time into staging, when they can&#39;t even tell if their own production environment is healthy or not? Because their <a href=\"Observability\">o11y</a> is so shitty they literally have no idea what&#39;s going on in production, usually.”</li></ul></li><li><p><a href=\"https://www.youtube.com/watch?v=lbO6INBICpQ\">Szczepan Faber (2018). “Testing in production at LinkedIn.” <em>Devoxx Poland 2018</em></a></p><ul><li>LinkedIn deploys 1,000 changes per week by 300 unique contributors.</li><li>“One of the great decisions that we made: to push hard for <a href=\"ContinuousDelivery\">continuous delivery</a>.”</li><li>Key mitigation strategy: Separate code rollout from feature rollout.</li><li>Their A/B testing tooling can automatically detect stale code paths, and open a ticket to remove them. Some engineers are responsible for removing stale code paths.</li></ul></li><li><p>Making systems multi-tenant allows easier E2E testing in production. Case studies from <a href=\"https://www.uber.com/en-TH/blog/multitenancy-microservice-architecture/\">Uber</a> and <a href=\"https://doordash.engineering/2022/03/03/moving-e2e-testing-into-production-with-multi-tenancy-for-increased-speed-and-reliability/\">DoorDash</a>.</p></li><li><p>Lessons from Squeaky: <a href=\"https://www.infoq.com/news/2022/05/removing-staging-environments/\">“How Removing Staging Environments Can Improve Your Deployments”</a></p><ul><li><p>Problems with staging environments:</p><ul><li>Pre-live environments are never at parity with production</li><li>There’s always a queue, which makes releases larger and reduces ownership</li><li>Process replaces accountability</li></ul></li><li><p>Four key tenets of Squeaky’s approach:</p><ul><li>Only merge code that is ready to go live</li><li>A flat branching strategy</li><li>Feature flagging for high-risk changes</li><li>Hands-on deployments (monitoring, logging, alarms, blue/green deployments)</li></ul></li></ul></li><li><p><a href=\"https://twitter.com/jim_bisenius/status/1612243624439472129\">“if you can&#39;t deploy straight to prod, just write better code” —@jim_bisenius</a></p></li></ul>", 3)
+function render(_ctx, _cache) {
+  return _hoisted_1
+}
+__sfc__.render = render
+__sfc__.__file = "Note.vue"
+exports. default = __sfc__};
+window.precompiledFrontMatter = {"public":true,"title":"Testing in production","topic":true};
+</script>
+  </body>
+</html>

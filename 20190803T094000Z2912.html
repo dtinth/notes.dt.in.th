@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html data-precompiled=true lang="en" data-dtinth="true">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ว่าด้วยเรื่องการใช้โจทย์อัลกอริธึมในการสัมภาษณ์งาน | notes.dt.in.th</title><meta property="og:title" content="ว่าด้วยเรื่องการใช้โจทย์อัลกอริธึมในการสัมภาษณ์งาน" data-source="note">
+<meta property="og:image" content="https://screenshot.source.in.th/image/_/notes/20190803T094000Z2912" data-source="note">
+<meta property="og:image:width" content="1800" data-source="note">
+<meta property="og:image:height" content="1680" data-source="note">
+<link rel="canonical" href="https://notes.dt.in.th/20190803T094000Z2912" data-source="note">
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/iconify-icon@2.1.0/dist/iconify-icon.min.js"
+      integrity="sha256-dY2Ug42wyv3rl+sLVKEg3jbPs8f+hi7tmJ836AxVDwI="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/blurhash-image@1.0.1/blurhash-image.min.js"
+      integrity="sha256-qrUUgTGk7xA7iVCwraHNQjwy2JryA0K4L3DL4qidagQ="
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" crossorigin src="/runtime/index.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/supabase-CjkNZD6A.js">
+    <link rel="stylesheet" crossorigin href="/runtime/index.css">
+  </head>
+  <body class="bg-#252423 text-#e9e8e7 antialiased">
+    <header class="h-[58px] bg-#090807 border-b border-#454443 z-20 flex">
+      <div class="flex items-center pl-[18px] flex-none">
+        <a
+          class="flex items-center text-#8b8685 hover:text-#ffffbb text-lg"
+          href="/"
+          >notes.dt.in.th</a
+        >
+      </div>
+      <div
+        class="flex-1 flex items-center text-#8b8685 [&_a:hover]:text-#ffffbb overflow-hidden"
+        id="headerMiddle"
+      >
+        <div class="px-2 flex-none">›</div><div class="truncate"><a title="Recent writings" href="Recent">Recent writings</a></div>
+      </div>
+      <div
+        class="flex items-center px-[18px] flex-none gap-4"
+        id="headerToolbar"
+      ></div>
+    </header>
+    <div class="h-entry">
+      <main class="bg-#353433" id="main">
+        <div class="notes-layout-container mx-auto p-6 py-12" id="mainContents">
+          <div class="prose e-content" id="noteContents"><!--[--><p><a href="https://web.facebook.com/groups/ThaiPGAssociateSociety/permalink/1207452546132679/">↩ คำถามในสมาคมโปรแกรมเมอร์ไทย</a></p><blockquote><p>ทำไมบางบริษัทสมัครงานตำแหน่ง Web Devloper หรือ Mobile Developer ไป</p><p>ตอนสัมภาษณ์งานกลับสัมภาษณ์ด้วยโจทย์อัลกอริทึม</p><p>ทั้งๆที่ใน Job Description ก็ไม่ได้เขียนว่างานที่ทำเกี่ยวข้องกับอัลกอริทึมที่ซับซ้อน</p><p>และจากประสบการณ์ทำงานด้านนี้มาเกิน5ปี ก็ยังไม่เห็นว่าการทำงานด้านนี้จะใช้ความรู้ด้านอัลกอริทึมซับซ้อนมากมายอะไรขนาดนั้น</p><p>ไม่เข้าใจ และงงมากว่าการสัมภาษณ์คนด้วยอัลกอริทึมมันสามารถคัดคนที่มีความสามารถด้านนี้ได้อย่างไร ทำไมบางบริษัทเลือกสัมด้วยวิธีนี้</p></blockquote><p>ทำ Web เหมือนกันครับ โค้ดส่วนมากที่เขียนก็ไม่เห็นต้องใช้อัลกอเยอะเท่าไหร่ ตามที่ว่านั่นแหละครับ เพราะส่วนมากก็ Create/Read/Update/Delete ลิงค์ไปลิงค์มา ส่งฟอร์ม Show/Hide กล่อง เรียก API เรียกว่าน่าจะประมาณ 90% เลยก็ว่าได้</p><p>แต่บางครั้งมันก็มีปัญหาที่ต้องแก้ด้วยอัลกอริทึมอย่างเช่น Tree traversal, Binary search, Linked list, Lookup table, Trie (โดยเฉพาะพวกปัญหาเวลาเว็บมันอืดแล้วต้อง Optimize ที่ระดับโค้ด) บางทีก็ต้องใช้คณิตศาสตร์รัวๆ พวก เมตริกซ์ ตรีโกณ สถิติ Linear regression ฯลฯ</p><p>บางทีทำพวกระบบ Access control หรือระบบที่เกี่ยวกับความปลอดภัยของข้อมูล ก็ค่อนข้างซับซ้อนนะครับ หรือพวกระบบคำนวนเงิน (เช่น ระบบจ่ายเงิน มีแบบ Recurring มีระบบลดราคา คูปอง หรือที่ต้องคืนเงินตามจำนวนที่ไม่ได้ใช้ได้) ของพวกนี้อัลกอผิดเท่ากับรายได้หายนะครับ</p><p>จะเห็นว่าเขียนโค้ดพวก 90% ส่วนมากใครๆ ก็ทำได้… บางทีเวลาสัมภาษณ์ถึงต้องถามพวกความรู้ที่ใช้งานแค่ 10% นี้ <strong>จะได้ชัวร์ว่าไม่ได้จ้างคนที่เวลาเจอโจทย์ 10% แล้วทำได้แค่ตอบว่า “ทำไม่ได้”</strong> หรือทำได้แต่ใช้เวลานานมากกกก หรือทำออกมาแล้วบั๊กกระจาย</p><p><a href="https://web.facebook.com/groups/ThaiPGAssociateSociety/permalink/1207452546132679/?comment_id=1207476429463624&amp;reply_comment_id=1207503869460880">↩ follow-up question</a></p><blockquote><p>ในฐานะที่คุณน่าจะเป็นผู้สัมภาษณ์คนอื่นเหมือนกัน</p><p>ระหว่างคนที่รู้และเข้าใจในเทคนึงมากๆกับคนที่เข้าใจอัลกอริทึมสูง คุณจะเลือกใครไปร่วมงานด้วยครับ</p><p>เช่นผมมีความรู้ความเข้าใจใน React สูงมาก รู้หมดว่าแต่ละอย่างที่ถูก implement ขึ้นมานั้นทำมาเพื่อตอบโจทย์สิ่งใด ข้อดีข้อเสียของฟังก์ชันนั้นคืออะไร รู้หมดว่าการเขียนโค้ดที่ดีเป็นอย่างไร Design Pattern แบบไหนที่ควรใช้ แต่ผมไม่มีความสามารถมากพอที่จะทำโจทย์อัลกอริทึมยาก เช่นโจทย์ ACM ได้ สามารถทำได้เพียงอัลกอริทึมพื้นฐานเท่านั้น</p><p>กับอีกคนที่มีความสามารถในการทำโจทย์อัลกอริทึมสูงมาก สามารถทำโจทย์รอบลึกๆอย่างรอบ Asia ได้ แต่กลับไม่รู้และเข้าใจใน React ดีเท่าผม ไม่รู้จัก Design Pattern ไม่รู้เรื่องด้าน Software Architecture</p><p>ถ้าคุณมี Head count เหลือ 1 ที่ สำหรับ React Developer คุณจะเลือกใครครับ</p></blockquote><p>มองว่าการพัฒนาซอฟต์แวร์มันต้องใช้ Capability ทั้งคู่นะครับบ ขอเรียกว่าเป็นแกน Algorithm กับแกน Software Engineering ละกัน มองว่าทั้งสองแกนมันเป็นตัวคูณ คือถ้าขาดด้านใดด้านนึงก็ถือว่าเป็นความเสี่ยง ฉะนั้นเวลาหาคนก็ขึ้นอยู่กับว่าทีมเราต้องการเพิ่ม Capability ด้านไหนเป็นหลักครับ</p><p>ถ้าเกิดต้องเลือกแค่คนเดียว ตามคำถามที่ให้มาจริงๆ… ก็คงต้องลองเทียบดูเรื่อง Adaptability ว่า ระหว่าง</p><ol><li>ให้คนแบบแรก สาย Software Engineering มาลองเจอปัญหา Algorithm เช่น ให้มาลองแก้ปัญหา n+1 query หรือ Optimize ความเร็วการ Render; กับ</li><li>ให้คนแบบที่สอง สาย Algorithm มาลองเจอปัญหาด้าน Software Engineering เช่นให้มาลองเขียน React หรือให้ลองเซ็ตระบบ Deployment ทำ CI/CD</li></ol><p>คิดว่าคนไหนจะสามารถปรับตัว (Adapt) เข้ากับสถานการณ์ได้ดีกว่ากันครับ… ผมมีคำตอบในใจอยู่แล้ว แต่ยังไม่เคยทดสอบจริงๆ เลยคิดว่ายังไม่สามารถให้ Informed opinion ได้ครับบ</p><!--]--></div>
+        </div>
+      </main>
+      <footer>
+        <div
+          class="notes-layout-container mx-auto py-4 px-6 text-#8b8685 text-right text-sm"
+          id="footerContents"
+        >
+          <notes-page-footer></notes-page-footer>
+        </div>
+      </footer>
+    </div>
+    <script>
+window.precompiledNoteBehavior = function(require, exports, module, Vue) {"use strict";Object.defineProperty(exports, "__esModule", {value: true});const __sfc__ = {};
+var _vue = require('vue');
+
+const _hoisted_1 = /*#__PURE__*/_vue.createStaticVNode.call(void 0, "<p><a href=\"https://web.facebook.com/groups/ThaiPGAssociateSociety/permalink/1207452546132679/\">↩ คำถามในสมาคมโปรแกรมเมอร์ไทย</a></p><blockquote><p>ทำไมบางบริษัทสมัครงานตำแหน่ง Web Devloper หรือ Mobile Developer ไป</p><p>ตอนสัมภาษณ์งานกลับสัมภาษณ์ด้วยโจทย์อัลกอริทึม</p><p>ทั้งๆที่ใน Job Description ก็ไม่ได้เขียนว่างานที่ทำเกี่ยวข้องกับอัลกอริทึมที่ซับซ้อน</p><p>และจากประสบการณ์ทำงานด้านนี้มาเกิน5ปี ก็ยังไม่เห็นว่าการทำงานด้านนี้จะใช้ความรู้ด้านอัลกอริทึมซับซ้อนมากมายอะไรขนาดนั้น</p><p>ไม่เข้าใจ และงงมากว่าการสัมภาษณ์คนด้วยอัลกอริทึมมันสามารถคัดคนที่มีความสามารถด้านนี้ได้อย่างไร ทำไมบางบริษัทเลือกสัมด้วยวิธีนี้</p></blockquote><p>ทำ Web เหมือนกันครับ โค้ดส่วนมากที่เขียนก็ไม่เห็นต้องใช้อัลกอเยอะเท่าไหร่ ตามที่ว่านั่นแหละครับ เพราะส่วนมากก็ Create/Read/Update/Delete ลิงค์ไปลิงค์มา ส่งฟอร์ม Show/Hide กล่อง เรียก API เรียกว่าน่าจะประมาณ 90% เลยก็ว่าได้</p><p>แต่บางครั้งมันก็มีปัญหาที่ต้องแก้ด้วยอัลกอริทึมอย่างเช่น Tree traversal, Binary search, Linked list, Lookup table, Trie (โดยเฉพาะพวกปัญหาเวลาเว็บมันอืดแล้วต้อง Optimize ที่ระดับโค้ด) บางทีก็ต้องใช้คณิตศาสตร์รัวๆ พวก เมตริกซ์ ตรีโกณ สถิติ Linear regression ฯลฯ</p><p>บางทีทำพวกระบบ Access control หรือระบบที่เกี่ยวกับความปลอดภัยของข้อมูล ก็ค่อนข้างซับซ้อนนะครับ หรือพวกระบบคำนวนเงิน (เช่น ระบบจ่ายเงิน มีแบบ Recurring มีระบบลดราคา คูปอง หรือที่ต้องคืนเงินตามจำนวนที่ไม่ได้ใช้ได้) ของพวกนี้อัลกอผิดเท่ากับรายได้หายนะครับ</p><p>จะเห็นว่าเขียนโค้ดพวก 90% ส่วนมากใครๆ ก็ทำได้… บางทีเวลาสัมภาษณ์ถึงต้องถามพวกความรู้ที่ใช้งานแค่ 10% นี้ <strong>จะได้ชัวร์ว่าไม่ได้จ้างคนที่เวลาเจอโจทย์ 10% แล้วทำได้แค่ตอบว่า “ทำไม่ได้”</strong> หรือทำได้แต่ใช้เวลานานมากกกก หรือทำออกมาแล้วบั๊กกระจาย</p><p><a href=\"https://web.facebook.com/groups/ThaiPGAssociateSociety/permalink/1207452546132679/?comment_id=1207476429463624&amp;reply_comment_id=1207503869460880\">↩ follow-up question</a></p><blockquote><p>ในฐานะที่คุณน่าจะเป็นผู้สัมภาษณ์คนอื่นเหมือนกัน</p><p>ระหว่างคนที่รู้และเข้าใจในเทคนึงมากๆกับคนที่เข้าใจอัลกอริทึมสูง คุณจะเลือกใครไปร่วมงานด้วยครับ</p><p>เช่นผมมีความรู้ความเข้าใจใน React สูงมาก รู้หมดว่าแต่ละอย่างที่ถูก implement ขึ้นมานั้นทำมาเพื่อตอบโจทย์สิ่งใด ข้อดีข้อเสียของฟังก์ชันนั้นคืออะไร รู้หมดว่าการเขียนโค้ดที่ดีเป็นอย่างไร Design Pattern แบบไหนที่ควรใช้ แต่ผมไม่มีความสามารถมากพอที่จะทำโจทย์อัลกอริทึมยาก เช่นโจทย์ ACM ได้ สามารถทำได้เพียงอัลกอริทึมพื้นฐานเท่านั้น</p><p>กับอีกคนที่มีความสามารถในการทำโจทย์อัลกอริทึมสูงมาก สามารถทำโจทย์รอบลึกๆอย่างรอบ Asia ได้ แต่กลับไม่รู้และเข้าใจใน React ดีเท่าผม ไม่รู้จัก Design Pattern ไม่รู้เรื่องด้าน Software Architecture</p><p>ถ้าคุณมี Head count เหลือ 1 ที่ สำหรับ React Developer คุณจะเลือกใครครับ</p></blockquote><p>มองว่าการพัฒนาซอฟต์แวร์มันต้องใช้ Capability ทั้งคู่นะครับบ ขอเรียกว่าเป็นแกน Algorithm กับแกน Software Engineering ละกัน มองว่าทั้งสองแกนมันเป็นตัวคูณ คือถ้าขาดด้านใดด้านนึงก็ถือว่าเป็นความเสี่ยง ฉะนั้นเวลาหาคนก็ขึ้นอยู่กับว่าทีมเราต้องการเพิ่ม Capability ด้านไหนเป็นหลักครับ</p><p>ถ้าเกิดต้องเลือกแค่คนเดียว ตามคำถามที่ให้มาจริงๆ… ก็คงต้องลองเทียบดูเรื่อง Adaptability ว่า ระหว่าง</p><ol><li>ให้คนแบบแรก สาย Software Engineering มาลองเจอปัญหา Algorithm เช่น ให้มาลองแก้ปัญหา n+1 query หรือ Optimize ความเร็วการ Render; กับ</li><li>ให้คนแบบที่สอง สาย Algorithm มาลองเจอปัญหาด้าน Software Engineering เช่นให้มาลองเขียน React หรือให้ลองเซ็ตระบบ Deployment ทำ CI/CD</li></ol><p>คิดว่าคนไหนจะสามารถปรับตัว (Adapt) เข้ากับสถานการณ์ได้ดีกว่ากันครับ… ผมมีคำตอบในใจอยู่แล้ว แต่ยังไม่เคยทดสอบจริงๆ เลยคิดว่ายังไม่สามารถให้ Informed opinion ได้ครับบ</p>", 12)
+function render(_ctx, _cache) {
+  return _hoisted_1
+}
+__sfc__.render = render
+__sfc__.__file = "Note.vue"
+exports. default = __sfc__};
+window.precompiledFrontMatter = {"public":true,"title":"ว่าด้วยเรื่องการใช้โจทย์อัลกอริธึมในการสัมภาษณ์งาน","facebook":"https://web.facebook.com/groups/ThaiPGAssociateSociety/permalink/1207452546132679/?comment_id=1207476429463624"};
+</script>
+  </body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html data-precompiled=true lang="en" data-dtinth="true">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Observations from using Node.js worker_threads with ESM | notes.dt.in.th</title><meta property="og:title" content="Observations from using Node.js worker_threads with ESM" data-source="note">
+<meta property="og:image" content="https://screenshot.source.in.th/image/_/notes/NodeWorkerThreadsESM" data-source="note">
+<meta property="og:image:width" content="1800" data-source="note">
+<meta property="og:image:height" content="1680" data-source="note">
+<link rel="canonical" href="https://notes.dt.in.th/NodeWorkerThreadsESM" data-source="note"><style id="note-styles">/* layer: default */
+.my[data-v-8c9498c0]{margin-top:1rem;margin-bottom:1rem;}</style>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/iconify-icon@2.1.0/dist/iconify-icon.min.js"
+      integrity="sha256-dY2Ug42wyv3rl+sLVKEg3jbPs8f+hi7tmJ836AxVDwI="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/blurhash-image@1.0.1/blurhash-image.min.js"
+      integrity="sha256-qrUUgTGk7xA7iVCwraHNQjwy2JryA0K4L3DL4qidagQ="
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" crossorigin src="/runtime/index.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/supabase-CjkNZD6A.js">
+    <link rel="stylesheet" crossorigin href="/runtime/index.css">
+  </head>
+  <body class="bg-#252423 text-#e9e8e7 antialiased">
+    <header class="h-[58px] bg-#090807 border-b border-#454443 z-20 flex">
+      <div class="flex items-center pl-[18px] flex-none">
+        <a
+          class="flex items-center text-#8b8685 hover:text-#ffffbb text-lg"
+          href="/"
+          >notes.dt.in.th</a
+        >
+      </div>
+      <div
+        class="flex-1 flex items-center text-#8b8685 [&_a:hover]:text-#ffffbb overflow-hidden"
+        id="headerMiddle"
+      >
+        <div class="px-2 flex-none">›</div><div class="truncate"><a title="JavaScript (topic)" href="JavaScript">JavaScript</a></div><div class="px-2 flex-none">›</div><div class="truncate"><a title="Node.js (topic)" href="Nodejs">Node.js</a></div>
+      </div>
+      <div
+        class="flex items-center px-[18px] flex-none gap-4"
+        id="headerToolbar"
+      ></div>
+    </header>
+    <div class="h-entry">
+      <main class="bg-#353433" id="main">
+        <div class="notes-layout-container mx-auto p-6 py-12" id="mainContents">
+          <div class="prose e-content" id="noteContents"><!--[--><p data-v-8c9498c0>I played around with <a href="https://nodejs.org/docs/latest-v16.x/api/worker_threads.html" data-v-8c9498c0>worker_threads</a> in <a href="Nodejs" data-v-8c9498c0>Node.js</a>. This note documents some of my observations.</p><p data-v-8c9498c0>I am using the following code:</p><pre class="shiki github-dark" style="background-color:#252423;color:#e1e4e8;" tabindex="0" data-v-8c9498c0><code data-v-8c9498c0><span class="line" data-v-8c9498c0><span style="color:#6A737D;" data-v-8c9498c0>// index.mjs</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#F97583;" data-v-8c9498c0>import</span><span style="color:#E1E4E8;" data-v-8c9498c0> { Worker } </span><span style="color:#F97583;" data-v-8c9498c0>from</span><span style="color:#9ECBFF;" data-v-8c9498c0> &#39;node:worker_threads&#39;</span></span>
+<span class="line" data-v-8c9498c0></span>
+<span class="line" data-v-8c9498c0><span style="color:#F97583;" data-v-8c9498c0>for</span><span style="color:#E1E4E8;" data-v-8c9498c0> (;;) {</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#F97583;" data-v-8c9498c0>  const</span><span style="color:#79B8FF;" data-v-8c9498c0> worker</span><span style="color:#F97583;" data-v-8c9498c0> =</span><span style="color:#F97583;" data-v-8c9498c0> new</span><span style="color:#B392F0;" data-v-8c9498c0> Worker</span><span style="color:#E1E4E8;" data-v-8c9498c0>(</span><span style="color:#9ECBFF;" data-v-8c9498c0>&#39;./f.mjs&#39;</span><span style="color:#E1E4E8;" data-v-8c9498c0>, {</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>    workerData: </span><span style="color:#79B8FF;" data-v-8c9498c0>10</span><span style="color:#E1E4E8;" data-v-8c9498c0>,</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>  })</span></span>
+<span class="line" data-v-8c9498c0></span>
+<span class="line" data-v-8c9498c0><span style="color:#F97583;" data-v-8c9498c0>  const</span><span style="color:#79B8FF;" data-v-8c9498c0> result</span><span style="color:#F97583;" data-v-8c9498c0> =</span><span style="color:#F97583;" data-v-8c9498c0> await</span><span style="color:#F97583;" data-v-8c9498c0> new</span><span style="color:#79B8FF;" data-v-8c9498c0> Promise</span><span style="color:#E1E4E8;" data-v-8c9498c0>((</span><span style="color:#FFAB70;" data-v-8c9498c0>resolve</span><span style="color:#E1E4E8;" data-v-8c9498c0>, </span><span style="color:#FFAB70;" data-v-8c9498c0>reject</span><span style="color:#E1E4E8;" data-v-8c9498c0>) </span><span style="color:#F97583;" data-v-8c9498c0>=&gt;</span><span style="color:#E1E4E8;" data-v-8c9498c0> {</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>    worker.</span><span style="color:#B392F0;" data-v-8c9498c0>on</span><span style="color:#E1E4E8;" data-v-8c9498c0>(</span><span style="color:#9ECBFF;" data-v-8c9498c0>&#39;message&#39;</span><span style="color:#E1E4E8;" data-v-8c9498c0>, resolve)</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>    worker.</span><span style="color:#B392F0;" data-v-8c9498c0>on</span><span style="color:#E1E4E8;" data-v-8c9498c0>(</span><span style="color:#9ECBFF;" data-v-8c9498c0>&#39;error&#39;</span><span style="color:#E1E4E8;" data-v-8c9498c0>, reject)</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>    worker.</span><span style="color:#B392F0;" data-v-8c9498c0>on</span><span style="color:#E1E4E8;" data-v-8c9498c0>(</span><span style="color:#9ECBFF;" data-v-8c9498c0>&#39;exit&#39;</span><span style="color:#E1E4E8;" data-v-8c9498c0>, (</span><span style="color:#FFAB70;" data-v-8c9498c0>code</span><span style="color:#E1E4E8;" data-v-8c9498c0>) </span><span style="color:#F97583;" data-v-8c9498c0>=&gt;</span><span style="color:#E1E4E8;" data-v-8c9498c0> {</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>      console.</span><span style="color:#B392F0;" data-v-8c9498c0>log</span><span style="color:#E1E4E8;" data-v-8c9498c0>(</span><span style="color:#9ECBFF;" data-v-8c9498c0>&#39;worker exit&#39;</span><span style="color:#E1E4E8;" data-v-8c9498c0>, code)</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>    })</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>  })</span></span>
+<span class="line" data-v-8c9498c0></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>  console.</span><span style="color:#B392F0;" data-v-8c9498c0>log</span><span style="color:#E1E4E8;" data-v-8c9498c0>(result)</span></span>
+<span class="line" data-v-8c9498c0></span>
+<span class="line" data-v-8c9498c0><span style="color:#F97583;" data-v-8c9498c0>  await</span><span style="color:#F97583;" data-v-8c9498c0> new</span><span style="color:#79B8FF;" data-v-8c9498c0> Promise</span><span style="color:#E1E4E8;" data-v-8c9498c0>((</span><span style="color:#FFAB70;" data-v-8c9498c0>r</span><span style="color:#E1E4E8;" data-v-8c9498c0>) </span><span style="color:#F97583;" data-v-8c9498c0>=&gt;</span><span style="color:#B392F0;" data-v-8c9498c0> setTimeout</span><span style="color:#E1E4E8;" data-v-8c9498c0>(r, </span><span style="color:#79B8FF;" data-v-8c9498c0>1000</span><span style="color:#E1E4E8;" data-v-8c9498c0>))</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>}</span></span></code></pre><pre class="shiki github-dark" style="background-color:#252423;color:#e1e4e8;" tabindex="0" data-v-8c9498c0><code data-v-8c9498c0><span class="line" data-v-8c9498c0><span style="color:#6A737D;" data-v-8c9498c0>// f.mjs</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#F97583;" data-v-8c9498c0>import</span><span style="color:#E1E4E8;" data-v-8c9498c0> { workerData, parentPort } </span><span style="color:#F97583;" data-v-8c9498c0>from</span><span style="color:#9ECBFF;" data-v-8c9498c0> &#39;node:worker_threads&#39;</span></span>
+<span class="line" data-v-8c9498c0></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>parentPort.</span><span style="color:#B392F0;" data-v-8c9498c0>postMessage</span><span style="color:#E1E4E8;" data-v-8c9498c0>(workerData </span><span style="color:#F97583;" data-v-8c9498c0>*</span><span style="color:#E1E4E8;" data-v-8c9498c0> workerData)</span></span></code></pre><p data-v-8c9498c0>StackBlitz: <a href="https://stackblitz.com/edit/node-hr1nxh?file=index.mjs,f.mjs" data-v-8c9498c0>https://stackblitz.com/edit/node-hr1nxh?file=index.mjs,f.mjs</a></p><p data-v-8c9498c0>Observations:</p><ul data-v-8c9498c0><li data-v-8c9498c0>ESM just works.</li><li data-v-8c9498c0>They don’t share the same module cache.</li><li data-v-8c9498c0>Files are always loaded, so if I changed <code data-v-8c9498c0>f.mjs</code>, the next loop iteration would load the new version.</li></ul><!--]--></div>
+        </div>
+      </main>
+      <footer>
+        <div
+          class="notes-layout-container mx-auto py-4 px-6 text-#8b8685 text-right text-sm"
+          id="footerContents"
+        >
+          <notes-page-footer></notes-page-footer>
+        </div>
+      </footer>
+    </div>
+    <script>
+window.precompiledNoteBehavior = function(require, exports, module, Vue) {"use strict";Object.defineProperty(exports, "__esModule", {value: true});const __sfc__ = {};
+var _vue = require('vue');
+
+const _withScopeId = n => (_vue.pushScopeId.call(void 0, "data-v-8c9498c0"),n=n(),_vue.popScopeId.call(void 0, ),n)
+const _hoisted_1 = /*#__PURE__*/_vue.createStaticVNode.call(void 0, "<p data-v-8c9498c0>I played around with <a href=\"https://nodejs.org/docs/latest-v16.x/api/worker_threads.html\" data-v-8c9498c0>worker_threads</a> in <a href=\"Nodejs\" data-v-8c9498c0>Node.js</a>. This note documents some of my observations.</p><p data-v-8c9498c0>I am using the following code:</p><pre class=\"shiki github-dark\" style=\"background-color:#252423;color:#e1e4e8;\" tabindex=\"0\" data-v-8c9498c0><code data-v-8c9498c0><span class=\"line\" data-v-8c9498c0><span style=\"color:#6A737D;\" data-v-8c9498c0>// index.mjs</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#F97583;\" data-v-8c9498c0>import</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> { Worker } </span><span style=\"color:#F97583;\" data-v-8c9498c0>from</span><span style=\"color:#9ECBFF;\" data-v-8c9498c0> &#39;node:worker_threads&#39;</span></span>\n<span class=\"line\" data-v-8c9498c0></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#F97583;\" data-v-8c9498c0>for</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> (;;) {</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#F97583;\" data-v-8c9498c0>  const</span><span style=\"color:#79B8FF;\" data-v-8c9498c0> worker</span><span style=\"color:#F97583;\" data-v-8c9498c0> =</span><span style=\"color:#F97583;\" data-v-8c9498c0> new</span><span style=\"color:#B392F0;\" data-v-8c9498c0> Worker</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>(</span><span style=\"color:#9ECBFF;\" data-v-8c9498c0>&#39;./f.mjs&#39;</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>, {</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>    workerData: </span><span style=\"color:#79B8FF;\" data-v-8c9498c0>10</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>,</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>  })</span></span>\n<span class=\"line\" data-v-8c9498c0></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#F97583;\" data-v-8c9498c0>  const</span><span style=\"color:#79B8FF;\" data-v-8c9498c0> result</span><span style=\"color:#F97583;\" data-v-8c9498c0> =</span><span style=\"color:#F97583;\" data-v-8c9498c0> await</span><span style=\"color:#F97583;\" data-v-8c9498c0> new</span><span style=\"color:#79B8FF;\" data-v-8c9498c0> Promise</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>((</span><span style=\"color:#FFAB70;\" data-v-8c9498c0>resolve</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>, </span><span style=\"color:#FFAB70;\" data-v-8c9498c0>reject</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>) </span><span style=\"color:#F97583;\" data-v-8c9498c0>=&gt;</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> {</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>    worker.</span><span style=\"color:#B392F0;\" data-v-8c9498c0>on</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>(</span><span style=\"color:#9ECBFF;\" data-v-8c9498c0>&#39;message&#39;</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>, resolve)</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>    worker.</span><span style=\"color:#B392F0;\" data-v-8c9498c0>on</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>(</span><span style=\"color:#9ECBFF;\" data-v-8c9498c0>&#39;error&#39;</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>, reject)</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>    worker.</span><span style=\"color:#B392F0;\" data-v-8c9498c0>on</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>(</span><span style=\"color:#9ECBFF;\" data-v-8c9498c0>&#39;exit&#39;</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>, (</span><span style=\"color:#FFAB70;\" data-v-8c9498c0>code</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>) </span><span style=\"color:#F97583;\" data-v-8c9498c0>=&gt;</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> {</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>      console.</span><span style=\"color:#B392F0;\" data-v-8c9498c0>log</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>(</span><span style=\"color:#9ECBFF;\" data-v-8c9498c0>&#39;worker exit&#39;</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>, code)</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>    })</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>  })</span></span>\n<span class=\"line\" data-v-8c9498c0></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>  console.</span><span style=\"color:#B392F0;\" data-v-8c9498c0>log</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>(result)</span></span>\n<span class=\"line\" data-v-8c9498c0></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#F97583;\" data-v-8c9498c0>  await</span><span style=\"color:#F97583;\" data-v-8c9498c0> new</span><span style=\"color:#79B8FF;\" data-v-8c9498c0> Promise</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>((</span><span style=\"color:#FFAB70;\" data-v-8c9498c0>r</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>) </span><span style=\"color:#F97583;\" data-v-8c9498c0>=&gt;</span><span style=\"color:#B392F0;\" data-v-8c9498c0> setTimeout</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>(r, </span><span style=\"color:#79B8FF;\" data-v-8c9498c0>1000</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>))</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>}</span></span></code></pre><pre class=\"shiki github-dark\" style=\"background-color:#252423;color:#e1e4e8;\" tabindex=\"0\" data-v-8c9498c0><code data-v-8c9498c0><span class=\"line\" data-v-8c9498c0><span style=\"color:#6A737D;\" data-v-8c9498c0>// f.mjs</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#F97583;\" data-v-8c9498c0>import</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> { workerData, parentPort } </span><span style=\"color:#F97583;\" data-v-8c9498c0>from</span><span style=\"color:#9ECBFF;\" data-v-8c9498c0> &#39;node:worker_threads&#39;</span></span>\n<span class=\"line\" data-v-8c9498c0></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>parentPort.</span><span style=\"color:#B392F0;\" data-v-8c9498c0>postMessage</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>(workerData </span><span style=\"color:#F97583;\" data-v-8c9498c0>*</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> workerData)</span></span></code></pre><p data-v-8c9498c0>StackBlitz: <a href=\"https://stackblitz.com/edit/node-hr1nxh?file=index.mjs,f.mjs\" data-v-8c9498c0>https://stackblitz.com/edit/node-hr1nxh?file=index.mjs,f.mjs</a></p><p data-v-8c9498c0>Observations:</p><ul data-v-8c9498c0><li data-v-8c9498c0>ESM just works.</li><li data-v-8c9498c0>They don’t share the same module cache.</li><li data-v-8c9498c0>Files are always loaded, so if I changed <code data-v-8c9498c0>f.mjs</code>, the next loop iteration would load the new version.</li></ul>", 7)
+function render(_ctx, _cache) {
+  return _hoisted_1
+}
+__sfc__.render = render
+__sfc__.__scopeId = "data-v-8c9498c0"
+__sfc__.__file = "Note.vue"
+exports. default = __sfc__};
+window.precompiledFrontMatter = {"public":true,"title":"Observations from using Node.js worker_threads with ESM","aliases":["20220727T084923Z8008"]};
+</script>
+  </body>
+</html>

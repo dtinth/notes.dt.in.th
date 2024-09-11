@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html data-precompiled=true lang="en" data-dtinth="true">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Adding some interactivity to my notes | notes.dt.in.th</title><meta property="og:title" content="Adding some interactivity to my notes" data-source="note">
+<meta property="og:image" content="https://screenshot.source.in.th/image/_/notes/NotesInteractivity" data-source="note">
+<meta property="og:image:width" content="1800" data-source="note">
+<meta property="og:image:height" content="1680" data-source="note">
+<link rel="canonical" href="https://notes.dt.in.th/NotesInteractivity" data-source="note"><style id="note-styles">/* layer: default */
+.static[data-v-8c9498c0]{position:static;}
+.contents[data-v-8c9498c0]{display:contents;}</style>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/iconify-icon@2.1.0/dist/iconify-icon.min.js"
+      integrity="sha256-dY2Ug42wyv3rl+sLVKEg3jbPs8f+hi7tmJ836AxVDwI="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/blurhash-image@1.0.1/blurhash-image.min.js"
+      integrity="sha256-qrUUgTGk7xA7iVCwraHNQjwy2JryA0K4L3DL4qidagQ="
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" crossorigin src="/runtime/index.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/supabase-CjkNZD6A.js">
+    <link rel="stylesheet" crossorigin href="/runtime/index.css">
+  </head>
+  <body class="bg-#252423 text-#e9e8e7 antialiased">
+    <header class="h-[58px] bg-#090807 border-b border-#454443 z-20 flex">
+      <div class="flex items-center pl-[18px] flex-none">
+        <a
+          class="flex items-center text-#8b8685 hover:text-#ffffbb text-lg"
+          href="/"
+          >notes.dt.in.th</a
+        >
+      </div>
+      <div
+        class="flex-1 flex items-center text-#8b8685 [&_a:hover]:text-#ffffbb overflow-hidden"
+        id="headerMiddle"
+      >
+        <div class="px-2 flex-none">›</div><div class="truncate"><a title="About notes.dt.in.th" href="AboutNotes">About notes.dt.in.th</a></div>
+      </div>
+      <div
+        class="flex items-center px-[18px] flex-none gap-4"
+        id="headerToolbar"
+      ></div>
+    </header>
+    <div class="h-entry">
+      <main class="bg-#353433" id="main">
+        <div class="notes-layout-container mx-auto p-6 py-12" id="mainContents">
+          <div class="prose e-content" id="noteContents"><!--[--><p data-v-8c9498c0><strong data-v-8c9498c0>How about some interactivity inside a <a href="AboutNotes" data-v-8c9498c0>note</a>?</strong></p><p data-v-8c9498c0><button disabled data-v-8c9498c0>0</button></p><p data-v-8c9498c0>...and here&#39;s the code that implements the above button:</p><pre class="shiki github-dark" style="background-color:#252423;color:#e1e4e8;" tabindex="0" data-v-8c9498c0><code data-v-8c9498c0><span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>&lt;</span><span style="color:#85E89D;" data-v-8c9498c0>p</span><span style="color:#E1E4E8;" data-v-8c9498c0>&gt;</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>  &lt;</span><span style="color:#85E89D;" data-v-8c9498c0>button</span><span style="color:#B392F0;" data-v-8c9498c0> @click</span><span style="color:#E1E4E8;" data-v-8c9498c0>=</span><span style="color:#9ECBFF;" data-v-8c9498c0>&quot;count++&quot;</span><span style="color:#B392F0;" data-v-8c9498c0> :disabled</span><span style="color:#E1E4E8;" data-v-8c9498c0>=</span><span style="color:#9ECBFF;" data-v-8c9498c0>&quot;!mounted&quot;</span><span style="color:#E1E4E8;" data-v-8c9498c0>&gt;0&lt;/</span><span style="color:#85E89D;" data-v-8c9498c0>button</span><span style="color:#E1E4E8;" data-v-8c9498c0>&gt;</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>&lt;/</span><span style="color:#85E89D;" data-v-8c9498c0>p</span><span style="color:#E1E4E8;" data-v-8c9498c0>&gt;</span></span>
+<span class="line" data-v-8c9498c0></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>&lt;</span><span style="color:#85E89D;" data-v-8c9498c0>script</span><span style="color:#E1E4E8;" data-v-8c9498c0>&gt;</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#F97583;" data-v-8c9498c0>  export</span><span style="color:#F97583;" data-v-8c9498c0> default</span><span style="color:#E1E4E8;" data-v-8c9498c0> {</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#B392F0;" data-v-8c9498c0>    setup</span><span style="color:#E1E4E8;" data-v-8c9498c0>() {</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#F97583;" data-v-8c9498c0>      const</span><span style="color:#79B8FF;" data-v-8c9498c0> count</span><span style="color:#F97583;" data-v-8c9498c0> =</span><span style="color:#E1E4E8;" data-v-8c9498c0> Vue.</span><span style="color:#B392F0;" data-v-8c9498c0>ref</span><span style="color:#E1E4E8;" data-v-8c9498c0>(</span><span style="color:#79B8FF;" data-v-8c9498c0>0</span><span style="color:#E1E4E8;" data-v-8c9498c0>)</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#F97583;" data-v-8c9498c0>      const</span><span style="color:#79B8FF;" data-v-8c9498c0> mounted</span><span style="color:#F97583;" data-v-8c9498c0> =</span><span style="color:#E1E4E8;" data-v-8c9498c0> Vue.</span><span style="color:#B392F0;" data-v-8c9498c0>ref</span><span style="color:#E1E4E8;" data-v-8c9498c0>(</span><span style="color:#79B8FF;" data-v-8c9498c0>false</span><span style="color:#E1E4E8;" data-v-8c9498c0>)</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>      Vue.</span><span style="color:#B392F0;" data-v-8c9498c0>onMounted</span><span style="color:#E1E4E8;" data-v-8c9498c0>(() </span><span style="color:#F97583;" data-v-8c9498c0>=&gt;</span><span style="color:#E1E4E8;" data-v-8c9498c0> {</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>        mounted.value </span><span style="color:#F97583;" data-v-8c9498c0>=</span><span style="color:#79B8FF;" data-v-8c9498c0> true</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>      })</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#F97583;" data-v-8c9498c0>      return</span><span style="color:#E1E4E8;" data-v-8c9498c0> { hello: </span><span style="color:#9ECBFF;" data-v-8c9498c0>&#39;Hello, World&#39;</span><span style="color:#E1E4E8;" data-v-8c9498c0>, count, mounted }</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>    },</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>  }</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>&lt;/</span><span style="color:#85E89D;" data-v-8c9498c0>script</span><span style="color:#E1E4E8;" data-v-8c9498c0>&gt;</span></span></code></pre><p data-v-8c9498c0>Here&#39;s how it works:</p><ul data-v-8c9498c0><li data-v-8c9498c0>The server-side code first converts Markdown to HTML using <a href="https://www.npmjs.com/package/@vuepress/markdown" data-v-8c9498c0><code data-v-8c9498c0>@vuepress/markdown</code></a>. It automatically extracts out the <code data-v-8c9498c0>&lt;script&gt;</code> and <code data-v-8c9498c0>&lt;style&gt;</code> tags.</li><li data-v-8c9498c0>The HTML is then parsed as a Vue template and compiled into <a href="https://v2.vuejs.org/v2/guide/render-function.html" data-v-8c9498c0>render functions</a> using <a href="https://www.npmjs.com/package/vue-template-compiler" data-v-8c9498c0><code data-v-8c9498c0>vue-template-compiler</code></a> as JavaScript source code.</li><li data-v-8c9498c0>The <code data-v-8c9498c0>&lt;script&gt;</code> tag is compiled using <a href="https://esbuild.github.io/" data-v-8c9498c0>esbuild</a> into a JavaScript source code.</li><li data-v-8c9498c0>The resulting source codes are then used to assemble a Vue component. This happens both on the client and on the server. The server then renders a static HTML version of the component, and the client then hydrates it.</li></ul><figure slot="right" data-v-8c9498c0><p data-v-8c9498c0><img src="https://static.dt.in.th/uploads/2022/07/24/vuecomp2.webp" alt="" data-v-8c9498c0></p><figcaption data-v-8c9498c0>The compilation process</figcaption></figure><hr data-v-8c9498c0><details data-v-8c9498c0><summary data-v-8c9498c0>Archive — How it works in the previous version of notes.dt.in.th (Nuxt-based)</summary><p data-v-8c9498c0>Here&#39;s how it works:</p><ul data-v-8c9498c0><li data-v-8c9498c0><p data-v-8c9498c0><strong data-v-8c9498c0>In the contents API,</strong> when the Markdown file is parsed, <code data-v-8c9498c0>@vuepress/markdown</code> automatically extracts out the <code data-v-8c9498c0>&lt;script&gt;</code> and <code data-v-8c9498c0>&lt;style&gt;</code> tags. I assume that there will be only one <code data-v-8c9498c0>&lt;script&gt;</code> tag. If one is found, then the contents of the <code data-v-8c9498c0>&lt;script&gt;</code> tag is compiled down to ES6 + CommonJS using <a href="https://esbuild.github.io/" data-v-8c9498c0>esbuild</a>. This compiled JavaScript is then returned over the wire.</p></li><li data-v-8c9498c0><p data-v-8c9498c0><strong data-v-8c9498c0>In the Nuxt app,</strong> if a component module is included in the response, Nuxt will compile that code as part of the Vue component, on-the-fly, at runtime.</p></li></ul><p data-v-8c9498c0>This results in the following markup:</p><p data-v-8c9498c0><img src="https://static.dt.in.th/uploads/2020/12/11/journal-script-ssr.png" alt="" data-v-8c9498c0></p><p data-v-8c9498c0>For full changes, see the <a href="https://github.com/dtinth/notes.dt.in.th/pull/1/files" data-v-8c9498c0>pull request</a>.</p></details><!--]--></div>
+        </div>
+      </main>
+      <footer>
+        <div
+          class="notes-layout-container mx-auto py-4 px-6 text-#8b8685 text-right text-sm"
+          id="footerContents"
+        >
+          <notes-page-footer></notes-page-footer>
+        </div>
+      </footer>
+    </div>
+    <script>
+window.precompiledNoteBehavior = function(require, exports, module, Vue) {"use strict";Object.defineProperty(exports, "__esModule", {value: true});/* Analyzed bindings: {
+  "hello": "setup-maybe-ref",
+  "count": "setup-maybe-ref",
+  "mounted": "setup-maybe-ref"
+} */
+
+const __sfc__ = {
+  setup() {
+    const count = Vue.ref(0)
+    const mounted = Vue.ref(false)
+    Vue.onMounted(() => {
+      mounted.value = true
+    })
+    return { hello: 'Hello, World', count, mounted }
+  }
+}
+;
+var _vue = require('vue');
+
+const _withScopeId = n => (_vue.pushScopeId.call(void 0, "data-v-8c9498c0"),n=n(),_vue.popScopeId.call(void 0, ),n)
+const _hoisted_1 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_vue.createElementVNode.call(void 0, "p", null, [
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "strong", null, [
+    /*#__PURE__*/_vue.createTextVNode.call(void 0, "How about some interactivity inside a "),
+    /*#__PURE__*/_vue.createElementVNode.call(void 0, "a", { href: "AboutNotes" }, "note"),
+    /*#__PURE__*/_vue.createTextVNode.call(void 0, "?")
+  ])
+], -1 /* HOISTED */))
+const _hoisted_2 = ["disabled"]
+const _hoisted_3 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_vue.createElementVNode.call(void 0, "p", null, "...and here's the code that implements the above button:", -1 /* HOISTED */))
+const _hoisted_4 = {
+  class: "shiki github-dark",
+  style: {"background-color":"#252423","color":"#e1e4e8"},
+  tabindex: "0"
+}
+const _hoisted_5 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { class: "line" }, [
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#E1E4E8"} }, "<"),
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#85E89D"} }, "p"),
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#E1E4E8"} }, ">")
+], -1 /* HOISTED */))
+const _hoisted_6 = { class: "line" }
+const _hoisted_7 = /*#__PURE__*/_vue.createStaticVNode.call(void 0, "<span style=\"color:#E1E4E8;\" data-v-8c9498c0>  &lt;</span><span style=\"color:#85E89D;\" data-v-8c9498c0>button</span><span style=\"color:#B392F0;\" data-v-8c9498c0> @click</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>=</span><span style=\"color:#9ECBFF;\" data-v-8c9498c0>&quot;count++&quot;</span><span style=\"color:#B392F0;\" data-v-8c9498c0> :disabled</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>=</span><span style=\"color:#9ECBFF;\" data-v-8c9498c0>&quot;!mounted&quot;</span>", 8)
+const _hoisted_15 = { style: {"color":"#E1E4E8"} }
+const _hoisted_16 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#85E89D"} }, "button", -1 /* HOISTED */))
+const _hoisted_17 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#E1E4E8"} }, ">", -1 /* HOISTED */))
+const _hoisted_18 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { class: "line" }, [
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#E1E4E8"} }, "</"),
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#85E89D"} }, "p"),
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#E1E4E8"} }, ">")
+], -1 /* HOISTED */))
+const _hoisted_19 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { class: "line" }, null, -1 /* HOISTED */))
+const _hoisted_20 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { class: "line" }, [
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#E1E4E8"} }, "<"),
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#85E89D"} }, "script"),
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#E1E4E8"} }, ">")
+], -1 /* HOISTED */))
+const _hoisted_21 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { class: "line" }, [
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#F97583"} }, "  export"),
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#F97583"} }, " default"),
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#E1E4E8"} }, " {")
+], -1 /* HOISTED */))
+const _hoisted_22 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { class: "line" }, [
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#B392F0"} }, "    setup"),
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#E1E4E8"} }, "() {")
+], -1 /* HOISTED */))
+const _hoisted_23 = /*#__PURE__*/_vue.createStaticVNode.call(void 0, "<span class=\"line\" data-v-8c9498c0><span style=\"color:#F97583;\" data-v-8c9498c0>      const</span><span style=\"color:#79B8FF;\" data-v-8c9498c0> count</span><span style=\"color:#F97583;\" data-v-8c9498c0> =</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> Vue.</span><span style=\"color:#B392F0;\" data-v-8c9498c0>ref</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>(</span><span style=\"color:#79B8FF;\" data-v-8c9498c0>0</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>)</span></span>", 1)
+const _hoisted_24 = /*#__PURE__*/_vue.createStaticVNode.call(void 0, "<span class=\"line\" data-v-8c9498c0><span style=\"color:#F97583;\" data-v-8c9498c0>      const</span><span style=\"color:#79B8FF;\" data-v-8c9498c0> mounted</span><span style=\"color:#F97583;\" data-v-8c9498c0> =</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> Vue.</span><span style=\"color:#B392F0;\" data-v-8c9498c0>ref</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>(</span><span style=\"color:#79B8FF;\" data-v-8c9498c0>false</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>)</span></span>", 1)
+const _hoisted_25 = /*#__PURE__*/_vue.createStaticVNode.call(void 0, "<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>      Vue.</span><span style=\"color:#B392F0;\" data-v-8c9498c0>onMounted</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>(() </span><span style=\"color:#F97583;\" data-v-8c9498c0>=&gt;</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> {</span></span>", 1)
+const _hoisted_26 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { class: "line" }, [
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#E1E4E8"} }, "        mounted.value "),
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#F97583"} }, "="),
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#79B8FF"} }, " true")
+], -1 /* HOISTED */))
+const _hoisted_27 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { class: "line" }, [
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#E1E4E8"} }, "      })")
+], -1 /* HOISTED */))
+const _hoisted_28 = /*#__PURE__*/_vue.createStaticVNode.call(void 0, "<span class=\"line\" data-v-8c9498c0><span style=\"color:#F97583;\" data-v-8c9498c0>      return</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> { hello: </span><span style=\"color:#9ECBFF;\" data-v-8c9498c0>&#39;Hello, World&#39;</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>, count, mounted }</span></span>", 1)
+const _hoisted_29 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { class: "line" }, [
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#E1E4E8"} }, "    },")
+], -1 /* HOISTED */))
+const _hoisted_30 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { class: "line" }, [
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#E1E4E8"} }, "  }")
+], -1 /* HOISTED */))
+const _hoisted_31 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { class: "line" }, [
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#E1E4E8"} }, "</"),
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#85E89D"} }, "script"),
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#E1E4E8"} }, ">")
+], -1 /* HOISTED */))
+const _hoisted_32 = /*#__PURE__*/_vue.createStaticVNode.call(void 0, "<p data-v-8c9498c0>Here&#39;s how it works:</p><ul data-v-8c9498c0><li data-v-8c9498c0>The server-side code first converts Markdown to HTML using <a href=\"https://www.npmjs.com/package/@vuepress/markdown\" data-v-8c9498c0><code data-v-8c9498c0>@vuepress/markdown</code></a>. It automatically extracts out the <code data-v-8c9498c0>&lt;script&gt;</code> and <code data-v-8c9498c0>&lt;style&gt;</code> tags.</li><li data-v-8c9498c0>The HTML is then parsed as a Vue template and compiled into <a href=\"https://v2.vuejs.org/v2/guide/render-function.html\" data-v-8c9498c0>render functions</a> using <a href=\"https://www.npmjs.com/package/vue-template-compiler\" data-v-8c9498c0><code data-v-8c9498c0>vue-template-compiler</code></a> as JavaScript source code.</li><li data-v-8c9498c0>The <code data-v-8c9498c0>&lt;script&gt;</code> tag is compiled using <a href=\"https://esbuild.github.io/\" data-v-8c9498c0>esbuild</a> into a JavaScript source code.</li><li data-v-8c9498c0>The resulting source codes are then used to assemble a Vue component. This happens both on the client and on the server. The server then renders a static HTML version of the component, and the client then hydrates it.</li></ul><figure slot=\"right\" data-v-8c9498c0><p data-v-8c9498c0><img src=\"https://static.dt.in.th/uploads/2022/07/24/vuecomp2.webp\" alt=\"\" data-v-8c9498c0></p><figcaption data-v-8c9498c0>The compilation process</figcaption></figure><hr data-v-8c9498c0><details data-v-8c9498c0><summary data-v-8c9498c0>Archive — How it works in the previous version of notes.dt.in.th (Nuxt-based)</summary><p data-v-8c9498c0>Here&#39;s how it works:</p><ul data-v-8c9498c0><li data-v-8c9498c0><p data-v-8c9498c0><strong data-v-8c9498c0>In the contents API,</strong> when the Markdown file is parsed, <code data-v-8c9498c0>@vuepress/markdown</code> automatically extracts out the <code data-v-8c9498c0>&lt;script&gt;</code> and <code data-v-8c9498c0>&lt;style&gt;</code> tags. I assume that there will be only one <code data-v-8c9498c0>&lt;script&gt;</code> tag. If one is found, then the contents of the <code data-v-8c9498c0>&lt;script&gt;</code> tag is compiled down to ES6 + CommonJS using <a href=\"https://esbuild.github.io/\" data-v-8c9498c0>esbuild</a>. This compiled JavaScript is then returned over the wire.</p></li><li data-v-8c9498c0><p data-v-8c9498c0><strong data-v-8c9498c0>In the Nuxt app,</strong> if a component module is included in the response, Nuxt will compile that code as part of the Vue component, on-the-fly, at runtime.</p></li></ul><p data-v-8c9498c0>This results in the following markup:</p><p data-v-8c9498c0><img src=\"https://static.dt.in.th/uploads/2020/12/11/journal-script-ssr.png\" alt=\"\" data-v-8c9498c0></p><p data-v-8c9498c0>For full changes, see the <a href=\"https://github.com/dtinth/notes.dt.in.th/pull/1/files\" data-v-8c9498c0>pull request</a>.</p></details>", 5)
+function render(_ctx, _cache, $props, $setup, $data, $options) {
+  return (_vue.openBlock.call(void 0, ), _vue.createElementBlock.call(void 0, _vue.Fragment, null, [
+    _hoisted_1,
+    _vue.createElementVNode.call(void 0, "p", null, [
+      _vue.createElementVNode.call(void 0, "button", {
+        onClick: _cache[0] || (_cache[0] = $event => ($setup.count++)),
+        disabled: !$setup.mounted
+      }, _vue.toDisplayString.call(void 0, $setup.count), 9 /* TEXT, PROPS */, _hoisted_2)
+    ]),
+    _hoisted_3,
+    _vue.createElementVNode.call(void 0, "pre", _hoisted_4, [
+      _vue.createElementVNode.call(void 0, "code", null, [
+        _hoisted_5,
+        _vue.createTextVNode.call(void 0, "\n"),
+        _vue.createElementVNode.call(void 0, "span", _hoisted_6, [
+          _hoisted_7,
+          _vue.createElementVNode.call(void 0, "span", _hoisted_15, ">" + _vue.toDisplayString.call(void 0, $setup.count) + "</", 1 /* TEXT */),
+          _hoisted_16,
+          _hoisted_17
+        ]),
+        _vue.createTextVNode.call(void 0, "\n"),
+        _hoisted_18,
+        _vue.createTextVNode.call(void 0, "\n"),
+        _hoisted_19,
+        _vue.createTextVNode.call(void 0, "\n"),
+        _hoisted_20,
+        _vue.createTextVNode.call(void 0, "\n"),
+        _hoisted_21,
+        _vue.createTextVNode.call(void 0, "\n"),
+        _hoisted_22,
+        _vue.createTextVNode.call(void 0, "\n"),
+        _hoisted_23,
+        _vue.createTextVNode.call(void 0, "\n"),
+        _hoisted_24,
+        _vue.createTextVNode.call(void 0, "\n"),
+        _hoisted_25,
+        _vue.createTextVNode.call(void 0, "\n"),
+        _hoisted_26,
+        _vue.createTextVNode.call(void 0, "\n"),
+        _hoisted_27,
+        _vue.createTextVNode.call(void 0, "\n"),
+        _hoisted_28,
+        _vue.createTextVNode.call(void 0, "\n"),
+        _hoisted_29,
+        _vue.createTextVNode.call(void 0, "\n"),
+        _hoisted_30,
+        _vue.createTextVNode.call(void 0, "\n"),
+        _hoisted_31
+      ])
+    ]),
+    _hoisted_32
+  ], 64 /* STABLE_FRAGMENT */))
+}
+__sfc__.render = render
+__sfc__.__scopeId = "data-v-8c9498c0"
+__sfc__.__file = "Note.vue"
+exports. default = __sfc__};
+window.precompiledFrontMatter = {"public":true,"title":"Adding some interactivity to my notes","aliases":["20201211T195900Z2817"]};
+</script>
+  </body>
+</html>

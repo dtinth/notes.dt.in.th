@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html data-precompiled=true lang="en" data-dtinth="true">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Getting a long-lived access token for a Facebook page | notes.dt.in.th</title><meta property="og:title" content="Getting a long-lived access token for a Facebook page" data-source="note">
+<meta property="og:image" content="https://screenshot.source.in.th/image/_/notes/FacebookPageLongLivedAccessToken" data-source="note">
+<meta property="og:image:width" content="1800" data-source="note">
+<meta property="og:image:height" content="1680" data-source="note">
+<link rel="canonical" href="https://notes.dt.in.th/FacebookPageLongLivedAccessToken" data-source="note">
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/iconify-icon@2.1.0/dist/iconify-icon.min.js"
+      integrity="sha256-dY2Ug42wyv3rl+sLVKEg3jbPs8f+hi7tmJ836AxVDwI="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/blurhash-image@1.0.1/blurhash-image.min.js"
+      integrity="sha256-qrUUgTGk7xA7iVCwraHNQjwy2JryA0K4L3DL4qidagQ="
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" crossorigin src="/runtime/index.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/supabase-CjkNZD6A.js">
+    <link rel="stylesheet" crossorigin href="/runtime/index.css">
+  </head>
+  <body class="bg-#252423 text-#e9e8e7 antialiased">
+    <header class="h-[58px] bg-#090807 border-b border-#454443 z-20 flex">
+      <div class="flex items-center pl-[18px] flex-none">
+        <a
+          class="flex items-center text-#8b8685 hover:text-#ffffbb text-lg"
+          href="/"
+          >notes.dt.in.th</a
+        >
+      </div>
+      <div
+        class="flex-1 flex items-center text-#8b8685 [&_a:hover]:text-#ffffbb overflow-hidden"
+        id="headerMiddle"
+      >
+        <div class="px-2 flex-none">›</div><div class="truncate"><a title="Recent writings" href="Recent">Recent writings</a></div>
+      </div>
+      <div
+        class="flex items-center px-[18px] flex-none gap-4"
+        id="headerToolbar"
+      ></div>
+    </header>
+    <div class="h-entry">
+      <main class="bg-#353433" id="main">
+        <div class="notes-layout-container mx-auto p-6 py-12" id="mainContents">
+          <div class="prose e-content" id="noteContents"><!--[--><div class="lead"><p>To get a <strong>long-lived access token for a Facebook page that does not expire</strong>:</p></div><h2 id="overview"><a aria-hidden="true" tabindex="-1" href="#overview"><span class="icon icon-link"></span></a>Overview</h2><p><img src="https://im.dt.in.th/ipfs/bafybeiehqutj5geel4urecqsqou4awpfe6nounmksqlmn4ctlrwln2atmm/image.webp" alt=""></p><ol><li>Get a “short-lived user access token”</li><li>Exchange it for a “long-lived user access token”</li><li>Use the “long-lived user access token” to obtain a “long-lived page access token”</li></ol><h2 id="get-a-short-lived-user-access-token"><a aria-hidden="true" tabindex="-1" href="#get-a-short-lived-user-access-token"><span class="icon icon-link"></span></a>Get a “short-lived user access token”</h2><ol><li><p>Go to <a href="https://developers.facebook.com/tools/explorer/">Graph API Explorer</a></p></li><li><p>Under &quot;Permissions&quot;, select <code>pages_manage_posts</code> and <code>pages_manage_engagement</code></p></li><li><p>Click <strong>Generate Access Token</strong>. You will be prompted to log in and grant permissions. Select the pages you want to use the app with. Once authorized, you will get a user access token that expires in 1 hour.</p></li></ol><h2 id="exchange-it-for-a-long-lived-user-access-token"><a aria-hidden="true" tabindex="-1" href="#exchange-it-for-a-long-lived-user-access-token"><span class="icon icon-link"></span></a>Exchange it for a “long-lived user access token”</h2><ol start="4"><li><p>Copy the short-lived user access token</p></li><li><p>Go to <a href="https://developers.facebook.com/tools/debug/accesstoken/">Access Token Debugger</a>.</p></li><li><p>Paste the access token and click <strong>Debug</strong>.</p></li><li><p>Click <strong>Extend Access Token</strong>. This will generate a long-lived access token that expires in 60 days.</p></li></ol><h2 id="get-a-long-lived-page-access-token"><a aria-hidden="true" tabindex="-1" href="#get-a-long-lived-page-access-token"><span class="icon icon-link"></span></a>Get a “long-lived page access token”</h2><ol start="8"><li><p>Copy the long-lived access token</p></li><li><p>Paste it back into the Graph API Explorer.</p></li><li><p>Using the explorer, perform a request: GET <code>me/accounts</code>. You will find the page ID, page name, and access token.</p></li></ol><p>Since the access token is created from the long-lived access token, it will not expire (even if the user access token expires after 60 days).</p><!--]--></div>
+        </div>
+      </main>
+      <footer>
+        <div
+          class="notes-layout-container mx-auto py-4 px-6 text-#8b8685 text-right text-sm"
+          id="footerContents"
+        >
+          <notes-page-footer></notes-page-footer>
+        </div>
+      </footer>
+    </div>
+    <script>
+window.precompiledNoteBehavior = function(require, exports, module, Vue) {"use strict";Object.defineProperty(exports, "__esModule", {value: true});const __sfc__ = {};
+var _vue = require('vue');
+
+const _hoisted_1 = /*#__PURE__*/_vue.createStaticVNode.call(void 0, "<div class=\"lead\"><p>To get a <strong>long-lived access token for a Facebook page that does not expire</strong>:</p></div><h2 id=\"overview\"><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#overview\"><span class=\"icon icon-link\"></span></a>Overview</h2><p><img src=\"https://im.dt.in.th/ipfs/bafybeiehqutj5geel4urecqsqou4awpfe6nounmksqlmn4ctlrwln2atmm/image.webp\" alt=\"\"></p><ol><li>Get a “short-lived user access token”</li><li>Exchange it for a “long-lived user access token”</li><li>Use the “long-lived user access token” to obtain a “long-lived page access token”</li></ol><h2 id=\"get-a-short-lived-user-access-token\"><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#get-a-short-lived-user-access-token\"><span class=\"icon icon-link\"></span></a>Get a “short-lived user access token”</h2><ol><li><p>Go to <a href=\"https://developers.facebook.com/tools/explorer/\">Graph API Explorer</a></p></li><li><p>Under &quot;Permissions&quot;, select <code>pages_manage_posts</code> and <code>pages_manage_engagement</code></p></li><li><p>Click <strong>Generate Access Token</strong>. You will be prompted to log in and grant permissions. Select the pages you want to use the app with. Once authorized, you will get a user access token that expires in 1 hour.</p></li></ol><h2 id=\"exchange-it-for-a-long-lived-user-access-token\"><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#exchange-it-for-a-long-lived-user-access-token\"><span class=\"icon icon-link\"></span></a>Exchange it for a “long-lived user access token”</h2><ol start=\"4\"><li><p>Copy the short-lived user access token</p></li><li><p>Go to <a href=\"https://developers.facebook.com/tools/debug/accesstoken/\">Access Token Debugger</a>.</p></li><li><p>Paste the access token and click <strong>Debug</strong>.</p></li><li><p>Click <strong>Extend Access Token</strong>. This will generate a long-lived access token that expires in 60 days.</p></li></ol><h2 id=\"get-a-long-lived-page-access-token\"><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#get-a-long-lived-page-access-token\"><span class=\"icon icon-link\"></span></a>Get a “long-lived page access token”</h2><ol start=\"8\"><li><p>Copy the long-lived access token</p></li><li><p>Paste it back into the Graph API Explorer.</p></li><li><p>Using the explorer, perform a request: GET <code>me/accounts</code>. You will find the page ID, page name, and access token.</p></li></ol><p>Since the access token is created from the long-lived access token, it will not expire (even if the user access token expires after 60 days).</p>", 11)
+function render(_ctx, _cache) {
+  return _hoisted_1
+}
+__sfc__.render = render
+__sfc__.__file = "Note.vue"
+exports. default = __sfc__};
+window.precompiledFrontMatter = {"public":true,"title":"Getting a long-lived access token for a Facebook page"};
+</script>
+  </body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html data-precompiled=true lang="en" data-dtinth="true">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Using Elysia in Node.js | notes.dt.in.th</title><meta property="og:title" content="Using Elysia in Node.js" data-source="note">
+<meta property="og:image" content="https://screenshot.source.in.th/image/_/notes/ElysiaNode" data-source="note">
+<meta property="og:image:width" content="1800" data-source="note">
+<meta property="og:image:height" content="1680" data-source="note">
+<link rel="canonical" href="https://notes.dt.in.th/ElysiaNode" data-source="note">
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/iconify-icon@2.1.0/dist/iconify-icon.min.js"
+      integrity="sha256-dY2Ug42wyv3rl+sLVKEg3jbPs8f+hi7tmJ836AxVDwI="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/blurhash-image@1.0.1/blurhash-image.min.js"
+      integrity="sha256-qrUUgTGk7xA7iVCwraHNQjwy2JryA0K4L3DL4qidagQ="
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" crossorigin src="/runtime/index.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/supabase-CjkNZD6A.js">
+    <link rel="stylesheet" crossorigin href="/runtime/index.css">
+  </head>
+  <body class="bg-#252423 text-#e9e8e7 antialiased">
+    <header class="h-[58px] bg-#090807 border-b border-#454443 z-20 flex">
+      <div class="flex items-center pl-[18px] flex-none">
+        <a
+          class="flex items-center text-#8b8685 hover:text-#ffffbb text-lg"
+          href="/"
+          >notes.dt.in.th</a
+        >
+      </div>
+      <div
+        class="flex-1 flex items-center text-#8b8685 [&_a:hover]:text-#ffffbb overflow-hidden"
+        id="headerMiddle"
+      >
+        <div class="px-2 flex-none">›</div><div class="truncate"><a title="JavaScript (topic)" href="JavaScript">JavaScript</a></div><div class="px-2 flex-none">›</div><div class="truncate"><a title="Elysia (topic)" href="Elysia">Elysia</a></div>
+      </div>
+      <div
+        class="flex items-center px-[18px] flex-none gap-4"
+        id="headerToolbar"
+      ></div>
+    </header>
+    <div class="h-entry">
+      <main class="bg-#353433" id="main">
+        <div class="notes-layout-container mx-auto p-6 py-12" id="mainContents">
+          <div class="prose e-content" id="noteContents"><!--[--><h1 id="using-elysia-in-nodejs"><a aria-hidden="true" tabindex="-1" href="#using-elysia-in-nodejs"><span class="icon icon-link"></span></a>Using <a href="Elysia">Elysia</a> in <a href="Nodejs">Node.js</a></h1><p><strong>tl;dr:</strong> Mount Elysia onto Hono and run using <code>tsx</code>.</p><pre class="shiki github-dark" style="background-color:#252423;color:#e1e4e8;" tabindex="0"><code><span class="line"><span style="color:#6A737D;">// app.ts</span></span>
+<span class="line"><span style="color:#F97583;">import</span><span style="color:#E1E4E8;"> { cors } </span><span style="color:#F97583;">from</span><span style="color:#9ECBFF;"> &#39;@elysiajs/cors&#39;</span></span>
+<span class="line"><span style="color:#F97583;">import</span><span style="color:#E1E4E8;"> { Elysia, t } </span><span style="color:#F97583;">from</span><span style="color:#9ECBFF;"> &#39;elysia&#39;</span></span>
+<span class="line"><span style="color:#F97583;">import</span><span style="color:#E1E4E8;"> { serve } </span><span style="color:#F97583;">from</span><span style="color:#9ECBFF;"> &#39;@hono/node-server&#39;</span></span>
+<span class="line"><span style="color:#F97583;">import</span><span style="color:#E1E4E8;"> { Hono } </span><span style="color:#F97583;">from</span><span style="color:#9ECBFF;"> &#39;hono&#39;</span></span>
+<span class="line"><span style="color:#F97583;">import</span><span style="color:#E1E4E8;"> { logger } </span><span style="color:#F97583;">from</span><span style="color:#9ECBFF;"> &#39;hono/logger&#39;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583;">const</span><span style="color:#79B8FF;"> app</span><span style="color:#F97583;"> =</span><span style="color:#F97583;"> new</span><span style="color:#B392F0;"> Elysia</span><span style="color:#E1E4E8;">().</span><span style="color:#B392F0;">use</span><span style="color:#E1E4E8;">(</span><span style="color:#B392F0;">cors</span><span style="color:#E1E4E8;">()).</span><span style="color:#B392F0;">get</span><span style="color:#E1E4E8;">(</span><span style="color:#9ECBFF;">&#39;/&#39;</span><span style="color:#E1E4E8;">, () </span><span style="color:#F97583;">=&gt;</span><span style="color:#9ECBFF;"> &#39;hi&#39;</span><span style="color:#E1E4E8;">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0;">serve</span><span style="color:#E1E4E8;">(</span></span>
+<span class="line"><span style="color:#E1E4E8;">  {</span></span>
+<span class="line"><span style="color:#E1E4E8;">    fetch: </span><span style="color:#F97583;">new</span><span style="color:#B392F0;"> Hono</span><span style="color:#E1E4E8;">().</span><span style="color:#B392F0;">use</span><span style="color:#E1E4E8;">(</span><span style="color:#B392F0;">logger</span><span style="color:#E1E4E8;">()).</span><span style="color:#B392F0;">mount</span><span style="color:#E1E4E8;">(</span><span style="color:#9ECBFF;">&#39;/&#39;</span><span style="color:#E1E4E8;">, app.fetch),</span></span>
+<span class="line"><span style="color:#E1E4E8;">    port: </span><span style="color:#F97583;">+</span><span style="color:#E1E4E8;">process.env.</span><span style="color:#79B8FF;">PORT</span><span style="color:#F97583;"> ||</span><span style="color:#79B8FF;"> 3000</span><span style="color:#E1E4E8;">,</span></span>
+<span class="line"><span style="color:#E1E4E8;">  },</span></span>
+<span class="line"><span style="color:#E1E4E8;">  (</span><span style="color:#FFAB70;">info</span><span style="color:#E1E4E8;">) </span><span style="color:#F97583;">=&gt;</span><span style="color:#E1E4E8;"> {</span></span>
+<span class="line"><span style="color:#E1E4E8;">    console.</span><span style="color:#B392F0;">log</span><span style="color:#E1E4E8;">(</span><span style="color:#9ECBFF;">`Listening on http://${</span><span style="color:#E1E4E8;">info</span><span style="color:#9ECBFF;">.</span><span style="color:#E1E4E8;">address</span><span style="color:#9ECBFF;">}:${</span><span style="color:#E1E4E8;">info</span><span style="color:#9ECBFF;">.</span><span style="color:#E1E4E8;">port</span><span style="color:#9ECBFF;">}`</span><span style="color:#E1E4E8;">)</span></span>
+<span class="line"><span style="color:#E1E4E8;">  }</span></span>
+<span class="line"><span style="color:#E1E4E8;">)</span></span></code></pre><pre class="shiki github-dark" style="background-color:#252423;color:#e1e4e8;" tabindex="0"><code><span class="line"><span style="color:#6A737D;"># Run the app</span></span>
+<span class="line"><span style="color:#B392F0;">tsx</span><span style="color:#9ECBFF;"> app.ts</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D;"># Run the app in watch mode, restarting on file changes</span></span>
+<span class="line"><span style="color:#B392F0;">tsx</span><span style="color:#9ECBFF;"> watch</span><span style="color:#9ECBFF;"> app.ts</span></span></code></pre><!--]--></div>
+        </div>
+      </main>
+      <footer>
+        <div
+          class="notes-layout-container mx-auto py-4 px-6 text-#8b8685 text-right text-sm"
+          id="footerContents"
+        >
+          <notes-page-footer></notes-page-footer>
+        </div>
+      </footer>
+    </div>
+    <script>
+window.precompiledNoteBehavior = function(require, exports, module, Vue) {"use strict";Object.defineProperty(exports, "__esModule", {value: true});const __sfc__ = {};
+var _vue = require('vue');
+
+const _hoisted_1 = /*#__PURE__*/_vue.createStaticVNode.call(void 0, "<h1 id=\"using-elysia-in-nodejs\"><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#using-elysia-in-nodejs\"><span class=\"icon icon-link\"></span></a>Using <a href=\"Elysia\">Elysia</a> in <a href=\"Nodejs\">Node.js</a></h1><p><strong>tl;dr:</strong> Mount Elysia onto Hono and run using <code>tsx</code>.</p><pre class=\"shiki github-dark\" style=\"background-color:#252423;color:#e1e4e8;\" tabindex=\"0\"><code><span class=\"line\"><span style=\"color:#6A737D;\">// app.ts</span></span>\n<span class=\"line\"><span style=\"color:#F97583;\">import</span><span style=\"color:#E1E4E8;\"> { cors } </span><span style=\"color:#F97583;\">from</span><span style=\"color:#9ECBFF;\"> &#39;@elysiajs/cors&#39;</span></span>\n<span class=\"line\"><span style=\"color:#F97583;\">import</span><span style=\"color:#E1E4E8;\"> { Elysia, t } </span><span style=\"color:#F97583;\">from</span><span style=\"color:#9ECBFF;\"> &#39;elysia&#39;</span></span>\n<span class=\"line\"><span style=\"color:#F97583;\">import</span><span style=\"color:#E1E4E8;\"> { serve } </span><span style=\"color:#F97583;\">from</span><span style=\"color:#9ECBFF;\"> &#39;@hono/node-server&#39;</span></span>\n<span class=\"line\"><span style=\"color:#F97583;\">import</span><span style=\"color:#E1E4E8;\"> { Hono } </span><span style=\"color:#F97583;\">from</span><span style=\"color:#9ECBFF;\"> &#39;hono&#39;</span></span>\n<span class=\"line\"><span style=\"color:#F97583;\">import</span><span style=\"color:#E1E4E8;\"> { logger } </span><span style=\"color:#F97583;\">from</span><span style=\"color:#9ECBFF;\"> &#39;hono/logger&#39;</span></span>\n<span class=\"line\"></span>\n<span class=\"line\"><span style=\"color:#F97583;\">const</span><span style=\"color:#79B8FF;\"> app</span><span style=\"color:#F97583;\"> =</span><span style=\"color:#F97583;\"> new</span><span style=\"color:#B392F0;\"> Elysia</span><span style=\"color:#E1E4E8;\">().</span><span style=\"color:#B392F0;\">use</span><span style=\"color:#E1E4E8;\">(</span><span style=\"color:#B392F0;\">cors</span><span style=\"color:#E1E4E8;\">()).</span><span style=\"color:#B392F0;\">get</span><span style=\"color:#E1E4E8;\">(</span><span style=\"color:#9ECBFF;\">&#39;/&#39;</span><span style=\"color:#E1E4E8;\">, () </span><span style=\"color:#F97583;\">=&gt;</span><span style=\"color:#9ECBFF;\"> &#39;hi&#39;</span><span style=\"color:#E1E4E8;\">)</span></span>\n<span class=\"line\"></span>\n<span class=\"line\"><span style=\"color:#B392F0;\">serve</span><span style=\"color:#E1E4E8;\">(</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">  {</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">    fetch: </span><span style=\"color:#F97583;\">new</span><span style=\"color:#B392F0;\"> Hono</span><span style=\"color:#E1E4E8;\">().</span><span style=\"color:#B392F0;\">use</span><span style=\"color:#E1E4E8;\">(</span><span style=\"color:#B392F0;\">logger</span><span style=\"color:#E1E4E8;\">()).</span><span style=\"color:#B392F0;\">mount</span><span style=\"color:#E1E4E8;\">(</span><span style=\"color:#9ECBFF;\">&#39;/&#39;</span><span style=\"color:#E1E4E8;\">, app.fetch),</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">    port: </span><span style=\"color:#F97583;\">+</span><span style=\"color:#E1E4E8;\">process.env.</span><span style=\"color:#79B8FF;\">PORT</span><span style=\"color:#F97583;\"> ||</span><span style=\"color:#79B8FF;\"> 3000</span><span style=\"color:#E1E4E8;\">,</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">  },</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">  (</span><span style=\"color:#FFAB70;\">info</span><span style=\"color:#E1E4E8;\">) </span><span style=\"color:#F97583;\">=&gt;</span><span style=\"color:#E1E4E8;\"> {</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">    console.</span><span style=\"color:#B392F0;\">log</span><span style=\"color:#E1E4E8;\">(</span><span style=\"color:#9ECBFF;\">`Listening on http://${</span><span style=\"color:#E1E4E8;\">info</span><span style=\"color:#9ECBFF;\">.</span><span style=\"color:#E1E4E8;\">address</span><span style=\"color:#9ECBFF;\">}:${</span><span style=\"color:#E1E4E8;\">info</span><span style=\"color:#9ECBFF;\">.</span><span style=\"color:#E1E4E8;\">port</span><span style=\"color:#9ECBFF;\">}`</span><span style=\"color:#E1E4E8;\">)</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">  }</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">)</span></span></code></pre><pre class=\"shiki github-dark\" style=\"background-color:#252423;color:#e1e4e8;\" tabindex=\"0\"><code><span class=\"line\"><span style=\"color:#6A737D;\"># Run the app</span></span>\n<span class=\"line\"><span style=\"color:#B392F0;\">tsx</span><span style=\"color:#9ECBFF;\"> app.ts</span></span>\n<span class=\"line\"></span>\n<span class=\"line\"><span style=\"color:#6A737D;\"># Run the app in watch mode, restarting on file changes</span></span>\n<span class=\"line\"><span style=\"color:#B392F0;\">tsx</span><span style=\"color:#9ECBFF;\"> watch</span><span style=\"color:#9ECBFF;\"> app.ts</span></span></code></pre>", 4)
+function render(_ctx, _cache) {
+  return _hoisted_1
+}
+__sfc__.render = render
+__sfc__.__file = "Note.vue"
+exports. default = __sfc__};
+window.precompiledFrontMatter = {"title":"Using Elysia in Node.js","public":true};
+</script>
+  </body>
+</html>

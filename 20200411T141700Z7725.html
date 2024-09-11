@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html data-precompiled=true lang="en" data-dtinth="true">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test infrastructure ของโครงการ TypeScript | notes.dt.in.th</title><meta property="og:title" content="Test infrastructure ของโครงการ TypeScript" data-source="note">
+<meta property="og:image" content="https://screenshot.source.in.th/image/_/notes/20200411T141700Z7725" data-source="note">
+<meta property="og:image:width" content="1800" data-source="note">
+<meta property="og:image:height" content="1680" data-source="note">
+<link rel="canonical" href="https://notes.dt.in.th/20200411T141700Z7725" data-source="note">
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/iconify-icon@2.1.0/dist/iconify-icon.min.js"
+      integrity="sha256-dY2Ug42wyv3rl+sLVKEg3jbPs8f+hi7tmJ836AxVDwI="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/blurhash-image@1.0.1/blurhash-image.min.js"
+      integrity="sha256-qrUUgTGk7xA7iVCwraHNQjwy2JryA0K4L3DL4qidagQ="
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" crossorigin src="/runtime/index.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/supabase-CjkNZD6A.js">
+    <link rel="stylesheet" crossorigin href="/runtime/index.css">
+  </head>
+  <body class="bg-#252423 text-#e9e8e7 antialiased">
+    <header class="h-[58px] bg-#090807 border-b border-#454443 z-20 flex">
+      <div class="flex items-center pl-[18px] flex-none">
+        <a
+          class="flex items-center text-#8b8685 hover:text-#ffffbb text-lg"
+          href="/"
+          >notes.dt.in.th</a
+        >
+      </div>
+      <div
+        class="flex-1 flex items-center text-#8b8685 [&_a:hover]:text-#ffffbb overflow-hidden"
+        id="headerMiddle"
+      >
+        <div class="px-2 flex-none">›</div><div class="truncate"><a title="Recent writings" href="Recent">Recent writings</a></div>
+      </div>
+      <div
+        class="flex items-center px-[18px] flex-none gap-4"
+        id="headerToolbar"
+      ></div>
+    </header>
+    <div class="h-entry">
+      <main class="bg-#353433" id="main">
+        <div class="notes-layout-container mx-auto p-6 py-12" id="mainContents">
+          <div class="prose e-content" id="noteContents"><!--[--><p>นี่ใช้ TypeScript เวอร์ชั่น nightly ใน VS Code มาหลายเดือน พบว่ามันเสถียรมากๆ ทั้งๆ ที่เป็นการเอาโค้ดเวอร์ชั่น master มาปล่อยทุกคืน แต่อะไรจะแทบไม่มีปัญหาเลยขนาดนั้น เขาทำกันยังไงนะ</p><p>…พอดีกับวันก่อน ได้อ่าน <a href="https://urish.medium.com/instead-of-semicolons-what-if-you-could-code-with-dragons-df5d0a4ef4ee">Blog ของ Uri Shaked ที่โชว์วิธีแก้คอมไพเลอร์ TypeScript แบบสนุกๆ</a> เป็นบล็อคที่ Inspiring มากๆ ว่าการลงไปลองเล่นกับพวก Compiler ของ TypeScript มันก็ไม่ได้ยากหรือน่ากลัวอย่างที่คิด</p><p>…เลยเกิดไอเดีย วันนี้ก็เลย<a href="https://github.com/microsoft/TypeScript/issues/37898">ลองไปแก้โค้ด TypeScript เล่นๆ ดูบ้าง</a> พอ CI รันเท่านั้นแหละ หายสงสัยเลยว่าทำไมมันเสถียรขนาดนั้น มีเทสต์อยู่ 70,000 กว่าเคส ทั้งหมดรันเสร็จใน 15 นาที</p><p><img src="https://static.dt.in.th/uploads/2021/01/15/test-testcount.jpg" alt=""></p><p>…ใน Contributing Guideline เขามีกฏอยู่ว่า ทุกๆ PR ที่เข้ามา ควรจะมีอย่างน้อย 1 เทสต์ที่ไม่ผ่าน ถ้าไม่มีการแก้โค้ดนี้</p><blockquote><p>At least one test should fail in the absence of your non-test code changes</p></blockquote><p>…ตอนแรกก็คิดว่า “โอย เหนื่อยละ กว่าจะแก้โค้ดจนได้ผลลัพธ์ที่ต้องการได้นี่ยังไม่พอ ต้องมาทำเทสต์เพิ่มอีก ถึงจะส่ง PR ได้…” แต่ไหนๆ ก็ไหนๆ ละ ลองดูละกัน</p><p>…แต่แล้วก็พบว่าโปรเจค TypeScript นี่ เขียนเทสต์ใหม่เพิ่มเข้าไปนี่ง่ายมากๆ เลย… คือแก้โค้ดให้การทำงานมันพังนิดหน่อย มันก็ฟ้องมาละ ว่าเทสต์ไหนเฟลบ้าง แค่นี้ก็รู้ละว่าถ้าอยากใส่เทสต์เพิ่ม ต้องไปใส่ที่ไฟล์ไหน มี Helper function ต่างๆ สำหรับการสร้างเคสเพิ่มเติม ให้เรียบร้อย แทบไม่ต้องมานั่งเขียนโค้ด Arrange-act-assert ซ้ำๆ ทุกครั้งที่เพิ่มเคสใหม่เข้าไปเลย</p><p>…ในโค้ดเบสที่ไม่ยอมลงทุนสร้าง Testing infrastructure ที่ทำให้การเขียนเทสต์เป็นเรื่องง่ายจนถึงขั้นที่เขียนเทสต์เพิ่มเข้าไปง่ายและเร็วกว่าการมาไล่เทสต์มือเอง ถ้าไม่ลงทุนตรงนั้น แล้วจะเห็นว่าคนในทีมเอาแต่เทสต์มือ แล้วไม่เขียนเทสต์เพิ่มกัน ก็คงไม่ใช่เรื่องแปลก</p><p>…นักพัฒนาก็เหมือนกัน ถ้าไม่ได้ลงทุนในการพัฒนาฝีมือการเทสต์ของตัวเอง จนถึงขั้นที่เขียนเทสต์แล้วประหยัดเวลากว่าการมาเทสต์เองทุกรอบ (กล่าวคือเวลาที่ใช้ลงไปกับการเขียนเทสต์ สามารถคืนทุนกลับมาได้ภายในวันเดียวกัน) ถ้าไม่ได้ลงทุนตรงนั้น ก็คงไม่แปลกถ้านักพัฒนาคนนั้นจะเลือกไม่เขียนเทสต์แล้วให้เหตุผลว่ามันกินเวลา ไม่คุ้ม</p><hr><p>(ป.ล. <a href="20180215T173000Z0223">ทั้งนี้ทั้งนั้น ไม่ได้อยากจะสื่อว่าจะให้ถึงขั้นเจียดเวลาส่วนตัวมาฝึกจนเหลือเวลาพักผ่อนไม่เพียงพออะไรแบบนั้นนะครับ…</a></p><p>…ผมเองถ้าทำงานสัปดาห์ละ 40 ชั่วโมงก็คงจะเหนื่อยมากๆ แล้วก็คงไม่มีเวลามาเล่นอะไรพวกนี้เหมือนกัน… จริงๆ ปกติก็จะแบ่งเวลางานบางส่วนมาฝึกเรื่องพวกนี้แหละ … จริงๆ ก็ไม่บางส่วนหรอก หลายส่วนเลย เหลือลงกับตัวงานจริงๆ แค่ ~20–30 ชั่วโมงต่อสัปดาห์ แต่ก็ให้เหตุผลไปว่าถ้าไม่ทำแบบนั้นก็คงมาอยู่จุดนี้ไม่ได้</p><p>…และจริงๆ ก็มีอยู่ช่วงนึงที่เลือกเอาเงินเดือนตัวเองแลกไปประมาณ <del>20</del>30% ซึ่งก็ไม่ได้ซีเรียสมาก เพราะเข้าใจว่าหลายๆ เรื่องมันก็พิสูจน์ด้วยคำพูดอย่างเดียวไม่ได้น่ะแหละ… ตอนนี้คิดว่าคืนทุนแล้ว และหลายๆ Side-project ก็ได้ประสบการณ์กลับมาประยุกต์ใช้กับงานที่ทำงานอยู่ได้จริงๆ~)</p><!--]--></div>
+        </div>
+      </main>
+      <footer>
+        <div
+          class="notes-layout-container mx-auto py-4 px-6 text-#8b8685 text-right text-sm"
+          id="footerContents"
+        >
+          <notes-page-footer></notes-page-footer>
+        </div>
+      </footer>
+    </div>
+    <script>
+window.precompiledNoteBehavior = function(require, exports, module, Vue) {"use strict";Object.defineProperty(exports, "__esModule", {value: true});const __sfc__ = {};
+var _vue = require('vue');
+
+const _hoisted_1 = /*#__PURE__*/_vue.createStaticVNode.call(void 0, "<p>นี่ใช้ TypeScript เวอร์ชั่น nightly ใน VS Code มาหลายเดือน พบว่ามันเสถียรมากๆ ทั้งๆ ที่เป็นการเอาโค้ดเวอร์ชั่น master มาปล่อยทุกคืน แต่อะไรจะแทบไม่มีปัญหาเลยขนาดนั้น เขาทำกันยังไงนะ</p><p>…พอดีกับวันก่อน ได้อ่าน <a href=\"https://urish.medium.com/instead-of-semicolons-what-if-you-could-code-with-dragons-df5d0a4ef4ee\">Blog ของ Uri Shaked ที่โชว์วิธีแก้คอมไพเลอร์ TypeScript แบบสนุกๆ</a> เป็นบล็อคที่ Inspiring มากๆ ว่าการลงไปลองเล่นกับพวก Compiler ของ TypeScript มันก็ไม่ได้ยากหรือน่ากลัวอย่างที่คิด</p><p>…เลยเกิดไอเดีย วันนี้ก็เลย<a href=\"https://github.com/microsoft/TypeScript/issues/37898\">ลองไปแก้โค้ด TypeScript เล่นๆ ดูบ้าง</a> พอ CI รันเท่านั้นแหละ หายสงสัยเลยว่าทำไมมันเสถียรขนาดนั้น มีเทสต์อยู่ 70,000 กว่าเคส ทั้งหมดรันเสร็จใน 15 นาที</p><p><img src=\"https://static.dt.in.th/uploads/2021/01/15/test-testcount.jpg\" alt=\"\"></p><p>…ใน Contributing Guideline เขามีกฏอยู่ว่า ทุกๆ PR ที่เข้ามา ควรจะมีอย่างน้อย 1 เทสต์ที่ไม่ผ่าน ถ้าไม่มีการแก้โค้ดนี้</p><blockquote><p>At least one test should fail in the absence of your non-test code changes</p></blockquote><p>…ตอนแรกก็คิดว่า “โอย เหนื่อยละ กว่าจะแก้โค้ดจนได้ผลลัพธ์ที่ต้องการได้นี่ยังไม่พอ ต้องมาทำเทสต์เพิ่มอีก ถึงจะส่ง PR ได้…” แต่ไหนๆ ก็ไหนๆ ละ ลองดูละกัน</p><p>…แต่แล้วก็พบว่าโปรเจค TypeScript นี่ เขียนเทสต์ใหม่เพิ่มเข้าไปนี่ง่ายมากๆ เลย… คือแก้โค้ดให้การทำงานมันพังนิดหน่อย มันก็ฟ้องมาละ ว่าเทสต์ไหนเฟลบ้าง แค่นี้ก็รู้ละว่าถ้าอยากใส่เทสต์เพิ่ม ต้องไปใส่ที่ไฟล์ไหน มี Helper function ต่างๆ สำหรับการสร้างเคสเพิ่มเติม ให้เรียบร้อย แทบไม่ต้องมานั่งเขียนโค้ด Arrange-act-assert ซ้ำๆ ทุกครั้งที่เพิ่มเคสใหม่เข้าไปเลย</p><p>…ในโค้ดเบสที่ไม่ยอมลงทุนสร้าง Testing infrastructure ที่ทำให้การเขียนเทสต์เป็นเรื่องง่ายจนถึงขั้นที่เขียนเทสต์เพิ่มเข้าไปง่ายและเร็วกว่าการมาไล่เทสต์มือเอง ถ้าไม่ลงทุนตรงนั้น แล้วจะเห็นว่าคนในทีมเอาแต่เทสต์มือ แล้วไม่เขียนเทสต์เพิ่มกัน ก็คงไม่ใช่เรื่องแปลก</p><p>…นักพัฒนาก็เหมือนกัน ถ้าไม่ได้ลงทุนในการพัฒนาฝีมือการเทสต์ของตัวเอง จนถึงขั้นที่เขียนเทสต์แล้วประหยัดเวลากว่าการมาเทสต์เองทุกรอบ (กล่าวคือเวลาที่ใช้ลงไปกับการเขียนเทสต์ สามารถคืนทุนกลับมาได้ภายในวันเดียวกัน) ถ้าไม่ได้ลงทุนตรงนั้น ก็คงไม่แปลกถ้านักพัฒนาคนนั้นจะเลือกไม่เขียนเทสต์แล้วให้เหตุผลว่ามันกินเวลา ไม่คุ้ม</p><hr><p>(ป.ล. <a href=\"20180215T173000Z0223\">ทั้งนี้ทั้งนั้น ไม่ได้อยากจะสื่อว่าจะให้ถึงขั้นเจียดเวลาส่วนตัวมาฝึกจนเหลือเวลาพักผ่อนไม่เพียงพออะไรแบบนั้นนะครับ…</a></p><p>…ผมเองถ้าทำงานสัปดาห์ละ 40 ชั่วโมงก็คงจะเหนื่อยมากๆ แล้วก็คงไม่มีเวลามาเล่นอะไรพวกนี้เหมือนกัน… จริงๆ ปกติก็จะแบ่งเวลางานบางส่วนมาฝึกเรื่องพวกนี้แหละ … จริงๆ ก็ไม่บางส่วนหรอก หลายส่วนเลย เหลือลงกับตัวงานจริงๆ แค่ ~20–30 ชั่วโมงต่อสัปดาห์ แต่ก็ให้เหตุผลไปว่าถ้าไม่ทำแบบนั้นก็คงมาอยู่จุดนี้ไม่ได้</p><p>…และจริงๆ ก็มีอยู่ช่วงนึงที่เลือกเอาเงินเดือนตัวเองแลกไปประมาณ <del>20</del>30% ซึ่งก็ไม่ได้ซีเรียสมาก เพราะเข้าใจว่าหลายๆ เรื่องมันก็พิสูจน์ด้วยคำพูดอย่างเดียวไม่ได้น่ะแหละ… ตอนนี้คิดว่าคืนทุนแล้ว และหลายๆ Side-project ก็ได้ประสบการณ์กลับมาประยุกต์ใช้กับงานที่ทำงานอยู่ได้จริงๆ~)</p>", 14)
+function render(_ctx, _cache) {
+  return _hoisted_1
+}
+__sfc__.render = render
+__sfc__.__file = "Note.vue"
+exports. default = __sfc__};
+window.precompiledFrontMatter = {"facebook":"https://web.facebook.com/dtinth/posts/10214310504950689","public":true,"title":"Test infrastructure ของโครงการ TypeScript"};
+</script>
+  </body>
+</html>

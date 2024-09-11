@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html data-precompiled=true lang="en" data-dtinth="true">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MongoDB in Docker: ‘Authentication Failed’ when logging in to a non-default database name | notes.dt.in.th</title><meta property="og:title" content="MongoDB in Docker: ‘Authentication Failed’ when logging in to a non-default database name" data-source="note">
+<meta property="og:image" content="https://screenshot.source.in.th/image/_/notes/MongoDBAuthSource" data-source="note">
+<meta property="og:image:width" content="1800" data-source="note">
+<meta property="og:image:height" content="1680" data-source="note">
+<link rel="canonical" href="https://notes.dt.in.th/MongoDBAuthSource" data-source="note"><style id="note-styles">/* layer: default */
+.my[data-v-8c9498c0]{margin-top:1rem;margin-bottom:1rem;}</style>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/iconify-icon@2.1.0/dist/iconify-icon.min.js"
+      integrity="sha256-dY2Ug42wyv3rl+sLVKEg3jbPs8f+hi7tmJ836AxVDwI="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/blurhash-image@1.0.1/blurhash-image.min.js"
+      integrity="sha256-qrUUgTGk7xA7iVCwraHNQjwy2JryA0K4L3DL4qidagQ="
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" crossorigin src="/runtime/index.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/supabase-CjkNZD6A.js">
+    <link rel="stylesheet" crossorigin href="/runtime/index.css">
+  </head>
+  <body class="bg-#252423 text-#e9e8e7 antialiased">
+    <header class="h-[58px] bg-#090807 border-b border-#454443 z-20 flex">
+      <div class="flex items-center pl-[18px] flex-none">
+        <a
+          class="flex items-center text-#8b8685 hover:text-#ffffbb text-lg"
+          href="/"
+          >notes.dt.in.th</a
+        >
+      </div>
+      <div
+        class="flex-1 flex items-center text-#8b8685 [&_a:hover]:text-#ffffbb overflow-hidden"
+        id="headerMiddle"
+      >
+        <div class="px-2 flex-none">›</div><div class="truncate"><a title="Database (topic)" href="Database">Database</a></div><div class="px-2 flex-none">›</div><div class="truncate"><a title="MongoDB (topic)" href="MongoDB">MongoDB</a></div>
+      </div>
+      <div
+        class="flex items-center px-[18px] flex-none gap-4"
+        id="headerToolbar"
+      ></div>
+    </header>
+    <div class="h-entry">
+      <main class="bg-#353433" id="main">
+        <div class="notes-layout-container mx-auto p-6 py-12" id="mainContents">
+          <div class="prose e-content" id="noteContents"><!--[--><p data-v-8c9498c0><strong data-v-8c9498c0>tl;dr:</strong> When setting up MongoDB with <a href="Docker" data-v-8c9498c0>Docker</a> Compose, make sure to specify the <code data-v-8c9498c0>authSource=admin</code> query parameter in the connection string if you are using the <code data-v-8c9498c0>root</code> account for authentication. This will allow you to access the database without getting an &quot;Authentication failed&quot; error.</p><h2 id="background" data-v-8c9498c0><a aria-hidden="true" tabindex="-1" href="#background" data-v-8c9498c0><span class="icon icon-link" data-v-8c9498c0></span></a>Background</h2><p data-v-8c9498c0>I set up MongoDB with Docker Compose. I used the <code data-v-8c9498c0>MONGO_INITDB_ROOT_USERNAME</code> and <code data-v-8c9498c0>MONGO_INITDB_ROOT_PASSWORD</code> environment variables to set the root user&#39;s username and password.</p><pre class="shiki github-dark" style="background-color:#252423;color:#e1e4e8;" tabindex="0" data-v-8c9498c0><code data-v-8c9498c0><span class="line" data-v-8c9498c0><span style="color:#85E89D;" data-v-8c9498c0>services</span><span style="color:#E1E4E8;" data-v-8c9498c0>:</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#85E89D;" data-v-8c9498c0>  mongo</span><span style="color:#E1E4E8;" data-v-8c9498c0>:</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#85E89D;" data-v-8c9498c0>    image</span><span style="color:#E1E4E8;" data-v-8c9498c0>: </span><span style="color:#9ECBFF;" data-v-8c9498c0>mongo</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#85E89D;" data-v-8c9498c0>    restart</span><span style="color:#E1E4E8;" data-v-8c9498c0>: </span><span style="color:#9ECBFF;" data-v-8c9498c0>always</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#85E89D;" data-v-8c9498c0>    environment</span><span style="color:#E1E4E8;" data-v-8c9498c0>:</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#85E89D;" data-v-8c9498c0>      MONGO_INITDB_ROOT_USERNAME</span><span style="color:#E1E4E8;" data-v-8c9498c0>: </span><span style="color:#9ECBFF;" data-v-8c9498c0>root</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#85E89D;" data-v-8c9498c0>      MONGO_INITDB_ROOT_PASSWORD</span><span style="color:#E1E4E8;" data-v-8c9498c0>: </span><span style="color:#9ECBFF;" data-v-8c9498c0>example</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#85E89D;" data-v-8c9498c0>    ports</span><span style="color:#E1E4E8;" data-v-8c9498c0>:</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>      - </span><span style="color:#9ECBFF;" data-v-8c9498c0>127.0.0.1:27017:27017</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#85E89D;" data-v-8c9498c0>    volumes</span><span style="color:#E1E4E8;" data-v-8c9498c0>:</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>      - </span><span style="color:#9ECBFF;" data-v-8c9498c0>./data/db:/data/db</span></span></code></pre><h2 id="problem" data-v-8c9498c0><a aria-hidden="true" tabindex="-1" href="#problem" data-v-8c9498c0><span class="icon icon-link" data-v-8c9498c0></span></a>Problem</h2><p data-v-8c9498c0>I set my <code data-v-8c9498c0>MONGODB_URI</code> environment variable in my <code data-v-8c9498c0>.env</code> file:</p><pre class="shiki github-dark" style="background-color:#252423;color:#e1e4e8;" tabindex="0" data-v-8c9498c0><code data-v-8c9498c0><span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>MONGODB_URI</span><span style="color:#F97583;" data-v-8c9498c0>=</span><span style="color:#9ECBFF;" data-v-8c9498c0>mongodb://root:example@localhost:27017/myproject</span></span></code></pre><p data-v-8c9498c0>However, when accessing the database, I got the following error:</p><pre class="shiki github-dark" style="background-color:#252423;color:#e1e4e8;" tabindex="0" data-v-8c9498c0><code data-v-8c9498c0><span class="line" data-v-8c9498c0><span style="color:#B392F0;" data-v-8c9498c0>$</span><span style="color:#9ECBFF;" data-v-8c9498c0> mongosh</span><span style="color:#E1E4E8;" data-v-8c9498c0> $MONGODB_URI</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#B392F0;" data-v-8c9498c0>MongoServerError:</span><span style="color:#9ECBFF;" data-v-8c9498c0> Authentication</span><span style="color:#9ECBFF;" data-v-8c9498c0> failed.</span></span></code></pre><h2 id="why-it-happened" data-v-8c9498c0><a aria-hidden="true" tabindex="-1" href="#why-it-happened" data-v-8c9498c0><span class="icon icon-link" data-v-8c9498c0></span></a>Why it happened</h2><p data-v-8c9498c0>It turns out, the <code data-v-8c9498c0>root</code> account only works when using the <code data-v-8c9498c0>admin</code> database as the <strong data-v-8c9498c0>authentication database</strong>.</p><h2 id="solution" data-v-8c9498c0><a aria-hidden="true" tabindex="-1" href="#solution" data-v-8c9498c0><span class="icon icon-link" data-v-8c9498c0></span></a>Solution</h2><p data-v-8c9498c0>To fix this, I need to specify the <code data-v-8c9498c0>authSource</code> query parameter in the connection string:</p><pre class="shiki github-dark" style="background-color:#252423;color:#e1e4e8;" tabindex="0" data-v-8c9498c0><code data-v-8c9498c0><span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>MONGODB_URI</span><span style="color:#F97583;" data-v-8c9498c0>=</span><span style="color:#9ECBFF;" data-v-8c9498c0>mongodb://root:example@localhost:27017/myproject?</span><span style="color:#E1E4E8;" data-v-8c9498c0>authSource</span><span style="color:#F97583;" data-v-8c9498c0>=</span><span style="color:#9ECBFF;" data-v-8c9498c0>admin</span></span></code></pre><!--]--></div>
+        </div>
+      </main>
+      <footer>
+        <div
+          class="notes-layout-container mx-auto py-4 px-6 text-#8b8685 text-right text-sm"
+          id="footerContents"
+        >
+          <notes-page-footer></notes-page-footer>
+        </div>
+      </footer>
+    </div>
+    <script>
+window.precompiledNoteBehavior = function(require, exports, module, Vue) {"use strict";Object.defineProperty(exports, "__esModule", {value: true});const __sfc__ = {};
+var _vue = require('vue');
+
+const _withScopeId = n => (_vue.pushScopeId.call(void 0, "data-v-8c9498c0"),n=n(),_vue.popScopeId.call(void 0, ),n)
+const _hoisted_1 = /*#__PURE__*/_vue.createStaticVNode.call(void 0, "<p data-v-8c9498c0><strong data-v-8c9498c0>tl;dr:</strong> When setting up MongoDB with <a href=\"Docker\" data-v-8c9498c0>Docker</a> Compose, make sure to specify the <code data-v-8c9498c0>authSource=admin</code> query parameter in the connection string if you are using the <code data-v-8c9498c0>root</code> account for authentication. This will allow you to access the database without getting an &quot;Authentication failed&quot; error.</p><h2 id=\"background\" data-v-8c9498c0><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#background\" data-v-8c9498c0><span class=\"icon icon-link\" data-v-8c9498c0></span></a>Background</h2><p data-v-8c9498c0>I set up MongoDB with Docker Compose. I used the <code data-v-8c9498c0>MONGO_INITDB_ROOT_USERNAME</code> and <code data-v-8c9498c0>MONGO_INITDB_ROOT_PASSWORD</code> environment variables to set the root user&#39;s username and password.</p><pre class=\"shiki github-dark\" style=\"background-color:#252423;color:#e1e4e8;\" tabindex=\"0\" data-v-8c9498c0><code data-v-8c9498c0><span class=\"line\" data-v-8c9498c0><span style=\"color:#85E89D;\" data-v-8c9498c0>services</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>:</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#85E89D;\" data-v-8c9498c0>  mongo</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>:</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#85E89D;\" data-v-8c9498c0>    image</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>: </span><span style=\"color:#9ECBFF;\" data-v-8c9498c0>mongo</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#85E89D;\" data-v-8c9498c0>    restart</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>: </span><span style=\"color:#9ECBFF;\" data-v-8c9498c0>always</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#85E89D;\" data-v-8c9498c0>    environment</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>:</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#85E89D;\" data-v-8c9498c0>      MONGO_INITDB_ROOT_USERNAME</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>: </span><span style=\"color:#9ECBFF;\" data-v-8c9498c0>root</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#85E89D;\" data-v-8c9498c0>      MONGO_INITDB_ROOT_PASSWORD</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>: </span><span style=\"color:#9ECBFF;\" data-v-8c9498c0>example</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#85E89D;\" data-v-8c9498c0>    ports</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>:</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>      - </span><span style=\"color:#9ECBFF;\" data-v-8c9498c0>127.0.0.1:27017:27017</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#85E89D;\" data-v-8c9498c0>    volumes</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>:</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>      - </span><span style=\"color:#9ECBFF;\" data-v-8c9498c0>./data/db:/data/db</span></span></code></pre><h2 id=\"problem\" data-v-8c9498c0><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#problem\" data-v-8c9498c0><span class=\"icon icon-link\" data-v-8c9498c0></span></a>Problem</h2><p data-v-8c9498c0>I set my <code data-v-8c9498c0>MONGODB_URI</code> environment variable in my <code data-v-8c9498c0>.env</code> file:</p><pre class=\"shiki github-dark\" style=\"background-color:#252423;color:#e1e4e8;\" tabindex=\"0\" data-v-8c9498c0><code data-v-8c9498c0><span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>MONGODB_URI</span><span style=\"color:#F97583;\" data-v-8c9498c0>=</span><span style=\"color:#9ECBFF;\" data-v-8c9498c0>mongodb://root:example@localhost:27017/myproject</span></span></code></pre><p data-v-8c9498c0>However, when accessing the database, I got the following error:</p><pre class=\"shiki github-dark\" style=\"background-color:#252423;color:#e1e4e8;\" tabindex=\"0\" data-v-8c9498c0><code data-v-8c9498c0><span class=\"line\" data-v-8c9498c0><span style=\"color:#B392F0;\" data-v-8c9498c0>$</span><span style=\"color:#9ECBFF;\" data-v-8c9498c0> mongosh</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0> $MONGODB_URI</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#B392F0;\" data-v-8c9498c0>MongoServerError:</span><span style=\"color:#9ECBFF;\" data-v-8c9498c0> Authentication</span><span style=\"color:#9ECBFF;\" data-v-8c9498c0> failed.</span></span></code></pre><h2 id=\"why-it-happened\" data-v-8c9498c0><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#why-it-happened\" data-v-8c9498c0><span class=\"icon icon-link\" data-v-8c9498c0></span></a>Why it happened</h2><p data-v-8c9498c0>It turns out, the <code data-v-8c9498c0>root</code> account only works when using the <code data-v-8c9498c0>admin</code> database as the <strong data-v-8c9498c0>authentication database</strong>.</p><h2 id=\"solution\" data-v-8c9498c0><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#solution\" data-v-8c9498c0><span class=\"icon icon-link\" data-v-8c9498c0></span></a>Solution</h2><p data-v-8c9498c0>To fix this, I need to specify the <code data-v-8c9498c0>authSource</code> query parameter in the connection string:</p><pre class=\"shiki github-dark\" style=\"background-color:#252423;color:#e1e4e8;\" tabindex=\"0\" data-v-8c9498c0><code data-v-8c9498c0><span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>MONGODB_URI</span><span style=\"color:#F97583;\" data-v-8c9498c0>=</span><span style=\"color:#9ECBFF;\" data-v-8c9498c0>mongodb://root:example@localhost:27017/myproject?</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>authSource</span><span style=\"color:#F97583;\" data-v-8c9498c0>=</span><span style=\"color:#9ECBFF;\" data-v-8c9498c0>admin</span></span></code></pre>", 14)
+function render(_ctx, _cache) {
+  return _hoisted_1
+}
+__sfc__.render = render
+__sfc__.__scopeId = "data-v-8c9498c0"
+__sfc__.__file = "Note.vue"
+exports. default = __sfc__};
+window.precompiledFrontMatter = {"public":true,"title":"MongoDB in Docker: ‘Authentication Failed’ when logging in to a non-default database name"};
+</script>
+  </body>
+</html>

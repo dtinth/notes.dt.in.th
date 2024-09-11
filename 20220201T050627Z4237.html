@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html data-precompiled=true lang="en" data-dtinth="true">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>20220201T050627Z4237 | notes.dt.in.th</title>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/iconify-icon@2.1.0/dist/iconify-icon.min.js"
+      integrity="sha256-dY2Ug42wyv3rl+sLVKEg3jbPs8f+hi7tmJ836AxVDwI="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/blurhash-image@1.0.1/blurhash-image.min.js"
+      integrity="sha256-qrUUgTGk7xA7iVCwraHNQjwy2JryA0K4L3DL4qidagQ="
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" crossorigin src="/runtime/index.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/supabase-CjkNZD6A.js">
+    <link rel="stylesheet" crossorigin href="/runtime/index.css">
+  </head>
+  <body class="bg-#252423 text-#e9e8e7 antialiased">
+    <header class="h-[58px] bg-#090807 border-b border-#454443 z-20 flex">
+      <div class="flex items-center pl-[18px] flex-none">
+        <a
+          class="flex items-center text-#8b8685 hover:text-#ffffbb text-lg"
+          href="/"
+          >notes.dt.in.th</a
+        >
+      </div>
+      <div
+        class="flex-1 flex items-center text-#8b8685 [&_a:hover]:text-#ffffbb overflow-hidden"
+        id="headerMiddle"
+      >
+        <div class="px-2 flex-none">›</div><div class="truncate"><a title="Cloud Platform (topic)" href="CloudPlatform">Cloud Platform</a></div><div class="px-2 flex-none">›</div><div class="truncate"><a title="Vercel (topic)" href="Vercel">Vercel</a></div>
+      </div>
+      <div
+        class="flex items-center px-[18px] flex-none gap-4"
+        id="headerToolbar"
+      ></div>
+    </header>
+    <div class="h-entry">
+      <main class="bg-#353433" id="main">
+        <div class="notes-layout-container mx-auto p-6 py-12" id="mainContents">
+          <div class="prose e-content" id="noteContents"><!-- Compilation unsuccessful --></div>
+        </div>
+      </main>
+      <footer>
+        <div
+          class="notes-layout-container mx-auto py-4 px-6 text-#8b8685 text-right text-sm"
+          id="footerContents"
+        >
+          <notes-page-footer></notes-page-footer>
+        </div>
+      </footer>
+    </div>
+    <script>
+window.precompiledNoteBehavior = function(require, exports, module, Vue) {"use strict";Object.defineProperty(exports, "__esModule", {value: true});const __sfc__ = {};
+var _vue = require('vue');
+
+const _hoisted_1 = /*#__PURE__*/_vue.createStaticVNode.call(void 0, "<p>The dreaded <strong>This Serverless Function has crashed</strong> screen shows up for a many different reasons.</p><p><img src=\"https://static.dt.in.th/uploads/2022/02/01/vercel-crash.png\" alt=\"\"></p><p>You want to avoid it, you can run a smoke test on <a href=\"GitHubActions\">GitHub Actions</a>.</p><h2 id=\"the-webhook-event\"><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#the-webhook-event\"><span class=\"icon icon-link\"></span></a>The webhook event</h2><p>When <a href=\"Vercel\">Vercel</a> deploys your project, it will send a <a href=\"https://docs.github.com/en/developers/webhooks-and-events/webhooks/webhook-events-and-payloads#deployment_status\"><code>deployment_status</code> webhook event</a> to your GitHub repository. This can be used to <a href=\"https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#deployment_status\">trigger a workflow</a>.</p><p>Here is the payload for the event (only including relevant fields):</p><pre class=\"shiki github-dark\" style=\"background-color:#252423;color:#e1e4e8;\" tabindex=\"0\"><code><span class=\"line\"><span style=\"color:#E1E4E8;\">{</span></span>\n<span class=\"line\"><span style=\"color:#79B8FF;\">  &quot;action&quot;</span><span style=\"color:#E1E4E8;\">: </span><span style=\"color:#9ECBFF;\">&quot;created&quot;</span><span style=\"color:#E1E4E8;\">,</span></span>\n<span class=\"line\"><span style=\"color:#79B8FF;\">  &quot;deployment&quot;</span><span style=\"color:#E1E4E8;\">: {</span></span>\n<span class=\"line\"><span style=\"color:#79B8FF;\">    &quot;created_at&quot;</span><span style=\"color:#E1E4E8;\">: </span><span style=\"color:#9ECBFF;\">&quot;2022-02-01T04:09:32Z&quot;</span><span style=\"color:#E1E4E8;\">,</span></span>\n<span class=\"line\"><span style=\"color:#79B8FF;\">    &quot;creator&quot;</span><span style=\"color:#E1E4E8;\">: {</span></span>\n<span class=\"line\"><span style=\"color:#79B8FF;\">      &quot;id&quot;</span><span style=\"color:#E1E4E8;\">: </span><span style=\"color:#79B8FF;\">35613825</span><span style=\"color:#E1E4E8;\">,</span></span>\n<span class=\"line\"><span style=\"color:#79B8FF;\">      &quot;login&quot;</span><span style=\"color:#E1E4E8;\">: </span><span style=\"color:#9ECBFF;\">&quot;vercel[bot]&quot;</span><span style=\"color:#E1E4E8;\">,</span></span>\n<span class=\"line\"><span style=\"color:#79B8FF;\">      &quot;node_id&quot;</span><span style=\"color:#E1E4E8;\">: </span><span style=\"color:#9ECBFF;\">&quot;MDM6Qm90MzU2MTM4MjU=&quot;</span><span style=\"color:#E1E4E8;\">,</span></span>\n<span class=\"line\"><span style=\"color:#79B8FF;\">      &quot;type&quot;</span><span style=\"color:#E1E4E8;\">: </span><span style=\"color:#9ECBFF;\">&quot;Bot&quot;</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">    },</span></span>\n<span class=\"line\"><span style=\"color:#79B8FF;\">    &quot;environment&quot;</span><span style=\"color:#E1E4E8;\">: </span><span style=\"color:#9ECBFF;\">&quot;Preview&quot;</span><span style=\"color:#E1E4E8;\">,</span></span>\n<span class=\"line\"><span style=\"color:#79B8FF;\">    &quot;original_environment&quot;</span><span style=\"color:#E1E4E8;\">: </span><span style=\"color:#9ECBFF;\">&quot;Preview&quot;</span><span style=\"color:#E1E4E8;\">,</span></span>\n<span class=\"line\"><span style=\"color:#79B8FF;\">    &quot;production_environment&quot;</span><span style=\"color:#E1E4E8;\">: </span><span style=\"color:#79B8FF;\">false</span><span style=\"color:#E1E4E8;\">,</span></span>\n<span class=\"line\"><span style=\"color:#79B8FF;\">    &quot;ref&quot;</span><span style=\"color:#E1E4E8;\">: </span><span style=\"color:#9ECBFF;\">&quot;&lt;REF&gt;&quot;</span><span style=\"color:#E1E4E8;\">,</span></span>\n<span class=\"line\"><span style=\"color:#79B8FF;\">    &quot;sha&quot;</span><span style=\"color:#E1E4E8;\">: </span><span style=\"color:#9ECBFF;\">&quot;&lt;SHA&gt;&quot;</span><span style=\"color:#E1E4E8;\">,</span></span>\n<span class=\"line\"><span style=\"color:#79B8FF;\">    &quot;task&quot;</span><span style=\"color:#E1E4E8;\">: </span><span style=\"color:#9ECBFF;\">&quot;deploy&quot;</span><span style=\"color:#E1E4E8;\">,</span></span>\n<span class=\"line\"><span style=\"color:#79B8FF;\">    &quot;transient_environment&quot;</span><span style=\"color:#E1E4E8;\">: </span><span style=\"color:#79B8FF;\">false</span><span style=\"color:#E1E4E8;\">,</span></span>\n<span class=\"line\"><span style=\"color:#79B8FF;\">    &quot;updated_at&quot;</span><span style=\"color:#E1E4E8;\">: </span><span style=\"color:#9ECBFF;\">&quot;2022-02-01T04:14:20Z&quot;</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">  },</span></span>\n<span class=\"line\"><span style=\"color:#79B8FF;\">  &quot;deployment_status&quot;</span><span style=\"color:#E1E4E8;\">: {</span></span>\n<span class=\"line\"><span style=\"color:#79B8FF;\">    &quot;created_at&quot;</span><span style=\"color:#E1E4E8;\">: </span><span style=\"color:#9ECBFF;\">&quot;2022-02-01T04:14:20Z&quot;</span><span style=\"color:#E1E4E8;\">,</span></span>\n<span class=\"line\"><span style=\"color:#79B8FF;\">    &quot;creator&quot;</span><span style=\"color:#E1E4E8;\">: {</span></span>\n<span class=\"line\"><span style=\"color:#79B8FF;\">      &quot;id&quot;</span><span style=\"color:#E1E4E8;\">: </span><span style=\"color:#79B8FF;\">35613825</span><span style=\"color:#E1E4E8;\">,</span></span>\n<span class=\"line\"><span style=\"color:#79B8FF;\">      &quot;login&quot;</span><span style=\"color:#E1E4E8;\">: </span><span style=\"color:#9ECBFF;\">&quot;vercel[bot]&quot;</span><span style=\"color:#E1E4E8;\">,</span></span>\n<span class=\"line\"><span style=\"color:#79B8FF;\">      &quot;node_id&quot;</span><span style=\"color:#E1E4E8;\">: </span><span style=\"color:#9ECBFF;\">&quot;MDM6Qm90MzU2MTM4MjU=&quot;</span><span style=\"color:#E1E4E8;\">,</span></span>\n<span class=\"line\"><span style=\"color:#79B8FF;\">      &quot;type&quot;</span><span style=\"color:#E1E4E8;\">: </span><span style=\"color:#9ECBFF;\">&quot;Bot&quot;</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">    },</span></span>\n<span class=\"line\"><span style=\"color:#79B8FF;\">    &quot;description&quot;</span><span style=\"color:#E1E4E8;\">: </span><span style=\"color:#9ECBFF;\">&quot;Deployment has completed&quot;</span><span style=\"color:#E1E4E8;\">,</span></span>\n<span class=\"line\"><span style=\"color:#79B8FF;\">    &quot;environment&quot;</span><span style=\"color:#E1E4E8;\">: </span><span style=\"color:#9ECBFF;\">&quot;Preview&quot;</span><span style=\"color:#E1E4E8;\">,</span></span>\n<span class=\"line\"><span style=\"color:#79B8FF;\">    &quot;environment_url&quot;</span><span style=\"color:#E1E4E8;\">: </span><span style=\"color:#9ECBFF;\">&quot;https://&lt;SUBDOMAIN&gt;.vercel.app&quot;</span><span style=\"color:#E1E4E8;\">,</span></span>\n<span class=\"line\"><span style=\"color:#79B8FF;\">    &quot;log_url&quot;</span><span style=\"color:#E1E4E8;\">: </span><span style=\"color:#9ECBFF;\">&quot;https://&lt;SUBDOMAIN&gt;.vercel.app&quot;</span><span style=\"color:#E1E4E8;\">,</span></span>\n<span class=\"line\"><span style=\"color:#79B8FF;\">    &quot;repository_url&quot;</span><span style=\"color:#E1E4E8;\">: </span><span style=\"color:#9ECBFF;\">&quot;api.github.com/repos/&lt;OWNER&gt;/&lt;REPO&gt;&quot;</span><span style=\"color:#E1E4E8;\">,</span></span>\n<span class=\"line\"><span style=\"color:#79B8FF;\">    &quot;state&quot;</span><span style=\"color:#E1E4E8;\">: </span><span style=\"color:#9ECBFF;\">&quot;success&quot;</span><span style=\"color:#E1E4E8;\">,</span></span>\n<span class=\"line\"><span style=\"color:#79B8FF;\">    &quot;target_url&quot;</span><span style=\"color:#E1E4E8;\">: </span><span style=\"color:#9ECBFF;\">&quot;https://&lt;SUBDOMAIN&gt;.vercel.app&quot;</span><span style=\"color:#E1E4E8;\">,</span></span>\n<span class=\"line\"><span style=\"color:#79B8FF;\">    &quot;updated_at&quot;</span><span style=\"color:#E1E4E8;\">: </span><span style=\"color:#9ECBFF;\">&quot;2022-02-01T04:14:20Z&quot;</span><span style=\"color:#E1E4E8;\">,</span></span>\n<span class=\"line\"><span style=\"color:#79B8FF;\">    &quot;url&quot;</span><span style=\"color:#E1E4E8;\">: </span><span style=\"color:#9ECBFF;\">&quot;https://api.github.com/repos/&lt;OWNER&gt;/&lt;REPO&gt;/deployments/&lt;ID&gt;/statuses/&lt;STATUS_ID&gt;&quot;</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">  }</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">}</span></span></code></pre><h2 id=\"github-actions-workflow\"><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#github-actions-workflow\"><span class=\"icon icon-link\"></span></a>GitHub Actions workflow</h2><p>Therefore a workflow can be created like so:</p>", 9)
+const _hoisted_10 = {
+  class: "shiki github-dark",
+  style: {"background-color":"#252423","color":"#e1e4e8"},
+  tabindex: "0"
+}
+const _hoisted_11 = /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { class: "line" }, [
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#85E89D"} }, "name"),
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#E1E4E8"} }, ": "),
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#9ECBFF"} }, "Vercel smoke test")
+], -1 /* HOISTED */)
+const _hoisted_12 = /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { class: "line" }, [
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#79B8FF"} }, "on"),
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#E1E4E8"} }, ":")
+], -1 /* HOISTED */)
+const _hoisted_13 = /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { class: "line" }, [
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#85E89D"} }, "  deployment_status"),
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#E1E4E8"} }, ": {}")
+], -1 /* HOISTED */)
+const _hoisted_14 = /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { class: "line" }, [
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#85E89D"} }, "jobs"),
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#E1E4E8"} }, ":")
+], -1 /* HOISTED */)
+const _hoisted_15 = /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { class: "line" }, [
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#85E89D"} }, "  smoke"),
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#E1E4E8"} }, ":")
+], -1 /* HOISTED */)
+const _hoisted_16 = /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { class: "line" }, [
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#85E89D"} }, "    name"),
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#E1E4E8"} }, ": "),
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#9ECBFF"} }, "Smoke test")
+], -1 /* HOISTED */)
+const _hoisted_17 = /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { class: "line" }, [
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#85E89D"} }, "    runs-on"),
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#E1E4E8"} }, ": "),
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#9ECBFF"} }, "ubuntu-latest")
+], -1 /* HOISTED */)
+const _hoisted_18 = /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { class: "line" }, [
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#85E89D"} }, "    if"),
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#E1E4E8"} }, ": "),
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#9ECBFF"} }, "github.event.deployment_status.state == 'success' && github.event.deployment_status.creator.login == 'vercel[bot]'")
+], -1 /* HOISTED */)
+const _hoisted_19 = /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { class: "line" }, [
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#85E89D"} }, "    steps"),
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#E1E4E8"} }, ":")
+], -1 /* HOISTED */)
+const _hoisted_20 = /*#__PURE__*/_vue.createStaticVNode.call(void 0, "<span class=\"line\"><span style=\"color:#E1E4E8;\">      - </span><span style=\"color:#85E89D;\">run</span><span style=\"color:#E1E4E8;\">: </span><span style=\"color:#F97583;\">|</span></span>", 1)
+const _hoisted_21 = /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { class: "line" }, [
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#9ECBFF"} }, "          import requests")
+], -1 /* HOISTED */)
+const _hoisted_22 = { class: "line" }
+const _hoisted_23 = { style: {"color":"#9ECBFF"} }
+const _hoisted_24 = /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { class: "line" }, [
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#9ECBFF"} }, "          response.raise_for_status()")
+], -1 /* HOISTED */)
+const _hoisted_25 = /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { class: "line" }, [
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#9ECBFF"} }, "          print(response.status_code)")
+], -1 /* HOISTED */)
+const _hoisted_26 = /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { class: "line" }, [
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#9ECBFF"} }, "          print(response.text)")
+], -1 /* HOISTED */)
+const _hoisted_27 = /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { class: "line" }, [
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#85E89D"} }, "        shell"),
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#E1E4E8"} }, ": "),
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#9ECBFF"} }, "python")
+], -1 /* HOISTED */)
+const _hoisted_28 = /*#__PURE__*/_vue.createElementVNode.call(void 0, "p", null, [
+  /*#__PURE__*/_vue.createTextVNode.call(void 0, "GitHub Action’s virtual environment comes with "),
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "code", null, "requests"),
+  /*#__PURE__*/_vue.createTextVNode.call(void 0, " module by default, so it can be used to make HTTP requests to the deployed site without having to install extra tools. The "),
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "code", null, "raise_for_status()"),
+  /*#__PURE__*/_vue.createTextVNode.call(void 0, " method will throw an exception if the response is not successful.")
+], -1 /* HOISTED */)
+function render(_ctx, _cache) {
+  return (_vue.openBlock.call(void 0, ), _vue.createElementBlock.call(void 0, _vue.Fragment, null, [
+    _hoisted_1,
+    _vue.createElementVNode.call(void 0, "pre", _hoisted_10, [
+      _vue.createElementVNode.call(void 0, "code", null, [
+        _hoisted_11,
+        _vue.createTextVNode.call(void 0, "\n"),
+        _hoisted_12,
+        _vue.createTextVNode.call(void 0, "\n"),
+        _hoisted_13,
+        _vue.createTextVNode.call(void 0, "\n"),
+        _hoisted_14,
+        _vue.createTextVNode.call(void 0, "\n"),
+        _hoisted_15,
+        _vue.createTextVNode.call(void 0, "\n"),
+        _hoisted_16,
+        _vue.createTextVNode.call(void 0, "\n"),
+        _hoisted_17,
+        _vue.createTextVNode.call(void 0, "\n"),
+        _hoisted_18,
+        _vue.createTextVNode.call(void 0, "\n"),
+        _hoisted_19,
+        _vue.createTextVNode.call(void 0, "\n"),
+        _hoisted_20,
+        _vue.createTextVNode.call(void 0, "\n"),
+        _hoisted_21,
+        _vue.createTextVNode.call(void 0, "\n"),
+        _vue.createElementVNode.call(void 0, "span", _hoisted_22, [
+          _vue.createElementVNode.call(void 0, "span", _hoisted_23, "          response = requests.get('$" + _vue.toDisplayString.call(void 0, _ctx.github.event.deployment_status.environment_url) + "/api/myfunction?test=smoke')", 1 /* TEXT */)
+        ]),
+        _vue.createTextVNode.call(void 0, "\n"),
+        _hoisted_24,
+        _vue.createTextVNode.call(void 0, "\n"),
+        _hoisted_25,
+        _vue.createTextVNode.call(void 0, "\n"),
+        _hoisted_26,
+        _vue.createTextVNode.call(void 0, "\n"),
+        _hoisted_27
+      ])
+    ]),
+    _hoisted_28
+  ], 64 /* STABLE_FRAGMENT */))
+}
+__sfc__.render = render
+__sfc__.__file = "Note.vue"
+exports. default = __sfc__};
+window.precompiledFrontMatter = {"public":true,"title":"Running smoke tests on Vercel deployments using GitHub Actions"};
+</script>
+  </body>
+</html>

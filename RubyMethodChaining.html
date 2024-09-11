@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html data-precompiled=true lang="en" data-dtinth="true">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Solving problems by adding code from left to right in Ruby | notes.dt.in.th</title><meta property="og:title" content="Solving problems by adding code from left to right in Ruby" data-source="note">
+<meta property="og:image" content="https://screenshot.source.in.th/image/_/notes/RubyMethodChaining" data-source="note">
+<meta property="og:image:width" content="1800" data-source="note">
+<meta property="og:image:height" content="1680" data-source="note">
+<link rel="canonical" href="https://notes.dt.in.th/RubyMethodChaining" data-source="note">
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/iconify-icon@2.1.0/dist/iconify-icon.min.js"
+      integrity="sha256-dY2Ug42wyv3rl+sLVKEg3jbPs8f+hi7tmJ836AxVDwI="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/blurhash-image@1.0.1/blurhash-image.min.js"
+      integrity="sha256-qrUUgTGk7xA7iVCwraHNQjwy2JryA0K4L3DL4qidagQ="
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" crossorigin src="/runtime/index.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/supabase-CjkNZD6A.js">
+    <link rel="stylesheet" crossorigin href="/runtime/index.css">
+  </head>
+  <body class="bg-#252423 text-#e9e8e7 antialiased">
+    <header class="h-[58px] bg-#090807 border-b border-#454443 z-20 flex">
+      <div class="flex items-center pl-[18px] flex-none">
+        <a
+          class="flex items-center text-#8b8685 hover:text-#ffffbb text-lg"
+          href="/"
+          >notes.dt.in.th</a
+        >
+      </div>
+      <div
+        class="flex-1 flex items-center text-#8b8685 [&_a:hover]:text-#ffffbb overflow-hidden"
+        id="headerMiddle"
+      >
+        <div class="px-2 flex-none">›</div><div class="truncate"><a title="Ruby (topic)" href="Ruby">Ruby</a></div><div class="px-2 flex-none">›</div><div class="truncate"><a title="Counters in Ruby" href="RubyCounters">Counters in Ruby</a></div>
+      </div>
+      <div
+        class="flex items-center px-[18px] flex-none gap-4"
+        id="headerToolbar"
+      ></div>
+    </header>
+    <div class="h-entry">
+      <main class="bg-#353433" id="main">
+        <div class="notes-layout-container mx-auto p-6 py-12" id="mainContents">
+          <div class="prose e-content" id="noteContents"><!--[--><p><strong>In <a href="Ruby">Ruby</a>, everything is an object. A lot of problems can be solved by writing code strictly from left to right, by chaining method calls.</strong></p><h2 id="more-ways-can-mean-more-consistency"><a aria-hidden="true" tabindex="-1" href="#more-ways-can-mean-more-consistency"><span class="icon icon-link"></span></a>More ways can mean more consistency.</h2><p>Even though the Zen of Python states that <em>&quot;There should be one— and preferably only one —obvious way to do it.&quot;</em>, but in Python, to derive a new value from an existing one, oftentimes you have to mix and match multiple syntaxes (such as method calls, functions, and list comprehensions). So, when you look at a single problem in isolation, there is often one obvious way to solve that people consistently use. But when you combine smaller solutions to form a big solution, the syntax inconsistencies become apparent.</p><p>In Ruby, there are many possible ways to accomplish the same objective. There are many <strong>synonyms</strong> and <strong>aliases</strong> in the language.</p><ul><li>To convert something to an array, you can do either of these: <ul><li><code>[*thing]</code></li><li><code>thing.to_a</code></li></ul></li><li>To create an array with 5 elements filled with <code>&#39;hello&#39;</code>, you can do any of these: <ul><li><code>Array.new(5) { &#39;hello&#39; }</code></li><li><code>5.times.map { &#39;hello&#39; }</code></li><li><code>Array.new(5, &#39;hello&#39;)</code></li><li><code>[&#39;hello&#39;] * 5</code></li></ul></li><li>To convert an array to hash, you can do either of these: <ul><li><code>Hash[my_array]</code></li><li><code>my_array.to_h</code></li></ul></li><li>To call a Ruby proc: <ul><li><code>my_proc[arg1, arg2]</code></li><li><code>my_proc.(arg1, arg2)</code></li><li><code>my_proc.call(arg1, arg2)</code></li></ul></li><li>To add things to an Array: <ul><li><code>my_array &lt;&lt; thing1 &lt;&lt; thing2</code></li><li><code>my_array.push(thing1, thing2)</code></li><li><code>my_array.append(thing1, thing2)</code></li></ul></li></ul><p>While this can lead to the same problem being solved differently by different people, it also allows composing solutions using the same syntax (in this example: method calls).</p><!-- prettier-ignore-start --><table><thead><tr><th>Python example</th><th>Ruby</th></tr></thead><tbody><tr><td><code>fruits.index(&#39;cherry&#39;)</code></td><td><code>fruits.index(&#39;cherry&#39;)</code></td></tr><tr><td><code>len(fruits)</code></td><td><code>fruits.count</code><br><code>fruits.length</code><br><code>fruits.size</code></td></tr><tr><td><code>[f for f in fruits if len(f) &gt; 5]</code></td><td>`fruits.select {</td></tr></tbody></table><!-- prettier-ignore-end --><p>From the above table, you see 3 different syntaxes in Python for 3 solutions, whereas in Ruby all solutions are possible via method calls.</p><h2 id="value-pipeline"><a aria-hidden="true" tabindex="-1" href="#value-pipeline"><span class="icon icon-link"></span></a>Value pipeline</h2><p>When an object doesn&#39;t have a method you want (for example, Ruby numbers doesn&#39;t have the <code>sqrt</code> method), Ruby provides the <code>then</code> method that lets you derive a new value using an arbitrary block.</p><!-- prettier-ignore-start --><table><thead><tr><th>Ruby</th><th>Also Ruby</th></tr></thead><tbody><tr><td><code>Math.sqrt(16)</code></td><td><code>16.then(&amp;Math.method(:sqrt))</code><br>`16.then {</td></tr><tr><td><code>f(123)</code></td><td><code>123.then(&amp;method(:f))</code><br>`123.then {</td></tr></tbody></table><!-- prettier-ignore-end --><p>The code on the right isn&#39;t necessarily cleaner, but when you are focused on short-term development speed (such as when you are rapid-prototyping or doing some competitive programming), you may find the <code>.then</code> trick useful.</p><h2 id="operators-are-methods-too"><a aria-hidden="true" tabindex="-1" href="#operators-are-methods-too"><span class="icon icon-link"></span></a>Operators are methods too</h2><table><thead><tr><th>Ruby</th><th>Also Ruby</th></tr></thead><tbody><tr><td><code>1 + 1</code></td><td><code>1.+(1)</code> ^[The method name is <code>+</code>]</td></tr><tr><td><code>fruits[0]</code></td><td><code>fruits.[](0)</code> ^[The method name is <code>[]</code>]</td></tr><tr><td><code>fruits[1] = &#39;banana&#39;</code></td><td><code>fruits.[](1, &#39;banana&#39;)</code> ^[The method name is <code>[]=</code>]</td></tr></tbody></table><!--]--></div>
+        </div>
+      </main>
+      <footer>
+        <div
+          class="notes-layout-container mx-auto py-4 px-6 text-#8b8685 text-right text-sm"
+          id="footerContents"
+        >
+          <notes-page-footer></notes-page-footer>
+        </div>
+      </footer>
+    </div>
+    <script>
+window.precompiledNoteBehavior = function(require, exports, module, Vue) {"use strict";Object.defineProperty(exports, "__esModule", {value: true});const __sfc__ = {};
+var _vue = require('vue');
+
+const _hoisted_1 = /*#__PURE__*/_vue.createStaticVNode.call(void 0, "<p><strong>In <a href=\"Ruby\">Ruby</a>, everything is an object. A lot of problems can be solved by writing code strictly from left to right, by chaining method calls.</strong></p><h2 id=\"more-ways-can-mean-more-consistency\"><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#more-ways-can-mean-more-consistency\"><span class=\"icon icon-link\"></span></a>More ways can mean more consistency.</h2><p>Even though the Zen of Python states that <em>&quot;There should be one— and preferably only one —obvious way to do it.&quot;</em>, but in Python, to derive a new value from an existing one, oftentimes you have to mix and match multiple syntaxes (such as method calls, functions, and list comprehensions). So, when you look at a single problem in isolation, there is often one obvious way to solve that people consistently use. But when you combine smaller solutions to form a big solution, the syntax inconsistencies become apparent.</p><p>In Ruby, there are many possible ways to accomplish the same objective. There are many <strong>synonyms</strong> and <strong>aliases</strong> in the language.</p><ul><li>To convert something to an array, you can do either of these: <ul><li><code>[*thing]</code></li><li><code>thing.to_a</code></li></ul></li><li>To create an array with 5 elements filled with <code>&#39;hello&#39;</code>, you can do any of these: <ul><li><code>Array.new(5) { &#39;hello&#39; }</code></li><li><code>5.times.map { &#39;hello&#39; }</code></li><li><code>Array.new(5, &#39;hello&#39;)</code></li><li><code>[&#39;hello&#39;] * 5</code></li></ul></li><li>To convert an array to hash, you can do either of these: <ul><li><code>Hash[my_array]</code></li><li><code>my_array.to_h</code></li></ul></li><li>To call a Ruby proc: <ul><li><code>my_proc[arg1, arg2]</code></li><li><code>my_proc.(arg1, arg2)</code></li><li><code>my_proc.call(arg1, arg2)</code></li></ul></li><li>To add things to an Array: <ul><li><code>my_array &lt;&lt; thing1 &lt;&lt; thing2</code></li><li><code>my_array.push(thing1, thing2)</code></li><li><code>my_array.append(thing1, thing2)</code></li></ul></li></ul><p>While this can lead to the same problem being solved differently by different people, it also allows composing solutions using the same syntax (in this example: method calls).</p>", 6)
+const _hoisted_7 = /*#__PURE__*/_vue.createStaticVNode.call(void 0, "<table><thead><tr><th>Python example</th><th>Ruby</th></tr></thead><tbody><tr><td><code>fruits.index(&#39;cherry&#39;)</code></td><td><code>fruits.index(&#39;cherry&#39;)</code></td></tr><tr><td><code>len(fruits)</code></td><td><code>fruits.count</code><br><code>fruits.length</code><br><code>fruits.size</code></td></tr><tr><td><code>[f for f in fruits if len(f) &gt; 5]</code></td><td>`fruits.select {</td></tr></tbody></table>", 1)
+const _hoisted_8 = /*#__PURE__*/_vue.createElementVNode.call(void 0, "p", null, "From the above table, you see 3 different syntaxes in Python for 3 solutions, whereas in Ruby all solutions are possible via method calls.", -1 /* HOISTED */)
+const _hoisted_9 = /*#__PURE__*/_vue.createElementVNode.call(void 0, "h2", { id: "value-pipeline" }, [
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "a", {
+    "aria-hidden": "true",
+    tabindex: "-1",
+    href: "#value-pipeline"
+  }, [
+    /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { class: "icon icon-link" })
+  ]),
+  /*#__PURE__*/_vue.createTextVNode.call(void 0, "Value pipeline")
+], -1 /* HOISTED */)
+const _hoisted_10 = /*#__PURE__*/_vue.createElementVNode.call(void 0, "p", null, [
+  /*#__PURE__*/_vue.createTextVNode.call(void 0, "When an object doesn't have a method you want (for example, Ruby numbers doesn't have the "),
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "code", null, "sqrt"),
+  /*#__PURE__*/_vue.createTextVNode.call(void 0, " method), Ruby provides the "),
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "code", null, "then"),
+  /*#__PURE__*/_vue.createTextVNode.call(void 0, " method that lets you derive a new value using an arbitrary block.")
+], -1 /* HOISTED */)
+const _hoisted_11 = /*#__PURE__*/_vue.createStaticVNode.call(void 0, "<table><thead><tr><th>Ruby</th><th>Also Ruby</th></tr></thead><tbody><tr><td><code>Math.sqrt(16)</code></td><td><code>16.then(&amp;Math.method(:sqrt))</code><br>`16.then {</td></tr><tr><td><code>f(123)</code></td><td><code>123.then(&amp;method(:f))</code><br>`123.then {</td></tr></tbody></table>", 1)
+const _hoisted_12 = /*#__PURE__*/_vue.createStaticVNode.call(void 0, "<p>The code on the right isn&#39;t necessarily cleaner, but when you are focused on short-term development speed (such as when you are rapid-prototyping or doing some competitive programming), you may find the <code>.then</code> trick useful.</p><h2 id=\"operators-are-methods-too\"><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#operators-are-methods-too\"><span class=\"icon icon-link\"></span></a>Operators are methods too</h2><table><thead><tr><th>Ruby</th><th>Also Ruby</th></tr></thead><tbody><tr><td><code>1 + 1</code></td><td><code>1.+(1)</code> ^[The method name is <code>+</code>]</td></tr><tr><td><code>fruits[0]</code></td><td><code>fruits.[](0)</code> ^[The method name is <code>[]</code>]</td></tr><tr><td><code>fruits[1] = &#39;banana&#39;</code></td><td><code>fruits.[](1, &#39;banana&#39;)</code> ^[The method name is <code>[]=</code>]</td></tr></tbody></table>", 3)
+function render(_ctx, _cache) {
+  return (_vue.openBlock.call(void 0, ), _vue.createElementBlock.call(void 0, _vue.Fragment, null, [
+    _hoisted_1,
+    _vue.createCommentVNode.call(void 0, " prettier-ignore-start "),
+    _hoisted_7,
+    _vue.createCommentVNode.call(void 0, " prettier-ignore-end "),
+    _hoisted_8,
+    _hoisted_9,
+    _hoisted_10,
+    _vue.createCommentVNode.call(void 0, " prettier-ignore-start "),
+    _hoisted_11,
+    _vue.createCommentVNode.call(void 0, " prettier-ignore-end "),
+    _hoisted_12
+  ], 64 /* STABLE_FRAGMENT */))
+}
+__sfc__.render = render
+__sfc__.__file = "Note.vue"
+exports. default = __sfc__};
+window.precompiledFrontMatter = {"public":true,"title":"Solving problems by adding code from left to right in Ruby","aliases":["20201222T155532Z7236"]};
+</script>
+  </body>
+</html>

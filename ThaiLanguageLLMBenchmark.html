@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html data-precompiled=true lang="en" data-dtinth="true">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LLM กับข้อสอบ O-NET ม.6 | notes.dt.in.th</title><meta property="og:title" content="LLM กับข้อสอบ O-NET ม.6" data-source="note">
+<meta property="og:image" content="https://screenshot.source.in.th/image/_/notes/ThaiLanguageLLMBenchmark" data-source="note">
+<meta property="og:image:width" content="1800" data-source="note">
+<meta property="og:image:height" content="1680" data-source="note">
+<link rel="canonical" href="https://notes.dt.in.th/ThaiLanguageLLMBenchmark" data-source="note">
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/iconify-icon@2.1.0/dist/iconify-icon.min.js"
+      integrity="sha256-dY2Ug42wyv3rl+sLVKEg3jbPs8f+hi7tmJ836AxVDwI="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/blurhash-image@1.0.1/blurhash-image.min.js"
+      integrity="sha256-qrUUgTGk7xA7iVCwraHNQjwy2JryA0K4L3DL4qidagQ="
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" crossorigin src="/runtime/index.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/supabase-CjkNZD6A.js">
+    <link rel="stylesheet" crossorigin href="/runtime/index.css">
+  </head>
+  <body class="bg-#252423 text-#e9e8e7 antialiased">
+    <header class="h-[58px] bg-#090807 border-b border-#454443 z-20 flex">
+      <div class="flex items-center pl-[18px] flex-none">
+        <a
+          class="flex items-center text-#8b8685 hover:text-#ffffbb text-lg"
+          href="/"
+          >notes.dt.in.th</a
+        >
+      </div>
+      <div
+        class="flex-1 flex items-center text-#8b8685 [&_a:hover]:text-#ffffbb overflow-hidden"
+        id="headerMiddle"
+      >
+        <div class="px-2 flex-none">›</div><div class="truncate"><a title="Hardware (topic)" href="Hardware">Hardware</a></div><div class="px-2 flex-none">›</div><div class="truncate"><a title="Reverse-engineering Insta360 Link Controller WebSockets protocol" href="Insta360LinkControllerWebSocketProtocol">Reverse-engineering Insta360 Link Controller WebSockets protocol</a></div><div class="px-2 flex-none">›</div><div class="truncate"><a title="Configuring Open WebUI and LiteLLM with Docker Compose to talk to OpenAI, Anthropic, and Gemini APIs" href="OpenWebUILiteLLM">Configuring Open WebUI and LiteLLM with Docker Compose to talk to OpenAI, Anthropic, and Gemini APIs</a></div><div class="px-2 flex-none">›</div><div class="truncate"><a title="Large Language Model (topic)" href="LargeLanguageModel">Large Language Model</a></div>
+      </div>
+      <div
+        class="flex items-center px-[18px] flex-none gap-4"
+        id="headerToolbar"
+      ></div>
+    </header>
+    <div class="h-entry">
+      <main class="bg-#353433" id="main">
+        <div class="notes-layout-container mx-auto p-6 py-12" id="mainContents">
+          <div class="prose e-content" id="noteContents"><!--[--><h1 id="llm-กับข้อสอบ-o-net-ม6"><a aria-hidden="true" tabindex="-1" href="#llm-กับข้อสอบ-o-net-ม6"><span class="icon icon-link"></span></a>LLM กับข้อสอบ O-NET ม.6</h1><p>ช่วงหลังๆ มีโมเดล <a href="LargeLanguageModel">LLM</a> ตัวใหม่ๆ ปล่อยออกมาให้เล่นเยอะมาก ทั้ง <a href="https://openai.com/index/hello-gpt-4o/">GPT-4o</a>, <a href="https://blog.google/technology/ai/google-gemini-update-flash-ai-assistant-io-2024/">Gemini 1.5</a>, <a href="https://www.anthropic.com/news/claude-3-5-sonnet">Claude 3.5</a> จึงสงสัยว่าตัวไหนที่ทำงานกับภาษาไทยได้ดีที่สุดตอนนี้</p><p>จำได้ว่าไม่นานมานี้ <a href="https://huggingface.co/datasets/scb10x/thai_exam">ทาง SCB10X ปล่อย dataset ThaiExam มา</a> เป็นชุดข้อมูลที่รวมข้อสอบต่างๆ เอาไว้ใช้เทียบความรู้ความสามารถของโมเดลภาษา</p><p>เลยลองเอาคำถาม <a href="https://www.niets.or.th/th/content/view/25230">O-NET ม.6 ปี 2564</a> ที่อยู่ในนั้นมาลองถามโมเดลใหม่ๆ ที่เจ้าใหญ่ๆ เพิ่งปล่อยออกมาดู…</p><p><img src="https://im.dt.in.th/ipfs/bafybeidyzhbs4yowimg4ricguyjhqboow6fb2wfwscdvyliimjf3ghea3a/449393841_10221687275525343_2756368389642905696_n.jpg" alt=""></p><p>พบว่า</p><ul><li><p>โมเดล Claude 3.5 Sonnet ทำคะแนนได้ดีสุดตอนนี้ อยู่ที่ 72%</p></li><li><p>ถ้านับเฉพาะโมเดลที่เอามารันบนเครื่องตัวเองได้ (สามารถใช้งานออฟไลน์ได้) ล่าสุด Google เพิ่งปล่อยโมเดล Gemma 2 ออกมาให้โหลดกัน ซึ่งขนาด 9B เล็กพอที่จะรันบนเครื่อง MacBook M1 (16 GB) ผ่าน Ollama ได้ ทำคะแนนได้เยอะที่สุดเท่าที่ลองมา คือ 53%</p></li><li><p>แต่ถ้ามีพื้นที่กับ VRAM เยอะพอที่จะรัน Gemma 2 ขนาด 27B ได้ ตัวนั้นทำคะแนนได้ดีกว่านิดหน่อย คือ 59%</p></li><li><p>ของค่าย OpenAI โมเดล GPT-4o กับ GPT-3.5 คะแนนต่างกันมาก (61% vs 25%)</p></li><li><p>(จากข้อมูลสถิติของ สทศ คะแนนเฉลี่ย O-NET ในปี 2564 อยู่ที่ ~39% โดยปรับสัดส่วนจำนวนข้อตามข้อมูลใน ThaiExam และไม่นับคะแนนวิชาภาษาอังกฤษ)</p></li><li><p>ช่วงนี้คนพูดถึง <a href="https://azure.microsoft.com/en-us/blog/introducing-phi-3-redefining-whats-possible-with-slms/">Phi-3</a> ของค่าย Microsoft กับพอสมควร แต่โมเดลนั้นแทบไม่ได้ train บนข้อมูลภาษาไทยเลย ทำคะแนนได้แค่ 23% จึงไม่ได้ใส่ในตาราง</p></li></ul><p>(จริงๆ นอกจาก O-NET ตัว dataset ยังมีข้อมูลจากข้อสอบอื่นๆ ด้วย ได้แก่ IC, TGAT, TPAT-1, A-Level แต่โพสต์นี้ทดลองแค่ O-NET เพราะขี้เกียจละ)</p><p>(และก็ วิธีที่ผม benchmark จะต่างจาก<a href="https://github.com/stanford-crfm/helm/pull/2534">วิธีที่ SCB10X ทำ</a> เพราะตอนที่ลองทดสอบ ผมอ่านแต่ตัว dataset ไม่ได้อ่านวิธีที่จะเอาไปใช้ให้ถูกต้อง และเข้าใจว่าปกติจะใช้ HELM ซึ่งผมใช้ไม่เป็นและขี้เกียจเรียน ดังนั้น prompt และ model parameter ต่างๆ จะไม่เหมือนกัน ตัวเลขคะแนนที่ได้ก็อาจจะ<a href="https://arxiv.org/abs/2312.13951">แตกต่างกันออกไป</a> นอกจากนี้บางโมเดลผมขี้เกียจรันบนเครื่องตัวเอง เลยไปหา API ใช้ ใครว่างๆ ลอง benchmark ใน HELM แล้วแชร์ผลลัพธ์มาดูได้ครับ จะได้มีผล benchmark เยอะขึ้น และอยู่ในสภาพที่ดีกว่านี้)</p><!--]--></div>
+        </div>
+      </main>
+      <footer>
+        <div
+          class="notes-layout-container mx-auto py-4 px-6 text-#8b8685 text-right text-sm"
+          id="footerContents"
+        >
+          <notes-page-footer></notes-page-footer>
+        </div>
+      </footer>
+    </div>
+    <script>
+window.precompiledNoteBehavior = function(require, exports, module, Vue) {"use strict";Object.defineProperty(exports, "__esModule", {value: true});const __sfc__ = {};
+var _vue = require('vue');
+
+const _hoisted_1 = /*#__PURE__*/_vue.createStaticVNode.call(void 0, "<h1 id=\"llm-กับข้อสอบ-o-net-ม6\"><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#llm-กับข้อสอบ-o-net-ม6\"><span class=\"icon icon-link\"></span></a>LLM กับข้อสอบ O-NET ม.6</h1><p>ช่วงหลังๆ มีโมเดล <a href=\"LargeLanguageModel\">LLM</a> ตัวใหม่ๆ ปล่อยออกมาให้เล่นเยอะมาก ทั้ง <a href=\"https://openai.com/index/hello-gpt-4o/\">GPT-4o</a>, <a href=\"https://blog.google/technology/ai/google-gemini-update-flash-ai-assistant-io-2024/\">Gemini 1.5</a>, <a href=\"https://www.anthropic.com/news/claude-3-5-sonnet\">Claude 3.5</a> จึงสงสัยว่าตัวไหนที่ทำงานกับภาษาไทยได้ดีที่สุดตอนนี้</p><p>จำได้ว่าไม่นานมานี้ <a href=\"https://huggingface.co/datasets/scb10x/thai_exam\">ทาง SCB10X ปล่อย dataset ThaiExam มา</a> เป็นชุดข้อมูลที่รวมข้อสอบต่างๆ เอาไว้ใช้เทียบความรู้ความสามารถของโมเดลภาษา</p><p>เลยลองเอาคำถาม <a href=\"https://www.niets.or.th/th/content/view/25230\">O-NET ม.6 ปี 2564</a> ที่อยู่ในนั้นมาลองถามโมเดลใหม่ๆ ที่เจ้าใหญ่ๆ เพิ่งปล่อยออกมาดู…</p><p><img src=\"https://im.dt.in.th/ipfs/bafybeidyzhbs4yowimg4ricguyjhqboow6fb2wfwscdvyliimjf3ghea3a/449393841_10221687275525343_2756368389642905696_n.jpg\" alt=\"\"></p><p>พบว่า</p><ul><li><p>โมเดล Claude 3.5 Sonnet ทำคะแนนได้ดีสุดตอนนี้ อยู่ที่ 72%</p></li><li><p>ถ้านับเฉพาะโมเดลที่เอามารันบนเครื่องตัวเองได้ (สามารถใช้งานออฟไลน์ได้) ล่าสุด Google เพิ่งปล่อยโมเดล Gemma 2 ออกมาให้โหลดกัน ซึ่งขนาด 9B เล็กพอที่จะรันบนเครื่อง MacBook M1 (16 GB) ผ่าน Ollama ได้ ทำคะแนนได้เยอะที่สุดเท่าที่ลองมา คือ 53%</p></li><li><p>แต่ถ้ามีพื้นที่กับ VRAM เยอะพอที่จะรัน Gemma 2 ขนาด 27B ได้ ตัวนั้นทำคะแนนได้ดีกว่านิดหน่อย คือ 59%</p></li><li><p>ของค่าย OpenAI โมเดล GPT-4o กับ GPT-3.5 คะแนนต่างกันมาก (61% vs 25%)</p></li><li><p>(จากข้อมูลสถิติของ สทศ คะแนนเฉลี่ย O-NET ในปี 2564 อยู่ที่ ~39% โดยปรับสัดส่วนจำนวนข้อตามข้อมูลใน ThaiExam และไม่นับคะแนนวิชาภาษาอังกฤษ)</p></li><li><p>ช่วงนี้คนพูดถึง <a href=\"https://azure.microsoft.com/en-us/blog/introducing-phi-3-redefining-whats-possible-with-slms/\">Phi-3</a> ของค่าย Microsoft กับพอสมควร แต่โมเดลนั้นแทบไม่ได้ train บนข้อมูลภาษาไทยเลย ทำคะแนนได้แค่ 23% จึงไม่ได้ใส่ในตาราง</p></li></ul><p>(จริงๆ นอกจาก O-NET ตัว dataset ยังมีข้อมูลจากข้อสอบอื่นๆ ด้วย ได้แก่ IC, TGAT, TPAT-1, A-Level แต่โพสต์นี้ทดลองแค่ O-NET เพราะขี้เกียจละ)</p><p>(และก็ วิธีที่ผม benchmark จะต่างจาก<a href=\"https://github.com/stanford-crfm/helm/pull/2534\">วิธีที่ SCB10X ทำ</a> เพราะตอนที่ลองทดสอบ ผมอ่านแต่ตัว dataset ไม่ได้อ่านวิธีที่จะเอาไปใช้ให้ถูกต้อง และเข้าใจว่าปกติจะใช้ HELM ซึ่งผมใช้ไม่เป็นและขี้เกียจเรียน ดังนั้น prompt และ model parameter ต่างๆ จะไม่เหมือนกัน ตัวเลขคะแนนที่ได้ก็อาจจะ<a href=\"https://arxiv.org/abs/2312.13951\">แตกต่างกันออกไป</a> นอกจากนี้บางโมเดลผมขี้เกียจรันบนเครื่องตัวเอง เลยไปหา API ใช้ ใครว่างๆ ลอง benchmark ใน HELM แล้วแชร์ผลลัพธ์มาดูได้ครับ จะได้มีผล benchmark เยอะขึ้น และอยู่ในสภาพที่ดีกว่านี้)</p>", 9)
+function render(_ctx, _cache) {
+  return _hoisted_1
+}
+__sfc__.render = render
+__sfc__.__file = "Note.vue"
+exports. default = __sfc__};
+window.precompiledFrontMatter = {"title":"LLM กับข้อสอบ O-NET ม.6","public":true,"facebook":"https://www.facebook.com/dtinth/posts/pfbid0EZvGA5NDDXuZXtiwV2qp4Uf1b4BZkfCb9Eu3HHEXwJLrhdDkCpPHEK2kdhytNHUgl"};
+</script>
+  </body>
+</html>

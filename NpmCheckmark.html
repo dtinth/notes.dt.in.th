@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html data-precompiled=true lang="en" data-dtinth="true">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>npm checkmark | notes.dt.in.th</title><meta property="og:title" content="npm checkmark" data-source="note">
+<meta property="og:image" content="https://screenshot.source.in.th/image/_/notes/NpmCheckmark" data-source="note">
+<meta property="og:image:width" content="1800" data-source="note">
+<meta property="og:image:height" content="1680" data-source="note">
+<link rel="canonical" href="https://notes.dt.in.th/NpmCheckmark" data-source="note">
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/iconify-icon@2.1.0/dist/iconify-icon.min.js"
+      integrity="sha256-dY2Ug42wyv3rl+sLVKEg3jbPs8f+hi7tmJ836AxVDwI="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/blurhash-image@1.0.1/blurhash-image.min.js"
+      integrity="sha256-qrUUgTGk7xA7iVCwraHNQjwy2JryA0K4L3DL4qidagQ="
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" crossorigin src="/runtime/index.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/supabase-CjkNZD6A.js">
+    <link rel="stylesheet" crossorigin href="/runtime/index.css">
+  </head>
+  <body class="bg-#252423 text-#e9e8e7 antialiased">
+    <header class="h-[58px] bg-#090807 border-b border-#454443 z-20 flex">
+      <div class="flex items-center pl-[18px] flex-none">
+        <a
+          class="flex items-center text-#8b8685 hover:text-#ffffbb text-lg"
+          href="/"
+          >notes.dt.in.th</a
+        >
+      </div>
+      <div
+        class="flex-1 flex items-center text-#8b8685 [&_a:hover]:text-#ffffbb overflow-hidden"
+        id="headerMiddle"
+      >
+        <div class="px-2 flex-none">›</div><div class="truncate"><a title="GitHub (topic)" href="GitHub">GitHub</a></div><div class="px-2 flex-none">›</div><div class="truncate"><a title="GitHub Actions (topic)" href="GitHubActions">GitHub Actions</a></div>
+      </div>
+      <div
+        class="flex items-center px-[18px] flex-none gap-4"
+        id="headerToolbar"
+      ></div>
+    </header>
+    <div class="h-entry">
+      <main class="bg-#353433" id="main">
+        <div class="notes-layout-container mx-auto p-6 py-12" id="mainContents">
+          <div class="prose e-content" id="noteContents"><!--[--><h1 id="npm-checkmark"><a aria-hidden="true" tabindex="-1" href="#npm-checkmark"><span class="icon icon-link"></span></a>npm checkmark</h1><div class="lead"><p>You can get a <!----> verified checkmark on your npm package if you build and publish it from <a href="GitHubActions">GitHub Actions</a>.</p></div><p><a href="https://www.npmjs.com/package/@(-.-)/env"><img width="388" alt="image" src="https://user-images.githubusercontent.com/193136/233458617-d7931d76-55db-430a-ac7d-ee7bd724d9b3.png"></a></p><ol><li><p>In <code>package.json</code>, make sure <code>repository.url</code> is set to your repository’s URL.</p><pre class="shiki github-dark" style="background-color:#252423;color:#e1e4e8;" tabindex="0"><code><span class="line"><span style="color:#9ECBFF;">  &quot;repository&quot;</span><span style="color:#E1E4E8;">: {</span></span>
+<span class="line"><span style="color:#79B8FF;">    &quot;url&quot;</span><span style="color:#E1E4E8;">: </span><span style="color:#9ECBFF;">&quot;git+https://github.com/dtinth/-.-&quot;</span></span>
+<span class="line"><span style="color:#E1E4E8;">  }</span></span></code></pre></li><li><p>Update your GitHub Actions workflow job.</p><ul><li>Make sure it has the <code>id-token: write</code> permission.</li><li>Set environment variable <code>NPM_CONFIG_PROVENANCE=true</code>.</li></ul><pre class="shiki github-dark" style="background-color:#252423;color:#e1e4e8;" tabindex="0"><code><span class="line"><span style="color:#85E89D;">jobs</span><span style="color:#E1E4E8;">:</span></span>
+<span class="line"><span style="color:#85E89D;">  release</span><span style="color:#E1E4E8;">:</span></span>
+<span class="line"><span style="color:#85E89D;">    name</span><span style="color:#E1E4E8;">: </span><span style="color:#9ECBFF;">Release</span></span>
+<span class="line"><span style="color:#85E89D;">    runs-on</span><span style="color:#E1E4E8;">: </span><span style="color:#9ECBFF;">ubuntu-latest</span></span>
+<span class="line"><span style="color:#85E89D;">    permissions</span><span style="color:#E1E4E8;">:</span></span>
+<span class="line"><span style="color:#85E89D;">      id-token</span><span style="color:#E1E4E8;">: </span><span style="color:#9ECBFF;">write</span></span>
+<span class="line"><span style="color:#85E89D;">      contents</span><span style="color:#E1E4E8;">: </span><span style="color:#9ECBFF;">write</span></span>
+<span class="line"><span style="color:#85E89D;">      packages</span><span style="color:#E1E4E8;">: </span><span style="color:#9ECBFF;">write</span></span>
+<span class="line"><span style="color:#85E89D;">      pull-requests</span><span style="color:#E1E4E8;">: </span><span style="color:#9ECBFF;">write</span></span>
+<span class="line"><span style="color:#85E89D;">      issues</span><span style="color:#E1E4E8;">: </span><span style="color:#9ECBFF;">read</span></span>
+<span class="line"><span style="color:#85E89D;">    env</span><span style="color:#E1E4E8;">:</span></span>
+<span class="line"><span style="color:#85E89D;">      NPM_CONFIG_PROVENANCE</span><span style="color:#E1E4E8;">: </span><span style="color:#79B8FF;">true</span></span></code></pre></li></ol><h2 id="further-reading"><a aria-hidden="true" tabindex="-1" href="#further-reading"><span class="icon icon-link"></span></a>Further reading</h2><ul><li><a href="https://github.blog/2023-04-19-introducing-npm-package-provenance/">Brian DeHamer, Philip Harrison (2023). “Introducing npm package provenance.” <em>GitHub Blog.</em></a></li><li><a href="https://docs.npmjs.com/generating-provenance-statements">“Generating provenance statements.” <em>npm Docs.</em></a></li></ul><!--]--></div>
+        </div>
+      </main>
+      <footer>
+        <div
+          class="notes-layout-container mx-auto py-4 px-6 text-#8b8685 text-right text-sm"
+          id="footerContents"
+        >
+          <notes-page-footer></notes-page-footer>
+        </div>
+      </footer>
+    </div>
+    <script>
+window.precompiledNoteBehavior = function(require, exports, module, Vue) {"use strict";Object.defineProperty(exports, "__esModule", {value: true});const __sfc__ = {};
+var _vue = require('vue');
+
+const _hoisted_1 = /*#__PURE__*/_vue.createElementVNode.call(void 0, "h1", { id: "npm-checkmark" }, [
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "a", {
+    "aria-hidden": "true",
+    tabindex: "-1",
+    href: "#npm-checkmark"
+  }, [
+    /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { class: "icon icon-link" })
+  ]),
+  /*#__PURE__*/_vue.createTextVNode.call(void 0, "npm checkmark")
+], -1 /* HOISTED */)
+const _hoisted_2 = { class: "lead" }
+const _hoisted_3 = /*#__PURE__*/_vue.createElementVNode.call(void 0, "a", { href: "GitHubActions" }, "GitHub Actions", -1 /* HOISTED */)
+const _hoisted_4 = /*#__PURE__*/_vue.createStaticVNode.call(void 0, "<p><a href=\"https://www.npmjs.com/package/@(-.-)/env\"><img width=\"388\" alt=\"image\" src=\"https://user-images.githubusercontent.com/193136/233458617-d7931d76-55db-430a-ac7d-ee7bd724d9b3.png\"></a></p><ol><li><p>In <code>package.json</code>, make sure <code>repository.url</code> is set to your repository’s URL.</p><pre class=\"shiki github-dark\" style=\"background-color:#252423;color:#e1e4e8;\" tabindex=\"0\"><code><span class=\"line\"><span style=\"color:#9ECBFF;\">  &quot;repository&quot;</span><span style=\"color:#E1E4E8;\">: {</span></span>\n<span class=\"line\"><span style=\"color:#79B8FF;\">    &quot;url&quot;</span><span style=\"color:#E1E4E8;\">: </span><span style=\"color:#9ECBFF;\">&quot;git+https://github.com/dtinth/-.-&quot;</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">  }</span></span></code></pre></li><li><p>Update your GitHub Actions workflow job.</p><ul><li>Make sure it has the <code>id-token: write</code> permission.</li><li>Set environment variable <code>NPM_CONFIG_PROVENANCE=true</code>.</li></ul><pre class=\"shiki github-dark\" style=\"background-color:#252423;color:#e1e4e8;\" tabindex=\"0\"><code><span class=\"line\"><span style=\"color:#85E89D;\">jobs</span><span style=\"color:#E1E4E8;\">:</span></span>\n<span class=\"line\"><span style=\"color:#85E89D;\">  release</span><span style=\"color:#E1E4E8;\">:</span></span>\n<span class=\"line\"><span style=\"color:#85E89D;\">    name</span><span style=\"color:#E1E4E8;\">: </span><span style=\"color:#9ECBFF;\">Release</span></span>\n<span class=\"line\"><span style=\"color:#85E89D;\">    runs-on</span><span style=\"color:#E1E4E8;\">: </span><span style=\"color:#9ECBFF;\">ubuntu-latest</span></span>\n<span class=\"line\"><span style=\"color:#85E89D;\">    permissions</span><span style=\"color:#E1E4E8;\">:</span></span>\n<span class=\"line\"><span style=\"color:#85E89D;\">      id-token</span><span style=\"color:#E1E4E8;\">: </span><span style=\"color:#9ECBFF;\">write</span></span>\n<span class=\"line\"><span style=\"color:#85E89D;\">      contents</span><span style=\"color:#E1E4E8;\">: </span><span style=\"color:#9ECBFF;\">write</span></span>\n<span class=\"line\"><span style=\"color:#85E89D;\">      packages</span><span style=\"color:#E1E4E8;\">: </span><span style=\"color:#9ECBFF;\">write</span></span>\n<span class=\"line\"><span style=\"color:#85E89D;\">      pull-requests</span><span style=\"color:#E1E4E8;\">: </span><span style=\"color:#9ECBFF;\">write</span></span>\n<span class=\"line\"><span style=\"color:#85E89D;\">      issues</span><span style=\"color:#E1E4E8;\">: </span><span style=\"color:#9ECBFF;\">read</span></span>\n<span class=\"line\"><span style=\"color:#85E89D;\">    env</span><span style=\"color:#E1E4E8;\">:</span></span>\n<span class=\"line\"><span style=\"color:#85E89D;\">      NPM_CONFIG_PROVENANCE</span><span style=\"color:#E1E4E8;\">: </span><span style=\"color:#79B8FF;\">true</span></span></code></pre></li></ol><h2 id=\"further-reading\"><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#further-reading\"><span class=\"icon icon-link\"></span></a>Further reading</h2><ul><li><a href=\"https://github.blog/2023-04-19-introducing-npm-package-provenance/\">Brian DeHamer, Philip Harrison (2023). “Introducing npm package provenance.” <em>GitHub Blog.</em></a></li><li><a href=\"https://docs.npmjs.com/generating-provenance-statements\">“Generating provenance statements.” <em>npm Docs.</em></a></li></ul>", 4)
+function render(_ctx, _cache) {
+  const _component_iconify_icon = _vue.resolveComponent.call(void 0, "iconify-icon")
+
+  return (_vue.openBlock.call(void 0, ), _vue.createElementBlock.call(void 0, _vue.Fragment, null, [
+    _hoisted_1,
+    _vue.createElementVNode.call(void 0, "div", _hoisted_2, [
+      _vue.createElementVNode.call(void 0, "p", null, [
+        _vue.createTextVNode.call(void 0, "You can get a "),
+        _vue.createVNode.call(void 0, _component_iconify_icon, {
+          style: {"color":"#d7fc70"},
+          inline: "",
+          icon: "octicon:verified-24"
+        }),
+        _vue.createTextVNode.call(void 0, " verified checkmark on your npm package if you build and publish it from "),
+        _hoisted_3,
+        _vue.createTextVNode.call(void 0, ".")
+      ])
+    ]),
+    _hoisted_4
+  ], 64 /* STABLE_FRAGMENT */))
+}
+__sfc__.render = render
+__sfc__.__file = "Note.vue"
+exports. default = __sfc__};
+window.precompiledFrontMatter = {"title":"npm checkmark","public":true,"twitter":"https://twitter.com/dtinth/status/1649379573774295042","facebook":"https://www.facebook.com/dtinth/posts/pfbid0WcMhSkf4PjvTYv6NqK18NRubhz16uC3cqayvptsVbXEcGvRbbAJYJXbLYpkXbsvTl"};
+</script>
+  </body>
+</html>

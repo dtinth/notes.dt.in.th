@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html data-precompiled=true lang="en" data-dtinth="true">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Using tRPC on Firebase Functions v2 | notes.dt.in.th</title><meta property="og:title" content="Using tRPC on Firebase Functions v2" data-source="note">
+<meta property="og:image" content="https://screenshot.source.in.th/image/_/notes/TRPCFirebase" data-source="note">
+<meta property="og:image:width" content="1800" data-source="note">
+<meta property="og:image:height" content="1680" data-source="note">
+<link rel="canonical" href="https://notes.dt.in.th/TRPCFirebase" data-source="note">
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/iconify-icon@2.1.0/dist/iconify-icon.min.js"
+      integrity="sha256-dY2Ug42wyv3rl+sLVKEg3jbPs8f+hi7tmJ836AxVDwI="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/blurhash-image@1.0.1/blurhash-image.min.js"
+      integrity="sha256-qrUUgTGk7xA7iVCwraHNQjwy2JryA0K4L3DL4qidagQ="
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" crossorigin src="/runtime/index.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/supabase-CjkNZD6A.js">
+    <link rel="stylesheet" crossorigin href="/runtime/index.css">
+  </head>
+  <body class="bg-#252423 text-#e9e8e7 antialiased">
+    <header class="h-[58px] bg-#090807 border-b border-#454443 z-20 flex">
+      <div class="flex items-center pl-[18px] flex-none">
+        <a
+          class="flex items-center text-#8b8685 hover:text-#ffffbb text-lg"
+          href="/"
+          >notes.dt.in.th</a
+        >
+      </div>
+      <div
+        class="flex-1 flex items-center text-#8b8685 [&_a:hover]:text-#ffffbb overflow-hidden"
+        id="headerMiddle"
+      >
+        <div class="px-2 flex-none">›</div><div class="truncate"><a title="Cloud Platform (topic)" href="CloudPlatform">Cloud Platform</a></div><div class="px-2 flex-none">›</div><div class="truncate"><a title="Vercel (topic)" href="Vercel">Vercel</a></div><div class="px-2 flex-none">›</div><div class="truncate"><a title="Next.js (topic)" href="Next">Next.js</a></div><div class="px-2 flex-none">›</div><div class="truncate"><a title="Production-grade Next.js apps" href="NextInProduction">Production-grade Next.js apps</a></div><div class="px-2 flex-none">›</div><div class="truncate"><a title="Configuring tRPC error logging in T3 apps" href="NextTrpcError">Configuring tRPC error logging in T3 apps</a></div><div class="px-2 flex-none">›</div><div class="truncate"><a title="tRPC (topic)" href="TRPC">tRPC</a></div>
+      </div>
+      <div
+        class="flex items-center px-[18px] flex-none gap-4"
+        id="headerToolbar"
+      ></div>
+    </header>
+    <div class="h-entry">
+      <main class="bg-#353433" id="main">
+        <div class="notes-layout-container mx-auto p-6 py-12" id="mainContents">
+          <div class="prose e-content" id="noteContents"><pre class="shiki github-dark" style="background-color:#252423;color:#e1e4e8;" tabindex="0"><code><span class="line"><span style="color:#F97583;">import</span><span style="color:#E1E4E8;"> { onRequest } </span><span style="color:#F97583;">from</span><span style="color:#9ECBFF;"> &#39;firebase-functions/v2/https&#39;</span></span>
+<span class="line"><span style="color:#F97583;">import</span><span style="color:#79B8FF;"> *</span><span style="color:#F97583;"> as</span><span style="color:#E1E4E8;"> logger </span><span style="color:#F97583;">from</span><span style="color:#9ECBFF;"> &#39;firebase-functions/logger&#39;</span></span>
+<span class="line"><span style="color:#F97583;">import</span><span style="color:#E1E4E8;"> { initTRPC } </span><span style="color:#F97583;">from</span><span style="color:#9ECBFF;"> &#39;@trpc/server&#39;</span></span>
+<span class="line"><span style="color:#F97583;">import</span><span style="color:#79B8FF;"> *</span><span style="color:#F97583;"> as</span><span style="color:#E1E4E8;"> trpcExpress </span><span style="color:#F97583;">from</span><span style="color:#9ECBFF;"> &#39;@trpc/server/adapters/express&#39;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583;">export</span><span style="color:#F97583;"> interface</span><span style="color:#B392F0;"> Context</span><span style="color:#E1E4E8;"> {}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583;">const</span><span style="color:#79B8FF;"> t</span><span style="color:#F97583;"> =</span><span style="color:#E1E4E8;"> initTRPC.</span><span style="color:#B392F0;">context</span><span style="color:#E1E4E8;">&lt;</span><span style="color:#B392F0;">Context</span><span style="color:#E1E4E8;">&gt;().</span><span style="color:#B392F0;">create</span><span style="color:#E1E4E8;">()</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583;">const</span><span style="color:#79B8FF;"> appRouter</span><span style="color:#F97583;"> =</span><span style="color:#E1E4E8;"> t.</span><span style="color:#B392F0;">router</span><span style="color:#E1E4E8;">({</span></span>
+<span class="line"><span style="color:#E1E4E8;">  info: t.procedure.</span><span style="color:#B392F0;">query</span><span style="color:#E1E4E8;">(</span><span style="color:#F97583;">async</span><span style="color:#E1E4E8;"> () </span><span style="color:#F97583;">=&gt;</span><span style="color:#E1E4E8;"> {</span></span>
+<span class="line"><span style="color:#F97583;">    return</span><span style="color:#E1E4E8;"> { name: </span><span style="color:#9ECBFF;">&#39;my-app&#39;</span><span style="color:#E1E4E8;"> }</span></span>
+<span class="line"><span style="color:#E1E4E8;">  }),</span></span>
+<span class="line"><span style="color:#E1E4E8;">})</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583;">const</span><span style="color:#79B8FF;"> trpcHandler</span><span style="color:#F97583;"> =</span><span style="color:#E1E4E8;"> trpcExpress.</span><span style="color:#B392F0;">createExpressMiddleware</span><span style="color:#E1E4E8;">({</span></span>
+<span class="line"><span style="color:#E1E4E8;">  router: appRouter,</span></span>
+<span class="line"><span style="color:#B392F0;">  createContext</span><span style="color:#E1E4E8;">: </span><span style="color:#F97583;">async</span><span style="color:#E1E4E8;"> () </span><span style="color:#F97583;">=&gt;</span><span style="color:#E1E4E8;"> {</span></span>
+<span class="line"><span style="color:#F97583;">    return</span><span style="color:#E1E4E8;"> {}</span></span>
+<span class="line"><span style="color:#E1E4E8;">  },</span></span>
+<span class="line"><span style="color:#E1E4E8;">})</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583;">export</span><span style="color:#F97583;"> const</span><span style="color:#79B8FF;"> trpc</span><span style="color:#F97583;"> =</span><span style="color:#B392F0;"> onRequest</span><span style="color:#E1E4E8;">({ cors: </span><span style="color:#79B8FF;">true</span><span style="color:#E1E4E8;"> }, (</span><span style="color:#FFAB70;">request</span><span style="color:#E1E4E8;">, </span><span style="color:#FFAB70;">response</span><span style="color:#E1E4E8;">) </span><span style="color:#F97583;">=&gt;</span><span style="color:#E1E4E8;"> {</span></span>
+<span class="line"><span style="color:#B392F0;">  trpcHandler</span><span style="color:#E1E4E8;">(request, response, (</span><span style="color:#FFAB70;">err</span><span style="color:#E1E4E8;">) </span><span style="color:#F97583;">=&gt;</span><span style="color:#E1E4E8;"> {</span></span>
+<span class="line"><span style="color:#F97583;">    if</span><span style="color:#E1E4E8;"> (err) {</span></span>
+<span class="line"><span style="color:#E1E4E8;">      logger.</span><span style="color:#B392F0;">error</span><span style="color:#E1E4E8;">(err)</span></span>
+<span class="line"><span style="color:#E1E4E8;">      response.</span><span style="color:#B392F0;">status</span><span style="color:#E1E4E8;">(</span><span style="color:#79B8FF;">500</span><span style="color:#E1E4E8;">).</span><span style="color:#B392F0;">send</span><span style="color:#E1E4E8;">({ message: </span><span style="color:#9ECBFF;">&#39;An error occurred&#39;</span><span style="color:#E1E4E8;"> })</span></span>
+<span class="line"><span style="color:#E1E4E8;">    }</span></span>
+<span class="line"><span style="color:#E1E4E8;">  })</span></span>
+<span class="line"><span style="color:#E1E4E8;">})</span></span></code></pre></div>
+        </div>
+      </main>
+      <footer>
+        <div
+          class="notes-layout-container mx-auto py-4 px-6 text-#8b8685 text-right text-sm"
+          id="footerContents"
+        >
+          <notes-page-footer></notes-page-footer>
+        </div>
+      </footer>
+    </div>
+    <script>
+window.precompiledNoteBehavior = function(require, exports, module, Vue) {"use strict";Object.defineProperty(exports, "__esModule", {value: true});const __sfc__ = {};
+var _vue = require('vue');
+
+const _hoisted_1 = {
+  class: "shiki github-dark",
+  style: {"background-color":"#252423","color":"#e1e4e8"},
+  tabindex: "0"
+}
+const _hoisted_2 = /*#__PURE__*/_vue.createStaticVNode.call(void 0, "<code><span class=\"line\"><span style=\"color:#F97583;\">import</span><span style=\"color:#E1E4E8;\"> { onRequest } </span><span style=\"color:#F97583;\">from</span><span style=\"color:#9ECBFF;\"> &#39;firebase-functions/v2/https&#39;</span></span>\n<span class=\"line\"><span style=\"color:#F97583;\">import</span><span style=\"color:#79B8FF;\"> *</span><span style=\"color:#F97583;\"> as</span><span style=\"color:#E1E4E8;\"> logger </span><span style=\"color:#F97583;\">from</span><span style=\"color:#9ECBFF;\"> &#39;firebase-functions/logger&#39;</span></span>\n<span class=\"line\"><span style=\"color:#F97583;\">import</span><span style=\"color:#E1E4E8;\"> { initTRPC } </span><span style=\"color:#F97583;\">from</span><span style=\"color:#9ECBFF;\"> &#39;@trpc/server&#39;</span></span>\n<span class=\"line\"><span style=\"color:#F97583;\">import</span><span style=\"color:#79B8FF;\"> *</span><span style=\"color:#F97583;\"> as</span><span style=\"color:#E1E4E8;\"> trpcExpress </span><span style=\"color:#F97583;\">from</span><span style=\"color:#9ECBFF;\"> &#39;@trpc/server/adapters/express&#39;</span></span>\n<span class=\"line\"></span>\n<span class=\"line\"><span style=\"color:#F97583;\">export</span><span style=\"color:#F97583;\"> interface</span><span style=\"color:#B392F0;\"> Context</span><span style=\"color:#E1E4E8;\"> {}</span></span>\n<span class=\"line\"></span>\n<span class=\"line\"><span style=\"color:#F97583;\">const</span><span style=\"color:#79B8FF;\"> t</span><span style=\"color:#F97583;\"> =</span><span style=\"color:#E1E4E8;\"> initTRPC.</span><span style=\"color:#B392F0;\">context</span><span style=\"color:#E1E4E8;\">&lt;</span><span style=\"color:#B392F0;\">Context</span><span style=\"color:#E1E4E8;\">&gt;().</span><span style=\"color:#B392F0;\">create</span><span style=\"color:#E1E4E8;\">()</span></span>\n<span class=\"line\"></span>\n<span class=\"line\"><span style=\"color:#F97583;\">const</span><span style=\"color:#79B8FF;\"> appRouter</span><span style=\"color:#F97583;\"> =</span><span style=\"color:#E1E4E8;\"> t.</span><span style=\"color:#B392F0;\">router</span><span style=\"color:#E1E4E8;\">({</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">  info: t.procedure.</span><span style=\"color:#B392F0;\">query</span><span style=\"color:#E1E4E8;\">(</span><span style=\"color:#F97583;\">async</span><span style=\"color:#E1E4E8;\"> () </span><span style=\"color:#F97583;\">=&gt;</span><span style=\"color:#E1E4E8;\"> {</span></span>\n<span class=\"line\"><span style=\"color:#F97583;\">    return</span><span style=\"color:#E1E4E8;\"> { name: </span><span style=\"color:#9ECBFF;\">&#39;my-app&#39;</span><span style=\"color:#E1E4E8;\"> }</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">  }),</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">})</span></span>\n<span class=\"line\"></span>\n<span class=\"line\"><span style=\"color:#F97583;\">const</span><span style=\"color:#79B8FF;\"> trpcHandler</span><span style=\"color:#F97583;\"> =</span><span style=\"color:#E1E4E8;\"> trpcExpress.</span><span style=\"color:#B392F0;\">createExpressMiddleware</span><span style=\"color:#E1E4E8;\">({</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">  router: appRouter,</span></span>\n<span class=\"line\"><span style=\"color:#B392F0;\">  createContext</span><span style=\"color:#E1E4E8;\">: </span><span style=\"color:#F97583;\">async</span><span style=\"color:#E1E4E8;\"> () </span><span style=\"color:#F97583;\">=&gt;</span><span style=\"color:#E1E4E8;\"> {</span></span>\n<span class=\"line\"><span style=\"color:#F97583;\">    return</span><span style=\"color:#E1E4E8;\"> {}</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">  },</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">})</span></span>\n<span class=\"line\"></span>\n<span class=\"line\"><span style=\"color:#F97583;\">export</span><span style=\"color:#F97583;\"> const</span><span style=\"color:#79B8FF;\"> trpc</span><span style=\"color:#F97583;\"> =</span><span style=\"color:#B392F0;\"> onRequest</span><span style=\"color:#E1E4E8;\">({ cors: </span><span style=\"color:#79B8FF;\">true</span><span style=\"color:#E1E4E8;\"> }, (</span><span style=\"color:#FFAB70;\">request</span><span style=\"color:#E1E4E8;\">, </span><span style=\"color:#FFAB70;\">response</span><span style=\"color:#E1E4E8;\">) </span><span style=\"color:#F97583;\">=&gt;</span><span style=\"color:#E1E4E8;\"> {</span></span>\n<span class=\"line\"><span style=\"color:#B392F0;\">  trpcHandler</span><span style=\"color:#E1E4E8;\">(request, response, (</span><span style=\"color:#FFAB70;\">err</span><span style=\"color:#E1E4E8;\">) </span><span style=\"color:#F97583;\">=&gt;</span><span style=\"color:#E1E4E8;\"> {</span></span>\n<span class=\"line\"><span style=\"color:#F97583;\">    if</span><span style=\"color:#E1E4E8;\"> (err) {</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">      logger.</span><span style=\"color:#B392F0;\">error</span><span style=\"color:#E1E4E8;\">(err)</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">      response.</span><span style=\"color:#B392F0;\">status</span><span style=\"color:#E1E4E8;\">(</span><span style=\"color:#79B8FF;\">500</span><span style=\"color:#E1E4E8;\">).</span><span style=\"color:#B392F0;\">send</span><span style=\"color:#E1E4E8;\">({ message: </span><span style=\"color:#9ECBFF;\">&#39;An error occurred&#39;</span><span style=\"color:#E1E4E8;\"> })</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">    }</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">  })</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">})</span></span></code>", 1)
+const _hoisted_3 = [
+  _hoisted_2
+]
+function render(_ctx, _cache) {
+  return (_vue.openBlock.call(void 0, ), _vue.createElementBlock.call(void 0, "pre", _hoisted_1, [..._hoisted_3]))
+}
+__sfc__.render = render
+__sfc__.__file = "Note.vue"
+exports. default = __sfc__};
+window.precompiledFrontMatter = {"title":"Using tRPC on Firebase Functions v2","public":true};
+</script>
+  </body>
+</html>

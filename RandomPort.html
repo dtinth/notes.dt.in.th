@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html data-precompiled=true lang="en" data-dtinth="true">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Port number randomizer | notes.dt.in.th</title><meta property="og:title" content="Port number randomizer" data-source="note">
+<meta property="og:image" content="https://screenshot.source.in.th/image/_/notes/RandomPort" data-source="note">
+<meta property="og:image:width" content="1800" data-source="note">
+<meta property="og:image:height" content="1680" data-source="note">
+<link rel="canonical" href="https://notes.dt.in.th/RandomPort" data-source="note"><style id="note-styles">/* layer: default */
+.border[data-v-8c9498c0]{border-width:1px;}</style>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/iconify-icon@2.1.0/dist/iconify-icon.min.js"
+      integrity="sha256-dY2Ug42wyv3rl+sLVKEg3jbPs8f+hi7tmJ836AxVDwI="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/blurhash-image@1.0.1/blurhash-image.min.js"
+      integrity="sha256-qrUUgTGk7xA7iVCwraHNQjwy2JryA0K4L3DL4qidagQ="
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" crossorigin src="/runtime/index.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/supabase-CjkNZD6A.js">
+    <link rel="stylesheet" crossorigin href="/runtime/index.css">
+  </head>
+  <body class="bg-#252423 text-#e9e8e7 antialiased">
+    <header class="h-[58px] bg-#090807 border-b border-#454443 z-20 flex">
+      <div class="flex items-center pl-[18px] flex-none">
+        <a
+          class="flex items-center text-#8b8685 hover:text-#ffffbb text-lg"
+          href="/"
+          >notes.dt.in.th</a
+        >
+      </div>
+      <div
+        class="flex-1 flex items-center text-#8b8685 [&_a:hover]:text-#ffffbb overflow-hidden"
+        id="headerMiddle"
+      >
+        <div class="px-2 flex-none">›</div><div class="truncate"><a title="Tools (topic)" href="Tools">Tools</a></div>
+      </div>
+      <div
+        class="flex items-center px-[18px] flex-none gap-4"
+        id="headerToolbar"
+      ></div>
+    </header>
+    <div class="h-entry">
+      <main class="bg-#353433" id="main">
+        <div class="notes-layout-container mx-auto p-6 py-12" id="mainContents">
+          <div class="prose e-content" id="noteContents"><!--[--><h1 id="port-number-randomizer" data-v-8c9498c0><a aria-hidden="true" tabindex="-1" href="#port-number-randomizer" data-v-8c9498c0><span class="icon icon-link" data-v-8c9498c0></span></a>Port number randomizer</h1><div class="lead" data-v-8c9498c0><p data-v-8c9498c0>Need a random port number for your next project? You can get one here.</p></div><div style="border-radius:1em;border:2px solid #656463;padding:1em;background:#252423;text-align:center;margin:2em 0;" data-v-8c9498c0> Your randomized port number is… <div style="font-size:4em;margin:1rem 0;" data-v-8c9498c0>…</div><button class="btn" data-v-8c9498c0>Randomize port number</button></div><h2 id="configuration-cheat-sheet" data-v-8c9498c0><a aria-hidden="true" tabindex="-1" href="#configuration-cheat-sheet" data-v-8c9498c0><span class="icon icon-link" data-v-8c9498c0></span></a>Configuration cheat sheet</h2><ul data-v-8c9498c0><li data-v-8c9498c0><p data-v-8c9498c0><strong data-v-8c9498c0><a href="Next" data-v-8c9498c0>Next.js</a></strong></p><pre data-v-8c9498c0><code data-v-8c9498c0>  &quot;dev&quot;: &quot;next dev -p ${PORT:-…}&quot;,</code></pre></li><li data-v-8c9498c0><p data-v-8c9498c0><strong data-v-8c9498c0><a href="Vite" data-v-8c9498c0>Vite</a></strong></p><pre data-v-8c9498c0><code data-v-8c9498c0>  &quot;dev&quot;: &quot;vite --port ${PORT:-…}&quot;,<br data-v-8c9498c0>  &quot;preview&quot;: &quot;vite preview --port ${PORT:-…}&quot;,</code></pre></li></ul><!--]--></div>
+        </div>
+      </main>
+      <footer>
+        <div
+          class="notes-layout-container mx-auto py-4 px-6 text-#8b8685 text-right text-sm"
+          id="footerContents"
+        >
+          <notes-page-footer></notes-page-footer>
+        </div>
+      </footer>
+    </div>
+    <script>
+window.precompiledNoteBehavior = function(require, exports, module, Vue) {"use strict";Object.defineProperty(exports, "__esModule", {value: true});/* Analyzed bindings: {
+  "port": "setup-maybe-ref",
+  "randomizePort": "setup-maybe-ref",
+  "down": "setup-maybe-ref",
+  "up": "setup-maybe-ref"
+} */
+
+  const __sfc__ = {
+    setup() {
+      const port = Vue.ref('…')
+      const randomizePort = () => {
+        port.value = Math.floor(Math.random() * (49001 - 5001 + 1) + 5001)
+      }
+      let clear = null
+      const down = (e) => {
+        if (clear) clear()
+        const interval = setInterval(() => randomizePort(), 33)
+        clear = () => clearInterval(interval)
+      }
+      const up = (e) => {
+        if (clear) clear()
+        clear = null
+      }
+      Vue.onMounted(() => {
+        randomizePort()
+      })
+      return { port, randomizePort, down, up }
+    }
+  }
+;
+var _vue = require('vue');
+
+const _withScopeId = n => (_vue.pushScopeId.call(void 0, "data-v-8c9498c0"),n=n(),_vue.popScopeId.call(void 0, ),n)
+const _hoisted_1 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_vue.createElementVNode.call(void 0, "h1", { id: "port-number-randomizer" }, [
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "a", {
+    "aria-hidden": "true",
+    tabindex: "-1",
+    href: "#port-number-randomizer"
+  }, [
+    /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { class: "icon icon-link" })
+  ]),
+  /*#__PURE__*/_vue.createTextVNode.call(void 0, "Port number randomizer")
+], -1 /* HOISTED */))
+const _hoisted_2 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_vue.createElementVNode.call(void 0, "div", { class: "lead" }, [
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "p", null, "Need a random port number for your next project? You can get one here.")
+], -1 /* HOISTED */))
+const _hoisted_3 = { style: {"border-radius":"1em","border":"2px solid #656463","padding":"1em","background":"#252423","text-align":"center","margin":"2em 0"} }
+const _hoisted_4 = { style: {"font-size":"4em","margin":"1rem 0"} }
+const _hoisted_5 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_vue.createElementVNode.call(void 0, "h2", { id: "configuration-cheat-sheet" }, [
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "a", {
+    "aria-hidden": "true",
+    tabindex: "-1",
+    href: "#configuration-cheat-sheet"
+  }, [
+    /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { class: "icon icon-link" })
+  ]),
+  /*#__PURE__*/_vue.createTextVNode.call(void 0, "Configuration cheat sheet")
+], -1 /* HOISTED */))
+const _hoisted_6 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_vue.createElementVNode.call(void 0, "p", null, [
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "strong", null, [
+    /*#__PURE__*/_vue.createElementVNode.call(void 0, "a", { href: "Next" }, "Next.js")
+  ])
+], -1 /* HOISTED */))
+const _hoisted_7 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_vue.createElementVNode.call(void 0, "p", null, [
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "strong", null, [
+    /*#__PURE__*/_vue.createElementVNode.call(void 0, "a", { href: "Vite" }, "Vite")
+  ])
+], -1 /* HOISTED */))
+const _hoisted_8 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_vue.createElementVNode.call(void 0, "br", null, null, -1 /* HOISTED */))
+function render(_ctx, _cache, $props, $setup, $data, $options) {
+  return (_vue.openBlock.call(void 0, ), _vue.createElementBlock.call(void 0, _vue.Fragment, null, [
+    _hoisted_1,
+    _hoisted_2,
+    _vue.createElementVNode.call(void 0, "div", _hoisted_3, [
+      _vue.createTextVNode.call(void 0, " Your randomized port number is… "),
+      _vue.createElementVNode.call(void 0, "div", _hoisted_4, _vue.toDisplayString.call(void 0, $setup.port), 1 /* TEXT */),
+      _vue.createElementVNode.call(void 0, "button", {
+        class: "btn",
+        onClick: _cache[0] || (_cache[0] = (...args) => ($setup.randomizePort && $setup.randomizePort(...args))),
+        onPointerdown: _cache[1] || (_cache[1] = (...args) => ($setup.down && $setup.down(...args))),
+        onPointerup: _cache[2] || (_cache[2] = (...args) => ($setup.up && $setup.up(...args)))
+      }, "Randomize port number", 32 /* NEED_HYDRATION */)
+    ]),
+    _hoisted_5,
+    _vue.createElementVNode.call(void 0, "ul", null, [
+      _vue.createElementVNode.call(void 0, "li", null, [
+        _hoisted_6,
+        _vue.createElementVNode.call(void 0, "pre", null, [
+          _vue.createElementVNode.call(void 0, "code", null, "  \"dev\": \"next dev -p ${PORT:-" + _vue.toDisplayString.call(void 0, $setup.port) + "}\",", 1 /* TEXT */)
+        ])
+      ]),
+      _vue.createElementVNode.call(void 0, "li", null, [
+        _hoisted_7,
+        _vue.createElementVNode.call(void 0, "pre", null, [
+          _vue.createElementVNode.call(void 0, "code", null, [
+            _vue.createTextVNode.call(void 0, "  \"dev\": \"vite --port ${PORT:-" + _vue.toDisplayString.call(void 0, $setup.port) + "}\",", 1 /* TEXT */),
+            _hoisted_8,
+            _vue.createTextVNode.call(void 0, "  \"preview\": \"vite preview --port ${PORT:-" + _vue.toDisplayString.call(void 0, $setup.port) + "}\",", 1 /* TEXT */)
+          ])
+        ])
+      ])
+    ])
+  ], 64 /* STABLE_FRAGMENT */))
+}
+__sfc__.render = render
+__sfc__.__scopeId = "data-v-8c9498c0"
+__sfc__.__file = "Note.vue"
+exports. default = __sfc__};
+window.precompiledFrontMatter = {"public":true,"title":"Port number randomizer"};
+</script>
+  </body>
+</html>

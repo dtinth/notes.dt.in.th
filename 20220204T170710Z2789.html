@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html data-precompiled=true lang="en" data-dtinth="true">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TIL: pgrep and pkill | notes.dt.in.th</title><meta property="og:title" content="TIL: pgrep and pkill" data-source="note">
+<meta property="og:image" content="https://screenshot.source.in.th/image/_/notes/20220204T170710Z2789" data-source="note">
+<meta property="og:image:width" content="1800" data-source="note">
+<meta property="og:image:height" content="1680" data-source="note">
+<link rel="canonical" href="https://notes.dt.in.th/20220204T170710Z2789" data-source="note"><style id="note-styles">/* layer: default */
+.my[data-v-8c9498c0]{margin-top:1rem;margin-bottom:1rem;}</style>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/iconify-icon@2.1.0/dist/iconify-icon.min.js"
+      integrity="sha256-dY2Ug42wyv3rl+sLVKEg3jbPs8f+hi7tmJ836AxVDwI="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/blurhash-image@1.0.1/blurhash-image.min.js"
+      integrity="sha256-qrUUgTGk7xA7iVCwraHNQjwy2JryA0K4L3DL4qidagQ="
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" crossorigin src="/runtime/index.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/supabase-CjkNZD6A.js">
+    <link rel="stylesheet" crossorigin href="/runtime/index.css">
+  </head>
+  <body class="bg-#252423 text-#e9e8e7 antialiased">
+    <header class="h-[58px] bg-#090807 border-b border-#454443 z-20 flex">
+      <div class="flex items-center pl-[18px] flex-none">
+        <a
+          class="flex items-center text-#8b8685 hover:text-#ffffbb text-lg"
+          href="/"
+          >notes.dt.in.th</a
+        >
+      </div>
+      <div
+        class="flex-1 flex items-center text-#8b8685 [&_a:hover]:text-#ffffbb overflow-hidden"
+        id="headerMiddle"
+      >
+        <div class="px-2 flex-none">›</div><div class="truncate"><a title="Linux (topic)" href="Linux">Linux</a></div>
+      </div>
+      <div
+        class="flex items-center px-[18px] flex-none gap-4"
+        id="headerToolbar"
+      ></div>
+    </header>
+    <div class="h-entry">
+      <main class="bg-#353433" id="main">
+        <div class="notes-layout-container mx-auto p-6 py-12" id="mainContents">
+          <div class="prose e-content" id="noteContents"><!--[--><p data-v-8c9498c0>I noticed that my <a href="https://joachim8675309.medium.com/devops-concepts-pets-vs-cattle-2380b5aab313" data-v-8c9498c0>pet</a> <a href="Linux" data-v-8c9498c0>Linux</a> VM has become unresponsive after 411 days of uptime (yes, I have never restarted it). Upon further investigation, I found that the problem is caused by stale VS Code server processes running on it, consuming all the CPU. Load average was at around 18.</p><p data-v-8c9498c0>Usually I would use <code data-v-8c9498c0>ps aux | grep</code> to find out which process I should kill, but there are too many processes running. Also, the name of the executable is just <code data-v-8c9498c0>node</code> (since VS Code’s extension host runs on Node.js). I have other Node processes running, so I don’t want to run <code data-v-8c9498c0>killall node</code>.</p><h2 id="alternatives-to-killall-and-ps-aux-pgrep-and-pkill" data-v-8c9498c0><a aria-hidden="true" tabindex="-1" href="#alternatives-to-killall-and-ps-aux-pgrep-and-pkill" data-v-8c9498c0><span class="icon icon-link" data-v-8c9498c0></span></a>Alternatives to “killall” and “ps aux”: “pgrep” and “pkill”</h2><pre data-v-8c9498c0><code data-v-8c9498c0>pgrep --full insiders --list-full
+</code></pre><ul data-v-8c9498c0><li data-v-8c9498c0>The above looks for all processes that has <code data-v-8c9498c0>insiders</code> in the command line.</li><li data-v-8c9498c0>The <code data-v-8c9498c0>--full</code> option is used to match against the full command line (otherwise, the haystack is just <code data-v-8c9498c0>node</code>).</li></ul><p data-v-8c9498c0>Now change <code data-v-8c9498c0>pgrep</code> to <code data-v-8c9498c0>pkill</code> to kill &#39;em!</p><pre data-v-8c9498c0><code data-v-8c9498c0>sh killed (pid 421397)
+node killed (pid 421405)
+node killed (pid 421556)
+sh killed (pid 1498875)
+node killed (pid 1498883)
+sh killed (pid 1537167)
+node killed (pid 1537175)
+node killed (pid 1537218)
+sh killed (pid 1887722)
+node killed (pid 1887730)
+sh killed (pid 1927803)
+node killed (pid 1927811)
+node killed (pid 1927839)
+sh killed (pid 2035201)
+node killed (pid 2035209)
+sh killed (pid 2235226)
+node killed (pid 2235234)
+node killed (pid 2235283)
+sh killed (pid 2769072)
+node killed (pid 2769080)
+node killed (pid 2769117)
+sh killed (pid 2788039)
+node killed (pid 2788047)
+node killed (pid 2788084)
+sh killed (pid 3058418)
+node killed (pid 3058425)
+node killed (pid 3058463)
+sh killed (pid 3202723)
+node killed (pid 3202731)
+sh killed (pid 3251957)
+node killed (pid 3251965)
+node killed (pid 3252002)
+node killed (pid 3259432)
+node killed (pid 3259491)
+sh killed (pid 3272949)
+node killed (pid 3272957)
+node killed (pid 3273000)
+node killed (pid 3273024)
+node killed (pid 3273090)
+node killed (pid 3273091)
+node killed (pid 3273104)
+node killed (pid 3273124)
+node killed (pid 3273886)
+node killed (pid 3273887)
+node killed (pid 3273906)
+</code></pre><p data-v-8c9498c0>Yay.</p><!--]--></div>
+        </div>
+      </main>
+      <footer>
+        <div
+          class="notes-layout-container mx-auto py-4 px-6 text-#8b8685 text-right text-sm"
+          id="footerContents"
+        >
+          <notes-page-footer></notes-page-footer>
+        </div>
+      </footer>
+    </div>
+    <script>
+window.precompiledNoteBehavior = function(require, exports, module, Vue) {"use strict";Object.defineProperty(exports, "__esModule", {value: true});const __sfc__ = {};
+var _vue = require('vue');
+
+const _withScopeId = n => (_vue.pushScopeId.call(void 0, "data-v-8c9498c0"),n=n(),_vue.popScopeId.call(void 0, ),n)
+const _hoisted_1 = /*#__PURE__*/_vue.createStaticVNode.call(void 0, "<p data-v-8c9498c0>I noticed that my <a href=\"https://joachim8675309.medium.com/devops-concepts-pets-vs-cattle-2380b5aab313\" data-v-8c9498c0>pet</a> <a href=\"Linux\" data-v-8c9498c0>Linux</a> VM has become unresponsive after 411 days of uptime (yes, I have never restarted it). Upon further investigation, I found that the problem is caused by stale VS Code server processes running on it, consuming all the CPU. Load average was at around 18.</p><p data-v-8c9498c0>Usually I would use <code data-v-8c9498c0>ps aux | grep</code> to find out which process I should kill, but there are too many processes running. Also, the name of the executable is just <code data-v-8c9498c0>node</code> (since VS Code’s extension host runs on Node.js). I have other Node processes running, so I don’t want to run <code data-v-8c9498c0>killall node</code>.</p><h2 id=\"alternatives-to-killall-and-ps-aux-pgrep-and-pkill\" data-v-8c9498c0><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#alternatives-to-killall-and-ps-aux-pgrep-and-pkill\" data-v-8c9498c0><span class=\"icon icon-link\" data-v-8c9498c0></span></a>Alternatives to “killall” and “ps aux”: “pgrep” and “pkill”</h2><pre data-v-8c9498c0><code data-v-8c9498c0>pgrep --full insiders --list-full\n</code></pre><ul data-v-8c9498c0><li data-v-8c9498c0>The above looks for all processes that has <code data-v-8c9498c0>insiders</code> in the command line.</li><li data-v-8c9498c0>The <code data-v-8c9498c0>--full</code> option is used to match against the full command line (otherwise, the haystack is just <code data-v-8c9498c0>node</code>).</li></ul><p data-v-8c9498c0>Now change <code data-v-8c9498c0>pgrep</code> to <code data-v-8c9498c0>pkill</code> to kill &#39;em!</p><pre data-v-8c9498c0><code data-v-8c9498c0>sh killed (pid 421397)\nnode killed (pid 421405)\nnode killed (pid 421556)\nsh killed (pid 1498875)\nnode killed (pid 1498883)\nsh killed (pid 1537167)\nnode killed (pid 1537175)\nnode killed (pid 1537218)\nsh killed (pid 1887722)\nnode killed (pid 1887730)\nsh killed (pid 1927803)\nnode killed (pid 1927811)\nnode killed (pid 1927839)\nsh killed (pid 2035201)\nnode killed (pid 2035209)\nsh killed (pid 2235226)\nnode killed (pid 2235234)\nnode killed (pid 2235283)\nsh killed (pid 2769072)\nnode killed (pid 2769080)\nnode killed (pid 2769117)\nsh killed (pid 2788039)\nnode killed (pid 2788047)\nnode killed (pid 2788084)\nsh killed (pid 3058418)\nnode killed (pid 3058425)\nnode killed (pid 3058463)\nsh killed (pid 3202723)\nnode killed (pid 3202731)\nsh killed (pid 3251957)\nnode killed (pid 3251965)\nnode killed (pid 3252002)\nnode killed (pid 3259432)\nnode killed (pid 3259491)\nsh killed (pid 3272949)\nnode killed (pid 3272957)\nnode killed (pid 3273000)\nnode killed (pid 3273024)\nnode killed (pid 3273090)\nnode killed (pid 3273091)\nnode killed (pid 3273104)\nnode killed (pid 3273124)\nnode killed (pid 3273886)\nnode killed (pid 3273887)\nnode killed (pid 3273906)\n</code></pre><p data-v-8c9498c0>Yay.</p>", 8)
+function render(_ctx, _cache) {
+  return _hoisted_1
+}
+__sfc__.render = render
+__sfc__.__scopeId = "data-v-8c9498c0"
+__sfc__.__file = "Note.vue"
+exports. default = __sfc__};
+window.precompiledFrontMatter = {"public":true,"title":"TIL: pgrep and pkill"};
+</script>
+  </body>
+</html>

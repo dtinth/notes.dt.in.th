@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html data-precompiled=true lang="en" data-dtinth="true">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Array#filter type narrowing | notes.dt.in.th</title><meta property="og:title" content="Array#filter type narrowing" data-source="note">
+<meta property="og:image" content="https://screenshot.source.in.th/image/_/notes/20201014T155147Z5685" data-source="note">
+<meta property="og:image:width" content="1800" data-source="note">
+<meta property="og:image:height" content="1680" data-source="note">
+<link rel="canonical" href="https://notes.dt.in.th/20201014T155147Z5685" data-source="note">
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/iconify-icon@2.1.0/dist/iconify-icon.min.js"
+      integrity="sha256-dY2Ug42wyv3rl+sLVKEg3jbPs8f+hi7tmJ836AxVDwI="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/blurhash-image@1.0.1/blurhash-image.min.js"
+      integrity="sha256-qrUUgTGk7xA7iVCwraHNQjwy2JryA0K4L3DL4qidagQ="
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" crossorigin src="/runtime/index.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/supabase-CjkNZD6A.js">
+    <link rel="stylesheet" crossorigin href="/runtime/index.css">
+  </head>
+  <body class="bg-#252423 text-#e9e8e7 antialiased">
+    <header class="h-[58px] bg-#090807 border-b border-#454443 z-20 flex">
+      <div class="flex items-center pl-[18px] flex-none">
+        <a
+          class="flex items-center text-#8b8685 hover:text-#ffffbb text-lg"
+          href="/"
+          >notes.dt.in.th</a
+        >
+      </div>
+      <div
+        class="flex-1 flex items-center text-#8b8685 [&_a:hover]:text-#ffffbb overflow-hidden"
+        id="headerMiddle"
+      >
+        <div class="px-2 flex-none">›</div><div class="truncate"><a title="JavaScript (topic)" href="JavaScript">JavaScript</a></div><div class="px-2 flex-none">›</div><div class="truncate"><a title="TypeScript (topic)" href="TypeScript">TypeScript</a></div>
+      </div>
+      <div
+        class="flex items-center px-[18px] flex-none gap-4"
+        id="headerToolbar"
+      ></div>
+    </header>
+    <div class="h-entry">
+      <main class="bg-#353433" id="main">
+        <div class="notes-layout-container mx-auto p-6 py-12" id="mainContents">
+          <div class="prose e-content" id="noteContents"><!--[--><p><a href="https://twitter.com/dtinth/status/1315714173242728448">Today</a> I learned that in <a href="TypeScript">TypeScript</a>, passing a function whose return type is a type predicate to <code>Array#filter</code> can narrow down its return type!</p><p><img src="https://static.dt.in.th/uploads/2020/10/14/til-ts.png" alt="Image post"></p><p>I have an array where some elements may either be an object or null (<code>Array&lt;T | null&gt;</code>). Usually I do this:</p><pre class="shiki github-dark" style="background-color:#252423;color:#e1e4e8;" tabindex="0"><code><span class="line"><span style="color:#E1E4E8;">array.</span><span style="color:#B392F0;">filter</span><span style="color:#E1E4E8;">(</span><span style="color:#FFAB70;">x</span><span style="color:#F97583;"> =&gt;</span><span style="color:#E1E4E8;"> x)</span></span></code></pre><p>While null values are effectively removed in runtime, the type system still sees the type of the resulting array as <code>Array&lt;T | null&gt;</code>. I just learned that I can write it this way instead:</p><pre class="shiki github-dark" style="background-color:#252423;color:#e1e4e8;" tabindex="0"><code><span class="line"><span style="color:#E1E4E8;">array.</span><span style="color:#B392F0;">filter</span><span style="color:#E1E4E8;">((</span><span style="color:#FFAB70;">x</span><span style="color:#E1E4E8;">)</span><span style="color:#F97583;">:</span><span style="color:#FFAB70;"> x</span><span style="color:#F97583;"> is</span><span style="color:#B392F0;"> T</span><span style="color:#F97583;"> =&gt;</span><span style="color:#F97583;"> !!</span><span style="color:#E1E4E8;">x)</span></span></code></pre><p>…or if I don’t want to hardcode the type of the element:</p><pre class="shiki github-dark" style="background-color:#252423;color:#e1e4e8;" tabindex="0"><code><span class="line"><span style="color:#E1E4E8;">array.</span><span style="color:#B392F0;">filter</span><span style="color:#E1E4E8;">((</span><span style="color:#FFAB70;">x</span><span style="color:#E1E4E8;">)</span><span style="color:#F97583;">:</span><span style="color:#FFAB70;"> x</span><span style="color:#F97583;"> is</span><span style="color:#B392F0;"> NonNullable</span><span style="color:#E1E4E8;">&lt;</span><span style="color:#F97583;">typeof</span><span style="color:#E1E4E8;"> x&gt; </span><span style="color:#F97583;">=&gt;</span><span style="color:#F97583;"> !!</span><span style="color:#E1E4E8;">x)</span></span></code></pre><p>Now I get <code>Array&lt;T&gt;</code>.</p><p>Other techniques exist that doesn’t require type annotations, such as using <code>flatMap</code> instead.</p><pre class="shiki github-dark" style="background-color:#252423;color:#e1e4e8;" tabindex="0"><code><span class="line"><span style="color:#E1E4E8;">array.</span><span style="color:#B392F0;">flatMap</span><span style="color:#E1E4E8;">(</span><span style="color:#FFAB70;">x</span><span style="color:#F97583;"> =&gt;</span><span style="color:#E1E4E8;"> x </span><span style="color:#F97583;">?</span><span style="color:#E1E4E8;"> [x] </span><span style="color:#F97583;">:</span><span style="color:#E1E4E8;"> [])</span></span></code></pre><p>Or using <code>_.compact</code> or its equivalent:</p><pre class="shiki github-dark" style="background-color:#252423;color:#e1e4e8;" tabindex="0"><code><span class="line"><span style="color:#F97583;">const</span><span style="color:#B392F0;"> compact</span><span style="color:#F97583;"> =</span><span style="color:#E1E4E8;"> &lt;</span><span style="color:#B392F0;">T</span><span style="color:#E1E4E8;">,&gt;(</span><span style="color:#FFAB70;">array</span><span style="color:#F97583;">:</span><span style="color:#F97583;"> readonly</span><span style="color:#B392F0;"> T</span><span style="color:#E1E4E8;">[]) </span><span style="color:#F97583;">=&gt;</span><span style="color:#E1E4E8;"> array.</span><span style="color:#B392F0;">filter</span><span style="color:#E1E4E8;">((</span><span style="color:#FFAB70;">x</span><span style="color:#E1E4E8;">)</span><span style="color:#F97583;">:</span><span style="color:#FFAB70;"> x</span><span style="color:#F97583;"> is</span><span style="color:#B392F0;"> NonNullable</span><span style="color:#E1E4E8;">&lt;</span><span style="color:#B392F0;">T</span><span style="color:#E1E4E8;">&gt; </span><span style="color:#F97583;">=&gt;</span><span style="color:#F97583;"> !!</span><span style="color:#E1E4E8;">x)</span></span>
+<span class="line"><span style="color:#B392F0;">compact</span><span style="color:#E1E4E8;">(array)</span></span></code></pre><p>Updates:</p><ul><li>Thu, 15 Oct 2020: <a href="https://web.facebook.com/dtinth/posts/10215576552041075?comment_id=10215577953156102"><code>Exclude&lt;T, null | undefined&gt;</code> can be rewritten as <code>NonNullable&lt;T&gt;</code></a></li></ul><!--]--></div>
+        </div>
+      </main>
+      <footer>
+        <div
+          class="notes-layout-container mx-auto py-4 px-6 text-#8b8685 text-right text-sm"
+          id="footerContents"
+        >
+          <notes-page-footer></notes-page-footer>
+        </div>
+      </footer>
+    </div>
+    <script>
+window.precompiledNoteBehavior = function(require, exports, module, Vue) {"use strict";Object.defineProperty(exports, "__esModule", {value: true});const __sfc__ = {};
+var _vue = require('vue');
+
+const _hoisted_1 = /*#__PURE__*/_vue.createStaticVNode.call(void 0, "<p><a href=\"https://twitter.com/dtinth/status/1315714173242728448\">Today</a> I learned that in <a href=\"TypeScript\">TypeScript</a>, passing a function whose return type is a type predicate to <code>Array#filter</code> can narrow down its return type!</p><p><img src=\"https://static.dt.in.th/uploads/2020/10/14/til-ts.png\" alt=\"Image post\"></p><p>I have an array where some elements may either be an object or null (<code>Array&lt;T | null&gt;</code>). Usually I do this:</p><pre class=\"shiki github-dark\" style=\"background-color:#252423;color:#e1e4e8;\" tabindex=\"0\"><code><span class=\"line\"><span style=\"color:#E1E4E8;\">array.</span><span style=\"color:#B392F0;\">filter</span><span style=\"color:#E1E4E8;\">(</span><span style=\"color:#FFAB70;\">x</span><span style=\"color:#F97583;\"> =&gt;</span><span style=\"color:#E1E4E8;\"> x)</span></span></code></pre><p>While null values are effectively removed in runtime, the type system still sees the type of the resulting array as <code>Array&lt;T | null&gt;</code>. I just learned that I can write it this way instead:</p><pre class=\"shiki github-dark\" style=\"background-color:#252423;color:#e1e4e8;\" tabindex=\"0\"><code><span class=\"line\"><span style=\"color:#E1E4E8;\">array.</span><span style=\"color:#B392F0;\">filter</span><span style=\"color:#E1E4E8;\">((</span><span style=\"color:#FFAB70;\">x</span><span style=\"color:#E1E4E8;\">)</span><span style=\"color:#F97583;\">:</span><span style=\"color:#FFAB70;\"> x</span><span style=\"color:#F97583;\"> is</span><span style=\"color:#B392F0;\"> T</span><span style=\"color:#F97583;\"> =&gt;</span><span style=\"color:#F97583;\"> !!</span><span style=\"color:#E1E4E8;\">x)</span></span></code></pre><p>…or if I don’t want to hardcode the type of the element:</p><pre class=\"shiki github-dark\" style=\"background-color:#252423;color:#e1e4e8;\" tabindex=\"0\"><code><span class=\"line\"><span style=\"color:#E1E4E8;\">array.</span><span style=\"color:#B392F0;\">filter</span><span style=\"color:#E1E4E8;\">((</span><span style=\"color:#FFAB70;\">x</span><span style=\"color:#E1E4E8;\">)</span><span style=\"color:#F97583;\">:</span><span style=\"color:#FFAB70;\"> x</span><span style=\"color:#F97583;\"> is</span><span style=\"color:#B392F0;\"> NonNullable</span><span style=\"color:#E1E4E8;\">&lt;</span><span style=\"color:#F97583;\">typeof</span><span style=\"color:#E1E4E8;\"> x&gt; </span><span style=\"color:#F97583;\">=&gt;</span><span style=\"color:#F97583;\"> !!</span><span style=\"color:#E1E4E8;\">x)</span></span></code></pre><p>Now I get <code>Array&lt;T&gt;</code>.</p><p>Other techniques exist that doesn’t require type annotations, such as using <code>flatMap</code> instead.</p><pre class=\"shiki github-dark\" style=\"background-color:#252423;color:#e1e4e8;\" tabindex=\"0\"><code><span class=\"line\"><span style=\"color:#E1E4E8;\">array.</span><span style=\"color:#B392F0;\">flatMap</span><span style=\"color:#E1E4E8;\">(</span><span style=\"color:#FFAB70;\">x</span><span style=\"color:#F97583;\"> =&gt;</span><span style=\"color:#E1E4E8;\"> x </span><span style=\"color:#F97583;\">?</span><span style=\"color:#E1E4E8;\"> [x] </span><span style=\"color:#F97583;\">:</span><span style=\"color:#E1E4E8;\"> [])</span></span></code></pre><p>Or using <code>_.compact</code> or its equivalent:</p><pre class=\"shiki github-dark\" style=\"background-color:#252423;color:#e1e4e8;\" tabindex=\"0\"><code><span class=\"line\"><span style=\"color:#F97583;\">const</span><span style=\"color:#B392F0;\"> compact</span><span style=\"color:#F97583;\"> =</span><span style=\"color:#E1E4E8;\"> &lt;</span><span style=\"color:#B392F0;\">T</span><span style=\"color:#E1E4E8;\">,&gt;(</span><span style=\"color:#FFAB70;\">array</span><span style=\"color:#F97583;\">:</span><span style=\"color:#F97583;\"> readonly</span><span style=\"color:#B392F0;\"> T</span><span style=\"color:#E1E4E8;\">[]) </span><span style=\"color:#F97583;\">=&gt;</span><span style=\"color:#E1E4E8;\"> array.</span><span style=\"color:#B392F0;\">filter</span><span style=\"color:#E1E4E8;\">((</span><span style=\"color:#FFAB70;\">x</span><span style=\"color:#E1E4E8;\">)</span><span style=\"color:#F97583;\">:</span><span style=\"color:#FFAB70;\"> x</span><span style=\"color:#F97583;\"> is</span><span style=\"color:#B392F0;\"> NonNullable</span><span style=\"color:#E1E4E8;\">&lt;</span><span style=\"color:#B392F0;\">T</span><span style=\"color:#E1E4E8;\">&gt; </span><span style=\"color:#F97583;\">=&gt;</span><span style=\"color:#F97583;\"> !!</span><span style=\"color:#E1E4E8;\">x)</span></span>\n<span class=\"line\"><span style=\"color:#B392F0;\">compact</span><span style=\"color:#E1E4E8;\">(array)</span></span></code></pre><p>Updates:</p><ul><li>Thu, 15 Oct 2020: <a href=\"https://web.facebook.com/dtinth/posts/10215576552041075?comment_id=10215577953156102\"><code>Exclude&lt;T, null | undefined&gt;</code> can be rewritten as <code>NonNullable&lt;T&gt;</code></a></li></ul>", 15)
+function render(_ctx, _cache) {
+  return _hoisted_1
+}
+__sfc__.render = render
+__sfc__.__file = "Note.vue"
+exports. default = __sfc__};
+window.precompiledFrontMatter = {"public":true,"twitter":"https://twitter.com/dtinth/status/1315714173242728448","title":"Array#filter type narrowing"};
+</script>
+  </body>
+</html>

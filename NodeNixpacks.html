@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html data-precompiled=true data-layout="wide" lang="en" data-dtinth="true">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Building a Docker image for a Node.js application using Nixpacks | notes.dt.in.th</title><meta property="og:title" content="Building a Docker image for a Node.js application using Nixpacks" data-source="note">
+<meta property="og:image" content="https://screenshot.source.in.th/image/_/notes/NodeNixpacks" data-source="note">
+<meta property="og:image:width" content="1800" data-source="note">
+<meta property="og:image:height" content="1680" data-source="note">
+<link rel="canonical" href="https://notes.dt.in.th/NodeNixpacks" data-source="note"><style id="note-styles">/* layer: default */
+.my[data-v-8c9498c0]{margin-top:1rem;margin-bottom:1rem;}</style>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/iconify-icon@2.1.0/dist/iconify-icon.min.js"
+      integrity="sha256-dY2Ug42wyv3rl+sLVKEg3jbPs8f+hi7tmJ836AxVDwI="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/blurhash-image@1.0.1/blurhash-image.min.js"
+      integrity="sha256-qrUUgTGk7xA7iVCwraHNQjwy2JryA0K4L3DL4qidagQ="
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" crossorigin src="/runtime/index.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/supabase-CjkNZD6A.js">
+    <link rel="stylesheet" crossorigin href="/runtime/index.css">
+  </head>
+  <body class="bg-#252423 text-#e9e8e7 antialiased">
+    <header class="h-[58px] bg-#090807 border-b border-#454443 z-20 flex">
+      <div class="flex items-center pl-[18px] flex-none">
+        <a
+          class="flex items-center text-#8b8685 hover:text-#ffffbb text-lg"
+          href="/"
+          >notes.dt.in.th</a
+        >
+      </div>
+      <div
+        class="flex-1 flex items-center text-#8b8685 [&_a:hover]:text-#ffffbb overflow-hidden"
+        id="headerMiddle"
+      >
+        <div class="px-2 flex-none">›</div><div class="truncate"><a title="Nix (topic)" href="Nix">Nix</a></div><div class="px-2 flex-none">›</div><div class="truncate"><a title="Nixpacks (topic)" href="Nixpacks">Nixpacks</a></div>
+      </div>
+      <div
+        class="flex items-center px-[18px] flex-none gap-4"
+        id="headerToolbar"
+      ></div>
+    </header>
+    <div class="h-entry">
+      <main class="bg-#353433" id="main">
+        <div class="notes-layout-container mx-auto p-6 py-12" id="mainContents">
+          <div class="prose e-content" id="noteContents"><!--[--><div class="lead" data-v-8c9498c0><p data-v-8c9498c0><a href="Nixpacks" data-v-8c9498c0>Nixpacks</a> is pretty cool. Instead of having to write my own Dockerfile, <a href="https://nixpacks.com/docs/how-it-works" data-v-8c9498c0>Nixpacks analyzes the source code</a> and generates a Docker image from the source code.</p></div><ul data-v-8c9498c0><li data-v-8c9498c0><strong data-v-8c9498c0>It works with <a href="Nodejs" data-v-8c9498c0>Node.js</a> out-of-the-box,</strong> among other runtimes.</li><li data-v-8c9498c0><strong data-v-8c9498c0>All 3 major package managers</strong> (npm, Yarn and pnpm) are supported^[by checking for the presence of the appropriate lock file or Corepack configuration].</li><li data-v-8c9498c0><strong data-v-8c9498c0>Nx and Turborepo</strong> are supported out-of-the-box.</li><li data-v-8c9498c0><strong data-v-8c9498c0>Caching</strong> is set up automatically.</li></ul><h2 id="installation" data-v-8c9498c0><a aria-hidden="true" tabindex="-1" href="#installation" data-v-8c9498c0><span class="icon icon-link" data-v-8c9498c0></span></a>Installation</h2><!----><p data-v-8c9498c0>:::</p><h2 id="build-an-image" data-v-8c9498c0><a aria-hidden="true" tabindex="-1" href="#build-an-image" data-v-8c9498c0><span class="icon icon-link" data-v-8c9498c0></span></a>Build an image</h2><!----><p data-v-8c9498c0>:::</p><h2 id="learn-more" data-v-8c9498c0><a aria-hidden="true" tabindex="-1" href="#learn-more" data-v-8c9498c0><span class="icon icon-link" data-v-8c9498c0></span></a>Learn more</h2><p data-v-8c9498c0>Documentation: <a href="https://nixpacks.com/docs/providers/node" data-v-8c9498c0>https://nixpacks.com/docs/providers/node</a></p><!--]--></div>
+        </div>
+      </main>
+      <footer>
+        <div
+          class="notes-layout-container mx-auto py-4 px-6 text-#8b8685 text-right text-sm"
+          id="footerContents"
+        >
+          <notes-page-footer></notes-page-footer>
+        </div>
+      </footer>
+    </div>
+    <script>
+window.precompiledNoteBehavior = function(require, exports, module, Vue) {"use strict";Object.defineProperty(exports, "__esModule", {value: true});const __sfc__ = {};
+var _vue = require('vue');
+
+const _withScopeId = n => (_vue.pushScopeId.call(void 0, "data-v-8c9498c0"),n=n(),_vue.popScopeId.call(void 0, ),n)
+const _hoisted_1 = /*#__PURE__*/_vue.createStaticVNode.call(void 0, "<div class=\"lead\" data-v-8c9498c0><p data-v-8c9498c0><a href=\"Nixpacks\" data-v-8c9498c0>Nixpacks</a> is pretty cool. Instead of having to write my own Dockerfile, <a href=\"https://nixpacks.com/docs/how-it-works\" data-v-8c9498c0>Nixpacks analyzes the source code</a> and generates a Docker image from the source code.</p></div><ul data-v-8c9498c0><li data-v-8c9498c0><strong data-v-8c9498c0>It works with <a href=\"Nodejs\" data-v-8c9498c0>Node.js</a> out-of-the-box,</strong> among other runtimes.</li><li data-v-8c9498c0><strong data-v-8c9498c0>All 3 major package managers</strong> (npm, Yarn and pnpm) are supported^[by checking for the presence of the appropriate lock file or Corepack configuration].</li><li data-v-8c9498c0><strong data-v-8c9498c0>Nx and Turborepo</strong> are supported out-of-the-box.</li><li data-v-8c9498c0><strong data-v-8c9498c0>Caching</strong> is set up automatically.</li></ul><h2 id=\"installation\" data-v-8c9498c0><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#installation\" data-v-8c9498c0><span class=\"icon icon-link\" data-v-8c9498c0></span></a>Installation</h2>", 3)
+const _hoisted_4 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_vue.createElementVNode.call(void 0, "p", null, [
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "a", { href: "https://nixpacks.com/docs/install" }, "Install"),
+  /*#__PURE__*/_vue.createTextVNode.call(void 0, " Nixpacks using the system package manager.")
+], -1 /* HOISTED */))
+const _hoisted_5 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_vue.createElementVNode.call(void 0, "div", { slot: "right" }, [
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "pre", {
+    class: "shiki github-dark",
+    style: {"background-color":"#252423","color":"#e1e4e8"},
+    tabindex: "0"
+  }, [
+    /*#__PURE__*/_vue.createElementVNode.call(void 0, "code", null, [
+      /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { class: "line" }, [
+        /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#6A737D"} }, "# Homebrew (macOS)")
+      ]),
+      /*#__PURE__*/_vue.createTextVNode.call(void 0, "\n"),
+      /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { class: "line" }, [
+        /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#B392F0"} }, "brew"),
+        /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#9ECBFF"} }, " install"),
+        /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#9ECBFF"} }, " railwayapp/tap/nixpacks")
+      ]),
+      /*#__PURE__*/_vue.createTextVNode.call(void 0, "\n"),
+      /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { class: "line" }),
+      /*#__PURE__*/_vue.createTextVNode.call(void 0, "\n"),
+      /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { class: "line" }, [
+        /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#6A737D"} }, "# In Codespaces")
+      ]),
+      /*#__PURE__*/_vue.createTextVNode.call(void 0, "\n"),
+      /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { class: "line" }, [
+        /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#B392F0"} }, "curl"),
+        /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#79B8FF"} }, " -sSL"),
+        /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#9ECBFF"} }, " https://nixpacks.com/install.sh"),
+        /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#F97583"} }, " |"),
+        /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#B392F0"} }, " bash")
+      ])
+    ])
+  ])
+], -1 /* HOISTED */))
+const _hoisted_6 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_vue.createElementVNode.call(void 0, "p", null, ":::", -1 /* HOISTED */))
+const _hoisted_7 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_vue.createElementVNode.call(void 0, "h2", { id: "build-an-image" }, [
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "a", {
+    "aria-hidden": "true",
+    tabindex: "-1",
+    href: "#build-an-image"
+  }, [
+    /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { class: "icon icon-link" })
+  ]),
+  /*#__PURE__*/_vue.createTextVNode.call(void 0, "Build an image")
+], -1 /* HOISTED */))
+const _hoisted_8 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_vue.createElementVNode.call(void 0, "p", null, [
+  /*#__PURE__*/_vue.createTextVNode.call(void 0, "Use the "),
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "code", null, "nixpacks build ."),
+  /*#__PURE__*/_vue.createTextVNode.call(void 0, " command to build the app.")
+], -1 /* HOISTED */))
+const _hoisted_9 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_vue.createElementVNode.call(void 0, "p", null, [
+  /*#__PURE__*/_vue.createTextVNode.call(void 0, "Additional configuration can be provided via environment variables or using "),
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "code", null, "-e NAME=VALUE"),
+  /*#__PURE__*/_vue.createTextVNode.call(void 0, ".")
+], -1 /* HOISTED */))
+const _hoisted_10 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_vue.createElementVNode.call(void 0, "ul", null, [
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "li", null, [
+    /*#__PURE__*/_vue.createTextVNode.call(void 0, "To build a single package in a Turborepo project, set "),
+    /*#__PURE__*/_vue.createElementVNode.call(void 0, "code", null, "NIXPACKS_TURBO_APP_NAME"),
+    /*#__PURE__*/_vue.createTextVNode.call(void 0, " and override "),
+    /*#__PURE__*/_vue.createElementVNode.call(void 0, "code", null, "NIXPACKS_BUILD_CMD"),
+    /*#__PURE__*/_vue.createTextVNode.call(void 0, " so just that service is built.")
+  ])
+], -1 /* HOISTED */))
+const _hoisted_11 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_vue.createElementVNode.call(void 0, "div", { slot: "right" }, [
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "pre", {
+    class: "shiki github-dark",
+    style: {"background-color":"#252423","color":"#e1e4e8"},
+    tabindex: "0"
+  }, [
+    /*#__PURE__*/_vue.createElementVNode.call(void 0, "code", null, [
+      /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { class: "line" }, [
+        /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#6A737D"} }, "# Build the root")
+      ]),
+      /*#__PURE__*/_vue.createTextVNode.call(void 0, "\n"),
+      /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { class: "line" }, [
+        /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#B392F0"} }, "nixpacks"),
+        /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#9ECBFF"} }, " build"),
+        /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#9ECBFF"} }, " ."),
+        /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#79B8FF"} }, " --name"),
+        /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#9ECBFF"} }, " my-app")
+      ]),
+      /*#__PURE__*/_vue.createTextVNode.call(void 0, "\n"),
+      /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { class: "line" }),
+      /*#__PURE__*/_vue.createTextVNode.call(void 0, "\n"),
+      /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { class: "line" }, [
+        /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#6A737D"} }, "# Build a package in a turborepo project")
+      ]),
+      /*#__PURE__*/_vue.createTextVNode.call(void 0, "\n"),
+      /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { class: "line" }, [
+        /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#B392F0"} }, "nixpacks"),
+        /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#9ECBFF"} }, " build"),
+        /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#9ECBFF"} }, " ."),
+        /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#79B8FF"} }, " \\")
+      ]),
+      /*#__PURE__*/_vue.createTextVNode.call(void 0, "\n"),
+      /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { class: "line" }, [
+        /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#79B8FF"} }, "  -e"),
+        /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#9ECBFF"} }, " NIXPACKS_TURBO_APP_NAME=web-service"),
+        /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#79B8FF"} }, " \\")
+      ]),
+      /*#__PURE__*/_vue.createTextVNode.call(void 0, "\n"),
+      /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { class: "line" }, [
+        /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#79B8FF"} }, "  -e"),
+        /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#9ECBFF"} }, " NIXPACKS_BUILD_CMD='pnpm turbo build --filter web-service'"),
+        /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#79B8FF"} }, " \\")
+      ]),
+      /*#__PURE__*/_vue.createTextVNode.call(void 0, "\n"),
+      /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { class: "line" }, [
+        /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#79B8FF"} }, "  --name"),
+        /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { style: {"color":"#9ECBFF"} }, " my-app")
+      ])
+    ])
+  ])
+], -1 /* HOISTED */))
+const _hoisted_12 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_vue.createElementVNode.call(void 0, "p", null, ":::", -1 /* HOISTED */))
+const _hoisted_13 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_vue.createElementVNode.call(void 0, "h2", { id: "learn-more" }, [
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "a", {
+    "aria-hidden": "true",
+    tabindex: "-1",
+    href: "#learn-more"
+  }, [
+    /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { class: "icon icon-link" })
+  ]),
+  /*#__PURE__*/_vue.createTextVNode.call(void 0, "Learn more")
+], -1 /* HOISTED */))
+const _hoisted_14 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_vue.createElementVNode.call(void 0, "p", null, [
+  /*#__PURE__*/_vue.createTextVNode.call(void 0, "Documentation: "),
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "a", { href: "https://nixpacks.com/docs/providers/node" }, "https://nixpacks.com/docs/providers/node")
+], -1 /* HOISTED */))
+function render(_ctx, _cache) {
+  const _component_d_split = _vue.resolveComponent.call(void 0, "d-split")
+
+  return (_vue.openBlock.call(void 0, ), _vue.createElementBlock.call(void 0, _vue.Fragment, null, [
+    _hoisted_1,
+    _vue.createVNode.call(void 0, _component_d_split, null, {
+      default: _vue.withCtx.call(void 0, () => [
+        _hoisted_4,
+        _hoisted_5
+      ]),
+      _: 1 /* STABLE */
+    }),
+    _hoisted_6,
+    _hoisted_7,
+    _vue.createVNode.call(void 0, _component_d_split, null, {
+      default: _vue.withCtx.call(void 0, () => [
+        _hoisted_8,
+        _hoisted_9,
+        _hoisted_10,
+        _hoisted_11
+      ]),
+      _: 1 /* STABLE */
+    }),
+    _hoisted_12,
+    _hoisted_13,
+    _hoisted_14
+  ], 64 /* STABLE_FRAGMENT */))
+}
+__sfc__.render = render
+__sfc__.__scopeId = "data-v-8c9498c0"
+__sfc__.__file = "Note.vue"
+exports. default = __sfc__};
+window.precompiledFrontMatter = {"title":"Building a Docker image for a Node.js application using Nixpacks","public":true,"wide":true};
+</script>
+  </body>
+</html>

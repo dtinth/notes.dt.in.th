@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html data-precompiled=true lang="en" data-dtinth="true">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GitOpsing a Discord message | notes.dt.in.th</title><meta property="og:title" content="GitOpsing a Discord message" data-source="note">
+<meta property="og:image" content="https://screenshot.source.in.th/image/_/notes/GitOpsDiscord" data-source="note">
+<meta property="og:image:width" content="1800" data-source="note">
+<meta property="og:image:height" content="1680" data-source="note">
+<link rel="canonical" href="https://notes.dt.in.th/GitOpsDiscord" data-source="note">
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/iconify-icon@2.1.0/dist/iconify-icon.min.js"
+      integrity="sha256-dY2Ug42wyv3rl+sLVKEg3jbPs8f+hi7tmJ836AxVDwI="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/blurhash-image@1.0.1/blurhash-image.min.js"
+      integrity="sha256-qrUUgTGk7xA7iVCwraHNQjwy2JryA0K4L3DL4qidagQ="
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" crossorigin src="/runtime/index.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/supabase-CjkNZD6A.js">
+    <link rel="stylesheet" crossorigin href="/runtime/index.css">
+  </head>
+  <body class="bg-#252423 text-#e9e8e7 antialiased">
+    <header class="h-[58px] bg-#090807 border-b border-#454443 z-20 flex">
+      <div class="flex items-center pl-[18px] flex-none">
+        <a
+          class="flex items-center text-#8b8685 hover:text-#ffffbb text-lg"
+          href="/"
+          >notes.dt.in.th</a
+        >
+      </div>
+      <div
+        class="flex-1 flex items-center text-#8b8685 [&_a:hover]:text-#ffffbb overflow-hidden"
+        id="headerMiddle"
+      >
+        <div class="px-2 flex-none">›</div><div class="truncate"><a title="Discord (topic)" href="Discord">Discord</a></div>
+      </div>
+      <div
+        class="flex items-center px-[18px] flex-none gap-4"
+        id="headerToolbar"
+      ></div>
+    </header>
+    <div class="h-entry">
+      <main class="bg-#353433" id="main">
+        <div class="notes-layout-container mx-auto p-6 py-12" id="mainContents">
+          <div class="prose e-content" id="noteContents"><!--[--><h1 id="gitopsing-a-discord-message"><a aria-hidden="true" tabindex="-1" href="#gitopsing-a-discord-message"><span class="icon icon-link"></span></a><a href="GitOps">GitOpsing</a> a <a href="Discord">Discord</a> message</h1><p>In <a href="Discord">Discord</a> communities, it’s common to create read-only channels for rules, resources, and other important information. While this information is important for community members to see, it can be difficult to manage and update if <a href="https://support.discord.com/hc/en-us/community/posts/360055533252-Allow-admin-mods-to-edit-members-posts">only the original poster has the ability to edit those messages.</a></p><p>However, by applying the principles of <a href="GitOps">GitOps</a>, it’s possible to store the message content in a GitHub repo and use GitHub Actions to update the messages on behalf of the server admin.</p><p>This means that anyone can contribute and make updates to these messages by submitting pull requests, making the process of maintaining and updating important information in Discord communities more efficient, collaborative, and transparent.</p><p><img src="https://user-images.githubusercontent.com/193136/216098888-9441f09d-3735-459d-881e-3ed783cee16f.png" alt=""></p><ol><li><p>Create a webhook. You will get a webhook URL.</p></li><li><p>Send the message to the webhook URL.</p><pre class="shiki github-dark" style="background-color:#252423;color:#e1e4e8;" tabindex="0"><code><span class="line"><span style="color:#6A737D;"># Example, using HTTPie</span></span>
+<span class="line"><span style="color:#B392F0;">http</span><span style="color:#9ECBFF;"> post</span><span style="color:#9ECBFF;"> &quot;</span><span style="color:#E1E4E8;">$RESOURCES_WEBHOOK_URL</span><span style="color:#9ECBFF;">?wait=true&quot;</span><span style="color:#9ECBFF;"> content=&quot;hello world&quot;</span></span></code></pre></li><li><p>Copy the message ID.</p></li><li><p>To edit the message, send a PATCH request to the message URL.</p><pre class="shiki github-dark" style="background-color:#252423;color:#e1e4e8;" tabindex="0"><code><span class="line"><span style="color:#6A737D;"># Example, using HTTPie</span></span>
+<span class="line"><span style="color:#B392F0;">http</span><span style="color:#9ECBFF;"> patch</span><span style="color:#E1E4E8;"> $RESOURCES_WEBHOOK_URL</span><span style="color:#9ECBFF;">/messages/</span><span style="color:#E1E4E8;">$RESOURCES_MESSAGE_ID </span><span style="color:#9ECBFF;">content=&quot;hello world2&quot;</span></span></code></pre></li><li><p>Write a script to update the message. <a href="https://github.com/creatorsgarten/bangkok-open-source-discord/blob/main/scripts/sync.ts">Example</a></p></li><li><p>Assuming that the <code>$RESOURCES_WEBHOOK_URL</code> and <code>$RESOURCES_MESSAGE_ID</code> are stored in a <code>.env</code> file, we can upload them as secrets to GitHub:</p><pre class="shiki github-dark" style="background-color:#252423;color:#e1e4e8;" tabindex="0"><code><span class="line"><span style="color:#6A737D;"># Using `gh` CLI</span></span>
+<span class="line"><span style="color:#B392F0;">gh</span><span style="color:#9ECBFF;"> secret</span><span style="color:#9ECBFF;"> set</span><span style="color:#79B8FF;"> -f</span><span style="color:#9ECBFF;"> .env</span></span></code></pre></li><li><p>Write a GitHub Actions workflow to run the script when pushed. <a href="https://github.com/creatorsgarten/bangkok-open-source-discord/blob/main/.github/workflows/sync.yml">Example</a></p></li><li><p>Push everything to GitHub. The workflow will run and the message should be updated.</p></li></ol><p>Currently being used in:</p><ul><li><a href="https://github.com/creatorsgarten/bangkok-open-source-discord">Bangkok Open Source Initiative Discord server</a></li></ul><!--]--></div>
+        </div>
+      </main>
+      <footer>
+        <div
+          class="notes-layout-container mx-auto py-4 px-6 text-#8b8685 text-right text-sm"
+          id="footerContents"
+        >
+          <notes-page-footer></notes-page-footer>
+        </div>
+      </footer>
+    </div>
+    <script>
+window.precompiledNoteBehavior = function(require, exports, module, Vue) {"use strict";Object.defineProperty(exports, "__esModule", {value: true});const __sfc__ = {};
+var _vue = require('vue');
+
+const _hoisted_1 = /*#__PURE__*/_vue.createStaticVNode.call(void 0, "<h1 id=\"gitopsing-a-discord-message\"><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#gitopsing-a-discord-message\"><span class=\"icon icon-link\"></span></a><a href=\"GitOps\">GitOpsing</a> a <a href=\"Discord\">Discord</a> message</h1><p>In <a href=\"Discord\">Discord</a> communities, it’s common to create read-only channels for rules, resources, and other important information. While this information is important for community members to see, it can be difficult to manage and update if <a href=\"https://support.discord.com/hc/en-us/community/posts/360055533252-Allow-admin-mods-to-edit-members-posts\">only the original poster has the ability to edit those messages.</a></p><p>However, by applying the principles of <a href=\"GitOps\">GitOps</a>, it’s possible to store the message content in a GitHub repo and use GitHub Actions to update the messages on behalf of the server admin.</p><p>This means that anyone can contribute and make updates to these messages by submitting pull requests, making the process of maintaining and updating important information in Discord communities more efficient, collaborative, and transparent.</p><p><img src=\"https://user-images.githubusercontent.com/193136/216098888-9441f09d-3735-459d-881e-3ed783cee16f.png\" alt=\"\"></p><ol><li><p>Create a webhook. You will get a webhook URL.</p></li><li><p>Send the message to the webhook URL.</p><pre class=\"shiki github-dark\" style=\"background-color:#252423;color:#e1e4e8;\" tabindex=\"0\"><code><span class=\"line\"><span style=\"color:#6A737D;\"># Example, using HTTPie</span></span>\n<span class=\"line\"><span style=\"color:#B392F0;\">http</span><span style=\"color:#9ECBFF;\"> post</span><span style=\"color:#9ECBFF;\"> &quot;</span><span style=\"color:#E1E4E8;\">$RESOURCES_WEBHOOK_URL</span><span style=\"color:#9ECBFF;\">?wait=true&quot;</span><span style=\"color:#9ECBFF;\"> content=&quot;hello world&quot;</span></span></code></pre></li><li><p>Copy the message ID.</p></li><li><p>To edit the message, send a PATCH request to the message URL.</p><pre class=\"shiki github-dark\" style=\"background-color:#252423;color:#e1e4e8;\" tabindex=\"0\"><code><span class=\"line\"><span style=\"color:#6A737D;\"># Example, using HTTPie</span></span>\n<span class=\"line\"><span style=\"color:#B392F0;\">http</span><span style=\"color:#9ECBFF;\"> patch</span><span style=\"color:#E1E4E8;\"> $RESOURCES_WEBHOOK_URL</span><span style=\"color:#9ECBFF;\">/messages/</span><span style=\"color:#E1E4E8;\">$RESOURCES_MESSAGE_ID </span><span style=\"color:#9ECBFF;\">content=&quot;hello world2&quot;</span></span></code></pre></li><li><p>Write a script to update the message. <a href=\"https://github.com/creatorsgarten/bangkok-open-source-discord/blob/main/scripts/sync.ts\">Example</a></p></li><li><p>Assuming that the <code>$RESOURCES_WEBHOOK_URL</code> and <code>$RESOURCES_MESSAGE_ID</code> are stored in a <code>.env</code> file, we can upload them as secrets to GitHub:</p><pre class=\"shiki github-dark\" style=\"background-color:#252423;color:#e1e4e8;\" tabindex=\"0\"><code><span class=\"line\"><span style=\"color:#6A737D;\"># Using `gh` CLI</span></span>\n<span class=\"line\"><span style=\"color:#B392F0;\">gh</span><span style=\"color:#9ECBFF;\"> secret</span><span style=\"color:#9ECBFF;\"> set</span><span style=\"color:#79B8FF;\"> -f</span><span style=\"color:#9ECBFF;\"> .env</span></span></code></pre></li><li><p>Write a GitHub Actions workflow to run the script when pushed. <a href=\"https://github.com/creatorsgarten/bangkok-open-source-discord/blob/main/.github/workflows/sync.yml\">Example</a></p></li><li><p>Push everything to GitHub. The workflow will run and the message should be updated.</p></li></ol><p>Currently being used in:</p><ul><li><a href=\"https://github.com/creatorsgarten/bangkok-open-source-discord\">Bangkok Open Source Initiative Discord server</a></li></ul>", 8)
+function render(_ctx, _cache) {
+  return _hoisted_1
+}
+__sfc__.render = render
+__sfc__.__file = "Note.vue"
+exports. default = __sfc__};
+window.precompiledFrontMatter = {"public":true,"title":"GitOpsing a Discord message"};
+</script>
+  </body>
+</html>
