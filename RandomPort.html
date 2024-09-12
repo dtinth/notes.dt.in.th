@@ -9,6 +9,7 @@
 <meta property="og:image:width" content="1800" data-source="note">
 <meta property="og:image:height" content="1680" data-source="note">
 <link rel="canonical" href="https://notes.dt.in.th/RandomPort" data-source="note"><style id="note-styles">/* layer: default */
+.transform[data-v-8c9498c0]{transform:translateX(var(--un-translate-x)) translateY(var(--un-translate-y)) translateZ(var(--un-translate-z)) rotate(var(--un-rotate)) rotateX(var(--un-rotate-x)) rotateY(var(--un-rotate-y)) rotateZ(var(--un-rotate-z)) skewX(var(--un-skew-x)) skewY(var(--un-skew-y)) scaleX(var(--un-scale-x)) scaleY(var(--un-scale-y)) scaleZ(var(--un-scale-z));}
 .border[data-v-8c9498c0]{border-width:1px;}</style>
     <script
       async
@@ -66,29 +67,37 @@ window.precompiledNoteBehavior = function(require, exports, module, Vue) {"use s
   "port": "setup-maybe-ref",
   "randomizePort": "setup-maybe-ref",
   "down": "setup-maybe-ref",
-  "up": "setup-maybe-ref"
+  "up": "setup-maybe-ref",
+  "style": "setup-maybe-ref"
 } */
 
   const __sfc__ = {
     setup() {
       const port = Vue.ref('…')
+      const style = Vue.ref({})
       const randomizePort = () => {
         port.value = Math.floor(Math.random() * (49001 - 5001 + 1) + 5001)
+      }
+      const randomizePortFrame = () => {
+        randomizePort()
+        const r = () => Math.round(Math.random() * 4 - 2)
+        style.value = { transform: `translate(${r()}px, ${r()}px)`, }
       }
       let clear = null
       const down = (e) => {
         if (clear) clear()
-        const interval = setInterval(() => randomizePort(), 33)
+        const interval = setInterval(() => randomizePortFrame(), 33)
         clear = () => clearInterval(interval)
       }
       const up = (e) => {
         if (clear) clear()
         clear = null
+        style.value = { transform: `translate(0, 0)`, }
       }
       Vue.onMounted(() => {
         randomizePort()
       })
-      return { port, randomizePort, down, up }
+      return { port, randomizePort, down, up, style }
     }
   }
 ;
@@ -108,9 +117,8 @@ const _hoisted_1 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_vue.createElem
 const _hoisted_2 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_vue.createElementVNode.call(void 0, "div", { class: "lead" }, [
   /*#__PURE__*/_vue.createElementVNode.call(void 0, "p", null, "Need a random port number for your next project? You can get one here.")
 ], -1 /* HOISTED */))
-const _hoisted_3 = { style: {"border-radius":"1em","border":"2px solid #656463","padding":"1em","background":"#252423","text-align":"center","margin":"2em 0"} }
-const _hoisted_4 = { style: {"font-size":"4em","margin":"1rem 0"} }
-const _hoisted_5 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_vue.createElementVNode.call(void 0, "h2", { id: "configuration-cheat-sheet" }, [
+const _hoisted_3 = { style: {"font-size":"4em","margin":"1rem 0"} }
+const _hoisted_4 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_vue.createElementVNode.call(void 0, "h2", { id: "configuration-cheat-sheet" }, [
   /*#__PURE__*/_vue.createElementVNode.call(void 0, "a", {
     "aria-hidden": "true",
     tabindex: "-1",
@@ -120,45 +128,47 @@ const _hoisted_5 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_vue.createElem
   ]),
   /*#__PURE__*/_vue.createTextVNode.call(void 0, "Configuration cheat sheet")
 ], -1 /* HOISTED */))
-const _hoisted_6 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_vue.createElementVNode.call(void 0, "p", null, [
+const _hoisted_5 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_vue.createElementVNode.call(void 0, "p", null, [
   /*#__PURE__*/_vue.createElementVNode.call(void 0, "strong", null, [
     /*#__PURE__*/_vue.createElementVNode.call(void 0, "a", { href: "Next" }, "Next.js")
   ])
 ], -1 /* HOISTED */))
-const _hoisted_7 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_vue.createElementVNode.call(void 0, "p", null, [
+const _hoisted_6 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_vue.createElementVNode.call(void 0, "p", null, [
   /*#__PURE__*/_vue.createElementVNode.call(void 0, "strong", null, [
     /*#__PURE__*/_vue.createElementVNode.call(void 0, "a", { href: "Vite" }, "Vite")
   ])
 ], -1 /* HOISTED */))
-const _hoisted_8 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_vue.createElementVNode.call(void 0, "br", null, null, -1 /* HOISTED */))
+const _hoisted_7 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_vue.createElementVNode.call(void 0, "br", null, null, -1 /* HOISTED */))
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (_vue.openBlock.call(void 0, ), _vue.createElementBlock.call(void 0, _vue.Fragment, null, [
     _hoisted_1,
     _hoisted_2,
-    _vue.createElementVNode.call(void 0, "div", _hoisted_3, [
+    _vue.createElementVNode.call(void 0, "div", {
+      style: _vue.normalizeStyle.call(void 0, [{"border-radius":"1em","border":"2px solid #656463","padding":"1em","background":"#252423","text-align":"center","margin":"2em 0"}, $setup.style])
+    }, [
       _vue.createTextVNode.call(void 0, " Your randomized port number is… "),
-      _vue.createElementVNode.call(void 0, "div", _hoisted_4, _vue.toDisplayString.call(void 0, $setup.port), 1 /* TEXT */),
+      _vue.createElementVNode.call(void 0, "div", _hoisted_3, _vue.toDisplayString.call(void 0, $setup.port), 1 /* TEXT */),
       _vue.createElementVNode.call(void 0, "button", {
         class: "btn",
         onClick: _cache[0] || (_cache[0] = (...args) => ($setup.randomizePort && $setup.randomizePort(...args))),
         onPointerdown: _cache[1] || (_cache[1] = (...args) => ($setup.down && $setup.down(...args))),
         onPointerup: _cache[2] || (_cache[2] = (...args) => ($setup.up && $setup.up(...args)))
       }, "Randomize port number", 32 /* NEED_HYDRATION */)
-    ]),
-    _hoisted_5,
+    ], 4 /* STYLE */),
+    _hoisted_4,
     _vue.createElementVNode.call(void 0, "ul", null, [
       _vue.createElementVNode.call(void 0, "li", null, [
-        _hoisted_6,
+        _hoisted_5,
         _vue.createElementVNode.call(void 0, "pre", null, [
           _vue.createElementVNode.call(void 0, "code", null, "  \"dev\": \"next dev -p ${PORT:-" + _vue.toDisplayString.call(void 0, $setup.port) + "}\",", 1 /* TEXT */)
         ])
       ]),
       _vue.createElementVNode.call(void 0, "li", null, [
-        _hoisted_7,
+        _hoisted_6,
         _vue.createElementVNode.call(void 0, "pre", null, [
           _vue.createElementVNode.call(void 0, "code", null, [
             _vue.createTextVNode.call(void 0, "  \"dev\": \"vite --port ${PORT:-" + _vue.toDisplayString.call(void 0, $setup.port) + "}\",", 1 /* TEXT */),
-            _hoisted_8,
+            _hoisted_7,
             _vue.createTextVNode.call(void 0, "  \"preview\": \"vite preview --port ${PORT:-" + _vue.toDisplayString.call(void 0, $setup.port) + "}\",", 1 /* TEXT */)
           ])
         ])
