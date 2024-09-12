@@ -839,6 +839,10 @@
 		{	"title": "Authenticating as a GitHub App in Octokit.js"
 		,	"parent": "GitHub"
 		}
+	,	"OklabVisualizer":
+		{	"title": "Oklab Visualizer"
+		,	"parent": "Tools"
+		}
 	,	"OklchPlot":
 		{	"title": "OKLCH Color Scale Plotter"
 		,	"parent": "Tools"

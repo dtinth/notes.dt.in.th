@@ -208,6 +208,7 @@ https://notes.dt.in.th/NpmCheckmark
 https://notes.dt.in.th/OBZBarcodeScannerJS
 https://notes.dt.in.th/Observability
 https://notes.dt.in.th/OctokitGitHubAppAuth
+https://notes.dt.in.th/OklabVisualizer
 https://notes.dt.in.th/OklchPlot
 https://notes.dt.in.th/OpenWebUILiteLLM
 https://notes.dt.in.th/PWA

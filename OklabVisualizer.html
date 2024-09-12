@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html data-precompiled=true lang="en" data-dtinth="true">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Oklab Visualizer | notes.dt.in.th</title><meta property="og:title" content="Oklab Visualizer" data-source="note">
+<meta property="og:image" content="https://screenshot.source.in.th/image/_/notes/OklabVisualizer" data-source="note">
+<meta property="og:image:width" content="1800" data-source="note">
+<meta property="og:image:height" content="1680" data-source="note">
+<link rel="canonical" href="https://notes.dt.in.th/OklabVisualizer" data-source="note"><style id="note-styles">/* layer: default */
+.fixed[data-v-8c9498c0]{position:fixed;}
+.b[data-v-8c9498c0]{border-width:1px;}</style>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/iconify-icon@2.1.0/dist/iconify-icon.min.js"
+      integrity="sha256-dY2Ug42wyv3rl+sLVKEg3jbPs8f+hi7tmJ836AxVDwI="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/blurhash-image@1.0.1/blurhash-image.min.js"
+      integrity="sha256-qrUUgTGk7xA7iVCwraHNQjwy2JryA0K4L3DL4qidagQ="
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" crossorigin src="/runtime/index.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/supabase-CjkNZD6A.js">
+    <link rel="stylesheet" crossorigin href="/runtime/index.css">
+  </head>
+  <body class="bg-#252423 text-#e9e8e7 antialiased">
+    <header class="h-[58px] bg-#090807 border-b border-#454443 z-20 flex">
+      <div class="flex items-center pl-[18px] flex-none">
+        <a
+          class="flex items-center text-#8b8685 hover:text-#ffffbb text-lg"
+          href="/"
+          >notes.dt.in.th</a
+        >
+      </div>
+      <div
+        class="flex-1 flex items-center text-#8b8685 [&_a:hover]:text-#ffffbb overflow-hidden"
+        id="headerMiddle"
+      >
+        <div class="px-2 flex-none">›</div><div class="truncate"><a title="Tools (topic)" href="Tools">Tools</a></div>
+      </div>
+      <div
+        class="flex items-center px-[18px] flex-none gap-4"
+        id="headerToolbar"
+      ></div>
+    </header>
+    <div class="h-entry">
+      <main class="bg-#353433" id="main">
+        <div class="notes-layout-container mx-auto p-6 py-12" id="mainContents">
+          <div class="prose e-content" id="noteContents"><!--[--><h1 id="oklab-visualizer" data-v-8c9498c0><a aria-hidden="true" tabindex="-1" href="#oklab-visualizer" data-v-8c9498c0><span class="icon icon-link" data-v-8c9498c0></span></a>Oklab Visualizer</h1><p data-v-8c9498c0>This little visualizer shows the A-B plane of the Oklab color space that lies within the sRGB gamut, given a fixed lightness value.</p><p data-v-8c9498c0><strong data-v-8c9498c0>Lightness:</strong> 50% <br data-v-8c9498c0><input type="range" min="0" max="1" step="0.01" value="0.5" style="box-sizing:border-box;width:256px;" data-v-8c9498c0></p><p data-v-8c9498c0><canvas width="256" height="256" data-v-8c9498c0></canvas></p><!--]--></div>
+        </div>
+      </main>
+      <footer>
+        <div
+          class="notes-layout-container mx-auto py-4 px-6 text-#8b8685 text-right text-sm"
+          id="footerContents"
+        >
+          <notes-page-footer></notes-page-footer>
+        </div>
+      </footer>
+    </div>
+    <script>
+window.precompiledNoteBehavior = function(require, exports, module, Vue) {"use strict";Object.defineProperty(exports, "__esModule", {value: true});/* Analyzed bindings: {
+  "canvasRef": "setup-maybe-ref",
+  "lightness": "setup-maybe-ref"
+} */
+
+  const __sfc__ = {
+    setup() {
+      const culoriRef = Vue.ref()
+      const canvasRef = Vue.ref()
+      const lightness = Vue.ref(0.5)
+
+      Vue.onMounted(async () => {
+        const culoriPromise = await import('https://cdn.jsdelivr.net/npm/culori@3.2.0/+esm')
+        culoriRef.value = (await culoriPromise)
+      })
+
+      let toDisplay = null
+
+      Vue.watch([culoriRef, canvasRef, lightness], ([culori, canvas, l]) => {
+        if (!culori || !canvas) return
+        if (!toDisplay) {
+          requestAnimationFrame(() => {
+            toDisplay()
+          })
+        }
+        toDisplay = () => {
+          const ctx = canvas.getContext('2d')
+          const { width, height } = canvas
+
+          ctx.clearRect(0, 0, width, height)
+          ctx.fillStyle = 'rgba(255,255,255,0.16)'
+
+          // Display horizontal and vertical lines through the center
+          ctx.fillRect(0, height / 2, width, 1)
+          ctx.fillRect(width / 2, 0, 1, height)
+
+          for (let x = 0; x < width; x++) {
+            const a = ((x / width) - 0.5) * 0.4 / 0.5
+            for (let y = 0; y < height; y++) {
+              const b = ((y / height) - 0.5) * 0.4 / 0.5
+              const fillStyle = `oklab(${l} ${a} ${b})`
+              if (culori.displayable({ mode: 'oklab', l, a, b })) {
+                ctx.fillStyle = fillStyle
+                ctx.fillRect(x, y, 1, 1)
+              }
+            }
+          }
+          toDisplay = null
+        }
+      })
+
+      return { canvasRef, lightness }
+    }
+  }
+;
+var _vue = require('vue');
+
+const _withScopeId = n => (_vue.pushScopeId.call(void 0, "data-v-8c9498c0"),n=n(),_vue.popScopeId.call(void 0, ),n)
+const _hoisted_1 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_vue.createElementVNode.call(void 0, "h1", { id: "oklab-visualizer" }, [
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "a", {
+    "aria-hidden": "true",
+    tabindex: "-1",
+    href: "#oklab-visualizer"
+  }, [
+    /*#__PURE__*/_vue.createElementVNode.call(void 0, "span", { class: "icon icon-link" })
+  ]),
+  /*#__PURE__*/_vue.createTextVNode.call(void 0, "Oklab Visualizer")
+], -1 /* HOISTED */))
+const _hoisted_2 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_vue.createElementVNode.call(void 0, "p", null, "This little visualizer shows the A-B plane of the Oklab color space that lies within the sRGB gamut, given a fixed lightness value.", -1 /* HOISTED */))
+const _hoisted_3 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_vue.createElementVNode.call(void 0, "strong", null, "Lightness:", -1 /* HOISTED */))
+const _hoisted_4 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_vue.createElementVNode.call(void 0, "br", null, null, -1 /* HOISTED */))
+const _hoisted_5 = {
+  width: "256",
+  height: "256",
+  ref: "canvasRef"
+}
+function render(_ctx, _cache, $props, $setup, $data, $options) {
+  return (_vue.openBlock.call(void 0, ), _vue.createElementBlock.call(void 0, _vue.Fragment, null, [
+    _hoisted_1,
+    _hoisted_2,
+    _vue.createElementVNode.call(void 0, "p", null, [
+      _hoisted_3,
+      _vue.createTextVNode.call(void 0, " " + _vue.toDisplayString.call(void 0, ($setup.lightness * 100).toFixed(0)) + "% ", 1 /* TEXT */),
+      _hoisted_4,
+      _vue.withDirectives.call(void 0, _vue.createElementVNode.call(void 0, "input", {
+        type: "range",
+        min: "0",
+        max: "1",
+        step: "0.01",
+        "onUpdate:modelValue": _cache[0] || (_cache[0] = $event => (($setup.lightness) = $event)),
+        style: {"box-sizing":"border-box","width":"256px"}
+      }, null, 512 /* NEED_PATCH */), [
+        [_vue.vModelText, $setup.lightness]
+      ])
+    ]),
+    _vue.createElementVNode.call(void 0, "p", null, [
+      _vue.createElementVNode.call(void 0, "canvas", _hoisted_5, null, 512 /* NEED_PATCH */)
+    ])
+  ], 64 /* STABLE_FRAGMENT */))
+}
+__sfc__.render = render
+__sfc__.__scopeId = "data-v-8c9498c0"
+__sfc__.__file = "Note.vue"
+exports. default = __sfc__};
+window.precompiledFrontMatter = {"title":"Oklab Visualizer","public":true};
+</script>
+  </body>
+</html>

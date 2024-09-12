@@ -1976,6 +1976,10 @@
 				}
 			]
 		}
+	,	"OklabVisualizer":
+		{	"title": "Oklab Visualizer"
+		,	"links": []
+		}
 	,	"OklchPlot":
 		{	"title": "OKLCH Color Scale Plotter"
 		,	"links": []
@@ -2469,7 +2473,7 @@
 	,	"Tools":
 		{	"title": "Tools (topic)"
 		,	"links":
-			[	{	"link": "OklabVisualizer.md"
+			[	{	"link": "OklabVisualizer"
 				}
 			,	{	"link": "OklchPlot"
 				}
