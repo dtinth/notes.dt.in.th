@@ -95,6 +95,7 @@ https://notes.dt.in.th/AdventOfCode2021Day24
 https://notes.dt.in.th/AsdfSnippets
 https://notes.dt.in.th/AudioEncodingBenchmark
 https://notes.dt.in.th/Azure
+https://notes.dt.in.th/Bun
 https://notes.dt.in.th/CSS
 https://notes.dt.in.th/CSSChangeColorOpacity
 https://notes.dt.in.th/Caddy
@@ -124,6 +125,7 @@ https://notes.dt.in.th/DockerComposeSnippets
 https://notes.dt.in.th/DockerInstall
 https://notes.dt.in.th/DockerMacOSColima
 https://notes.dt.in.th/DockerRetagImage
+https://notes.dt.in.th/Dotenv
 https://notes.dt.in.th/Elysia
 https://notes.dt.in.th/ElysiaNode
 https://notes.dt.in.th/ExcalidrawSurfacePen
@@ -177,6 +179,8 @@ https://notes.dt.in.th/MacOS
 https://notes.dt.in.th/MacOSSmartQuotesInWindows
 https://notes.dt.in.th/Markdown
 https://notes.dt.in.th/MinioJS
+https://notes.dt.in.th/Mise
+https://notes.dt.in.th/MiseEnv
 https://notes.dt.in.th/MongoDB
 https://notes.dt.in.th/MongoDBAuthSource
 https://notes.dt.in.th/Morse

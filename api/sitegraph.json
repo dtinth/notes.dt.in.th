@@ -686,7 +686,9 @@
 	,	"AsdfSnippets":
 		{	"title": "My asdf snippets"
 		,	"links":
-			[	{	"link": "Codespaces"
+			[	{	"link": "Mise"
+				}
+			,	{	"link": "Codespaces"
 				}
 			,	{	"link": "Linux"
 				}
@@ -699,6 +701,19 @@
 	,	"Azure":
 		{	"title": "Azure (topic)"
 		,	"links": []
+		}
+	,	"Bun":
+		{	"title": "Bun (topic)"
+		,	"links":
+			[	{	"link": "JavaScript"
+				}
+			,	{	"link": "TypeScript"
+				}
+			,	{	"link": "Node"
+				}
+			,	{	"link": "Elysia"
+				}
+			]
 		}
 	,	"CSS":
 		{	"title": "CSS (topic)"
@@ -1007,10 +1022,39 @@
 				}
 			]
 		}
+	,	"Dotenv":
+		{	"title": ".env file"
+		,	"links":
+			[	{	"link": "Vite"
+				}
+			,	{	"link": "#user-content-fn-buildvsrun"
+				}
+			,	{	"link": "Docker"
+				}
+			,	{	"link": "Bun"
+				}
+			,	{	"link": "Node"
+				}
+			,	{	"link": "Ruby"
+				}
+			,	{	"link": "Nodejs"
+				}
+			,	{	"link": "Mise"
+				}
+			,	{	"link": "MiseEnv"
+				}
+			,	{	"link": "#user-content-fnref-buildvsrun"
+				}
+			]
+		}
 	,	"Elysia":
 		{	"title": "Elysia (topic)"
 		,	"links":
-			[	{	"link": "ElysiaNode"
+			[	{	"link": "TypeScript"
+				}
+			,	{	"link": "Bun"
+				}
+			,	{	"link": "ElysiaNode"
 				}
 			]
 		}
@@ -1489,6 +1533,8 @@
 				}
 			,	{	"link": "ExcalidrawSurfacePen"
 				}
+			,	{	"link": "Bun"
+				}
 			,	{	"link": "20220130T174417Z8065"
 				}
 			,	{	"link": "Deno"
@@ -1646,6 +1692,22 @@
 			,	{	"link": "Linode"
 				}
 			,	{	"link": "TypeScript"
+				}
+			]
+		}
+	,	"Mise":
+		{	"title": "mise-en-place (topic)"
+		,	"links":
+			[	{	"link": "MiseEnv"
+				}
+			]
+		}
+	,	"MiseEnv":
+		{	"title": "Loading `.env` file with mise-en-place"
+		,	"links":
+			[	{	"link": "Mise"
+				}
+			,	{	"link": "Dotenv"
 				}
 			]
 		}

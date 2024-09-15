@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html data-precompiled=true lang="en" data-dtinth="true">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>.env file | notes.dt.in.th</title><meta property="og:title" content=".env file" data-source="note">
+<meta property="og:image" content="https://screenshot.source.in.th/image/_/notes/Dotenv" data-source="note">
+<meta property="og:image:width" content="1800" data-source="note">
+<meta property="og:image:height" content="1680" data-source="note">
+<link rel="canonical" href="https://notes.dt.in.th/Dotenv" data-source="note"><style id="note-styles">/* layer: default */
+.sr-only[data-v-8c9498c0]{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0;}
+.my[data-v-8c9498c0]{margin-top:1rem;margin-bottom:1rem;}
+.contents[data-v-8c9498c0]{display:contents;}</style>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/iconify-icon@2.1.0/dist/iconify-icon.min.js"
+      integrity="sha256-dY2Ug42wyv3rl+sLVKEg3jbPs8f+hi7tmJ836AxVDwI="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/blurhash-image@1.0.1/blurhash-image.min.js"
+      integrity="sha256-qrUUgTGk7xA7iVCwraHNQjwy2JryA0K4L3DL4qidagQ="
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" crossorigin src="/runtime/index.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/supabase-CjkNZD6A.js">
+    <link rel="stylesheet" crossorigin href="/runtime/index.css">
+  </head>
+  <body class="bg-#252423 text-#e9e8e7 antialiased">
+    <header class="h-[58px] bg-#090807 border-b border-#454443 z-20 flex">
+      <div class="flex items-center pl-[18px] flex-none">
+        <a
+          class="flex items-center text-#8b8685 hover:text-#ffffbb text-lg"
+          href="/"
+          >notes.dt.in.th</a
+        >
+      </div>
+      <div
+        class="flex-1 flex items-center text-#8b8685 [&_a:hover]:text-#ffffbb overflow-hidden"
+        id="headerMiddle"
+      >
+        <div class="px-2 flex-none">›</div><div class="truncate"><a title="GitHub (topic)" href="GitHub">GitHub</a></div><div class="px-2 flex-none">›</div><div class="truncate"><a title="GitHub Codespaces (topic)" href="Codespaces">GitHub Codespaces</a></div><div class="px-2 flex-none">›</div><div class="truncate"><a title="My asdf snippets" href="AsdfSnippets">My asdf snippets</a></div><div class="px-2 flex-none">›</div><div class="truncate"><a title="mise-en-place (topic)" href="Mise">mise-en-place</a></div><div class="px-2 flex-none">›</div><div class="truncate"><a title="Loading `.env` file with mise-en-place" href="MiseEnv">Loading `.env` file with mise-en-place</a></div>
+      </div>
+      <div
+        class="flex items-center px-[18px] flex-none gap-4"
+        id="headerToolbar"
+      ></div>
+    </header>
+    <div class="h-entry">
+      <main class="bg-#353433" id="main">
+        <div class="notes-layout-container mx-auto p-6 py-12" id="mainContents">
+          <div class="prose e-content" id="noteContents"><!--[--><p data-v-8c9498c0><strong data-v-8c9498c0>The <code data-v-8c9498c0>.env</code> file</strong> is a text file that contains environment variables, commonly used store configuration settings for an application. It is written in a key-value pair format similar to a shell script.</p><div class="notes-callout" data-type="Note" data-v-8c9498c0><p class="notes-callout__label" data-v-8c9498c0><!---->Why doesn’t my application see the environment variables in the <code data-v-8c9498c0>.env</code> file?</p><p data-v-8c9498c0>By default, a shell does not load the <code data-v-8c9498c0>.env</code> file. This means that when you create a <code data-v-8c9498c0>.env</code> file, your application may not be able to access the environment variables defined in it, unless something causes the <code data-v-8c9498c0>.env</code> file to be loaded into your application’s environment.</p></div><ul data-v-8c9498c0><li data-v-8c9498c0><p data-v-8c9498c0><strong data-v-8c9498c0>Some runtimes loads .env files automatically.</strong></p><ul data-v-8c9498c0><li data-v-8c9498c0><p data-v-8c9498c0><a href="Vite" data-v-8c9498c0>Vite</a> <a href="https://vitejs.dev/guide/env-and-mode" data-v-8c9498c0>loads <code data-v-8c9498c0>.env</code> files automatically</a>, making them available as <code data-v-8c9498c0>import.meta.env</code>. As a result, frameworks based on Vite also inherit this behavior, such as <a href="https://docs.astro.build/en/guides/environment-variables/" data-v-8c9498c0>Astro</a> and <a href="https://kit.svelte.dev/docs/adapter-node#environment-variables" data-v-8c9498c0>SvelteKit</a>. Do note that for these frameworks, environment variables may be evaluated at build time or runtime<sup data-v-8c9498c0><a href="#user-content-fn-buildvsrun" id="user-content-fnref-buildvsrun" data-footnote-ref="" aria-describedby="footnote-label" data-v-8c9498c0>1</a></sup> and behavior can be different between development and production environments, so refer to the documentation for specifics.</p></li><li data-v-8c9498c0><p data-v-8c9498c0><a href="https://glitch.com/" data-v-8c9498c0>Glitch</a>, a platform for building web applications, <a href="https://support.glitch.com/t/how-do-i-set-environment-variables/3921" data-v-8c9498c0>automatically loads <code data-v-8c9498c0>.env</code> files</a> in a project as a normal environment variable.</p></li><li data-v-8c9498c0><p data-v-8c9498c0><a href="Docker" data-v-8c9498c0>Docker</a> Compose <a href="https://docs.docker.com/compose/environment-variables/variable-interpolation/" data-v-8c9498c0>automatically loads <code data-v-8c9498c0>.env</code> files for the purpose of interpolation</a> into the <code data-v-8c9498c0>docker-compose.yml</code> file. Note that this does not make the environment variables available to the containers managed by Docker Compose.</p><details data-v-8c9498c0><summary data-v-8c9498c0>More details for Docker Compose</summary><p data-v-8c9498c0>To make the environment variables available to the containers, specify the environment variable names in the <code data-v-8c9498c0>environment</code> section of the <code data-v-8c9498c0>docker-compose.yml</code> file. For example:</p><pre class="shiki github-dark" style="background-color:#252423;color:#e1e4e8;" tabindex="0" data-v-8c9498c0><code data-v-8c9498c0><span class="line" data-v-8c9498c0><span style="color:#85E89D;" data-v-8c9498c0>services</span><span style="color:#E1E4E8;" data-v-8c9498c0>:</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#85E89D;" data-v-8c9498c0>  myservice</span><span style="color:#E1E4E8;" data-v-8c9498c0>:</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#85E89D;" data-v-8c9498c0>    image</span><span style="color:#E1E4E8;" data-v-8c9498c0>: </span><span style="color:#9ECBFF;" data-v-8c9498c0>myimage</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#85E89D;" data-v-8c9498c0>    environment</span><span style="color:#E1E4E8;" data-v-8c9498c0>:</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>      - </span><span style="color:#9ECBFF;" data-v-8c9498c0>MY_ENV_VAR</span></span></code></pre><p data-v-8c9498c0>Docker Compose will pass on the contents of the <code data-v-8c9498c0>MY_ENV_VAR</code> environment variable (which may be automatically loaded from the <code data-v-8c9498c0>.env</code> file) to the container.</p><p data-v-8c9498c0>Alternatively, if you want <em data-v-8c9498c0>all</em> environment variables from the <code data-v-8c9498c0>.env</code> file to be passed to the container, <a href="https://docs.docker.com/compose/environment-variables/set-environment-variables/#use-the-env_file-attribute" data-v-8c9498c0>you can use the <code data-v-8c9498c0>env_file</code> directive in the <code data-v-8c9498c0>docker-compose.yml</code> file</a>.</p></details></li><li data-v-8c9498c0><p data-v-8c9498c0><a href="Bun" data-v-8c9498c0>Bun</a> <a href="https://bun.sh/docs/runtime/env" data-v-8c9498c0>loads <code data-v-8c9498c0>.env</code> files automatically</a>.</p></li></ul></li><li data-v-8c9498c0><p data-v-8c9498c0><strong data-v-8c9498c0>Some runtimes lets you load a .env file, but it must be explicitly done.</strong></p><ul data-v-8c9498c0><li data-v-8c9498c0><a href="Node" data-v-8c9498c0>Node.js</a> has support for <a href="https://nodejs.org/dist/latest-v20.x/docs/api/cli.html#--env-fileconfig" data-v-8c9498c0><code data-v-8c9498c0>--env-file</code></a> since v20.</li></ul></li><li data-v-8c9498c0><p data-v-8c9498c0><strong data-v-8c9498c0>Program your application to load the .env file.</strong></p><ul data-v-8c9498c0><li data-v-8c9498c0><p data-v-8c9498c0><a href="Ruby" data-v-8c9498c0>Ruby</a> apps can use the <a href="https://github.com/bkeepers/dotenv" data-v-8c9498c0>dotenv</a> gem to load the <code data-v-8c9498c0>.env</code> file at startup.</p></li><li data-v-8c9498c0><p data-v-8c9498c0><a href="Nodejs" data-v-8c9498c0>Node.js</a> apps can use the <a href="https://www.npmjs.com/package/dotenv" data-v-8c9498c0>dotenv</a> package to load the <code data-v-8c9498c0>.env</code> file at startup.</p></li></ul></li><li data-v-8c9498c0><p data-v-8c9498c0><strong data-v-8c9498c0>Run your application through a wrapper that loads the .env file.</strong></p><ul data-v-8c9498c0><li data-v-8c9498c0><p data-v-8c9498c0><a href="https://github.com/dotenvx/dotenvx" data-v-8c9498c0>dotenvx</a> lets you run arbitrary commands with environment variables loaded from a <code data-v-8c9498c0>.env</code> file.</p></li><li data-v-8c9498c0><p data-v-8c9498c0><a href="Docker" data-v-8c9498c0>Docker</a> lets you specify the <a href="https://docs.docker.com/reference/cli/docker/container/run/#env" data-v-8c9498c0><code data-v-8c9498c0>--env-file</code></a> for the container.</p></li></ul></li><li data-v-8c9498c0><p data-v-8c9498c0><strong data-v-8c9498c0>Load variables from <code data-v-8c9498c0>.env</code> file into the shell.</strong></p><ul data-v-8c9498c0><li data-v-8c9498c0><p data-v-8c9498c0><a href="https://direnv.net/" data-v-8c9498c0>direnv</a> is a shell extension that loads (and unloads) environment variables from a <code data-v-8c9498c0>.env</code> file into the shell when you <code data-v-8c9498c0>cd</code> into (and out of) a directory. More advanced configuration can be done by using a <code data-v-8c9498c0>.envrc</code> file instead. (Nowadays I use <a href="Mise" data-v-8c9498c0>mise-en-place</a> instead of direnv.)</p></li><li data-v-8c9498c0><p data-v-8c9498c0><a href="Mise" data-v-8c9498c0>mise-en-place</a> can <a href="MiseEnv" data-v-8c9498c0>automatically load the <code data-v-8c9498c0>.env</code> file in a directory by configuring it in <code data-v-8c9498c0>.mise.toml</code>.</a></p></li></ul></li></ul><section data-footnotes="" class="footnotes" data-v-8c9498c0><h2 id="footnote-label" class="sr-only" data-v-8c9498c0><a aria-hidden="true" tabindex="-1" href="#footnote-label" data-v-8c9498c0><span class="icon icon-link" data-v-8c9498c0></span></a>Footnotes</h2><ol data-v-8c9498c0><li id="user-content-fn-buildvsrun" data-v-8c9498c0><p data-v-8c9498c0><strong data-v-8c9498c0>Build-time</strong> environment variables are evaluated when the application is built and compiled/inlined into the final artifact. They are not changeable at runtime; changing these variables requires a rebuild.</p><p data-v-8c9498c0><strong data-v-8c9498c0>Run-time</strong> environment variables are evaluated when the application is running. <a href="#user-content-fnref-buildvsrun" data-footnote-backref="" aria-label="Back to reference 1" class="data-footnote-backref" data-v-8c9498c0>↩</a></p></li></ol></section><!--]--></div>
+        </div>
+      </main>
+      <footer>
+        <div
+          class="notes-layout-container mx-auto py-4 px-6 text-#8b8685 text-right text-sm"
+          id="footerContents"
+        >
+          <notes-page-footer></notes-page-footer>
+        </div>
+      </footer>
+    </div>
+    <script>
+window.precompiledNoteBehavior = function(require, exports, module, Vue) {"use strict";Object.defineProperty(exports, "__esModule", {value: true});const __sfc__ = {};
+var _vue = require('vue');
+
+const _withScopeId = n => (_vue.pushScopeId.call(void 0, "data-v-8c9498c0"),n=n(),_vue.popScopeId.call(void 0, ),n)
+const _hoisted_1 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_vue.createElementVNode.call(void 0, "p", null, [
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "strong", null, [
+    /*#__PURE__*/_vue.createTextVNode.call(void 0, "The "),
+    /*#__PURE__*/_vue.createElementVNode.call(void 0, "code", null, ".env"),
+    /*#__PURE__*/_vue.createTextVNode.call(void 0, " file")
+  ]),
+  /*#__PURE__*/_vue.createTextVNode.call(void 0, " is a text file that contains environment variables, commonly used store configuration settings for an application. It is written in a key-value pair format similar to a shell script.")
+], -1 /* HOISTED */))
+const _hoisted_2 = {
+  class: "notes-callout",
+  "data-type": "Note"
+}
+const _hoisted_3 = { class: "notes-callout__label" }
+const _hoisted_4 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_vue.createElementVNode.call(void 0, "code", null, ".env", -1 /* HOISTED */))
+const _hoisted_5 = /*#__PURE__*/ _withScopeId(() => /*#__PURE__*/_vue.createElementVNode.call(void 0, "p", null, [
+  /*#__PURE__*/_vue.createTextVNode.call(void 0, "By default, a shell does not load the "),
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "code", null, ".env"),
+  /*#__PURE__*/_vue.createTextVNode.call(void 0, " file. This means that when you create a "),
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "code", null, ".env"),
+  /*#__PURE__*/_vue.createTextVNode.call(void 0, " file, your application may not be able to access the environment variables defined in it, unless something causes the "),
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "code", null, ".env"),
+  /*#__PURE__*/_vue.createTextVNode.call(void 0, " file to be loaded into your application’s environment.")
+], -1 /* HOISTED */))
+const _hoisted_6 = /*#__PURE__*/_vue.createStaticVNode.call(void 0, "<ul data-v-8c9498c0><li data-v-8c9498c0><p data-v-8c9498c0><strong data-v-8c9498c0>Some runtimes loads .env files automatically.</strong></p><ul data-v-8c9498c0><li data-v-8c9498c0><p data-v-8c9498c0><a href=\"Vite\" data-v-8c9498c0>Vite</a> <a href=\"https://vitejs.dev/guide/env-and-mode\" data-v-8c9498c0>loads <code data-v-8c9498c0>.env</code> files automatically</a>, making them available as <code data-v-8c9498c0>import.meta.env</code>. As a result, frameworks based on Vite also inherit this behavior, such as <a href=\"https://docs.astro.build/en/guides/environment-variables/\" data-v-8c9498c0>Astro</a> and <a href=\"https://kit.svelte.dev/docs/adapter-node#environment-variables\" data-v-8c9498c0>SvelteKit</a>. Do note that for these frameworks, environment variables may be evaluated at build time or runtime<sup data-v-8c9498c0><a href=\"#user-content-fn-buildvsrun\" id=\"user-content-fnref-buildvsrun\" data-footnote-ref=\"\" aria-describedby=\"footnote-label\" data-v-8c9498c0>1</a></sup> and behavior can be different between development and production environments, so refer to the documentation for specifics.</p></li><li data-v-8c9498c0><p data-v-8c9498c0><a href=\"https://glitch.com/\" data-v-8c9498c0>Glitch</a>, a platform for building web applications, <a href=\"https://support.glitch.com/t/how-do-i-set-environment-variables/3921\" data-v-8c9498c0>automatically loads <code data-v-8c9498c0>.env</code> files</a> in a project as a normal environment variable.</p></li><li data-v-8c9498c0><p data-v-8c9498c0><a href=\"Docker\" data-v-8c9498c0>Docker</a> Compose <a href=\"https://docs.docker.com/compose/environment-variables/variable-interpolation/\" data-v-8c9498c0>automatically loads <code data-v-8c9498c0>.env</code> files for the purpose of interpolation</a> into the <code data-v-8c9498c0>docker-compose.yml</code> file. Note that this does not make the environment variables available to the containers managed by Docker Compose.</p><details data-v-8c9498c0><summary data-v-8c9498c0>More details for Docker Compose</summary><p data-v-8c9498c0>To make the environment variables available to the containers, specify the environment variable names in the <code data-v-8c9498c0>environment</code> section of the <code data-v-8c9498c0>docker-compose.yml</code> file. For example:</p><pre class=\"shiki github-dark\" style=\"background-color:#252423;color:#e1e4e8;\" tabindex=\"0\" data-v-8c9498c0><code data-v-8c9498c0><span class=\"line\" data-v-8c9498c0><span style=\"color:#85E89D;\" data-v-8c9498c0>services</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>:</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#85E89D;\" data-v-8c9498c0>  myservice</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>:</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#85E89D;\" data-v-8c9498c0>    image</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>: </span><span style=\"color:#9ECBFF;\" data-v-8c9498c0>myimage</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#85E89D;\" data-v-8c9498c0>    environment</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>:</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>      - </span><span style=\"color:#9ECBFF;\" data-v-8c9498c0>MY_ENV_VAR</span></span></code></pre><p data-v-8c9498c0>Docker Compose will pass on the contents of the <code data-v-8c9498c0>MY_ENV_VAR</code> environment variable (which may be automatically loaded from the <code data-v-8c9498c0>.env</code> file) to the container.</p><p data-v-8c9498c0>Alternatively, if you want <em data-v-8c9498c0>all</em> environment variables from the <code data-v-8c9498c0>.env</code> file to be passed to the container, <a href=\"https://docs.docker.com/compose/environment-variables/set-environment-variables/#use-the-env_file-attribute\" data-v-8c9498c0>you can use the <code data-v-8c9498c0>env_file</code> directive in the <code data-v-8c9498c0>docker-compose.yml</code> file</a>.</p></details></li><li data-v-8c9498c0><p data-v-8c9498c0><a href=\"Bun\" data-v-8c9498c0>Bun</a> <a href=\"https://bun.sh/docs/runtime/env\" data-v-8c9498c0>loads <code data-v-8c9498c0>.env</code> files automatically</a>.</p></li></ul></li><li data-v-8c9498c0><p data-v-8c9498c0><strong data-v-8c9498c0>Some runtimes lets you load a .env file, but it must be explicitly done.</strong></p><ul data-v-8c9498c0><li data-v-8c9498c0><a href=\"Node\" data-v-8c9498c0>Node.js</a> has support for <a href=\"https://nodejs.org/dist/latest-v20.x/docs/api/cli.html#--env-fileconfig\" data-v-8c9498c0><code data-v-8c9498c0>--env-file</code></a> since v20.</li></ul></li><li data-v-8c9498c0><p data-v-8c9498c0><strong data-v-8c9498c0>Program your application to load the .env file.</strong></p><ul data-v-8c9498c0><li data-v-8c9498c0><p data-v-8c9498c0><a href=\"Ruby\" data-v-8c9498c0>Ruby</a> apps can use the <a href=\"https://github.com/bkeepers/dotenv\" data-v-8c9498c0>dotenv</a> gem to load the <code data-v-8c9498c0>.env</code> file at startup.</p></li><li data-v-8c9498c0><p data-v-8c9498c0><a href=\"Nodejs\" data-v-8c9498c0>Node.js</a> apps can use the <a href=\"https://www.npmjs.com/package/dotenv\" data-v-8c9498c0>dotenv</a> package to load the <code data-v-8c9498c0>.env</code> file at startup.</p></li></ul></li><li data-v-8c9498c0><p data-v-8c9498c0><strong data-v-8c9498c0>Run your application through a wrapper that loads the .env file.</strong></p><ul data-v-8c9498c0><li data-v-8c9498c0><p data-v-8c9498c0><a href=\"https://github.com/dotenvx/dotenvx\" data-v-8c9498c0>dotenvx</a> lets you run arbitrary commands with environment variables loaded from a <code data-v-8c9498c0>.env</code> file.</p></li><li data-v-8c9498c0><p data-v-8c9498c0><a href=\"Docker\" data-v-8c9498c0>Docker</a> lets you specify the <a href=\"https://docs.docker.com/reference/cli/docker/container/run/#env\" data-v-8c9498c0><code data-v-8c9498c0>--env-file</code></a> for the container.</p></li></ul></li><li data-v-8c9498c0><p data-v-8c9498c0><strong data-v-8c9498c0>Load variables from <code data-v-8c9498c0>.env</code> file into the shell.</strong></p><ul data-v-8c9498c0><li data-v-8c9498c0><p data-v-8c9498c0><a href=\"https://direnv.net/\" data-v-8c9498c0>direnv</a> is a shell extension that loads (and unloads) environment variables from a <code data-v-8c9498c0>.env</code> file into the shell when you <code data-v-8c9498c0>cd</code> into (and out of) a directory. More advanced configuration can be done by using a <code data-v-8c9498c0>.envrc</code> file instead. (Nowadays I use <a href=\"Mise\" data-v-8c9498c0>mise-en-place</a> instead of direnv.)</p></li><li data-v-8c9498c0><p data-v-8c9498c0><a href=\"Mise\" data-v-8c9498c0>mise-en-place</a> can <a href=\"MiseEnv\" data-v-8c9498c0>automatically load the <code data-v-8c9498c0>.env</code> file in a directory by configuring it in <code data-v-8c9498c0>.mise.toml</code>.</a></p></li></ul></li></ul><section data-footnotes=\"\" class=\"footnotes\" data-v-8c9498c0><h2 id=\"footnote-label\" class=\"sr-only\" data-v-8c9498c0><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#footnote-label\" data-v-8c9498c0><span class=\"icon icon-link\" data-v-8c9498c0></span></a>Footnotes</h2><ol data-v-8c9498c0><li id=\"user-content-fn-buildvsrun\" data-v-8c9498c0><p data-v-8c9498c0><strong data-v-8c9498c0>Build-time</strong> environment variables are evaluated when the application is built and compiled/inlined into the final artifact. They are not changeable at runtime; changing these variables requires a rebuild.</p><p data-v-8c9498c0><strong data-v-8c9498c0>Run-time</strong> environment variables are evaluated when the application is running. <a href=\"#user-content-fnref-buildvsrun\" data-footnote-backref=\"\" aria-label=\"Back to reference 1\" class=\"data-footnote-backref\" data-v-8c9498c0>↩</a></p></li></ol></section>", 2)
+function render(_ctx, _cache) {
+  const _component_notes_callout_icon = _vue.resolveComponent.call(void 0, "notes-callout-icon")
+
+  return (_vue.openBlock.call(void 0, ), _vue.createElementBlock.call(void 0, _vue.Fragment, null, [
+    _hoisted_1,
+    _vue.createElementVNode.call(void 0, "div", _hoisted_2, [
+      _vue.createElementVNode.call(void 0, "p", _hoisted_3, [
+        _vue.createVNode.call(void 0, _component_notes_callout_icon, { type: "Note" }),
+        _vue.createTextVNode.call(void 0, "Why doesn’t my application see the environment variables in the "),
+        _hoisted_4,
+        _vue.createTextVNode.call(void 0, " file?")
+      ]),
+      _hoisted_5
+    ]),
+    _hoisted_6
+  ], 64 /* STABLE_FRAGMENT */))
+}
+__sfc__.render = render
+__sfc__.__scopeId = "data-v-8c9498c0"
+__sfc__.__file = "Note.vue"
+exports. default = __sfc__};
+window.precompiledFrontMatter = {"public":true,"title":".env file"};
+</script>
+  </body>
+</html>
