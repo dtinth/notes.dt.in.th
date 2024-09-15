@@ -110,11 +110,11 @@
 		}
 	,	"20201210T061820Z6648":
 		{	"title": "PowerShell (topic)"
-		,	"parent": "HomePage"
+		,	"parent": "Windows"
 		}
 	,	"20201210T062029Z2069":
 		{	"title": "Koans (topic)"
-		,	"parent": "HomePage"
+		,	"parent": "Learning"
 		}
 	,	"20201211T164128Z3995":
 		{	"title": "Notes sidebar in VS Code"
@@ -510,7 +510,7 @@
 		}
 	,	"Dotenv":
 		{	"title": ".env file"
-		,	"parent": "MiseEnv"
+		,	"parent": "Shell"
 		}
 	,	"Elysia":
 		{	"title": "Elysia (topic)"
@@ -539,6 +539,10 @@
 	,	"Firebase":
 		{	"title": "Firebase (topic)"
 		,	"parent": "Database"
+		}
+	,	"Fish":
+		{	"title": "Fish (topic)"
+		,	"parent": "Shell"
 		}
 	,	"FlutterMacOS":
 		{	"title": "Setting up Flutter and Android in macOS using Homebrew"
@@ -690,6 +694,10 @@
 	,	"LaunchingChromeForTesting":
 		{	"title": "How to run Chrome for Testing"
 		,	"parent": "Recent"
+		}
+	,	"Learning":
+		{	"title": "My notes on learning… (topic)"
+		,	"parent": "HomePage"
 		}
 	,	"Linode":
 		{	"title": "Linode (topic)"
@@ -1018,6 +1026,10 @@
 	,	"SemgrepSetup":
 		{	"title": "Automated code review with Semgrep"
 		,	"parent": "Semgrep"
+		}
+	,	"Shell":
+		{	"title": "Shell (topic)"
+		,	"parent": "HomePage"
 		}
 	,	"ShortLivedMutability":
 		{	"title": "Short-lived mutability"

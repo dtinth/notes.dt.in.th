@@ -133,6 +133,7 @@ https://notes.dt.in.th/FacebookPageLongLivedAccessToken
 https://notes.dt.in.th/Fastify
 https://notes.dt.in.th/FastifyInExpress
 https://notes.dt.in.th/Firebase
+https://notes.dt.in.th/Fish
 https://notes.dt.in.th/FlutterMacOS
 https://notes.dt.in.th/FocusMusic
 https://notes.dt.in.th/FreeTypeJSBlackWhiteText
@@ -171,6 +172,7 @@ https://notes.dt.in.th/JoseVerifyFirebaseIdToken
 https://notes.dt.in.th/LCH
 https://notes.dt.in.th/LargeLanguageModel
 https://notes.dt.in.th/LaunchingChromeForTesting
+https://notes.dt.in.th/Learning
 https://notes.dt.in.th/Linode
 https://notes.dt.in.th/Linux
 https://notes.dt.in.th/LinuxAddUser
@@ -253,6 +255,7 @@ https://notes.dt.in.th/Semgrep
 https://notes.dt.in.th/SemgrepGitHubActions
 https://notes.dt.in.th/SemgrepInJavaScriptProjects
 https://notes.dt.in.th/SemgrepSetup
+https://notes.dt.in.th/Shell
 https://notes.dt.in.th/ShortLivedMutability
 https://notes.dt.in.th/SoftwareEngineering
 https://notes.dt.in.th/StableLibSnippets

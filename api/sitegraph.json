@@ -1111,6 +1111,10 @@
 				}
 			]
 		}
+	,	"Fish":
+		{	"title": "Fish (topic)"
+		,	"links": []
+		}
 	,	"FlutterMacOS":
 		{	"title": "Setting up Flutter and Android in macOS using Homebrew"
 		,	"links": []
@@ -1344,21 +1348,21 @@
 				}
 			,	{	"link": "JWT"
 				}
+			,	{	"link": "Learning"
+				}
 			,	{	"link": "MacOS"
 				}
 			,	{	"link": "Markdown"
 				}
 			,	{	"link": "Nix"
 				}
-			,	{	"link": "20201210T062029Z2069"
-				}
-			,	{	"link": "20201210T061820Z6648"
-				}
 			,	{	"link": "Productivity"
 				}
 			,	{	"link": "QRCode"
 				}
 			,	{	"link": "Ruby"
+				}
+			,	{	"link": "Shell"
 				}
 			,	{	"link": "SoftwareEngineering"
 				}
@@ -1601,6 +1605,13 @@
 	,	"LaunchingChromeForTesting":
 		{	"title": "How to run Chrome for Testing"
 		,	"links": []
+		}
+	,	"Learning":
+		{	"title": "My notes on learning… (topic)"
+		,	"links":
+			[	{	"link": "20201210T062029Z2069"
+				}
+			]
 		}
 	,	"Linode":
 		{	"title": "Linode (topic)"
@@ -2406,6 +2417,23 @@
 			[	{	"link": "Semgrep"
 				}
 			,	{	"link": "SemgrepInJavaScriptProjects"
+				}
+			]
+		}
+	,	"Shell":
+		{	"title": "Shell (topic)"
+		,	"links":
+			[	{	"link": "Linux"
+				}
+			,	{	"link": "MacOS"
+				}
+			,	{	"link": "Windows"
+				}
+			,	{	"link": "20201210T061820Z6648"
+				}
+			,	{	"link": "Dotenv"
+				}
+			,	{	"link": "Fish"
 				}
 			]
 		}
