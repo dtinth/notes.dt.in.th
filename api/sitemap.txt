@@ -112,6 +112,7 @@ https://notes.dt.in.th/CodespacesGoogleChrome
 https://notes.dt.in.th/ContinuousDelivery
 https://notes.dt.in.th/ContinuousIntegration
 https://notes.dt.in.th/CreativeCoding
+https://notes.dt.in.th/CuWriterFonts
 https://notes.dt.in.th/DataDictionary
 https://notes.dt.in.th/Database
 https://notes.dt.in.th/Deno
@@ -139,6 +140,7 @@ https://notes.dt.in.th/FocusMusic
 https://notes.dt.in.th/FreeTypeJSBlackWhiteText
 https://notes.dt.in.th/FreshAppFactory
 https://notes.dt.in.th/FrontendFeatureFlags
+https://notes.dt.in.th/GenerateFontWeights
 https://notes.dt.in.th/GitHub
 https://notes.dt.in.th/GitHubActions
 https://notes.dt.in.th/GitHubActionsCompositeBoilerplate
@@ -276,6 +278,7 @@ https://notes.dt.in.th/Tools
 https://notes.dt.in.th/TsCommandLine
 https://notes.dt.in.th/TypeScript
 https://notes.dt.in.th/TypeScriptValuesAndTypesWithSameName
+https://notes.dt.in.th/Typography
 https://notes.dt.in.th/Uses
 https://notes.dt.in.th/VSCode
 https://notes.dt.in.th/VSCodeKeybindings

@@ -890,6 +890,13 @@
 				}
 			]
 		}
+	,	"CuWriterFonts":
+		{	"title": "All the fonts from CU Writer"
+		,	"links":
+			[	{	"link": "FreeTypeJSBlackWhiteText"
+				}
+			]
+		}
 	,	"DataDictionary":
 		{	"title": "A data dictionary that describes itself"
 		,	"links": []
@@ -1151,6 +1158,10 @@
 				}
 			]
 		}
+	,	"GenerateFontWeights":
+		{	"title": "Generating more font weights"
+		,	"links": []
+		}
 	,	"GitHub":
 		{	"title": "GitHub (topic)"
 		,	"links":
@@ -1369,6 +1380,8 @@
 			,	{	"link": "Svelte"
 				}
 			,	{	"link": "Tools"
+				}
+			,	{	"link": "Typography"
 				}
 			,	{	"link": "VSCode"
 				}
@@ -2619,6 +2632,19 @@
 			,	{	"link": "#user-content-fnref-namespace-x"
 				}
 			,	{	"link": "#user-content-fnref-enum-x"
+				}
+			]
+		}
+	,	"Typography":
+		{	"title": "Typography (topic)"
+		,	"links":
+			[	{	"link": "MacOSSmartQuotesInWindows"
+				}
+			,	{	"link": "GenerateFontWeights"
+				}
+			,	{	"link": "FreeTypeJSBlackWhiteText"
+				}
+			,	{	"link": "CuWriterFonts"
 				}
 			]
 		}

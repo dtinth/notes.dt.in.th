@@ -5,8 +5,15 @@
 		<description><![CDATA[Thai Pangsakulyanont’s writings]]></description>
 		<link>https://dt.in.th</link>
 		<generator>RSS for Node</generator>
-		<lastBuildDate>Sun, 15 Sep 2024 11:29:13 GMT</lastBuildDate>
+		<lastBuildDate>Tue, 17 Sep 2024 12:26:22 GMT</lastBuildDate>
 		<atom:link href="https://notes.dt.in.th/api/recent.xml" rel="self" type="application/rss+xml" />
+		<item>
+			<title><![CDATA[All the fonts from CU Writer]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/CuWriterFonts">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/CuWriterFonts</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/CuWriterFonts</guid>
+			<pubDate>Tue, 17 Sep 2024 00:00:00 GMT</pubDate>
+		</item>
 		<item>
 			<title><![CDATA[My notes on `.env` files]]></title>
 			<description><![CDATA[<a href="https://notes.dt.in.th/Dotenv">[Read]</a>]]></description>

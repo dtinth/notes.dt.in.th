@@ -456,6 +456,10 @@
 		{	"title": "Creative Coding (topic)"
 		,	"parent": "HomePage"
 		}
+	,	"CuWriterFonts":
+		{	"title": "All the fonts from CU Writer"
+		,	"parent": "Typography"
+		}
 	,	"DataDictionary":
 		{	"title": "A data dictionary that describes itself"
 		,	"parent": "Recent"
@@ -554,7 +558,7 @@
 		}
 	,	"FreeTypeJSBlackWhiteText":
 		{	"title": "Drawing low resolution monochrome text with freetype-wasm"
-		,	"parent": "WebPlatform"
+		,	"parent": "Typography"
 		}
 	,	"FreshAppFactory":
 		{	"title": "Freshly-baked apps every midnight"
@@ -563,6 +567,10 @@
 	,	"FrontendFeatureFlags":
 		{	"title": "Simple front-end feature flags"
 		,	"parent": "JavaScript"
+		}
+	,	"GenerateFontWeights":
+		{	"title": "Generating more font weights"
+		,	"parent": "Typography"
 		}
 	,	"GitHub":
 		{	"title": "GitHub (topic)"
@@ -1110,6 +1118,10 @@
 	,	"TypeScriptValuesAndTypesWithSameName":
 		{	"title": "Creating types and values with the same name in TypeScript"
 		,	"parent": "Semgrep"
+		}
+	,	"Typography":
+		{	"title": "Typography (topic)"
+		,	"parent": "HomePage"
 		}
 	,	"Uses":
 		{	"title": "What @dtinth uses"
