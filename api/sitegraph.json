@@ -895,6 +895,12 @@
 		,	"links":
 			[	{	"link": "FreeTypeJSBlackWhiteText"
 				}
+			,	{	"link": "Ruby"
+				}
+			,	{	"link": "#user-content-fn-e1"
+				}
+			,	{	"link": "#user-content-fnref-e1"
+				}
 			]
 		}
 	,	"DataDictionary":
