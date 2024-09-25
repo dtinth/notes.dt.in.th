@@ -223,6 +223,7 @@ https://notes.dt.in.th/PWA
 https://notes.dt.in.th/PackletsSetup
 https://notes.dt.in.th/PasteQR
 https://notes.dt.in.th/PersonalPuppeteer
+https://notes.dt.in.th/PianoMajorScaleTrainer
 https://notes.dt.in.th/Pino
 https://notes.dt.in.th/PinoLogger
 https://notes.dt.in.th/Playwright

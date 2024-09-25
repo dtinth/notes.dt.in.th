@@ -2116,6 +2116,10 @@
 				}
 			]
 		}
+	,	"PianoMajorScaleTrainer":
+		{	"title": "Major scale practice trainer"
+		,	"links": []
+		}
 	,	"Pino":
 		{	"title": "pino (topic)"
 		,	"links":
@@ -2582,7 +2586,9 @@
 	,	"Tools":
 		{	"title": "Tools (topic)"
 		,	"links":
-			[	{	"link": "OklabVisualizer"
+			[	{	"link": "PianoMajorScaleTrainer"
+				}
+			,	{	"link": "OklabVisualizer"
 				}
 			,	{	"link": "OklchPlot"
 				}

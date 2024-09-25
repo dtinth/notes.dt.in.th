@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html data-precompiled=true lang="en" data-dtinth="true">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Major scale practice trainer | notes.dt.in.th</title><meta property="og:title" content="Major scale practice trainer" data-source="note">
+<meta property="og:image" content="https://screenshot.source.in.th/image/_/notes/PianoMajorScaleTrainer" data-source="note">
+<meta property="og:image:width" content="1800" data-source="note">
+<meta property="og:image:height" content="1680" data-source="note">
+<link rel="canonical" href="https://notes.dt.in.th/PianoMajorScaleTrainer" data-source="note"><style id="note-styles">/* layer: default */
+.me[data-v-8c9498c0]{margin-inline-end:1rem;}
+.flex[data-v-8c9498c0]{display:flex;}
+.flex-wrap[data-v-8c9498c0]{flex-wrap:wrap;}
+.items-center[data-v-8c9498c0]{align-items:center;}
+.gap-3[data-v-8c9498c0]{gap:0.75rem;}</style>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/iconify-icon@2.1.0/dist/iconify-icon.min.js"
+      integrity="sha256-dY2Ug42wyv3rl+sLVKEg3jbPs8f+hi7tmJ836AxVDwI="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/blurhash-image@1.0.1/blurhash-image.min.js"
+      integrity="sha256-qrUUgTGk7xA7iVCwraHNQjwy2JryA0K4L3DL4qidagQ="
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" crossorigin src="/runtime/index.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/supabase-CjkNZD6A.js">
+    <link rel="stylesheet" crossorigin href="/runtime/index.css">
+  </head>
+  <body class="bg-#252423 text-#e9e8e7 antialiased">
+    <header class="h-[58px] bg-#090807 border-b border-#454443 z-20 flex">
+      <div class="flex items-center pl-[18px] flex-none">
+        <a
+          class="flex items-center text-#8b8685 hover:text-#ffffbb text-lg"
+          href="/"
+          >notes.dt.in.th</a
+        >
+      </div>
+      <div
+        class="flex-1 flex items-center text-#8b8685 [&_a:hover]:text-#ffffbb overflow-hidden"
+        id="headerMiddle"
+      >
+        <div class="px-2 flex-none">›</div><div class="truncate"><a title="Tools (topic)" href="Tools">Tools</a></div>
+      </div>
+      <div
+        class="flex items-center px-[18px] flex-none gap-4"
+        id="headerToolbar"
+      ></div>
+    </header>
+    <div class="h-entry">
+      <main class="bg-#353433" id="main">
+        <div class="notes-layout-container mx-auto p-6 py-12" id="mainContents">
+          <div class="prose e-content" id="noteContents"><!--[--><h1 id="major-scale-practice-trainer" data-v-8c9498c0><a aria-hidden="true" tabindex="-1" href="#major-scale-practice-trainer" data-v-8c9498c0><span class="icon icon-link" data-v-8c9498c0></span></a>Major scale practice trainer</h1><p data-v-8c9498c0>I built this tool to help me practice major scales on the piano.</p><details data-v-8c9498c0><summary data-v-8c9498c0>How to use</summary><ol data-v-8c9498c0><li data-v-8c9498c0>Connect your MIDI keyboard to your computer.</li><li data-v-8c9498c0>Ensure your browser supports Web MIDI API <a href="https://caniuse.com/midi" data-v-8c9498c0>(check browser support)</a>.</li><li data-v-8c9498c0>Allow the browser to access your MIDI device when prompted.</li><li data-v-8c9498c0>For general practice directions, follow the <a href="https://www.youtube.com/watch?v=VI9ZOzRSpRc" data-v-8c9498c0>How to Practice Major Scales</a> video by Aimee Nolte. i.e. go 2 octaves up and down.</li><li data-v-8c9498c0>Start playing a major scale on your MIDI keyboard. The tool will automatically detect which scale you&#39;re playing based on the first note. The attempt is successful once you&#39;ve played the scale successfully.</li></ol><p data-v-8c9498c0>Rules:</p><ul data-v-8c9498c0><li data-v-8c9498c0>Play the scale ascending (2 octaves) and descending (2 octaves), ending on the root note.</li><li data-v-8c9498c0>In addition to the notes above, you may play any other notes in the scale using the other hand. This is to support playing the scale with contrary motion (i.e. right hand goes up while left hand goes down) and playing scale in thirds, sixths, etc.</li><li data-v-8c9498c0>Only notes within the current scale are allowed.</li><li data-v-8c9498c0>You have 1 second between each note before a timeout occurs.</li><li data-v-8c9498c0>The scale is considered complete when you&#39;ve played all 29 notes in the correct sequence (14 ascending, 14 descending, plus the final root note).</li><li data-v-8c9498c0>If you make a mistake or timeout, the attempt will be marked as failed, and you can start over.</li><li data-v-8c9498c0>A sound will play to indicate success (ascending tone) or failure (descending tone) if audio feedback is enabled.</li><li data-v-8c9498c0>Your progress and statistics are logged and can be viewed or copied from the text area.</li></ul></details><p data-v-8c9498c0>Status: Loading…</p><textarea class="form-control" rows="8" readonly data-v-8c9498c0>Log messages
+</textarea><p class="flex gap-3 flex-wrap items-center" data-v-8c9498c0><button class="btn" data-v-8c9498c0>Clear log</button><button class="btn" data-v-8c9498c0>Copy</button><button class="btn" data-v-8c9498c0>Enable feedback sound</button><span data-v-8c9498c0> ✅ 0   ❌ 0</span></p><!--]--></div>
+        </div>
+      </main>
+      <footer>
+        <div
+          class="notes-layout-container mx-auto py-4 px-6 text-#8b8685 text-right text-sm"
+          id="footerContents"
+        >
+          <notes-page-footer></notes-page-footer>
+        </div>
+      </footer>
+    </div>
+    <script>
+window.precompiledNoteBehavior = function(require, exports, module, Vue) {"use strict";Object.defineProperty(exports, "__esModule", {value: true});/* Analyzed bindings: {
+  "onMounted": "setup-const",
+  "onUnmounted": "setup-const",
+  "ref": "setup-const",
+  "watch": "setup-const",
+  "midiAccess": "setup-let",
+  "midiInputs": "setup-let",
+  "unmounted": "setup-let",
+  "sound": "setup-let",
+  "audioContext": "setup-let",
+  "toggleSound": "setup-const",
+  "defaultLog": "literal-const",
+  "log": "setup-ref",
+  "status": "setup-ref",
+  "writeLog": "setup-const",
+  "loaded": "setup-let",
+  "localStorageKey": "literal-const",
+  "active": "setup-let",
+  "createRecognizer": "setup-const",
+  "currentScale": "setup-let",
+  "commitNotes": "setup-const",
+  "scales": "setup-const",
+  "createScaleRecognizer": "setup-const",
+  "playSound": "setup-const",
+  "handleMIDIMessage": "setup-const",
+  "handleStateChange": "setup-const"
+} */
+var _vue = require('vue');
+
+const _withScopeId = n => (_vue.pushScopeId.call(void 0, "data-v-8c9498c0"),n=n(),_vue.popScopeId.call(void 0, ),n)
+const _hoisted_1 = /*#__PURE__*/_vue.createStaticVNode.call(void 0, "<h1 id=\"major-scale-practice-trainer\" data-v-8c9498c0><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#major-scale-practice-trainer\" data-v-8c9498c0><span class=\"icon icon-link\" data-v-8c9498c0></span></a>Major scale practice trainer</h1><p data-v-8c9498c0>I built this tool to help me practice major scales on the piano.</p><details data-v-8c9498c0><summary data-v-8c9498c0>How to use</summary><ol data-v-8c9498c0><li data-v-8c9498c0>Connect your MIDI keyboard to your computer.</li><li data-v-8c9498c0>Ensure your browser supports Web MIDI API <a href=\"https://caniuse.com/midi\" data-v-8c9498c0>(check browser support)</a>.</li><li data-v-8c9498c0>Allow the browser to access your MIDI device when prompted.</li><li data-v-8c9498c0>For general practice directions, follow the <a href=\"https://www.youtube.com/watch?v=VI9ZOzRSpRc\" data-v-8c9498c0>How to Practice Major Scales</a> video by Aimee Nolte. i.e. go 2 octaves up and down.</li><li data-v-8c9498c0>Start playing a major scale on your MIDI keyboard. The tool will automatically detect which scale you&#39;re playing based on the first note. The attempt is successful once you&#39;ve played the scale successfully.</li></ol><p data-v-8c9498c0>Rules:</p><ul data-v-8c9498c0><li data-v-8c9498c0>Play the scale ascending (2 octaves) and descending (2 octaves), ending on the root note.</li><li data-v-8c9498c0>In addition to the notes above, you may play any other notes in the scale using the other hand. This is to support playing the scale with contrary motion (i.e. right hand goes up while left hand goes down) and playing scale in thirds, sixths, etc.</li><li data-v-8c9498c0>Only notes within the current scale are allowed.</li><li data-v-8c9498c0>You have 1 second between each note before a timeout occurs.</li><li data-v-8c9498c0>The scale is considered complete when you&#39;ve played all 29 notes in the correct sequence (14 ascending, 14 descending, plus the final root note).</li><li data-v-8c9498c0>If you make a mistake or timeout, the attempt will be marked as failed, and you can start over.</li><li data-v-8c9498c0>A sound will play to indicate success (ascending tone) or failure (descending tone) if audio feedback is enabled.</li><li data-v-8c9498c0>Your progress and statistics are logged and can be viewed or copied from the text area.</li></ul></details>", 3)
+const _hoisted_4 = ["value"]
+const _hoisted_5 = { class: "flex gap-3 flex-wrap items-center" }
+
+
+
+const defaultLog = 'Log messages\n';
+const localStorageKey = 'PianoMajorScaleTrainer:log'
+
+
+const __sfc__ = {
+  __name: 'Note',
+  setup(__props) {
+
+let midiAccess;
+let midiInputs;
+let unmounted = false
+let sound = _vue.ref.call(void 0, false)
+let audioContext
+
+function toggleSound () {
+  sound.value = !sound.value
+  if (sound.value && !audioContext) {
+    audioContext = new AudioContext()
+  }
+}
+
+const log = _vue.ref.call(void 0, defaultLog);
+const status = _vue.ref.call(void 0, 'Loading…');
+
+function writeLog(message) {
+  log.value += message + '\n';
+}
+
+let loaded = false
+_vue.onMounted.call(void 0, async () => {
+  try {
+    midiAccess = await navigator.requestMIDIAccess();
+    midiInputs = Array.from(midiAccess.inputs.values());
+    midiInputs.forEach(input => {
+      input.onmidimessage = handleMIDIMessage;
+    });
+    midiAccess.onstatechange = handleStateChange;
+    status.value = 'Ready.';
+    if (localStorage[localStorageKey]) {
+      log.value = localStorage[localStorageKey]
+    }
+    loaded = true
+    _vue.watch.call(void 0, log, (newValue) => {
+      if (loaded) {
+        localStorage.setItem(localStorageKey, newValue);
+      }
+    });
+  } catch (error) {
+    console.error('Failed to get MIDI access:', error);
+  }
+});
+_vue.onUnmounted.call(void 0, async () => {
+  unmounted = true
+})
+
+let active
+
+function createRecognizer() {
+  let notes = []
+  setTimeout(() => {
+    active = undefined
+    commitNotes(notes)
+  }, 100)
+  return {
+    handleNote(note) {
+      console.log(note)
+      note %= 12
+      notes = [...new Set([...notes, note])].sort((a, b) => a - b)
+      status.value = `Notes: ${notes.join(' ')}`
+    }
+  }
+}
+
+let currentScale
+function commitNotes(notes) {
+  if (!currentScale && notes.length === 1) {
+    currentScale = createScaleRecognizer(notes[0])
+  }
+  if (currentScale) {
+    currentScale.handleNotes(notes)
+  }
+}
+
+const scales = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B']
+
+function createScaleRecognizer(root) {
+  const start = Date.now()
+  let timeout
+  let progress = 0
+  const transpose = (v) => (v + root) % 12
+  let expected = [
+    0, 2, 4, 5, 7, 9, 11, 0, 2, 4, 5, 7, 9, 11,
+    0, 11, 9, 7, 5, 4, 2, 0, 11, 9, 7, 5, 4, 2, 0
+  ].map(transpose)
+  const allowed = new Set(expected)
+  let done = false
+  let completed = false
+  let played = 0
+  let failReason = ''
+  function update () {
+    status.value = `Key: ${scales[root]}, progress: ${progress}/${expected.length}` +
+      (failReason ? ` (Failed: ${failReason})` : '') +
+      (completed ? ' (Completed)' : '')
+  }
+  function fail (reason) {
+    done = true
+    failReason = reason
+    currentScale = undefined
+    update()
+    logCompletion()
+    playSound(root, [0, -6])
+  }
+  function logCompletion() {
+    const totalTime = Date.now() - start
+    const notesPerMinute = Math.max(played - 1, 1) / (totalTime / 60000)
+    const newLine = [
+      completed ? '✅' : '❌',
+      new Date(start).toISOString(),
+      scales[root],
+      `${progress}/${expected.length}`,
+      Math.round(notesPerMinute)
+    ].join('\t')
+    log.value += newLine + '\n'
+  }
+  return {
+    handleNotes(notes) {
+      if (done) return
+      played++
+      clearTimeout(timeout)
+      timeout = setTimeout(() => {
+        if (done) return
+        fail('Timeout')
+      }, 1000)
+      if (!notes.every(note => allowed.has(note))) {
+        fail('Played an out-of-scale note.')
+        return
+      }
+      if (!notes.includes(expected[progress])) {
+        fail('Played the wrong note on the scale.')
+        return
+      }
+      progress++
+      update()
+      if (progress === expected.length) {
+        completed = true
+        done = true
+        update()
+        currentScale = undefined
+        logCompletion()
+        playSound(root, [0, 12])
+      }
+    }
+  }
+}
+
+function playSound(root, notes) {
+  if (!audioContext) return
+  if (!sound.value) return
+  for (const [i, note] of notes.entries()) {
+    const oscillator = audioContext.createOscillator()
+    oscillator.type = 'sine'
+    oscillator.frequency.setValueAtTime(440 * Math.pow(2, (3 + root + note) / 12), audioContext.currentTime)
+    const gain = audioContext.createGain()
+    const start = audioContext.currentTime + i * 0.1
+    gain.gain.setValueAtTime(0.5, start)
+    gain.gain.exponentialRampToValueAtTime(0.0001, start + 0.2)
+    oscillator.connect(gain)
+    gain.connect(audioContext.destination)
+    oscillator.start(start)
+    oscillator.stop(start + 0.2)
+  }
+}
+
+function handleMIDIMessage(event) {
+  if (unmounted) return
+  if (((event.data[0] & 0xf0) === 0x90) && event.data[2] > 0) {
+    if (!active) {
+      active = createRecognizer()
+    }
+    active.handleNote(event.data[1])
+  }
+}
+
+function handleStateChange(event) {
+  if (unmounted) return
+  if (event.port.state === 'connected') {
+    console.log('MIDI device connected:', event.port.name);
+    if (event.port.type === 'input') {
+      event.port.onmidimessage = handleMIDIMessage;
+    }
+  } else if (event.port.state === 'disconnected') {
+    console.log('MIDI device disconnected:', event.port.name);
+  }
+}
+
+return (_ctx, _cache) => {
+  return (_vue.openBlock.call(void 0, ), _vue.createElementBlock.call(void 0, _vue.Fragment, null, [
+    _hoisted_1,
+    _vue.createElementVNode.call(void 0, "p", null, "Status: " + _vue.toDisplayString.call(void 0, status.value), 1 /* TEXT */),
+    _vue.createElementVNode.call(void 0, "textarea", {
+      class: "form-control",
+      rows: "8",
+      readonly: "",
+      value: log.value
+    }, null, 8 /* PROPS */, _hoisted_4),
+    _vue.createElementVNode.call(void 0, "p", _hoisted_5, [
+      _vue.createElementVNode.call(void 0, "button", {
+        class: "btn",
+        onClick: _cache[0] || (_cache[0] = $event => (log.value = defaultLog))
+      }, "Clear log"),
+      _vue.createElementVNode.call(void 0, "button", {
+        class: "btn",
+        onClick: _cache[1] || (_cache[1] = $event => (_ctx.copyLog()))
+      }, "Copy"),
+      _vue.createElementVNode.call(void 0, "button", {
+        class: "btn",
+        onClick: _cache[2] || (_cache[2] = $event => (toggleSound()))
+      }, _vue.toDisplayString.call(void 0, _vue.unref.call(void 0, sound) ? 'Disable' : 'Enable') + " feedback sound", 1 /* TEXT */),
+      _vue.createElementVNode.call(void 0, "span", null, " ✅ " + _vue.toDisplayString.call(void 0, log.value.split('✅').length - 1) + "   ❌ " + _vue.toDisplayString.call(void 0, log.value.split('❌').length - 1), 1 /* TEXT */)
+    ])
+  ], 64 /* STABLE_FRAGMENT */))
+}
+}
+
+}
+__sfc__.__scopeId = "data-v-8c9498c0"
+__sfc__.__file = "Note.vue"
+exports. default = __sfc__};
+window.precompiledFrontMatter = {"title":"Major scale practice trainer","public":true};
+</script>
+  </body>
+</html>

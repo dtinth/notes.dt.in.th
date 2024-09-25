@@ -899,6 +899,10 @@
 		{	"title": "Building a personal but multi-tenant web page screenshotting service with Puppeteer and Vercel"
 		,	"parent": "Vercel"
 		}
+	,	"PianoMajorScaleTrainer":
+		{	"title": "Major scale practice trainer"
+		,	"parent": "Tools"
+		}
 	,	"Pino":
 		{	"title": "pino (topic)"
 		,	"parent": "JavaScript"
