@@ -1371,6 +1371,8 @@
 				}
 			,	{	"link": "Markdown"
 				}
+			,	{	"link": "Music"
+				}
 			,	{	"link": "Nix"
 				}
 			,	{	"link": "Productivity"
@@ -1763,6 +1765,13 @@
 			[	{	"link": "#user-content-fn-fast"
 				}
 			,	{	"link": "#user-content-fnref-fast"
+				}
+			]
+		}
+	,	"Music":
+		{	"title": "Music (topic)"
+		,	"links":
+			[	{	"link": "PianoMajorScaleTrainer"
 				}
 			]
 		}
