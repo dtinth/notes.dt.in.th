@@ -715,6 +715,13 @@
 				}
 			]
 		}
+	,	"BunQuickAndDirtyEndpoint":
+		{	"title": "Building a quick and dirty endpoint with Bun"
+		,	"links":
+			[	{	"link": "Bun"
+				}
+			]
+		}
 	,	"CSS":
 		{	"title": "CSS (topic)"
 		,	"links":
@@ -2272,6 +2279,10 @@
 		}
 	,	"RailsVersion":
 		{	"title": "Detecting Rails version at runtime"
+		,	"links": []
+		}
+	,	"RandomHexPasswordBcrypt":
+		{	"title": "Generating a random hex password and hashing it with Bcrypt"
 		,	"links": []
 		}
 	,	"RandomPort":

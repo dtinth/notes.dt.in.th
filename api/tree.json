@@ -392,6 +392,10 @@
 		{	"title": "Bun (topic)"
 		,	"parent": "JavaScript"
 		}
+	,	"BunQuickAndDirtyEndpoint":
+		{	"title": "Building a quick and dirty endpoint with Bun"
+		,	"parent": "Recent"
+		}
 	,	"CSS":
 		{	"title": "CSS (topic)"
 		,	"parent": "WebPlatform"
@@ -759,6 +763,10 @@
 		{	"title": "How I memorize the morse code (without deliberate practice)"
 		,	"parent": "Recent"
 		}
+	,	"Music":
+		{	"title": "Music (topic)"
+		,	"parent": "HomePage"
+		}
 	,	"Netlify":
 		{	"title": "Netlify (topic)"
 		,	"parent": "CloudPlatform"
@@ -901,7 +909,7 @@
 		}
 	,	"PianoMajorScaleTrainer":
 		{	"title": "Major scale practice trainer"
-		,	"parent": "Tools"
+		,	"parent": "Music"
 		}
 	,	"Pino":
 		{	"title": "pino (topic)"
@@ -966,6 +974,10 @@
 	,	"RailsVersion":
 		{	"title": "Detecting Rails version at runtime"
 		,	"parent": "Rails"
+		}
+	,	"RandomHexPasswordBcrypt":
+		{	"title": "Generating a random hex password and hashing it with Bcrypt"
+		,	"parent": "Recent"
 		}
 	,	"RandomPort":
 		{	"title": "Port number randomizer"

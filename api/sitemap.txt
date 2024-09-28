@@ -96,6 +96,7 @@ https://notes.dt.in.th/AsdfSnippets
 https://notes.dt.in.th/AudioEncodingBenchmark
 https://notes.dt.in.th/Azure
 https://notes.dt.in.th/Bun
+https://notes.dt.in.th/BunQuickAndDirtyEndpoint
 https://notes.dt.in.th/CSS
 https://notes.dt.in.th/CSSChangeColorOpacity
 https://notes.dt.in.th/Caddy
@@ -188,6 +189,7 @@ https://notes.dt.in.th/MiseEnv
 https://notes.dt.in.th/MongoDB
 https://notes.dt.in.th/MongoDBAuthSource
 https://notes.dt.in.th/Morse
+https://notes.dt.in.th/Music
 https://notes.dt.in.th/Netlify
 https://notes.dt.in.th/NetlifyURLRedirector
 https://notes.dt.in.th/Next
@@ -240,6 +242,7 @@ https://notes.dt.in.th/QRCode
 https://notes.dt.in.th/QRScan
 https://notes.dt.in.th/Rails
 https://notes.dt.in.th/RailsVersion
+https://notes.dt.in.th/RandomHexPasswordBcrypt
 https://notes.dt.in.th/RandomPort
 https://notes.dt.in.th/Raycast
 https://notes.dt.in.th/React
