@@ -5,8 +5,15 @@
 		<description><![CDATA[Thai Pangsakulyanont’s writings]]></description>
 		<link>https://dt.in.th</link>
 		<generator>RSS for Node</generator>
-		<lastBuildDate>Sat, 28 Sep 2024 17:39:14 GMT</lastBuildDate>
+		<lastBuildDate>Sat, 05 Oct 2024 14:48:11 GMT</lastBuildDate>
 		<atom:link href="https://notes.dt.in.th/api/recent.xml" rel="self" type="application/rss+xml" />
+		<item>
+			<title><![CDATA[How I initialize my Bun projects]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/BunInit">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/BunInit</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/BunInit</guid>
+			<pubDate>Sat, 05 Oct 2024 00:00:00 GMT</pubDate>
+		</item>
 		<item>
 			<title><![CDATA[Generating a random hex password and hashing it with Bcrypt]]></title>
 			<description><![CDATA[<a href="https://notes.dt.in.th/RandomHexPasswordBcrypt">[Read]</a>]]></description>

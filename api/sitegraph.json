@@ -713,7 +713,18 @@
 				}
 			,	{	"link": "BunQuickAndDirtyEndpoint"
 				}
+			,	{	"link": "BunInit"
+				}
 			,	{	"link": "Elysia"
+				}
+			]
+		}
+	,	"BunInit":
+		{	"title": "How I initialize my Bun projects"
+		,	"links":
+			[	{	"link": "Bun"
+				}
+			,	{	"link": "Mise"
 				}
 			]
 		}
@@ -2479,6 +2490,8 @@
 			,	{	"link": "Dotenv"
 				}
 			,	{	"link": "Fish"
+				}
+			,	{	"link": "Mise"
 				}
 			]
 		}

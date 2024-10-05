@@ -96,6 +96,7 @@ https://notes.dt.in.th/AsdfSnippets
 https://notes.dt.in.th/AudioEncodingBenchmark
 https://notes.dt.in.th/Azure
 https://notes.dt.in.th/Bun
+https://notes.dt.in.th/BunInit
 https://notes.dt.in.th/BunQuickAndDirtyEndpoint
 https://notes.dt.in.th/CSS
 https://notes.dt.in.th/CSSChangeColorOpacity

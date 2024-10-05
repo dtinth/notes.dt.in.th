@@ -392,6 +392,10 @@
 		{	"title": "Bun (topic)"
 		,	"parent": "JavaScript"
 		}
+	,	"BunInit":
+		{	"title": "How I initialize my Bun projects"
+		,	"parent": "Bun"
+		}
 	,	"BunQuickAndDirtyEndpoint":
 		{	"title": "Building a quick and dirty endpoint with Bun"
 		,	"parent": "Bun"
@@ -745,7 +749,7 @@
 		}
 	,	"Mise":
 		{	"title": "mise-en-place (topic)"
-		,	"parent": "AsdfSnippets"
+		,	"parent": "Shell"
 		}
 	,	"MiseEnv":
 		{	"title": "Loading `.env` file with mise-en-place"
