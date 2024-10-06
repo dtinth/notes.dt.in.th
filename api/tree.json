@@ -705,7 +705,7 @@
 		}
 	,	"LargeLanguageModel":
 		{	"title": "Large Language Model (topic)"
-		,	"parent": "OpenWebUILiteLLM"
+		,	"parent": "HomePage"
 		}
 	,	"LaunchingChromeForTesting":
 		{	"title": "How to run Chrome for Testing"
@@ -893,7 +893,7 @@
 		}
 	,	"OpenWebUILiteLLM":
 		{	"title": "Configuring Open WebUI and LiteLLM with Docker Compose to talk to OpenAI, Anthropic, and Gemini APIs"
-		,	"parent": "Insta360LinkControllerWebSocketProtocol"
+		,	"parent": "LargeLanguageModel"
 		}
 	,	"PWA":
 		{	"title": "PWA (topic)"
