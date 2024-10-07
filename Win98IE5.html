@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html data-precompiled=true lang="en" data-dtinth="true">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Running Internet Explorer 5 on Windows 98 in your browser, with internet and LAN access | notes.dt.in.th</title><meta property="og:title" content="Running Internet Explorer 5 on Windows 98 in your browser, with internet and LAN access" data-source="note">
+<meta property="og:image" content="https://screenshot.source.in.th/image/_/notes/Win98IE5" data-source="note">
+<meta property="og:image:width" content="1800" data-source="note">
+<meta property="og:image:height" content="1680" data-source="note">
+<link rel="canonical" href="https://notes.dt.in.th/Win98IE5" data-source="note"><style id="note-styles">/* layer: default */
+.my[data-v-8c9498c0]{margin-top:1rem;margin-bottom:1rem;}</style>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/iconify-icon@2.1.0/dist/iconify-icon.min.js"
+      integrity="sha256-dY2Ug42wyv3rl+sLVKEg3jbPs8f+hi7tmJ836AxVDwI="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/blurhash-image@1.0.1/blurhash-image.min.js"
+      integrity="sha256-qrUUgTGk7xA7iVCwraHNQjwy2JryA0K4L3DL4qidagQ="
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" crossorigin src="/runtime/index.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/supabase-CjkNZD6A.js">
+    <link rel="stylesheet" crossorigin href="/runtime/index.css">
+  </head>
+  <body class="bg-#252423 text-#e9e8e7 antialiased">
+    <header class="h-[58px] bg-#090807 border-b border-#454443 z-20 flex">
+      <div class="flex items-center pl-[18px] flex-none">
+        <a
+          class="flex items-center text-#8b8685 hover:text-#ffffbb text-lg"
+          href="/"
+          >notes.dt.in.th</a
+        >
+      </div>
+      <div
+        class="flex-1 flex items-center text-#8b8685 [&_a:hover]:text-#ffffbb overflow-hidden"
+        id="headerMiddle"
+      >
+        <div class="px-2 flex-none">›</div><div class="truncate"><a title="Windows (topic)" href="Windows">Windows</a></div>
+      </div>
+      <div
+        class="flex items-center px-[18px] flex-none gap-4"
+        id="headerToolbar"
+      ></div>
+    </header>
+    <div class="h-entry">
+      <main class="bg-#353433" id="main">
+        <div class="notes-layout-container mx-auto p-6 py-12" id="mainContents">
+          <div class="prose e-content" id="noteContents"><!--[--><h1 id="running-internet-explorer-5-on-windows-98-in-your-browser-with-internet-and-lan-access" data-v-8c9498c0><a aria-hidden="true" tabindex="-1" href="#running-internet-explorer-5-on-windows-98-in-your-browser-with-internet-and-lan-access" data-v-8c9498c0><span class="icon icon-link" data-v-8c9498c0></span></a>Running Internet Explorer 5 on Windows 98 in your browser, with internet and LAN access</h1><p data-v-8c9498c0>I recently demonstrated the concept of <strong data-v-8c9498c0>protocols</strong> by showing how Internet Explorer 5, a browser from 1999, can still access a modern <a href="WebPlatform" data-v-8c9498c0>web</a> server built in 2024, and more importantly, how fundamental knowledge, as opposed to latest trends, can stay relevant for a long time.</p><p data-v-8c9498c0><img src="https://im.dt.in.th/ipfs/bafybeibirapaa33vqvxf6esjuv6fz5fcg2c6cbvn6m476aclnicsuy5uc4/image.webp" alt="" data-v-8c9498c0></p><p data-v-8c9498c0>Basically, I followed this article: <a href="https://shkspr.mobi/blog/2021/08/run-internet-explorer-5-in-your-browser/" data-v-8c9498c0>Terence Eden (2021), “Run Internet Explorer 5 in your browser!”</a> I learned about <a href="https://copy.sh/v86/" data-v-8c9498c0><strong data-v-8c9498c0>v86</strong></a>, an x86 emulator that compiles machine code into WebAssembly at runtime, allowing Windows 98 to run in the browser at a reasonable speed.</p><p data-v-8c9498c0>For my demonstration, I need to access a website running in my local area network (LAN). For this I also had to <a href="https://github.com/copy/v86/blob/master/docs/networking.md" data-v-8c9498c0>set up local networking</a>.</p><ol data-v-8c9498c0><li data-v-8c9498c0><p data-v-8c9498c0><strong data-v-8c9498c0>I run a relay server.</strong> <a href="https://github.com/krishenriksen/node-relay" data-v-8c9498c0>krishenriksen/node-relay</a> is a virtual ethernet switch that runs on the websocket protocol. I use this <a href="Docker" data-v-8c9498c0>Docker</a> Compose file.</p><pre class="shiki github-dark" style="background-color:#252423;color:#e1e4e8;" tabindex="0" data-v-8c9498c0><code data-v-8c9498c0><span class="line" data-v-8c9498c0><span style="color:#85E89D;" data-v-8c9498c0>services</span><span style="color:#E1E4E8;" data-v-8c9498c0>:</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#85E89D;" data-v-8c9498c0>  relay</span><span style="color:#E1E4E8;" data-v-8c9498c0>:</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#85E89D;" data-v-8c9498c0>    image</span><span style="color:#E1E4E8;" data-v-8c9498c0>: </span><span style="color:#9ECBFF;" data-v-8c9498c0>krishenriksen/node-relay:latest</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#85E89D;" data-v-8c9498c0>    privileged</span><span style="color:#E1E4E8;" data-v-8c9498c0>: </span><span style="color:#79B8FF;" data-v-8c9498c0>true</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#85E89D;" data-v-8c9498c0>    ports</span><span style="color:#E1E4E8;" data-v-8c9498c0>:</span></span>
+<span class="line" data-v-8c9498c0><span style="color:#E1E4E8;" data-v-8c9498c0>      - </span><span style="color:#9ECBFF;" data-v-8c9498c0>127.0.0.1:8180:80</span></span></code></pre><p data-v-8c9498c0>To verify my setup, I visited <code data-v-8c9498c0>http://localhost:8180/</code> in the browser, and I saw the message “Upgrade Required” which indicates that the relay server is now running and accessible.</p></li><li data-v-8c9498c0><p data-v-8c9498c0><strong data-v-8c9498c0>Launch Windows 98</strong> in v86 <strong data-v-8c9498c0>with <code data-v-8c9498c0>networking_proxy</code> settings.</strong> For this, I used this URL: <a href="https://copy.sh/v86/?profile=windows98&amp;networking_proxy=ws://localhost:8180" data-v-8c9498c0>https://copy.sh/v86/?profile=windows98&amp;networking_proxy=ws://localhost:8180</a></p></li><li data-v-8c9498c0><p data-v-8c9498c0><strong data-v-8c9498c0>Enable networking.</strong> Double-click on <code data-v-8c9498c0>networking.bat</code> on the Windows 98 desktop. After this, I was able to <code data-v-8c9498c0>ping</code> my machine using its local IP address.</p><p data-v-8c9498c0><img src="https://im.dt.in.th/ipfs/bafybeibnrxi2wmyf5hyspgv4t5bhe2b2ai3a2tpukfkusjc7kanar7fzz4/image.webp" alt="" data-v-8c9498c0></p></li><li data-v-8c9498c0><p data-v-8c9498c0><strong data-v-8c9498c0>Access the website.</strong> I opened Internet Explorer 5 and typed in the local IP address of my machine.</p></li></ol><!--]--></div>
+        </div>
+      </main>
+      <footer>
+        <div
+          class="notes-layout-container mx-auto py-4 px-6 text-#8b8685 text-right text-sm"
+          id="footerContents"
+        >
+          <notes-page-footer></notes-page-footer>
+        </div>
+      </footer>
+    </div>
+    <script>
+window.precompiledNoteBehavior = function(require, exports, module, Vue) {"use strict";Object.defineProperty(exports, "__esModule", {value: true});const __sfc__ = {};
+var _vue = require('vue');
+
+const _withScopeId = n => (_vue.pushScopeId.call(void 0, "data-v-8c9498c0"),n=n(),_vue.popScopeId.call(void 0, ),n)
+const _hoisted_1 = /*#__PURE__*/_vue.createStaticVNode.call(void 0, "<h1 id=\"running-internet-explorer-5-on-windows-98-in-your-browser-with-internet-and-lan-access\" data-v-8c9498c0><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#running-internet-explorer-5-on-windows-98-in-your-browser-with-internet-and-lan-access\" data-v-8c9498c0><span class=\"icon icon-link\" data-v-8c9498c0></span></a>Running Internet Explorer 5 on Windows 98 in your browser, with internet and LAN access</h1><p data-v-8c9498c0>I recently demonstrated the concept of <strong data-v-8c9498c0>protocols</strong> by showing how Internet Explorer 5, a browser from 1999, can still access a modern <a href=\"WebPlatform\" data-v-8c9498c0>web</a> server built in 2024, and more importantly, how fundamental knowledge, as opposed to latest trends, can stay relevant for a long time.</p><p data-v-8c9498c0><img src=\"https://im.dt.in.th/ipfs/bafybeibirapaa33vqvxf6esjuv6fz5fcg2c6cbvn6m476aclnicsuy5uc4/image.webp\" alt=\"\" data-v-8c9498c0></p><p data-v-8c9498c0>Basically, I followed this article: <a href=\"https://shkspr.mobi/blog/2021/08/run-internet-explorer-5-in-your-browser/\" data-v-8c9498c0>Terence Eden (2021), “Run Internet Explorer 5 in your browser!”</a> I learned about <a href=\"https://copy.sh/v86/\" data-v-8c9498c0><strong data-v-8c9498c0>v86</strong></a>, an x86 emulator that compiles machine code into WebAssembly at runtime, allowing Windows 98 to run in the browser at a reasonable speed.</p><p data-v-8c9498c0>For my demonstration, I need to access a website running in my local area network (LAN). For this I also had to <a href=\"https://github.com/copy/v86/blob/master/docs/networking.md\" data-v-8c9498c0>set up local networking</a>.</p><ol data-v-8c9498c0><li data-v-8c9498c0><p data-v-8c9498c0><strong data-v-8c9498c0>I run a relay server.</strong> <a href=\"https://github.com/krishenriksen/node-relay\" data-v-8c9498c0>krishenriksen/node-relay</a> is a virtual ethernet switch that runs on the websocket protocol. I use this <a href=\"Docker\" data-v-8c9498c0>Docker</a> Compose file.</p><pre class=\"shiki github-dark\" style=\"background-color:#252423;color:#e1e4e8;\" tabindex=\"0\" data-v-8c9498c0><code data-v-8c9498c0><span class=\"line\" data-v-8c9498c0><span style=\"color:#85E89D;\" data-v-8c9498c0>services</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>:</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#85E89D;\" data-v-8c9498c0>  relay</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>:</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#85E89D;\" data-v-8c9498c0>    image</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>: </span><span style=\"color:#9ECBFF;\" data-v-8c9498c0>krishenriksen/node-relay:latest</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#85E89D;\" data-v-8c9498c0>    privileged</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>: </span><span style=\"color:#79B8FF;\" data-v-8c9498c0>true</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#85E89D;\" data-v-8c9498c0>    ports</span><span style=\"color:#E1E4E8;\" data-v-8c9498c0>:</span></span>\n<span class=\"line\" data-v-8c9498c0><span style=\"color:#E1E4E8;\" data-v-8c9498c0>      - </span><span style=\"color:#9ECBFF;\" data-v-8c9498c0>127.0.0.1:8180:80</span></span></code></pre><p data-v-8c9498c0>To verify my setup, I visited <code data-v-8c9498c0>http://localhost:8180/</code> in the browser, and I saw the message “Upgrade Required” which indicates that the relay server is now running and accessible.</p></li><li data-v-8c9498c0><p data-v-8c9498c0><strong data-v-8c9498c0>Launch Windows 98</strong> in v86 <strong data-v-8c9498c0>with <code data-v-8c9498c0>networking_proxy</code> settings.</strong> For this, I used this URL: <a href=\"https://copy.sh/v86/?profile=windows98&amp;networking_proxy=ws://localhost:8180\" data-v-8c9498c0>https://copy.sh/v86/?profile=windows98&amp;networking_proxy=ws://localhost:8180</a></p></li><li data-v-8c9498c0><p data-v-8c9498c0><strong data-v-8c9498c0>Enable networking.</strong> Double-click on <code data-v-8c9498c0>networking.bat</code> on the Windows 98 desktop. After this, I was able to <code data-v-8c9498c0>ping</code> my machine using its local IP address.</p><p data-v-8c9498c0><img src=\"https://im.dt.in.th/ipfs/bafybeibnrxi2wmyf5hyspgv4t5bhe2b2ai3a2tpukfkusjc7kanar7fzz4/image.webp\" alt=\"\" data-v-8c9498c0></p></li><li data-v-8c9498c0><p data-v-8c9498c0><strong data-v-8c9498c0>Access the website.</strong> I opened Internet Explorer 5 and typed in the local IP address of my machine.</p></li></ol>", 6)
+function render(_ctx, _cache) {
+  return _hoisted_1
+}
+__sfc__.render = render
+__sfc__.__scopeId = "data-v-8c9498c0"
+__sfc__.__file = "Note.vue"
+exports. default = __sfc__};
+window.precompiledFrontMatter = {"public":true,"title":"Running Internet Explorer 5 on Windows 98 in your browser, with internet and LAN access"};
+</script>
+  </body>
+</html>

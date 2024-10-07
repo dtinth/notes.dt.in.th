@@ -298,6 +298,7 @@ https://notes.dt.in.th/WebComponents
 https://notes.dt.in.th/WebPlatform
 https://notes.dt.in.th/Webring
 https://notes.dt.in.th/WhenMathsStrikeBack
+https://notes.dt.in.th/Win98IE5
 https://notes.dt.in.th/Windows
 https://notes.dt.in.th/WindowsCopyToClipboardCLI
 https://notes.dt.in.th/YarnPnPSetup

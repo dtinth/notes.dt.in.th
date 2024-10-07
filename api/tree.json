@@ -1199,6 +1199,10 @@
 		{	"title": "When Maths Strike Back: Behind the 3D QR code effect in ppqr.app"
 		,	"parent": "QRCode"
 		}
+	,	"Win98IE5":
+		{	"title": "Running Internet Explorer 5 on Windows 98 in your browser, with internet and LAN access"
+		,	"parent": "Windows"
+		}
 	,	"Windows":
 		{	"title": "Windows (topic)"
 		,	"parent": "HomePage"

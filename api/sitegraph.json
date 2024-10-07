@@ -2800,6 +2800,8 @@
 		,	"links":
 			[	{	"link": "FreeTypeJSBlackWhiteText"
 				}
+			,	{	"link": "Win98IE5"
+				}
 			,	{	"link": "CSS"
 				}
 			,	{	"link": "HTML"
@@ -2833,6 +2835,15 @@
 		{	"title": "When Maths Strike Back: Behind the 3D QR code effect in ppqr.app"
 		,	"links": []
 		}
+	,	"Win98IE5":
+		{	"title": "Running Internet Explorer 5 on Windows 98 in your browser, with internet and LAN access"
+		,	"links":
+			[	{	"link": "WebPlatform"
+				}
+			,	{	"link": "Docker"
+				}
+			]
+		}
 	,	"Windows":
 		{	"title": "Windows (topic)"
 		,	"links":
@@ -2843,6 +2854,8 @@
 			,	{	"link": "WindowsCopyToClipboardCLI"
 				}
 			,	{	"link": "20201218T075006Z6541"
+				}
+			,	{	"link": "Win98IE5"
 				}
 			,	{	"link": "WSL"
 				}
