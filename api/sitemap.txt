@@ -130,6 +130,7 @@ https://notes.dt.in.th/DockerMacOSColima
 https://notes.dt.in.th/DockerRetagImage
 https://notes.dt.in.th/Dotenv
 https://notes.dt.in.th/Elysia
+https://notes.dt.in.th/ElysiaDeno
 https://notes.dt.in.th/ElysiaNode
 https://notes.dt.in.th/ExcalidrawSurfacePen
 https://notes.dt.in.th/FacebookPageLongLivedAccessToken

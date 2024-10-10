@@ -48,7 +48,7 @@
     <div class="h-entry">
       <main class="bg-#353433" id="main">
         <div class="notes-layout-container mx-auto p-6 py-12" id="mainContents">
-          <div class="prose e-content" id="noteContents"><p><a href="https://deno.land"><strong>Deno</strong></a> is “a modern runtime for <a href="JavaScript">JavaScript</a> and <a href="TypeScript">TypeScript</a>.”</p></div>
+          <div class="prose e-content" id="noteContents"><!--[--><p><a href="https://deno.land"><strong>Deno</strong></a> is “a modern runtime for <a href="JavaScript">JavaScript</a> and <a href="TypeScript">TypeScript</a>.”</p><ul><li><a href="ElysiaDeno">Using Elysia in Deno</a></li></ul><!--]--></div>
         </div>
       </main>
       <footer>
@@ -64,20 +64,26 @@
 window.precompiledNoteBehavior = function(require, exports, module, Vue) {"use strict";Object.defineProperty(exports, "__esModule", {value: true});const __sfc__ = {};
 var _vue = require('vue');
 
-const _hoisted_1 = /*#__PURE__*/_vue.createElementVNode.call(void 0, "a", { href: "https://deno.land" }, [
-  /*#__PURE__*/_vue.createElementVNode.call(void 0, "strong", null, "Deno")
+const _hoisted_1 = /*#__PURE__*/_vue.createElementVNode.call(void 0, "p", null, [
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "a", { href: "https://deno.land" }, [
+    /*#__PURE__*/_vue.createElementVNode.call(void 0, "strong", null, "Deno")
+  ]),
+  /*#__PURE__*/_vue.createTextVNode.call(void 0, " is “a modern runtime for "),
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "a", { href: "JavaScript" }, "JavaScript"),
+  /*#__PURE__*/_vue.createTextVNode.call(void 0, " and "),
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "a", { href: "TypeScript" }, "TypeScript"),
+  /*#__PURE__*/_vue.createTextVNode.call(void 0, ".”")
 ], -1 /* HOISTED */)
-const _hoisted_2 = /*#__PURE__*/_vue.createElementVNode.call(void 0, "a", { href: "JavaScript" }, "JavaScript", -1 /* HOISTED */)
-const _hoisted_3 = /*#__PURE__*/_vue.createElementVNode.call(void 0, "a", { href: "TypeScript" }, "TypeScript", -1 /* HOISTED */)
+const _hoisted_2 = /*#__PURE__*/_vue.createElementVNode.call(void 0, "ul", null, [
+  /*#__PURE__*/_vue.createElementVNode.call(void 0, "li", null, [
+    /*#__PURE__*/_vue.createElementVNode.call(void 0, "a", { href: "ElysiaDeno" }, "Using Elysia in Deno")
+  ])
+], -1 /* HOISTED */)
 function render(_ctx, _cache) {
-  return (_vue.openBlock.call(void 0, ), _vue.createElementBlock.call(void 0, "p", null, [
+  return (_vue.openBlock.call(void 0, ), _vue.createElementBlock.call(void 0, _vue.Fragment, null, [
     _hoisted_1,
-    _vue.createTextVNode.call(void 0, " is “a modern runtime for "),
-    _hoisted_2,
-    _vue.createTextVNode.call(void 0, " and "),
-    _hoisted_3,
-    _vue.createTextVNode.call(void 0, ".”")
-  ]))
+    _hoisted_2
+  ], 64 /* STABLE_FRAGMENT */))
 }
 __sfc__.render = render
 __sfc__.__file = "Note.vue"

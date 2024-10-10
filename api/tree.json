@@ -528,6 +528,10 @@
 		{	"title": "Elysia (topic)"
 		,	"parent": "JavaScript"
 		}
+	,	"ElysiaDeno":
+		{	"title": "Using Elysia in Deno"
+		,	"parent": "Deno"
+		}
 	,	"ElysiaNode":
 		{	"title": "Using Elysia in Node.js"
 		,	"parent": "Elysia"

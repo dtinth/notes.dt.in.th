@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html data-precompiled=true lang="en" data-dtinth="true">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Using Elysia in Deno | notes.dt.in.th</title><meta property="og:title" content="Using Elysia in Deno" data-source="note">
+<meta property="og:image" content="https://screenshot.source.in.th/image/_/notes/ElysiaDeno" data-source="note">
+<meta property="og:image:width" content="1800" data-source="note">
+<meta property="og:image:height" content="1680" data-source="note">
+<link rel="canonical" href="https://notes.dt.in.th/ElysiaDeno" data-source="note">
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/iconify-icon@2.1.0/dist/iconify-icon.min.js"
+      integrity="sha256-dY2Ug42wyv3rl+sLVKEg3jbPs8f+hi7tmJ836AxVDwI="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/blurhash-image@1.0.1/blurhash-image.min.js"
+      integrity="sha256-qrUUgTGk7xA7iVCwraHNQjwy2JryA0K4L3DL4qidagQ="
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" crossorigin src="/runtime/index.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/supabase-CjkNZD6A.js">
+    <link rel="stylesheet" crossorigin href="/runtime/index.css">
+  </head>
+  <body class="bg-#252423 text-#e9e8e7 antialiased">
+    <header class="h-[58px] bg-#090807 border-b border-#454443 z-20 flex">
+      <div class="flex items-center pl-[18px] flex-none">
+        <a
+          class="flex items-center text-#8b8685 hover:text-#ffffbb text-lg"
+          href="/"
+          >notes.dt.in.th</a
+        >
+      </div>
+      <div
+        class="flex-1 flex items-center text-#8b8685 [&_a:hover]:text-#ffffbb overflow-hidden"
+        id="headerMiddle"
+      >
+        <div class="px-2 flex-none">›</div><div class="truncate"><a title="JavaScript (topic)" href="JavaScript">JavaScript</a></div><div class="px-2 flex-none">›</div><div class="truncate"><a title="Deno (topic)" href="Deno">Deno</a></div>
+      </div>
+      <div
+        class="flex items-center px-[18px] flex-none gap-4"
+        id="headerToolbar"
+      ></div>
+    </header>
+    <div class="h-entry">
+      <main class="bg-#353433" id="main">
+        <div class="notes-layout-container mx-auto p-6 py-12" id="mainContents">
+          <div class="prose e-content" id="noteContents"><!--[--><h1 id="using-elysia-in-deno"><a aria-hidden="true" tabindex="-1" href="#using-elysia-in-deno"><span class="icon icon-link"></span></a>Using <a href="Elysia">Elysia</a> in <a href="Deno">Deno</a></h1><p><strong>tl;dr:</strong> <code>export default</code> the Elysia app and run it with <code>deno serve</code>.</p><pre class="shiki github-dark" style="background-color:#252423;color:#e1e4e8;" tabindex="0"><code><span class="line"><span style="color:#F97583;">import</span><span style="color:#E1E4E8;"> { Elysia } </span><span style="color:#F97583;">from</span><span style="color:#9ECBFF;"> &#39;elysia&#39;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583;">export</span><span style="color:#F97583;"> default</span><span style="color:#F97583;"> new</span><span style="color:#B392F0;"> Elysia</span><span style="color:#E1E4E8;">()</span></span>
+<span class="line"><span style="color:#E1E4E8;">  .</span><span style="color:#B392F0;">get</span><span style="color:#E1E4E8;">(</span><span style="color:#9ECBFF;">&#39;/&#39;</span><span style="color:#E1E4E8;">, </span><span style="color:#9ECBFF;">&#39;Hello Elysia&#39;</span><span style="color:#E1E4E8;">)</span></span>
+<span class="line"><span style="color:#E1E4E8;">  .</span><span style="color:#B392F0;">get</span><span style="color:#E1E4E8;">(</span><span style="color:#9ECBFF;">&#39;/user/:id&#39;</span><span style="color:#E1E4E8;">, ({ </span><span style="color:#FFAB70;">params</span><span style="color:#E1E4E8;">: { </span><span style="color:#FFAB70;">id</span><span style="color:#E1E4E8;"> } }) </span><span style="color:#F97583;">=&gt;</span><span style="color:#E1E4E8;"> id)</span></span>
+<span class="line"><span style="color:#E1E4E8;">  .</span><span style="color:#B392F0;">post</span><span style="color:#E1E4E8;">(</span><span style="color:#9ECBFF;">&#39;/form&#39;</span><span style="color:#E1E4E8;">, ({ </span><span style="color:#FFAB70;">body</span><span style="color:#E1E4E8;"> }) </span><span style="color:#F97583;">=&gt;</span><span style="color:#E1E4E8;"> body)</span></span></code></pre><pre class="shiki github-dark" style="background-color:#252423;color:#e1e4e8;" tabindex="0"><code><span class="line"><span style="color:#6A737D;"># Run the app</span></span>
+<span class="line"><span style="color:#B392F0;">deno</span><span style="color:#9ECBFF;"> serve</span><span style="color:#79B8FF;"> --allow-env</span><span style="color:#9ECBFF;"> main.ts</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D;"># Run the app in watch mode, restarting on file changes</span></span>
+<span class="line"><span style="color:#B392F0;">deno</span><span style="color:#9ECBFF;"> serve</span><span style="color:#79B8FF;"> --watch</span><span style="color:#79B8FF;"> --allow-env</span><span style="color:#9ECBFF;"> main.ts</span></span></code></pre><!--]--></div>
+        </div>
+      </main>
+      <footer>
+        <div
+          class="notes-layout-container mx-auto py-4 px-6 text-#8b8685 text-right text-sm"
+          id="footerContents"
+        >
+          <notes-page-footer></notes-page-footer>
+        </div>
+      </footer>
+    </div>
+    <script>
+window.precompiledNoteBehavior = function(require, exports, module, Vue) {"use strict";Object.defineProperty(exports, "__esModule", {value: true});const __sfc__ = {};
+var _vue = require('vue');
+
+const _hoisted_1 = /*#__PURE__*/_vue.createStaticVNode.call(void 0, "<h1 id=\"using-elysia-in-deno\"><a aria-hidden=\"true\" tabindex=\"-1\" href=\"#using-elysia-in-deno\"><span class=\"icon icon-link\"></span></a>Using <a href=\"Elysia\">Elysia</a> in <a href=\"Deno\">Deno</a></h1><p><strong>tl;dr:</strong> <code>export default</code> the Elysia app and run it with <code>deno serve</code>.</p><pre class=\"shiki github-dark\" style=\"background-color:#252423;color:#e1e4e8;\" tabindex=\"0\"><code><span class=\"line\"><span style=\"color:#F97583;\">import</span><span style=\"color:#E1E4E8;\"> { Elysia } </span><span style=\"color:#F97583;\">from</span><span style=\"color:#9ECBFF;\"> &#39;elysia&#39;</span></span>\n<span class=\"line\"></span>\n<span class=\"line\"><span style=\"color:#F97583;\">export</span><span style=\"color:#F97583;\"> default</span><span style=\"color:#F97583;\"> new</span><span style=\"color:#B392F0;\"> Elysia</span><span style=\"color:#E1E4E8;\">()</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">  .</span><span style=\"color:#B392F0;\">get</span><span style=\"color:#E1E4E8;\">(</span><span style=\"color:#9ECBFF;\">&#39;/&#39;</span><span style=\"color:#E1E4E8;\">, </span><span style=\"color:#9ECBFF;\">&#39;Hello Elysia&#39;</span><span style=\"color:#E1E4E8;\">)</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">  .</span><span style=\"color:#B392F0;\">get</span><span style=\"color:#E1E4E8;\">(</span><span style=\"color:#9ECBFF;\">&#39;/user/:id&#39;</span><span style=\"color:#E1E4E8;\">, ({ </span><span style=\"color:#FFAB70;\">params</span><span style=\"color:#E1E4E8;\">: { </span><span style=\"color:#FFAB70;\">id</span><span style=\"color:#E1E4E8;\"> } }) </span><span style=\"color:#F97583;\">=&gt;</span><span style=\"color:#E1E4E8;\"> id)</span></span>\n<span class=\"line\"><span style=\"color:#E1E4E8;\">  .</span><span style=\"color:#B392F0;\">post</span><span style=\"color:#E1E4E8;\">(</span><span style=\"color:#9ECBFF;\">&#39;/form&#39;</span><span style=\"color:#E1E4E8;\">, ({ </span><span style=\"color:#FFAB70;\">body</span><span style=\"color:#E1E4E8;\"> }) </span><span style=\"color:#F97583;\">=&gt;</span><span style=\"color:#E1E4E8;\"> body)</span></span></code></pre><pre class=\"shiki github-dark\" style=\"background-color:#252423;color:#e1e4e8;\" tabindex=\"0\"><code><span class=\"line\"><span style=\"color:#6A737D;\"># Run the app</span></span>\n<span class=\"line\"><span style=\"color:#B392F0;\">deno</span><span style=\"color:#9ECBFF;\"> serve</span><span style=\"color:#79B8FF;\"> --allow-env</span><span style=\"color:#9ECBFF;\"> main.ts</span></span>\n<span class=\"line\"></span>\n<span class=\"line\"><span style=\"color:#6A737D;\"># Run the app in watch mode, restarting on file changes</span></span>\n<span class=\"line\"><span style=\"color:#B392F0;\">deno</span><span style=\"color:#9ECBFF;\"> serve</span><span style=\"color:#79B8FF;\"> --watch</span><span style=\"color:#79B8FF;\"> --allow-env</span><span style=\"color:#9ECBFF;\"> main.ts</span></span></code></pre>", 4)
+function render(_ctx, _cache) {
+  return _hoisted_1
+}
+__sfc__.render = render
+__sfc__.__file = "Note.vue"
+exports. default = __sfc__};
+window.precompiledFrontMatter = {"title":"Using Elysia in Deno","public":true};
+</script>
+  </body>
+</html>

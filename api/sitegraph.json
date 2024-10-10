@@ -947,6 +947,8 @@
 				}
 			,	{	"link": "TypeScript"
 				}
+			,	{	"link": "ElysiaDeno"
+				}
 			]
 		}
 	,	"DependabotAutoMerge":
@@ -1087,7 +1089,18 @@
 				}
 			,	{	"link": "Bun"
 				}
+			,	{	"link": "ElysiaDeno"
+				}
 			,	{	"link": "ElysiaNode"
+				}
+			]
+		}
+	,	"ElysiaDeno":
+		{	"title": "Using Elysia in Deno"
+		,	"links":
+			[	{	"link": "Elysia"
+				}
+			,	{	"link": "Deno"
 				}
 			]
 		}
