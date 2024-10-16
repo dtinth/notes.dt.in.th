@@ -896,7 +896,7 @@
 		,	"parent": "Tools"
 		}
 	,	"OpenWebUILiteLLM":
-		{	"title": "Configuring Open WebUI and LiteLLM with Docker Compose to talk to OpenAI, Anthropic, and Gemini APIs"
+		{	"title": "Configuring Open WebUI and LiteLLM with Docker Compose to talk to OpenAI, Anthropic, Gemini, and Perplexity APIs"
 		,	"parent": "LargeLanguageModel"
 		}
 	,	"PWA":
