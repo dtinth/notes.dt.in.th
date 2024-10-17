@@ -765,10 +765,19 @@
 				}
 			,	{	"link": "CaddySelfSigned"
 				}
+			,	{	"link": "CaddyCompression"
+				}
 			]
 		}
 	,	"CaddyCORS":
 		{	"title": "Setting up CORS in Caddy"
+		,	"links":
+			[	{	"link": "Caddy"
+				}
+			]
+		}
+	,	"CaddyCompression":
+		{	"title": "Enabling gzip/zstd compression in Caddy"
 		,	"links":
 			[	{	"link": "Caddy"
 				}

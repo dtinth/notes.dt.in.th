@@ -416,6 +416,10 @@
 		{	"title": "Setting up CORS in Caddy"
 		,	"parent": "Caddy"
 		}
+	,	"CaddyCompression":
+		{	"title": "Enabling gzip/zstd compression in Caddy"
+		,	"parent": "Caddy"
+		}
 	,	"CaddyReverseProxy":
 		{	"title": "Setting up a reverse proxy using Caddy"
 		,	"parent": "Docker"

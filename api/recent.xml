@@ -5,8 +5,15 @@
 		<description><![CDATA[Thai Pangsakulyanont’s writings]]></description>
 		<link>https://dt.in.th</link>
 		<generator>RSS for Node</generator>
-		<lastBuildDate>Thu, 10 Oct 2024 09:58:00 GMT</lastBuildDate>
+		<lastBuildDate>Thu, 17 Oct 2024 11:06:52 GMT</lastBuildDate>
 		<atom:link href="https://notes.dt.in.th/api/recent.xml" rel="self" type="application/rss+xml" />
+		<item>
+			<title><![CDATA[Enabling gzip/zstd compression in Caddy]]></title>
+			<description><![CDATA[<a href="https://notes.dt.in.th/CaddyCompression">[Read]</a>]]></description>
+			<link>https://notes.dt.in.th/CaddyCompression</link>
+			<guid isPermaLink="true">https://notes.dt.in.th/CaddyCompression</guid>
+			<pubDate>Thu, 17 Oct 2024 00:00:00 GMT</pubDate>
+		</item>
 		<item>
 			<title><![CDATA[Using Elysia in Deno]]></title>
 			<description><![CDATA[<a href="https://notes.dt.in.th/ElysiaDeno">[Read]</a>]]></description>

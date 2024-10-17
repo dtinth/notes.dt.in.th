@@ -102,6 +102,7 @@ https://notes.dt.in.th/CSS
 https://notes.dt.in.th/CSSChangeColorOpacity
 https://notes.dt.in.th/Caddy
 https://notes.dt.in.th/CaddyCORS
+https://notes.dt.in.th/CaddyCompression
 https://notes.dt.in.th/CaddyReverseProxy
 https://notes.dt.in.th/CaddySelfSigned
 https://notes.dt.in.th/CircleCIDummyConfig
